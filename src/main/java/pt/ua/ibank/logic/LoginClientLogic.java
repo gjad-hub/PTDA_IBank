@@ -9,7 +9,7 @@ public class LoginClientLogic {
 
     public void createAnswerAsyncThread() {
 
-        //createSocketChannel();
+        //crnewpackageeateSocketChannel();
 //        CompletableFuture.supplyAsync(() -> reciever.recieveIncomingInteger()).thenAccept((answer) -> {
 //
 //            System.out.println(String.format("Server response: %s\nActual response: %d", answer == 0 ? "correct" : "wrong password", answer));
