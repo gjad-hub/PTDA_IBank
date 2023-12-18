@@ -7,13 +7,14 @@ import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import pt.ua.ibank.interfaces.LoginClientInterface;
+import pt.ua.ibank.interfaces.clientInterface;
 
 public class IBank {
 
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
-            FlatLightLaf.setGlobalExtraDefaults(Collections.singletonMap("@accentColor", "#b30021"));
+            FlatLightLaf.setGlobalExtraDefaults(Collections.singletonMap("@accentColor", "#3c79cf"));
             FlatLightLaf.setup();
 
             UIDefaults defaults = UIManager.getLookAndFeelDefaults();
@@ -25,7 +26,11 @@ public class IBank {
             System.exit(98);
         }
 
-        LoginClientInterface lclient = new LoginClientInterface();
-        lclient.setVisible(true);
+//        LoginClientInterface lclient = new LoginClientInterface();
+//        lclient.setVisible(true);
+
+        clientInterface ci = new clientInterface();
+        
+        ci.setVisible(true);
     }
 }
