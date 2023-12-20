@@ -73,7 +73,7 @@ public class clientInterface extends javax.swing.JFrame {
         display_user.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         display_user.setText(" Arsénio Breno ");
 
-        dashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/dashboard.png"))); // NOI18N
+        dashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/dashboard.png"))); // NOI18N
         dashboard.setText("DashBoard");
         dashboard.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         dashboard.addActionListener(new java.awt.event.ActionListener() {
@@ -82,7 +82,7 @@ public class clientInterface extends javax.swing.JFrame {
             }
         });
 
-        transfers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/payments.png"))); // NOI18N
+        transfers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/payments.png"))); // NOI18N
         transfers.setText("Transferencias");
         transfers.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         transfers.addActionListener(new java.awt.event.ActionListener() {
@@ -91,15 +91,15 @@ public class clientInterface extends javax.swing.JFrame {
             }
         });
 
-        services.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/shopping_bag.png"))); // NOI18N
+        services.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/shopping_bag.png"))); // NOI18N
         services.setText("Serviços e compras");
         services.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/credit_card.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/credit_card.png"))); // NOI18N
         jButton1.setText("Cartões");
         jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/logout.png"))); // NOI18N
+        logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/logout.png"))); // NOI18N
         logout.setText("Logout");
         logout.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         logout.addActionListener(new java.awt.event.ActionListener() {
@@ -109,7 +109,7 @@ public class clientInterface extends javax.swing.JFrame {
         });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/account_circle.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/account_circle.png"))); // NOI18N
 
         javax.swing.GroupLayout side_barLayout = new javax.swing.GroupLayout(side_bar);
         side_bar.setLayout(side_barLayout);
@@ -141,7 +141,7 @@ public class clientInterface extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(display_user, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(6, 6, 6)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dashboard)
@@ -151,7 +151,7 @@ public class clientInterface extends javax.swing.JFrame {
                 .addComponent(services)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 427, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 384, Short.MAX_VALUE)
                 .addComponent(logout)
                 .addContainerGap())
         );
@@ -167,7 +167,7 @@ public class clientInterface extends javax.swing.JFrame {
         desktopLayout.setHorizontalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopLayout.createSequentialGroup()
-                .addGap(0, 403, Short.MAX_VALUE)
+                .addGap(0, 445, Short.MAX_VALUE)
                 .addComponent(logo))
         );
         desktopLayout.setVerticalGroup(
@@ -179,7 +179,7 @@ public class clientInterface extends javax.swing.JFrame {
 
         small_side_bar.setBackground(new java.awt.Color(255, 255, 255));
 
-        sdashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/dashboard.png"))); // NOI18N
+        sdashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/dashboard.png"))); // NOI18N
         sdashboard.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         sdashboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,7 +187,7 @@ public class clientInterface extends javax.swing.JFrame {
             }
         });
 
-        stransfers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/payments.png"))); // NOI18N
+        stransfers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/payments.png"))); // NOI18N
         stransfers.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         stransfers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,16 +195,16 @@ public class clientInterface extends javax.swing.JFrame {
             }
         });
 
-        scard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/credit_card.png"))); // NOI18N
+        scard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/credit_card.png"))); // NOI18N
         scard.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        sservices.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/shopping_bag.png"))); // NOI18N
+        sservices.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/shopping_bag.png"))); // NOI18N
         sservices.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        saccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/account_circle.png"))); // NOI18N
+        saccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/account_circle.png"))); // NOI18N
         saccount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        slogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/logout.png"))); // NOI18N
+        slogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/logout.png"))); // NOI18N
         slogout.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         slogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
