@@ -9,7 +9,7 @@ Be sure to install a version of Java SDK that supports Java 8
 ```
 javac file.java
 ```
-![image](https://i.imgur.com/jH7sKw7.png)
+![image](https://i.imgur.com/qDoEjNK.png)
 
 ## Contributing ඞ
 
