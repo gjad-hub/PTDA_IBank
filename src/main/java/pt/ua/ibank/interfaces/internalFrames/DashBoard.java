@@ -1,4 +1,4 @@
-package pt.ua.ibank.interfaces;
+package pt.ua.ibank.interfaces.internalFrames;
 
 import pt.ua.ibank.utilities.RoundedShadowPanel;
 
@@ -19,7 +19,7 @@ public class DashBoard extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        transacao = new RoundedShadowPanel(20);
+        transacao = new RoundedShadowPanel(15);
         jSeparator2 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -28,14 +28,15 @@ public class DashBoard extends javax.swing.JInternalFrame {
         cards = new RoundedShadowPanel(15);
 
         setClosable(true);
+        setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
         setTitle("DashBoard");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_20/dashboard.png"))); // NOI18N
 
-        jPanel2.setBackground(new java.awt.Color(234, 238, 242));
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
         transacao.setBackground(new java.awt.Color(255, 255, 255));
-        transacao.setOpaque(false);
 
         jLabel1.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
         jLabel1.setText("Transações");
@@ -80,7 +81,6 @@ public class DashBoard extends javax.swing.JInternalFrame {
         );
 
         stat.setBackground(new java.awt.Color(255, 255, 255));
-        stat.setOpaque(false);
 
         javax.swing.GroupLayout statLayout = new javax.swing.GroupLayout(stat);
         stat.setLayout(statLayout);
@@ -94,7 +94,6 @@ public class DashBoard extends javax.swing.JInternalFrame {
         );
 
         cards.setBackground(new java.awt.Color(255, 255, 255));
-        cards.setOpaque(false);
 
         javax.swing.GroupLayout cardsLayout = new javax.swing.GroupLayout(cards);
         cards.setLayout(cardsLayout);

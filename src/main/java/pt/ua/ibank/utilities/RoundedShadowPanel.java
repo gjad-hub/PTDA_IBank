@@ -9,52 +9,11 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 public class RoundedShadowPanel extends JPanel {
-
     
-    public ShadowType getShadowType() {
-        return shadowType;
-    }
-
-    public void setShadowType(ShadowType shadowType) {
-        this.shadowType = shadowType;
-    }
-
-    public int getShadowSize() {
-        return shadowSize;
-    }
-
-    public void setShadowSize(int shadowSize) {
-        this.shadowSize = shadowSize;
-    }
-
-    public float getShadowOpacity() {
-        return shadowOpacity;
-    }
-
-    public void setShadowOpacity(float shadowOpacity) {
-        this.shadowOpacity = shadowOpacity;
-    }
-
-    public Color getShadowColor() {
-        return shadowColor;
-    }
-
-    public void setShadowColor(Color shadowColor) {
-        this.shadowColor = shadowColor;
-    }
-
-    public int getCornerRadius() {
-        return cornerRadius;
-    }
-
-    public void setCornerRadius(int cornerRadius) {
-        this.cornerRadius = cornerRadius;
-    }
-    
-    private ShadowType shadowType = ShadowType.CENTER;
-    private int shadowSize = 2;
-    private float shadowOpacity = 0.5f;
-    private Color shadowColor = Color.BLACK;
+    private final ShadowType shadowType = ShadowType.CENTER;
+    private final int shadowSize = 2;
+    private final float shadowOpacity = 0.5f;
+    private final Color shadowColor = Color.BLACK;
     
     private int cornerRadius = 15;
 
@@ -65,6 +24,7 @@ public class RoundedShadowPanel extends JPanel {
 
     public RoundedShadowPanel(int radius) {
         super();
+        this.setOpaque(false);
         cornerRadius = radius;
     }
 

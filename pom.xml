@@ -12,6 +12,15 @@
             <url>file:${project.basedir}/lib</url>
         </repository>
     </repositories>
+    
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+            </resource>
+         </resources>
+    </build>
+
     <dependencies>
         <dependency>
             <groupId>com.formdev</groupId>

@@ -14,11 +14,11 @@ public class IBank {
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
-            FlatLightLaf.setGlobalExtraDefaults(Collections.singletonMap("@accentColor", "#ffb8fd"));
+            FlatLightLaf.setGlobalExtraDefaults(Collections.singletonMap("@accentColor", "#79658C"));
             FlatLightLaf.setup();
 
             UIDefaults defaults = UIManager.getLookAndFeelDefaults();
-            setUIFont (new javax.swing.plaf.FontUIResource("SF Pro Display",Font.PLAIN,14));
+            setUIFont (new javax.swing.plaf.FontUIResource("SF Pro Display",Font.PLAIN,12));
 
 
             if (defaults.get("Table.alternateRowColor") == null) {
