@@ -1,4 +1,4 @@
-package pt.ua.ibank.relations;
+package pt.ua.ibank.DTO;
 
 import java.sql.Date;
 

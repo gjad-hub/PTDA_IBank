@@ -1,4 +1,4 @@
-package pt.ua.ibank.relations;
+package pt.ua.ibank.DTO;
 
 public class funcionario_cliente {
     private int numFun;

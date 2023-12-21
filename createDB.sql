@@ -3,7 +3,7 @@ use IbankDB;
 
 -- Tabela Cliente
 CREATE TABLE cliente (
-    num_cliente INT PRIMARY KEY,
+    num_cliente INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(255),
     morada VARCHAR(255),
     email VARCHAR(255),
@@ -44,7 +44,7 @@ CREATE TABLE pagamento_servicos_compras (
 
 -- Tabela Tranferencia
 CREATE TABLE transferencia (
-    id_transferencia INT PRIMARY KEY,
+    id_transferencia INT PRIMARY KEY AUTO_INCREMENT,
     valor DECIMAL(10,2),
     cliente_realiza INT,
     cliente_recebe INT,
@@ -54,7 +54,7 @@ CREATE TABLE transferencia (
 
 -- Tabela Funcionario
 CREATE TABLE funcionario (
-    num_fun INT PRIMARY KEY,
+    num_fun INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(255),
     morada VARCHAR(255),
     email VARCHAR(255),
@@ -76,12 +76,21 @@ CREATE TABLE funcionario_cliente (
 
 -- Tabela Deposito
 CREATE TABLE deposito (
-    id_deposito INT PRIMARY KEY,
+    id_deposito INT PRIMARY KEY AUTO_INCREMENT,
     valor DECIMAL(10,2),
     estado VARCHAR(50),
     num_fun INT,
     num_cli INT,
     FOREIGN KEY (num_fun) REFERENCES funcionario(num_fun),
+    FOREIGN KEY (num_cli) REFERENCES cliente(num_cliente)
+);
+
+-- Tabela transacoes
+CREATE TABLE transacoes (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    num_cli INT NOT NULL,
+    descricao VARCHAR(50),
+    valor INT,
     FOREIGN KEY (num_cli) REFERENCES cliente(num_cliente)
 );
 

@@ -3,8 +3,8 @@ package pt.ua.ibank.interfaces;
 import pt.ua.ibank.interfaces.internalFrames.DashBoard;
 import java.awt.Component;
 import java.awt.Dimension;
-import pt.ua.ibank.utilities.GUI.MDIDesktopPane;
-import pt.ua.ibank.utilities.GUI.WindowMenu;
+import pt.ua.ibank.utilities.MDIDesktopPane;
+import pt.ua.ibank.utilities.WindowMenu;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
 
 public class clientInterface extends javax.swing.JFrame {
@@ -53,15 +53,6 @@ public class clientInterface extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         desktop = new MDIDesktopPane();
         logo = new javax.swing.JLabel();
-        jPanelDebitCard = new javax.swing.JPanel();
-        jLabelTipoCartao = new javax.swing.JLabel();
-        jPanelCardDesign = new javax.swing.JPanel();
-        nomeLabelDebitCard = new javax.swing.JLabel();
-        saldoLabelDebitCard = new javax.swing.JLabel();
-        dataValidadeLabelDebitCard = new javax.swing.JLabel();
-        numContaLabelDebitCard = new javax.swing.JLabel();
-        nomeBancoiBankLabelDebitCard = new javax.swing.JLabel();
-        VISAlabelDebitCard = new javax.swing.JLabel();
         small_side_bar = new RoundedShadowPanel(5);
         sdashboard = new javax.swing.JButton();
         stransfers = new javax.swing.JButton();
@@ -160,7 +151,7 @@ public class clientInterface extends javax.swing.JFrame {
                 .addComponent(services)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 393, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 384, Short.MAX_VALUE)
                 .addComponent(logout)
                 .addContainerGap())
         );
@@ -169,128 +160,21 @@ public class clientInterface extends javax.swing.JFrame {
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/logo_png_BW.png"))); // NOI18N
 
-        jPanelDebitCard.setBackground(new java.awt.Color(255, 255, 255));
-        jPanelDebitCard.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanelDebitCard.setForeground(new java.awt.Color(51, 55, 74));
-
-        jLabelTipoCartao.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabelTipoCartao.setText("Cartão de Débito");
-
-        jPanelCardDesign.setBackground(new java.awt.Color(51, 55, 74));
-
-        nomeLabelDebitCard.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        nomeLabelDebitCard.setForeground(new java.awt.Color(255, 255, 255));
-        nomeLabelDebitCard.setText("Arsénio Breno");
-
-        saldoLabelDebitCard.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        saldoLabelDebitCard.setForeground(new java.awt.Color(255, 255, 255));
-        saldoLabelDebitCard.setText("1000,00 €");
-
-        dataValidadeLabelDebitCard.setForeground(new java.awt.Color(255, 255, 255));
-        dataValidadeLabelDebitCard.setText("09/27");
-
-        numContaLabelDebitCard.setForeground(new java.awt.Color(255, 255, 255));
-        numContaLabelDebitCard.setText("765 978 819 29");
-
-        nomeBancoiBankLabelDebitCard.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        nomeBancoiBankLabelDebitCard.setForeground(new java.awt.Color(255, 255, 255));
-        nomeBancoiBankLabelDebitCard.setText("iBank");
-
-        VISAlabelDebitCard.setForeground(new java.awt.Color(0, 0, 255));
-        VISAlabelDebitCard.setText("VISA Debit");
-
-        javax.swing.GroupLayout jPanelCardDesignLayout = new javax.swing.GroupLayout(jPanelCardDesign);
-        jPanelCardDesign.setLayout(jPanelCardDesignLayout);
-        jPanelCardDesignLayout.setHorizontalGroup(
-            jPanelCardDesignLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCardDesignLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanelCardDesignLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelCardDesignLayout.createSequentialGroup()
-                        .addComponent(saldoLabelDebitCard)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCardDesignLayout.createSequentialGroup()
-                        .addGroup(jPanelCardDesignLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanelCardDesignLayout.createSequentialGroup()
-                                .addGroup(jPanelCardDesignLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dataValidadeLabelDebitCard)
-                                    .addComponent(numContaLabelDebitCard))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(VISAlabelDebitCard, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelCardDesignLayout.createSequentialGroup()
-                                .addComponent(nomeLabelDebitCard)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
-                                .addComponent(nomeBancoiBankLabelDebitCard)))
-                        .addGap(15, 15, 15))))
-        );
-        jPanelCardDesignLayout.setVerticalGroup(
-            jPanelCardDesignLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCardDesignLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jPanelCardDesignLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(nomeLabelDebitCard)
-                    .addComponent(nomeBancoiBankLabelDebitCard))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(saldoLabelDebitCard)
-                .addGroup(jPanelCardDesignLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelCardDesignLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(dataValidadeLabelDebitCard)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(numContaLabelDebitCard)
-                        .addContainerGap(12, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCardDesignLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(VISAlabelDebitCard)
-                        .addGap(14, 14, 14))))
-        );
-
-        javax.swing.GroupLayout jPanelDebitCardLayout = new javax.swing.GroupLayout(jPanelDebitCard);
-        jPanelDebitCard.setLayout(jPanelDebitCardLayout);
-        jPanelDebitCardLayout.setHorizontalGroup(
-            jPanelDebitCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelDebitCardLayout.createSequentialGroup()
-                .addGroup(jPanelDebitCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelDebitCardLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelTipoCartao))
-                    .addGroup(jPanelDebitCardLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jPanelCardDesign, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(65, Short.MAX_VALUE))
-        );
-        jPanelDebitCardLayout.setVerticalGroup(
-            jPanelDebitCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDebitCardLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelTipoCartao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelCardDesign, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
-        );
-
         desktop.setLayer(logo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        desktop.setLayer(jPanelDebitCard, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout desktopLayout = new javax.swing.GroupLayout(desktop);
         desktop.setLayout(desktopLayout);
         desktopLayout.setHorizontalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jPanelDebitCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addGap(0, 445, Short.MAX_VALUE)
                 .addComponent(logo))
         );
         desktopLayout.setVerticalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopLayout.createSequentialGroup()
-                .addGap(0, 186, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelDebitCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66))
         );
 
         small_side_bar.setBackground(new java.awt.Color(255, 255, 255));
@@ -468,6 +352,18 @@ public class clientInterface extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -478,27 +374,18 @@ public class clientInterface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel VISAlabelDebitCard;
     private javax.swing.JButton dashboard;
-    private javax.swing.JLabel dataValidadeLabelDebitCard;
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel display_user;
     private javax.swing.JMenuItem hide;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabelTipoCartao;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JPanel jPanelCardDesign;
-    private javax.swing.JPanel jPanelDebitCard;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel logo;
     private javax.swing.JButton logout;
     private javax.swing.JMenuBar menu_bar;
-    private javax.swing.JLabel nomeBancoiBankLabelDebitCard;
-    private javax.swing.JLabel nomeLabelDebitCard;
-    private javax.swing.JLabel numContaLabelDebitCard;
     private javax.swing.JButton saccount;
-    private javax.swing.JLabel saldoLabelDebitCard;
     private javax.swing.JButton scard;
     private javax.swing.JButton sdashboard;
     private javax.swing.JButton services;

@@ -1,19 +1,12 @@
-package pt.ua.ibank.utilities.GUI;
+package pt.ua.ibank.utilities;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
 import java.beans.PropertyVetoException;
 import java.util.ArrayList;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
-import pt.ua.ibank.utilities.ShadowRenderer;
-import pt.ua.ibank.utilities.ShadowType;
 
 public /**
          * An extension of WDesktopPane that supports often used MDI

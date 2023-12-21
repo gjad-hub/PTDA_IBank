@@ -1,4 +1,4 @@
-package pt.ua.ibank.relations;
+package pt.ua.ibank.DTO;
 
 public class pagamento_servicos_compras {
     private int referencia;
