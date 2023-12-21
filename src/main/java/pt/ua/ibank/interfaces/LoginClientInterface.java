@@ -89,7 +89,7 @@ public class LoginClientInterface extends javax.swing.JFrame {
         lblSubtitle.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         lblSubtitle.setText("Log In to get started!");
         panelLoginTitle.add(lblSubtitle);
-        lblSubtitle.setBounds(10, 40, 150, 17);
+        lblSubtitle.setBounds(10, 40, 150, 16);
 
         lblTextBox.setBackground(new java.awt.Color(204, 255, 153));
         lblTextBox.setIcon(new javax.swing.JLabel() {
@@ -465,7 +465,7 @@ public class LoginClientInterface extends javax.swing.JFrame {
         lblSubtitle1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         lblSubtitle1.setText("Glad you're here!");
         panelRegisterTitle.add(lblSubtitle1);
-        lblSubtitle1.setBounds(10, 40, 140, 17);
+        lblSubtitle1.setBounds(10, 40, 140, 16);
 
         lblTextBox1.setBackground(new java.awt.Color(204, 255, 153));
         lblTextBox1.setIcon(new javax.swing.JLabel() {
