@@ -2,7 +2,7 @@ package pt.ua.ibank.DTO;
 
 import java.sql.Date;
 
-public class credito {
+public class Credito {
     private int numCartao;
     private Date dataVencimento;
     private double saldoLimite;

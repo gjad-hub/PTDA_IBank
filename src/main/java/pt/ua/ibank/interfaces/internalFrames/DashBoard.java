@@ -2,8 +2,8 @@ package pt.ua.ibank.interfaces.internalFrames;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import pt.ua.ibank.DTO.transacoes;
-import pt.ua.ibank.Result.Result_Transacoes;
+import pt.ua.ibank.DTO.Transacoes;
+import pt.ua.ibank.DAO.TransacoesDAO;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
 
 
@@ -11,15 +11,15 @@ public class DashBoard extends javax.swing.JInternalFrame {
 
     public DashBoard() {
         initComponents();
-        popular(Result_Transacoes.getTransacoes());
+        popular(TransacoesDAO.getTransacoes());
     }
     
-    private void popular(ArrayList<transacoes> ltransacoes){
+    private void popular(ArrayList<Transacoes> ltransacoes){
         DefaultTableModel modelo = (DefaultTableModel) t_table.getModel();
         modelo.setNumRows(0);
 
         if (ltransacoes != null) {
-            for (transacoes tr : ltransacoes) {
+            for (Transacoes tr : ltransacoes) {
                 modelo.addRow(new Object[]{
                     tr.getDescricao(),
                     tr.getValor()
@@ -227,7 +227,7 @@ public class DashBoard extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        popular(Result_Transacoes.getTransacoes());
+        popular(TransacoesDAO.getTransacoes());
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

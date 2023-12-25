@@ -1,6 +1,6 @@
 package pt.ua.ibank.DTO;
 
-public class transferencia {
+public class Transferencia {
     private int idTransferencia;
     private double valor;
     private int clienteRealiza;

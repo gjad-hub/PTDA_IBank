@@ -1,6 +1,6 @@
 package pt.ua.ibank.DTO;
 
-public class funcionario_cliente {
+public class FuncionarioCliente {
     private int numFun;
     private int numCli;
 

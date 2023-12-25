@@ -1,6 +1,6 @@
 package pt.ua.ibank.DTO;
 
-public class transacoes {
+public class Transacoes {
    
     private int id;
     private int num_cli;

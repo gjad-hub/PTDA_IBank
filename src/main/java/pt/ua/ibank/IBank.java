@@ -7,7 +7,9 @@ import java.util.Collections;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import pt.ua.ibank.Result.Result_Transacoes;
+import pt.ua.ibank.Classes.ClientHandler;
+import pt.ua.ibank.DAO.TransacoesDAO;
+import pt.ua.ibank.interfaces.PrevLogin;
 import pt.ua.ibank.interfaces.clientInterface;
 
 public class IBank {
@@ -30,14 +32,13 @@ public class IBank {
             System.exit(98);
         }
 
-        System.out.println(Result_Transacoes.getTransacoes());
-        
-//        LoginClientInterface lclient = new LoginClientInterface();
-//        lclient.setVisible(true);
-        clientInterface ci = new clientInterface();
-        ci.setVisible(true);
+        System.out.println(TransacoesDAO.getTransacoes());
         
         
+        PrevLogin login = new PrevLogin();
+        login.setVisible(true);
+        //clientInterface ci = new clientInterface();
+        //ci.setVisible(true);
     }
 
     public static void setUIFont(javax.swing.plaf.FontUIResource f) {

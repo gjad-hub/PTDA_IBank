@@ -2,7 +2,7 @@ package pt.ua.ibank.DTO;
 
 import java.sql.Date;
 
-public class cartao {
+public class Cartao {
     private int numCartao;
     private Date dataValidade;
     private String estado;

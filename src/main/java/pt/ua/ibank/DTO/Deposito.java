@@ -1,6 +1,6 @@
 package pt.ua.ibank.DTO;
 
-public class deposito {
+public class Deposito {
     private int idDeposito;
     private double valor;
     private String estado;

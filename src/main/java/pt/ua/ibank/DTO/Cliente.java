@@ -1,6 +1,6 @@
 package pt.ua.ibank.DTO;
 
-public class cliente {
+public class Cliente {
     private int numCliente;
     private String nome;
     private String morada;

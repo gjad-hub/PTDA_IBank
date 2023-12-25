@@ -1,6 +1,6 @@
 package pt.ua.ibank.DTO;
 
-public class pagamento_servicos_compras {
+public class PagamentoServicosCompras {
     private int referencia;
     private int entidade;
     private double valor;
