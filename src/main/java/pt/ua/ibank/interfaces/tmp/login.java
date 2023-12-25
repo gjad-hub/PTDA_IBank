@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package pt.ua.ibank.interfaces;
+package pt.ua.ibank.interfaces.tmp;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

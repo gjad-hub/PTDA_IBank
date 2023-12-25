@@ -2,17 +2,19 @@ package pt.ua.ibank;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Color;
-import java.awt.Font;
 import java.util.Collections;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import pt.ua.ibank.Classes.ClientHandler;
-import pt.ua.ibank.DAO.TransacoesDAO;
-import pt.ua.ibank.interfaces.PrevLogin;
+import pt.ua.ibank.DTO.Cliente;
 import pt.ua.ibank.interfaces.clientInterface;
+import pt.ua.ibank.interfaces.loginDia;
+import pt.ua.ibank.utilities.Configs;
 
 public class IBank {
+
+    public static Cliente client = null;
+    public static clientInterface interf;
 
     public static void main(String[] args) {
         try {
@@ -20,9 +22,8 @@ public class IBank {
             FlatLightLaf.setGlobalExtraDefaults(Collections.singletonMap("@accentColor", "#79658C"));
             FlatLightLaf.setup();
 
+            //setUIFont (new javax.swing.plaf.FontUIResource("SF Pro Display",Font.PLAIN,12));
             UIDefaults defaults = UIManager.getLookAndFeelDefaults();
-            setUIFont (new javax.swing.plaf.FontUIResource("SF Pro Display",Font.PLAIN,12));
-
 
             if (defaults.get("Table.alternateRowColor") == null) {
                 defaults.put("Table.alternateRowColor", new Color(240, 240, 240));
@@ -32,13 +33,13 @@ public class IBank {
             System.exit(98);
         }
 
-        System.out.println(TransacoesDAO.getTransacoes());
-        
-        
-        PrevLogin login = new PrevLogin();
+        loginDia login = new loginDia(null, true);
         login.setVisible(true);
-        //clientInterface ci = new clientInterface();
-        //ci.setVisible(true);
+
+        if (Configs.loginOK) {
+            interf = new clientInterface();
+            interf.setVisible(true);
+        }
     }
 
     public static void setUIFont(javax.swing.plaf.FontUIResource f) {

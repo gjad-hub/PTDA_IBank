@@ -1,4 +1,4 @@
-package pt.ua.ibank.interfaces;
+package pt.ua.ibank.interfaces.tmp;
 
 import pt.ua.ibank.interfaces.internalFrames.DashBoard;
 import java.awt.Component;

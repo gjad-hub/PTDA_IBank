@@ -1,4 +1,4 @@
-package pt.ua.ibank.interfaces;
+package pt.ua.ibank.interfaces.tmp;
 
 import java.awt.Cursor;
 import java.util.regex.Pattern;
@@ -70,7 +70,6 @@ public class LoginClientInterface extends javax.swing.JFrame {
         setIconImages(null);
         setMinimumSize(new java.awt.Dimension(655, 500));
         setName("mainFrame"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(650, 458));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -451,7 +450,7 @@ public class LoginClientInterface extends javax.swing.JFrame {
         );
 
         panelRegister.add(panelRegisterInput);
-        panelRegisterInput.setBounds(10, 80, 400, 370);
+        panelRegisterInput.setBounds(10, 80, 0, 370);
 
         panelRegisterTitle.setBackground(new java.awt.Color(204, 204, 204));
         panelRegisterTitle.setLayout(null);

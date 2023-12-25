@@ -2,14 +2,14 @@ package pt.ua.ibank.interfaces;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.utilities.Hash;
 
-public class PrevCreateAccount extends javax.swing.JFrame {
+public class CreateAccountDia extends javax.swing.JDialog {
 
-    public PrevCreateAccount() {
+
+    public CreateAccountDia(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -22,43 +22,47 @@ public class PrevCreateAccount extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        lnome = new javax.swing.JLabel();
-        lmorada = new javax.swing.JLabel();
-        ltelefone = new javax.swing.JLabel();
-        lemail = new javax.swing.JLabel();
-        lpassword = new javax.swing.JLabel();
-        lrpassword = new javax.swing.JLabel();
-        fName = new javax.swing.JTextField();
-        fMorada = new javax.swing.JTextField();
-        fTelemovel = new javax.swing.JTextField();
-        FEmail = new javax.swing.JTextField();
-        FPass = new javax.swing.JPasswordField();
         FRPass = new javax.swing.JPasswordField();
+        FPass = new javax.swing.JPasswordField();
+        FEmail = new javax.swing.JTextField();
+        FNif = new javax.swing.JTextField();
+        fTelemovel = new javax.swing.JTextField();
+        fMorada = new javax.swing.JTextField();
+        fName = new javax.swing.JTextField();
+        lrpassword = new javax.swing.JLabel();
+        lpassword = new javax.swing.JLabel();
+        lemail = new javax.swing.JLabel();
+        lnif = new javax.swing.JLabel();
+        ltelefone = new javax.swing.JLabel();
+        lmorada = new javax.swing.JLabel();
+        lnome = new javax.swing.JLabel();
         cancel = new javax.swing.JButton();
         create = new javax.swing.JButton();
-        lnif = new javax.swing.JLabel();
-        FNif = new javax.swing.JTextField();
         lerror = new javax.swing.JLabel();
 
-        jLabel2.setText("jLabel2");
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
-
-        lnome.setText("Nome:");
-
-        lmorada.setText("Morada:");
-
-        ltelefone.setText("Telemóvel:");
-
-        lemail.setText("E-mail:");
-
-        lpassword.setText("Passowrd:");
 
         lrpassword.setText("Repetir Password:");
 
+        lpassword.setText("Passowrd:");
+
+        lemail.setText("E-mail:");
+
+        lnif.setText("NIF:");
+
+        ltelefone.setText("Telemóvel:");
+
+        lmorada.setText("Morada:");
+
+        lnome.setText("Nome:");
+
         cancel.setText("Cancelar");
+        cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelActionPerformed(evt);
+            }
+        });
 
         create.setText("Cirar Conta");
         create.addActionListener(new java.awt.event.ActionListener() {
@@ -66,8 +70,6 @@ public class PrevCreateAccount extends javax.swing.JFrame {
                 createActionPerformed(evt);
             }
         });
-
-        lnif.setText("NIF:");
 
         lerror.setForeground(new java.awt.Color(255, 51, 51));
 
@@ -86,41 +88,38 @@ public class PrevCreateAccount extends javax.swing.JFrame {
                         .addComponent(cancel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lerror, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(12, 12, 12)
                         .addComponent(create))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lnome, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(fName, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lmorada, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(fMorada, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(ltelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(fTelemovel, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lemail, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(FEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(FPass, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lrpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(FRPass, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(lnome, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(fName, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lmorada, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(fMorada, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(ltelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(fTelemovel, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lemail, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(FEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(FPass, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lrpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(FRPass, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(7, 7, 7))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lnome)
                     .addComponent(fName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -132,11 +131,11 @@ public class PrevCreateAccount extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ltelefone)
                     .addComponent(fTelemovel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lnif)
                     .addComponent(FNif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lemail)
                     .addComponent(FEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -148,12 +147,13 @@ public class PrevCreateAccount extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lrpassword)
                     .addComponent(FRPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancel)
-                    .addComponent(create)
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cancel)
+                        .addComponent(create))
                     .addComponent(lerror, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -163,25 +163,29 @@ public class PrevCreateAccount extends javax.swing.JFrame {
     private void createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createActionPerformed
         lerror.setText("");
 
-        if (fName.getText().isEmpty() || fMorada.getText().isEmpty() 
-                || fTelemovel.getText().isEmpty() || FNif.getText().isEmpty() 
-                || new String(FPass.getPassword()).isEmpty() || new String(FRPass.getPassword()).isEmpty()) {
+        if (fName.getText().isEmpty() || fMorada.getText().isEmpty()
+            || fTelemovel.getText().isEmpty() || FNif.getText().isEmpty()
+            || new String(FPass.getPassword()).isEmpty() || new String(FRPass.getPassword()).isEmpty()) {
             lerror.setText("Erro, campos vazios !");
             return;
         }
-        
+
         if (!new String(FPass.getPassword()).equals(new String(FRPass.getPassword()))) {
             lerror.setText("Passwords diferentes");
             return;
         }
-        
+
         try {
             String hashedPassword = Hash.generateStorngPasswordHash(new String(FPass.getPassword()));
             ClientDAO.CreateClient(fName.getText(), fMorada.getText(), FEmail.getText(), fTelemovel.getText(), FNif.getText(), hashedPassword);
         } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
-            Logger.getLogger(PrevCreateAccount.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_createActionPerformed
+
+    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_cancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,20 +204,28 @@ public class PrevCreateAccount extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PrevCreateAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateAccountDia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PrevCreateAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateAccountDia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PrevCreateAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateAccountDia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PrevCreateAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateAccountDia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PrevCreateAccount().setVisible(true);
+                CreateAccountDia dialog = new CreateAccountDia(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
@@ -228,7 +240,6 @@ public class PrevCreateAccount extends javax.swing.JFrame {
     private javax.swing.JTextField fMorada;
     private javax.swing.JTextField fName;
     private javax.swing.JTextField fTelemovel;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lemail;
     private javax.swing.JLabel lerror;
     private javax.swing.JLabel lmorada;

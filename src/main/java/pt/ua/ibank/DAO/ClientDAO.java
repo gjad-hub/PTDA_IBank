@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import pt.ua.ibank.DTO.Cliente;
 import pt.ua.ibank.services.connection;
 import static pt.ua.ibank.services.connection.conn;
 import static pt.ua.ibank.utilities.IbanGenerator.generateRandomIban;
@@ -35,11 +36,44 @@ public class ClientDAO {
             stmt.setString(6, num_conta);
             stmt.setString(7, password);
             stmt.execute();
+            JOptionPane.showMessageDialog(null, "Registado com sucesso !");
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao criar cliente: " + e);
         } finally {
             connection.closeConnection(stmt);
         }
+    }
+
+    public static Cliente getClientByEmail(String email) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Cliente cl = null;
+
+        try {
+
+            stmt = conn.prepareStatement("SELECT * FROM cliente where email like ?;");
+            stmt.setString(1, email);
+            rs = stmt.executeQuery();
+            rs.next();
+
+            cl = new Cliente(
+                    rs.getInt("num_cliente"),
+                    rs.getString("nome"),
+                    rs.getString("morada"),
+                    rs.getString("email"),
+                    rs.getString("telemovel"),
+                    rs.getString("nif"),
+                    rs.getString("password"),
+                    rs.getString("num_conta"),
+                    rs.getFloat("saldo"));
+            
+            return cl;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            connection.closeConnection(stmt);
+        }
+        return null;
     }
 }

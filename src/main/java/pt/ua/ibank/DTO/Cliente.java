@@ -1,85 +1,51 @@
 package pt.ua.ibank.DTO;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import pt.ua.ibank.DAO.ClientDAO;
+import static pt.ua.ibank.IBank.client;
+import pt.ua.ibank.utilities.Hash;
+
 public class Cliente {
-    private int numCliente;
-    private String nome;
-    private String morada;
-    private String email;
-    private String telemovel;
-    private String nif;
-    private String password;
-    private String numConta;
-    private double saldo;
 
-    public int getNumCliente() {
-        return numCliente;
-    }
-
-    public void setNumCliente(int numCliente) {
+    public int numCliente;
+    public String nome;
+    public String morada;
+    public String email;
+    public String telemovel;
+    public String nif;
+    public String password;
+    public String numConta;
+    public double saldo;
+    
+    public Cliente(int numCliente, String nome, String morada, String email, String telemovel, String nif, String password, String numConta, double saldo) {
         this.numCliente = numCliente;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getMorada() {
-        return morada;
-    }
-
-    public void setMorada(String morada) {
         this.morada = morada;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getTelemovel() {
-        return telemovel;
-    }
-
-    public void setTelemovel(String telemovel) {
         this.telemovel = telemovel;
-    }
-
-    public String getNif() {
-        return nif;
-    }
-
-    public void setNif(String nif) {
         this.nif = nif;
+        this.password = password;
+        this.numConta = numConta;
+        this.saldo = saldo;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
+    public Cliente(String email, String password) {
+        this.email = email;
         this.password = password;
     }
 
-    public String getNumConta() {
-        return numConta;
-    }
-
-    public void setNumConta(String numConta) {
-        this.numConta = numConta;
-    }
-
-    public double getSaldo() {
-        return saldo;
-    }
-
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
+    public boolean autenticar() {
+        Cliente tmp = ClientDAO.getClientByEmail(email);
+        
+        try {
+            if (Hash.validatePassword(password, tmp.password)) {
+                client = tmp;
+                return true;
+            }
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+            ex.printStackTrace();
+        }
+        return false;
     }
 }
