@@ -11,7 +11,8 @@ CREATE TABLE cliente (
     nif VARCHAR(9),
     password VARCHAR(255),
     num_conta VARCHAR(255) UNIQUE NOT NULL,
-    saldo DECIMAL(10,2)
+    saldo DECIMAL(10,2) DEFAULT 0,
+	saldo_cativo DECIMAL(10,2) DEFAULT 0
 );
 
 -- Tabela Cartao
@@ -90,7 +91,69 @@ CREATE TABLE transacoes (
     id INT PRIMARY KEY AUTO_INCREMENT,
     num_cli INT NOT NULL,
     descricao VARCHAR(50),
-    valor INT,
+    valor DECIMAL(10,2),
     FOREIGN KEY (num_cli) REFERENCES cliente(num_cliente)
 );
+
+-- Trigger deposito
+CREATE TRIGGER deposito AFTER INSERT ON deposito FOR EACH ROW 
+BEGIN
+    DECLARE existe INT;
+
+	-- Cria mais alguma segurança no trigger
+    SELECT COUNT(*) INTO existe FROM cliente WHERE num_cliente = NEW.num_cli;
+    
+    IF existe > 0 THEN
+		UPDATE cliente SET saldo_cativo = NEW.valor WHERE num_cliente = NEW.num_cli;
+    END IF;
+END;
+
+-- Trigger pagar serviço
+CREATE TRIGGER pagar_servico AFTER INSERT ON pagamento_servicos_compras FOR EACH ROW 
+BEGIN
+    DECLARE existe INT;
+	DECLARE saldo INT;
+
+	-- Cria mais alguma segurança no trigger
+    SELECT COUNT(*) INTO existe FROM cliente WHERE num_cliente = NEW.cliente;
+	SELECT saldo INTO saldo FROM cliente WHERE num_cliente = NEW.cliente;
+    
+    IF existe > 0 THEN
+		IF saldo >= NEW.valor THEN 
+			INSERT INTO transacoes (num_cli, descricao, valor) VALUES (NEW.cliente, "Pagamento serviços", 0 - NEW.valor);
+		END IF;
+    END IF;
+END;
+
+-- Trigger transferencia
+CREATE TRIGGER do_transferencia AFTER INSERT ON transferencia FOR EACH ROW 
+BEGIN
+    DECLARE existe INT;
+	DECLARE saldo INT;
+
+	-- Cria mais alguma segurança no trigger
+    SELECT COUNT(*) INTO existe FROM cliente WHERE num_cliente = NEW.cliente_realiza;
+	SELECT saldo INTO saldo FROM cliente WHERE num_cliente = NEW.cliente;
+    
+    IF existe > 0 THEN
+		IF saldo >= NEW.valor THEN 
+			INSERT INTO transacoes (num_cli, descricao, valor) VALUES (NEW.cliente_realiza, "Transferencia", 0 - NEW.valor);
+			INSERT INTO transacoes (num_cli, descricao, valor) VALUES (NEW.cliente_recebe, "Transferencia", NEW.valor);
+		END IF;
+    END IF;
+END;
+
+-- Trigger para actualizar o saldo do cliente
+CREATE TRIGGER actualizar_saldo AFTER INSERT ON transacoes FOR EACH ROW 
+BEGIN
+    DECLARE existe INT;
+
+	-- Cria mais alguma segurança no trigger
+    SELECT COUNT(*) INTO existe FROM cliente WHERE num_cliente = NEW.num_cli;
+    
+    IF existe > 0 THEN
+        UPDATE cliente SET saldo = saldo + NEW.valor WHERE num_cliente = NEW.num_cli;
+    END IF;
+END;
+
 

@@ -25,8 +25,4 @@ public class IbanGenerator {
     private static String generateIban(String accountNumber) {
         return "PT" + "5000" + accountNumber;
     }
-
-    public static void main(String[] args) {
-        System.out.println(generateRandomIban());
-    }
 }

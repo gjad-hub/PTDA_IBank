@@ -1,0 +1,4 @@
+database: ibankdb
+username: ha0ujyebgtdfvmayuzn1
+host: aws.connect.psdb.cloud
+password: pscale_pw_8GbO0eJIOncOHuWNu928gQp7FVqzn1kpib3G81l8Uli
