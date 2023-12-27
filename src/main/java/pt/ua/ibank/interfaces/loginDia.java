@@ -1,19 +1,69 @@
 package pt.ua.ibank.interfaces;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import pt.ua.ibank.DTO.Cliente;
 import static pt.ua.ibank.IBank.client;
 import pt.ua.ibank.utilities.Configs;
 
 public class loginDia extends javax.swing.JDialog {
-
-
+    
     public loginDia(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-                Configs.load();
+        Configs.load();
         email_input.setText(Configs.Uname);
         save_email.setSelected(Configs.Usave);
+        KeyListeners();
+    }
+    
+    private void KeyListeners() {
+        email_input.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    password_input.requestFocus();
+                }
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    cancel.requestFocus();
+                    cancelActionPerformed(null);
+                }
+            }
+        });
+        
+        password_input.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    login.requestFocus();
+                    loginActionPerformed(null);
+                }
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    email_input.requestFocus();
+                }
+            }
+        });
+        
+        login.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    password_input.requestFocus();
+                }
+            }
+        });
+        
+        cancel.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    password_input.requestFocus();
+                }
+            }
+        });
     }
 
     /**
@@ -34,6 +84,8 @@ public class loginDia extends javax.swing.JDialog {
         cancel = new javax.swing.JButton();
         login = new javax.swing.JButton();
         create = new javax.swing.JButton();
+        lerror = new javax.swing.JLabel();
+        see_password = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -71,6 +123,15 @@ public class loginDia extends javax.swing.JDialog {
             }
         });
 
+        lerror.setForeground(new java.awt.Color(255, 51, 51));
+
+        see_password.setText("Ver password");
+        see_password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                see_passwordActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -84,12 +145,15 @@ public class loginDia extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                        .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(email_input)
-                            .addComponent(password_input, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(password_input, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lerror, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(save_email, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(save_email, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                            .addComponent(see_password, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(6, 6, 6))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -114,8 +178,11 @@ public class loginDia extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(password_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(password_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(see_password))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lerror, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancel)
                     .addComponent(login)
@@ -132,6 +199,7 @@ public class loginDia extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelActionPerformed
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
+        lerror.setText("");
         if (save_email.isSelected()) {
             Configs.Uname = email_input.getText();
             Configs.Usave = save_email.isSelected();
@@ -146,7 +214,7 @@ public class loginDia extends javax.swing.JDialog {
             Configs.loginOK = true;
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "Erro ao autenticar");
+            lerror.setText("Erro ao autenticar !");
         }
     }//GEN-LAST:event_loginActionPerformed
 
@@ -154,6 +222,14 @@ public class loginDia extends javax.swing.JDialog {
         CreateAccountDia createAccount = new CreateAccountDia(null, true);
         createAccount.setVisible(true);
     }//GEN-LAST:event_createActionPerformed
+
+    private void see_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_see_passwordActionPerformed
+        if (see_password.isSelected()) {
+            password_input.setEchoChar((char) 0);
+        } else {
+            password_input.setEchoChar('*');
+        }
+    }//GEN-LAST:event_see_passwordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,8 +280,10 @@ public class loginDia extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lerror;
     private javax.swing.JButton login;
     private javax.swing.JPasswordField password_input;
     private javax.swing.JCheckBox save_email;
+    private javax.swing.JCheckBox see_password;
     // End of variables declaration//GEN-END:variables
 }

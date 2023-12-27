@@ -13,6 +13,11 @@ public class connection {
     private static final String USER = "ha0ujyebgtdfvmayuzn1"; 
     private static final String PASS = "pscale_pw_8GbO0eJIOncOHuWNu928gQp7FVqzn1kpib3G81l8Uli";
     
+//    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+//    private static final String URL = "jdbc:mysql://.../IbankDB";
+//    private static final String USER = "...";
+//    private static final String PASS = "...";
+
     public static final Connection conn = getConnection();
 
     private static Connection getConnection() {
@@ -28,7 +33,7 @@ public class connection {
     }
 
     public static void closeConnection(Connection conn) {
-        if (conn != null){
+        if (conn != null) {
             try {
                 conn.close();
             } catch (SQLException e) {

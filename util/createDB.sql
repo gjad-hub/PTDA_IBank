@@ -92,8 +92,11 @@ CREATE TABLE transacoes (
     num_cli INT NOT NULL,
     descricao VARCHAR(50),
     valor DECIMAL(10,2),
+	data TIMESTAMP,
     FOREIGN KEY (num_cli) REFERENCES cliente(num_cliente)
 );
+
+DECLARE \\
 
 -- Trigger deposito
 CREATE TRIGGER deposito AFTER INSERT ON deposito FOR EACH ROW 
@@ -112,16 +115,18 @@ END;
 CREATE TRIGGER pagar_servico AFTER INSERT ON pagamento_servicos_compras FOR EACH ROW 
 BEGIN
     DECLARE existe INT;
-	DECLARE saldo INT;
+	DECLARE saldo DECIMAL(10,2);
+	DECLARE data TIMESTAMP;
 
 	-- Cria mais alguma segurança no trigger
     SELECT COUNT(*) INTO existe FROM cliente WHERE num_cliente = NEW.cliente;
-	SELECT saldo INTO saldo FROM cliente WHERE num_cliente = NEW.cliente;
-    
+	SELECT cliente.saldo INTO saldo FROM cliente WHERE num_cliente = NEW.cliente;
+	SELECT CURRENT_TIMESTAMP() INTO data;
+
     IF existe > 0 THEN
-		IF saldo >= NEW.valor THEN 
-			INSERT INTO transacoes (num_cli, descricao, valor) VALUES (NEW.cliente, "Pagamento serviços", 0 - NEW.valor);
-		END IF;
+        IF saldo >= NEW.valor THEN
+			INSERT INTO transacoes (num_cli, descricao, valor, data) VALUES (NEW.cliente, "Pagamento serviços", 0 - NEW.valor, data);
+        END IF;
     END IF;
 END;
 
@@ -129,17 +134,19 @@ END;
 CREATE TRIGGER do_transferencia AFTER INSERT ON transferencia FOR EACH ROW 
 BEGIN
     DECLARE existe INT;
-	DECLARE saldo INT;
+	DECLARE saldo DECIMAL(10,2);
+	DECLARE data TIMESTAMP;
 
 	-- Cria mais alguma segurança no trigger
     SELECT COUNT(*) INTO existe FROM cliente WHERE num_cliente = NEW.cliente_realiza;
-	SELECT saldo INTO saldo FROM cliente WHERE num_cliente = NEW.cliente;
-    
+	SELECT cliente.saldo INTO saldo FROM cliente WHERE num_cliente = NEW.cliente_realiza;
+	SELECT CURRENT_TIMESTAMP() INTO data;
+
     IF existe > 0 THEN
-		IF saldo >= NEW.valor THEN 
-			INSERT INTO transacoes (num_cli, descricao, valor) VALUES (NEW.cliente_realiza, "Transferencia", 0 - NEW.valor);
-			INSERT INTO transacoes (num_cli, descricao, valor) VALUES (NEW.cliente_recebe, "Transferencia", NEW.valor);
-		END IF;
+		IF saldo >= NEW.valor THEN
+			INSERT INTO transacoes (num_cli, descricao, valor, data) VALUES (NEW.cliente_realiza, "Transferencia", 0 - NEW.valor, data);
+			INSERT INTO transacoes (num_cli, descricao, valor, data) VALUES (NEW.cliente_recebe, "Transferencia", NEW.valor, data);
+        END IF;
     END IF;
 END;
 
@@ -155,5 +162,18 @@ BEGIN
         UPDATE cliente SET saldo = saldo + NEW.valor WHERE num_cliente = NEW.num_cli;
     END IF;
 END;
+\\
+DECLARE ;
 
+-- Dados de teste
 
+INSERT INTO cliente (num_cliente, nome, morada, email, telemovel, nif, password, num_conta, saldo) VALUES (1, 'Gonçalo', 'morada', 'goncalojdias@ua.pt', '123456789', '987654321', '1000:2cb67de5732ebf184ea454adc3ff78fb:326e6ab663e6950dca8bd0f7697877d56a2eaacf83a8a271f55701a287dc5f2172456212ba0d292a11f248f310c723b2940aa306e536c5f84e1c111c572d03d2', 'PT50000830064410685224784', 500);
+INSERT INTO cliente (num_cliente, nome, morada, email, telemovel, nif, password, num_conta, saldo) VALUES (2, 'Ricardo', 'morada', 'ricardo@ua.pt', '321456789', '147587458', '1000:72d16789b31e32b9204e83e46a3bf14e:3e9c60d09bbcad8f3f33086852409a570c8ab3435106599e64444fa44406d260d377aac6fba56f27f61d336d52029018ad07914237ee40dd7041eefe0602409e', 'PT50002329487360799005570', 100);
+
+INSERT INTO cliente (num_cliente, nome, morada, email, telemovel, nif, password, num_conta, saldo) VALUES (2, 'Richard', 'morada', 'richard@ua.pt', '321456789', '147587458', '1000:72d16789b31e32b9204e83e46a3bf14e:3e9c60d09bbcad8f3f33086852409a570c8ab3435106599e64444fa44406d260d377aac6fba56f27f61d336d52029018ad07914237ee40dd7041eefe0602409e', 'PT50002329487360799005510', 150);
+
+INSERT INTO pagamento_servicos_compras (referencia, entidade, valor, estado, cliente) VALUES (124548, 457866148, 124.70, 'pago', 1);
+INSERT INTO pagamento_servicos_compras (referencia, entidade, valor, estado, cliente) VALUES (124578, 124587963, 120.00, 'pago', 1);
+INSERT INTO pagamento_servicos_compras (referencia, entidade, valor, estado, cliente) VALUES (245784, 135789032, 12.00, 'pago', 1);
+
+INSERT INTO IbankDB.transferencia (valor, cliente_realiza, cliente_recebe) VALUES (120.00, 1, 3);

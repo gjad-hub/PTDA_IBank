@@ -1,11 +1,14 @@
 package pt.ua.ibank.DTO;
 
+import java.sql.Timestamp;
+
 public class Transacoes {
    
     private int id;
     private int num_cli;
     private String descricao;
     private int valor;
+    public Timestamp data;
 
     public int getId() {
         return id;

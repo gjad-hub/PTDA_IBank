@@ -34,13 +34,17 @@
                           <Component id="jLabel2" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
                           <Component id="jLabel3" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="8" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="email_input" alignment="0" max="32767" attributes="0"/>
                           <Component id="password_input" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="lerror" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Component id="save_email" pref="103" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="save_email" pref="106" max="32767" attributes="0"/>
+                          <Component id="see_password" max="32767" attributes="0"/>
+                      </Group>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -73,8 +77,11 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="password_input" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="see_password" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="lerror" min="-2" pref="16" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="cancel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="login" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -138,6 +145,21 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lerror">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="see_password">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ver password"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="see_passwordActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

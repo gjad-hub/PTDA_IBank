@@ -3,6 +3,7 @@ package pt.ua.ibank.interfaces;
 import pt.ua.ibank.interfaces.internalFrames.DashBoard;
 import java.awt.Component;
 import java.awt.Dimension;
+import static pt.ua.ibank.IBank.client;
 import pt.ua.ibank.utilities.MDIDesktopPane;
 import pt.ua.ibank.utilities.WindowMenu;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
@@ -24,6 +25,9 @@ public class clientInterface extends javax.swing.JFrame {
     private void start_up() {
         small_side_bar.setVisible(false);
         menu_bar.add(new WindowMenu((MDIDesktopPane) desktop));
+        
+        // Info utilizador
+        display_user.setText(client.nome);
     }
 
     private void center(Component comp) {
@@ -71,7 +75,6 @@ public class clientInterface extends javax.swing.JFrame {
 
         display_user.setFont(new java.awt.Font("SF Pro Display", 1, 14)); // NOI18N
         display_user.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        display_user.setText(" Arsénio Breno ");
 
         dashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/dashboard.png"))); // NOI18N
         dashboard.setText("DashBoard");
@@ -151,7 +154,7 @@ public class clientInterface extends javax.swing.JFrame {
                 .addComponent(services)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 384, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 473, Short.MAX_VALUE)
                 .addComponent(logout)
                 .addContainerGap())
         );
@@ -167,7 +170,7 @@ public class clientInterface extends javax.swing.JFrame {
         desktopLayout.setHorizontalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopLayout.createSequentialGroup()
-                .addGap(0, 445, Short.MAX_VALUE)
+                .addGap(0, 513, Short.MAX_VALUE)
                 .addComponent(logo))
         );
         desktopLayout.setVerticalGroup(
@@ -287,6 +290,7 @@ public class clientInterface extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void transfersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transfersActionPerformed

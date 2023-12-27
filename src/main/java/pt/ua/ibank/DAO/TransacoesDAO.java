@@ -9,14 +9,15 @@ import pt.ua.ibank.services.connection;
 import static pt.ua.ibank.services.connection.conn;
 
 public class TransacoesDAO {
-     public static ArrayList<Transacoes> getTransacoes() {
+     public static ArrayList<Transacoes> getTransacoes(int num_cliente) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
         ArrayList<Transacoes> ltransacoes = new ArrayList<>();
 
         try {
-            stmt = conn.prepareStatement("SELECT * FROM  transacoes;");
+            stmt = conn.prepareStatement("SELECT * FROM  transacoes WHERE num_cli = ?;");
+            stmt.setInt(1, num_cliente);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -25,6 +26,7 @@ public class TransacoesDAO {
                 tr.setNum_cli(rs.getInt("num_cli"));
                 tr.setDescricao(rs.getString("descricao"));
                 tr.setValor(rs.getInt("valor"));
+                tr.data = rs.getTimestamp("data");
                 ltransacoes.add(tr);
             }
         } catch (SQLException e) {

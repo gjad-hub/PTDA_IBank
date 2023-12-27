@@ -55,19 +55,20 @@ public class ClientDAO {
             stmt = conn.prepareStatement("SELECT * FROM cliente where email like ?;");
             stmt.setString(1, email);
             rs = stmt.executeQuery();
-            rs.next();
 
-            cl = new Cliente(
-                    rs.getInt("num_cliente"),
-                    rs.getString("nome"),
-                    rs.getString("morada"),
-                    rs.getString("email"),
-                    rs.getString("telemovel"),
-                    rs.getString("nif"),
-                    rs.getString("password"),
-                    rs.getString("num_conta"),
-                    rs.getFloat("saldo"));
-            
+            while (rs.next()) {
+                cl = new Cliente(
+                        rs.getInt("num_cliente"),
+                        rs.getString("nome"),
+                        rs.getString("morada"),
+                        rs.getString("email"),
+                        rs.getString("telemovel"),
+                        rs.getString("nif"),
+                        rs.getString("password"),
+                        rs.getString("num_conta"),
+                        rs.getDouble("saldo"));
+            }
+
             return cl;
         } catch (SQLException e) {
             e.printStackTrace();

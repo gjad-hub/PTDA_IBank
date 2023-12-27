@@ -8,7 +8,7 @@ import pt.ua.ibank.utilities.Hash;
 
 public class Cliente {
 
-    public int numCliente;
+    public Integer numCliente;
     public String nome;
     public String morada;
     public String email;
@@ -16,9 +16,9 @@ public class Cliente {
     public String nif;
     public String password;
     public String numConta;
-    public double saldo;
-    
-    public Cliente(int numCliente, String nome, String morada, String email, String telemovel, String nif, String password, String numConta, double saldo) {
+    public Double saldo;
+
+    public Cliente(Integer numCliente, String nome, String morada, String email, String telemovel, String nif, String password, String numConta, Double saldo) {
         this.numCliente = numCliente;
         this.nome = nome;
         this.morada = morada;
@@ -37,14 +37,16 @@ public class Cliente {
 
     public boolean autenticar() {
         Cliente tmp = ClientDAO.getClientByEmail(email);
-        
-        try {
-            if (Hash.validatePassword(password, tmp.password)) {
-                client = tmp;
-                return true;
+
+        if (tmp != null) {
+            try {
+                if (Hash.validatePassword(password, tmp.password)) {
+                    client = tmp;
+                    return true;
+                }
+            } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+                ex.printStackTrace();
             }
-        } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
-            ex.printStackTrace();
         }
         return false;
     }
