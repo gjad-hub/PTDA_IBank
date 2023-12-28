@@ -1,35 +1,75 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
-package pt.ua.ibank.interfaces.tmp;
+package pt.ua.ibank.interfaces;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import pt.ua.ibank.DAO.ClientDAO;
+import pt.ua.ibank.DTO.Cliente;
+import static pt.ua.ibank.IBank.client;
+import pt.ua.ibank.utilities.Configs;
+import pt.ua.ibank.utilities.Hash;
 
-/**
- *
- * @author Asus
- */
 public class dialogLogin extends javax.swing.JDialog {
 
-    /**
-     * Creates new form dialogLogin
-     */
     public dialogLogin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        txtFieldEmailPhone.setBackground(new java.awt.Color(0, 0, 0, 1));
-        txtFieldPassword.setBackground(new java.awt.Color(0, 0, 0, 1));
-        
-        txtFieldFullName.setBackground(new java.awt.Color(0, 0, 0, 1));
-        txtFieldEmail.setBackground(new java.awt.Color(0, 0, 0, 1));
-        txtFieldPhoneNumber.setBackground(new java.awt.Color(0, 0, 0, 1));
-        txtFieldNIF.setBackground(new java.awt.Color(0, 0, 0, 1));
-        txtFieldPassword2.setBackground(new java.awt.Color(0, 0, 0, 1));
-        txtFieldPasswordRepeat.setBackground(new java.awt.Color(0, 0, 0, 1));
-        
+        startup();
+    }
+
+    private void startup() {
+        email_input.setBackground(new java.awt.Color(0, 0, 0, 1));
+        password_input.setBackground(new java.awt.Color(0, 0, 0, 1));
+
+        Fnome.setBackground(new java.awt.Color(0, 0, 0, 1));
+        Femail.setBackground(new java.awt.Color(0, 0, 0, 1));
+        Ftelemovel.setBackground(new java.awt.Color(0, 0, 0, 1));
+        FNif.setBackground(new java.awt.Color(0, 0, 0, 1));
+        FPass.setBackground(new java.awt.Color(0, 0, 0, 1));
+        FRPass.setBackground(new java.awt.Color(0, 0, 0, 1));
+
         panelCreateAccount.setVisible(false);
+
+        Configs.load();
+        email_input.setText(Configs.Uname);
+        save_email.setSelected(Configs.Usave);
+        KeyListeners();
+    }
+
+    private void KeyListeners() {
+        email_input.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    password_input.requestFocus();
+                }
+            }
+        });
+
+        password_input.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    login.requestFocus();
+                    loginActionPerformed(null);
+                }
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    email_input.requestFocus();
+                }
+            }
+        });
+
+        login.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    password_input.requestFocus();
+                }
+            }
+        });
     }
 
     /**
@@ -41,50 +81,61 @@ public class dialogLogin extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        image_1 = new javax.swing.JLabel();
+        panel = new javax.swing.JTabbedPane();
         panelLogin = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        lblWrongCredentials = new javax.swing.JLabel();
+        error = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        txtFieldEmailPhone = new javax.swing.JTextField();
+        email_input = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        txtFieldPassword = new javax.swing.JPasswordField();
+        password_input = new javax.swing.JPasswordField();
         jLabel14 = new javax.swing.JLabel();
-        checkBoxSavePassword1 = new javax.swing.JCheckBox();
-        lblForgotPassword1 = new javax.swing.JLabel();
-        btnLogin = new javax.swing.JButton();
+        save_email = new javax.swing.JCheckBox();
+        login = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         lblCreateAccount1 = new javax.swing.JLabel();
+        see = new javax.swing.JCheckBox();
         panelCreateAccount = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtFieldPhoneNumber = new javax.swing.JTextField();
+        Ftelemovel = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtFieldPassword2 = new javax.swing.JPasswordField();
+        FPass = new javax.swing.JPasswordField();
         jLabel8 = new javax.swing.JLabel();
         btnCreateAccount = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         lblLogin = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        txtFieldPasswordRepeat = new javax.swing.JPasswordField();
+        FRPass = new javax.swing.JPasswordField();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        txtFieldEmail = new javax.swing.JTextField();
+        Femail = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        txtFieldNIF = new javax.swing.JTextField();
+        FNif = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        txtFieldFullName = new javax.swing.JTextField();
+        Fnome = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        lblWrongCredentials2 = new javax.swing.JLabel();
+        erro_create = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
-        panelLogin.setBackground(new java.awt.Color(25, 118, 211));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        image_1.setBackground(new java.awt.Color(255, 255, 255));
+        image_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/logo_png.png"))); // NOI18N
+
+        panel.setBackground(new java.awt.Color(255, 255, 255));
+
+        panelLogin.setBackground(new java.awt.Color(62, 171, 191));
         panelLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 32)); // NOI18N
@@ -93,21 +144,20 @@ public class dialogLogin extends javax.swing.JDialog {
         jLabel2.setText("Login");
         panelLogin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 420, 41));
 
-        lblWrongCredentials.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        lblWrongCredentials.setForeground(new java.awt.Color(255, 0, 0));
-        lblWrongCredentials.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblWrongCredentials.setText("Insira as credenciais!");
-        panelLogin.add(lblWrongCredentials, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 420, -1));
+        error.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        error.setForeground(new java.awt.Color(249, 157, 22));
+        error.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        panelLogin.add(error, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 420, 30));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(199, 226, 255));
-        jLabel9.setText("Nº de Telemóvel ou Email");
+        jLabel9.setText("Email");
         panelLogin.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 130, 360, -1));
 
-        txtFieldEmailPhone.setFont(txtFieldEmailPhone.getFont().deriveFont(txtFieldEmailPhone.getFont().getSize()+2f));
-        txtFieldEmailPhone.setForeground(new java.awt.Color(255, 255, 255));
-        txtFieldEmailPhone.setBorder(null);
-        panelLogin.add(txtFieldEmailPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 310, 30));
+        email_input.setFont(email_input.getFont().deriveFont(email_input.getFont().getSize()+2f));
+        email_input.setForeground(new java.awt.Color(255, 255, 255));
+        email_input.setBorder(null);
+        panelLogin.add(email_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 310, 30));
 
         jLabel10.setForeground(new java.awt.Color(199, 226, 255));
         jLabel10.setText("_________________________________________________________________");
@@ -124,48 +174,41 @@ public class dialogLogin extends javax.swing.JDialog {
         jLabel13.setText("Password");
         panelLogin.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 200, 360, -1));
 
-        txtFieldPassword.setFont(txtFieldPassword.getFont().deriveFont(txtFieldPassword.getFont().getSize()+2f));
-        txtFieldPassword.setForeground(new java.awt.Color(255, 255, 255));
-        txtFieldPassword.setBorder(null);
-        txtFieldPassword.setCaretColor(new java.awt.Color(255, 255, 255));
-        panelLogin.add(txtFieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 310, 30));
+        password_input.setFont(password_input.getFont().deriveFont(password_input.getFont().getSize()+2f));
+        password_input.setForeground(new java.awt.Color(255, 255, 255));
+        password_input.setBorder(null);
+        password_input.setCaretColor(new java.awt.Color(255, 255, 255));
+        panelLogin.add(password_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 310, 30));
 
         jLabel14.setForeground(new java.awt.Color(199, 226, 255));
         jLabel14.setText("_________________________________________________________________");
         panelLogin.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 224, 319, 40));
 
-        checkBoxSavePassword1.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        checkBoxSavePassword1.setForeground(new java.awt.Color(199, 226, 255));
-        checkBoxSavePassword1.setText("Lembrar Password");
-        checkBoxSavePassword1.addActionListener(new java.awt.event.ActionListener() {
+        save_email.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        save_email.setForeground(new java.awt.Color(199, 226, 255));
+        save_email.setText("Guardar email");
+        save_email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkBoxSavePassword1ActionPerformed(evt);
+                save_emailActionPerformed(evt);
             }
         });
-        panelLogin.add(checkBoxSavePassword1, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 276, -1, -1));
+        panelLogin.add(save_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
 
-        lblForgotPassword1.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        lblForgotPassword1.setForeground(new java.awt.Color(199, 226, 255));
-        lblForgotPassword1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblForgotPassword1.setText("Esqueceu-se da password?");
-        lblForgotPassword1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        panelLogin.add(lblForgotPassword1, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 278, 189, -1));
-
-        btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnLogin.setForeground(new java.awt.Color(25, 118, 211));
-        btnLogin.setText("LOGIN");
-        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+        login.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        login.setForeground(new java.awt.Color(62, 171, 191));
+        login.setText("LOGIN");
+        login.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        login.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnLoginMouseClicked(evt);
+                loginMouseClicked(evt);
             }
         });
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+        login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
+                loginActionPerformed(evt);
             }
         });
-        panelLogin.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 310, 360, 40));
+        panelLogin.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 310, 360, 40));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(199, 226, 255));
@@ -181,9 +224,20 @@ public class dialogLogin extends javax.swing.JDialog {
                 lblCreateAccount1MouseClicked(evt);
             }
         });
-        panelLogin.add(lblCreateAccount1, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 368, -1, -1));
+        panelLogin.add(lblCreateAccount1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, -1, -1));
 
-        panelCreateAccount.setBackground(new java.awt.Color(25, 118, 211));
+        see.setForeground(new java.awt.Color(255, 255, 255));
+        see.setText("Ver");
+        see.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seeActionPerformed(evt);
+            }
+        });
+        panelLogin.add(see, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 60, 30));
+
+        panel.addTab("Login", panelLogin);
+
+        panelCreateAccount.setBackground(new java.awt.Color(62, 171, 191));
         panelCreateAccount.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 32)); // NOI18N
@@ -197,10 +251,10 @@ public class dialogLogin extends javax.swing.JDialog {
         jLabel4.setText("Nº de Telemóvel");
         panelCreateAccount.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 360, -1));
 
-        txtFieldPhoneNumber.setFont(txtFieldPhoneNumber.getFont().deriveFont(txtFieldPhoneNumber.getFont().getSize()+2f));
-        txtFieldPhoneNumber.setForeground(new java.awt.Color(255, 255, 255));
-        txtFieldPhoneNumber.setBorder(null);
-        panelCreateAccount.add(txtFieldPhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 310, 30));
+        Ftelemovel.setFont(Ftelemovel.getFont().deriveFont(Ftelemovel.getFont().getSize()+2f));
+        Ftelemovel.setForeground(new java.awt.Color(255, 255, 255));
+        Ftelemovel.setBorder(null);
+        panelCreateAccount.add(Ftelemovel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 310, 30));
 
         jLabel5.setForeground(new java.awt.Color(199, 226, 255));
         jLabel5.setText("_________________________________________________________________");
@@ -211,18 +265,18 @@ public class dialogLogin extends javax.swing.JDialog {
         jLabel7.setText("Password");
         panelCreateAccount.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 360, -1));
 
-        txtFieldPassword2.setFont(txtFieldPassword2.getFont().deriveFont(txtFieldPassword2.getFont().getSize()+2f));
-        txtFieldPassword2.setForeground(new java.awt.Color(255, 255, 255));
-        txtFieldPassword2.setBorder(null);
-        txtFieldPassword2.setCaretColor(new java.awt.Color(255, 255, 255));
-        panelCreateAccount.add(txtFieldPassword2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 310, 30));
+        FPass.setFont(FPass.getFont().deriveFont(FPass.getFont().getSize()+2f));
+        FPass.setForeground(new java.awt.Color(255, 255, 255));
+        FPass.setBorder(null);
+        FPass.setCaretColor(new java.awt.Color(255, 255, 255));
+        panelCreateAccount.add(FPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 310, 30));
 
         jLabel8.setForeground(new java.awt.Color(199, 226, 255));
         jLabel8.setText("_________________________________________________________________");
         panelCreateAccount.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 319, 40));
 
         btnCreateAccount.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnCreateAccount.setForeground(new java.awt.Color(25, 118, 211));
+        btnCreateAccount.setForeground(new java.awt.Color(62, 171, 191));
         btnCreateAccount.setText("CRIAR CONTA");
         btnCreateAccount.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCreateAccount.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -240,7 +294,7 @@ public class dialogLogin extends javax.swing.JDialog {
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(199, 226, 255));
         jLabel11.setText("Já tem uma conta?");
-        panelCreateAccount.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, -1, -1));
+        panelCreateAccount.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, -1, -1));
 
         lblLogin.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         lblLogin.setForeground(new java.awt.Color(255, 255, 255));
@@ -251,18 +305,18 @@ public class dialogLogin extends javax.swing.JDialog {
                 lblLoginMouseClicked(evt);
             }
         });
-        panelCreateAccount.add(lblLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 420, -1, -1));
+        panelCreateAccount.add(lblLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 430, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(199, 226, 255));
         jLabel16.setText("Repetir Password");
         panelCreateAccount.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 360, -1));
 
-        txtFieldPasswordRepeat.setFont(txtFieldPasswordRepeat.getFont().deriveFont(txtFieldPasswordRepeat.getFont().getSize()+2f));
-        txtFieldPasswordRepeat.setForeground(new java.awt.Color(255, 255, 255));
-        txtFieldPasswordRepeat.setBorder(null);
-        txtFieldPasswordRepeat.setCaretColor(new java.awt.Color(255, 255, 255));
-        panelCreateAccount.add(txtFieldPasswordRepeat, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 310, 30));
+        FRPass.setFont(FRPass.getFont().deriveFont(FRPass.getFont().getSize()+2f));
+        FRPass.setForeground(new java.awt.Color(255, 255, 255));
+        FRPass.setBorder(null);
+        FRPass.setCaretColor(new java.awt.Color(255, 255, 255));
+        panelCreateAccount.add(FRPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 310, 30));
 
         jLabel17.setForeground(new java.awt.Color(199, 226, 255));
         jLabel17.setText("_________________________________________________________________");
@@ -273,10 +327,10 @@ public class dialogLogin extends javax.swing.JDialog {
         jLabel18.setText("Email");
         panelCreateAccount.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 360, -1));
 
-        txtFieldEmail.setFont(txtFieldEmail.getFont().deriveFont(txtFieldEmail.getFont().getSize()+2f));
-        txtFieldEmail.setForeground(new java.awt.Color(255, 255, 255));
-        txtFieldEmail.setBorder(null);
-        panelCreateAccount.add(txtFieldEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 310, 30));
+        Femail.setFont(Femail.getFont().deriveFont(Femail.getFont().getSize()+2f));
+        Femail.setForeground(new java.awt.Color(255, 255, 255));
+        Femail.setBorder(null);
+        panelCreateAccount.add(Femail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 310, 30));
 
         jLabel19.setForeground(new java.awt.Color(199, 226, 255));
         jLabel19.setText("_________________________________________________________________");
@@ -287,10 +341,10 @@ public class dialogLogin extends javax.swing.JDialog {
         jLabel20.setText("NIF");
         panelCreateAccount.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 360, -1));
 
-        txtFieldNIF.setFont(txtFieldNIF.getFont().deriveFont(txtFieldNIF.getFont().getSize()+2f));
-        txtFieldNIF.setForeground(new java.awt.Color(255, 255, 255));
-        txtFieldNIF.setBorder(null);
-        panelCreateAccount.add(txtFieldNIF, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 310, 30));
+        FNif.setFont(FNif.getFont().deriveFont(FNif.getFont().getSize()+2f));
+        FNif.setForeground(new java.awt.Color(255, 255, 255));
+        FNif.setBorder(null);
+        panelCreateAccount.add(FNif, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 310, 30));
 
         jLabel21.setForeground(new java.awt.Color(199, 226, 255));
         jLabel21.setText("_________________________________________________________________");
@@ -301,10 +355,10 @@ public class dialogLogin extends javax.swing.JDialog {
         jLabel22.setText("Nome Completo");
         panelCreateAccount.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 360, -1));
 
-        txtFieldFullName.setFont(txtFieldFullName.getFont().deriveFont(txtFieldFullName.getFont().getSize()+2f));
-        txtFieldFullName.setForeground(new java.awt.Color(255, 255, 255));
-        txtFieldFullName.setBorder(null);
-        panelCreateAccount.add(txtFieldFullName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 310, 30));
+        Fnome.setFont(Fnome.getFont().deriveFont(Fnome.getFont().getSize()+2f));
+        Fnome.setForeground(new java.awt.Color(255, 255, 255));
+        Fnome.setBorder(null);
+        panelCreateAccount.add(Fnome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 310, 30));
 
         jLabel23.setForeground(new java.awt.Color(199, 226, 255));
         jLabel23.setText("_________________________________________________________________");
@@ -316,55 +370,96 @@ public class dialogLogin extends javax.swing.JDialog {
         jLabel6.setText("Bem-vindo! Por favor, preencha as informações abaixo para criar sua nova conta.");
         panelCreateAccount.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 420, -1));
 
-        lblWrongCredentials2.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        lblWrongCredentials2.setForeground(new java.awt.Color(255, 0, 0));
-        lblWrongCredentials2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblWrongCredentials2.setText("Insira as credenciais!");
-        panelCreateAccount.add(lblWrongCredentials2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 420, -1));
+        erro_create.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        erro_create.setForeground(new java.awt.Color(255, 0, 0));
+        erro_create.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        panelCreateAccount.add(erro_create, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 58, 420, 20));
+
+        panel.addTab("Criar conta", panelCreateAccount);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(image_1)
+                .addGap(0, 0, 0)
+                .addComponent(panel)
+                .addGap(0, 0, 0))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(image_1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(panelCreateAccount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-                .addComponent(panelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(panelCreateAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void checkBoxSavePassword1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxSavePassword1ActionPerformed
+    private void save_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_emailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_checkBoxSavePassword1ActionPerformed
+    }//GEN-LAST:event_save_emailActionPerformed
 
-    private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
+    private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnLoginMouseClicked
+    }//GEN-LAST:event_loginMouseClicked
 
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        String emailPhone = txtFieldPhoneNumber.getText();
-        char[] passwordChars = txtFieldPassword2.getPassword();
-        String password = new String(passwordChars);
+    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
+        String email = email_input.getText();
+        String password = new String(password_input.getPassword());
 
-        if (emailPhone.isEmpty() || password.isEmpty()) {
-            lblWrongCredentials2.setText("As credenciais fornecidas estão incorretas!");
+        if (password.isEmpty() && email.isEmpty()) {
+            error.setText("Campos vazios!");
+            return;
+        } else if (email.isEmpty()) {
+            email_input.requestFocus();
+            error.setText("Campo de email vazio!");
+            return;
+        } else if (password.isEmpty()) {
+            password_input.requestFocus();
+            error.setText("Campo de password vazio!");
+            return;
         }
 
-        txtFieldPhoneNumber.setText("");
-        txtFieldPassword2.setText("");
-    }//GEN-LAST:event_btnLoginActionPerformed
+        error.setText("");
+        if (save_email.isSelected()) {
+            Configs.Uname = email_input.getText();
+            Configs.Usave = save_email.isSelected();
+            Configs.save();
+        } else {
+            Configs.Uname = "";
+            Configs.Usave = false;
+            Configs.save();
+        }
+
+        client = new Cliente(email_input.getText(), new String(password_input.getPassword()));
+        if (client.autenticar()) {
+            Configs.loginOK = true;
+            this.dispose();
+        } else {
+            error.setText("Erro ao autenticar !");
+        }
+    }//GEN-LAST:event_loginActionPerformed
 
     private void lblCreateAccount1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCreateAccount1MouseClicked
-        // TODO add your handling code here:
-        panelLogin.setVisible(false);
-        panelCreateAccount.setVisible(true);
+        panel.setSelectedIndex(1);
     }//GEN-LAST:event_lblCreateAccount1MouseClicked
 
     private void btnCreateAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreateAccountMouseClicked
@@ -372,14 +467,15 @@ public class dialogLogin extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCreateAccountMouseClicked
 
     private void btnCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAccountActionPerformed
+        erro_create.setText("");
 
-        String nomeCompleto = txtFieldFullName.getText();
-        String email = txtFieldEmail.getText();
-        String phoneNumber = txtFieldPhoneNumber.getText();
-        String nif = txtFieldNIF.getText();
-        char[] passwordChars = txtFieldPassword2.getPassword();
+        String nomeCompleto = Fnome.getText();
+        String email = Femail.getText();
+        String phoneNumber = Ftelemovel.getText();
+        String nif = FNif.getText();
+        char[] passwordChars = FPass.getPassword();
         String password = new String(passwordChars);
-        char[] repeatPasswordChars = txtFieldPasswordRepeat.getPassword();
+        char[] repeatPasswordChars = FRPass.getPassword();
         String repeatPassword = new String(repeatPasswordChars);
 
         String regexNome = "^[a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜãõÃÕñÑçÇ\\s'-]+$";
@@ -402,37 +498,49 @@ public class dialogLogin extends javax.swing.JDialog {
         Matcher matcherPassword = patternPassword.matcher(password);
 
         if (nomeCompleto.isEmpty() || email.isEmpty() || phoneNumber.isEmpty() || nif.isEmpty() || password.isEmpty() || repeatPassword.isEmpty()) {
-            lblWrongCredentials2.setText("Um ou mais campos vazios! Por favor preencha-os!");
+            erro_create.setText("Um ou mais campos vazios! Por favor preencha-os!");
         } else if (!matcherNome.find()) {
-            lblWrongCredentials2.setText("Nome inválido!");
-            txtFieldFullName.setText("");
+            erro_create.setText("Nome inválido!");
+            Fnome.setText("");
         } else if (!matcherEmail.find()) {
-            lblWrongCredentials2.setText("Email inválido!");
-            txtFieldEmail.setText("");
+            erro_create.setText("Email inválido!");
+            Femail.setText("");
         } else if (!matcherPhoneNumber.find()) {
-            lblWrongCredentials2.setText("Nº de Telemóvel Inválido!");
-            txtFieldPhoneNumber.setText("");
+            erro_create.setText("Nº de Telemóvel Inválido!");
+            Ftelemovel.setText("");
         } else if (!matcherNIF.find()) {
-            lblWrongCredentials2.setText("NIF inválido!");
-            txtFieldNIF.setText("");
+            erro_create.setText("NIF inválido!");
+            FNif.setText("");
         } else if (!matcherPassword.find()) {
-            lblWrongCredentials2.setText("Password inválida! Tem de conter pelo menos 8 caracteres!");
-            txtFieldPassword2.setText("");
-            txtFieldPasswordRepeat.setText("");
+            erro_create.setText("Password inválida! Tem de conter pelo menos 8 caracteres!");
+            FPass.setText("");
+            FRPass.setText("");
         } else if (!password.equals(repeatPassword)) {
-            lblWrongCredentials2.setText("Passwords inseridas não são iguais!");
-            txtFieldPassword2.setText("");
-            txtFieldPasswordRepeat.setText("");
-        }
+            erro_create.setText("Passwords inseridas não são iguais!");
+            FPass.setText("");
+            FRPass.setText("");
+        } else {
 
-        // se não houver erros, criar conta
+            try {
+                String hashedPassword = Hash.generateStorngPasswordHash(new String(FPass.getPassword()));
+                ClientDAO.CreateClient(Fnome.getText(), "morada", Femail.getText(), Ftelemovel.getText(), FNif.getText(), hashedPassword);
+            } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+                ex.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_btnCreateAccountActionPerformed
 
     private void lblLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoginMouseClicked
-        // TODO add your handling code here:
-        panelCreateAccount.setVisible(false);
-        panelLogin.setVisible(true);
+        panel.setSelectedIndex(0);
     }//GEN-LAST:event_lblLoginMouseClicked
+
+    private void seeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seeActionPerformed
+        if (see.isSelected()) {
+            password_input.setEchoChar((char) 0);
+        } else {
+            password_input.setEchoChar('*');
+        }
+    }//GEN-LAST:event_seeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -478,9 +586,17 @@ public class dialogLogin extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField FNif;
+    private javax.swing.JPasswordField FPass;
+    private javax.swing.JPasswordField FRPass;
+    private javax.swing.JTextField Femail;
+    private javax.swing.JTextField Fnome;
+    private javax.swing.JTextField Ftelemovel;
     private javax.swing.JButton btnCreateAccount;
-    private javax.swing.JButton btnLogin;
-    private javax.swing.JCheckBox checkBoxSavePassword1;
+    private javax.swing.JTextField email_input;
+    private javax.swing.JLabel erro_create;
+    private javax.swing.JLabel error;
+    private javax.swing.JLabel image_1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -503,20 +619,15 @@ public class dialogLogin extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCreateAccount1;
-    private javax.swing.JLabel lblForgotPassword1;
     private javax.swing.JLabel lblLogin;
-    private javax.swing.JLabel lblWrongCredentials;
-    private javax.swing.JLabel lblWrongCredentials2;
+    private javax.swing.JButton login;
+    private javax.swing.JTabbedPane panel;
     private javax.swing.JPanel panelCreateAccount;
     private javax.swing.JPanel panelLogin;
-    private javax.swing.JTextField txtFieldEmail;
-    private javax.swing.JTextField txtFieldEmailPhone;
-    private javax.swing.JTextField txtFieldFullName;
-    private javax.swing.JTextField txtFieldNIF;
-    private javax.swing.JPasswordField txtFieldPassword;
-    private javax.swing.JPasswordField txtFieldPassword2;
-    private javax.swing.JPasswordField txtFieldPasswordRepeat;
-    private javax.swing.JTextField txtFieldPhoneNumber;
+    private javax.swing.JPasswordField password_input;
+    private javax.swing.JCheckBox save_email;
+    private javax.swing.JCheckBox see;
     // End of variables declaration//GEN-END:variables
 }

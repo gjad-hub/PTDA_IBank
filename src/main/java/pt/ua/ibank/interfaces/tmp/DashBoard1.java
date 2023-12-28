@@ -1,4 +1,4 @@
-package pt.ua.ibank.interfaces.internalFrames;
+package pt.ua.ibank.interfaces.tmp;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;

@@ -6,10 +6,10 @@ CREATE TABLE cliente (
     num_cliente INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(255),
     morada VARCHAR(255),
-    email VARCHAR(255),
+    email VARCHAR(255) UNIQUE NOT NULL,
     telemovel VARCHAR(15),
     nif VARCHAR(9),
-    password VARCHAR(255),
+    password VARCHAR(255) NOT NULL,
     num_conta VARCHAR(255) UNIQUE NOT NULL,
     saldo DECIMAL(10,2) DEFAULT 0,
 	saldo_cativo DECIMAL(10,2) DEFAULT 0
@@ -49,6 +49,7 @@ CREATE TABLE transferencia (
     valor DECIMAL(10,2),
     cliente_realiza INT,
     cliente_recebe INT,
+	motivo VARCHAR(200),
     FOREIGN KEY (cliente_realiza) REFERENCES cliente(num_cliente),
     FOREIGN KEY (cliente_recebe) REFERENCES cliente(num_cliente)
 );
@@ -107,7 +108,7 @@ BEGIN
     SELECT COUNT(*) INTO existe FROM cliente WHERE num_cliente = NEW.num_cli;
     
     IF existe > 0 THEN
-		UPDATE cliente SET saldo_cativo = NEW.valor WHERE num_cliente = NEW.num_cli;
+		UPDATE cliente SET saldo_cativo = saldo_cativo + NEW.valor WHERE num_cliente = NEW.num_cli;
     END IF;
 END;
 

@@ -1,4 +1,4 @@
-package pt.ua.ibank.interfaces;
+package pt.ua.ibank.interfaces.tmp;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;

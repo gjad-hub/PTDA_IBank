@@ -8,7 +8,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import pt.ua.ibank.DTO.Cliente;
 import pt.ua.ibank.interfaces.clientInterface;
-import pt.ua.ibank.interfaces.loginDia;
+import pt.ua.ibank.interfaces.dialogLogin;
 import pt.ua.ibank.utilities.Configs;
 
 public class IBank {
@@ -32,14 +32,15 @@ public class IBank {
             System.out.println("Erro ao carregar UI");
             System.exit(98);
         }
-
-        loginDia login = new loginDia(null, true);
+        
+        dialogLogin login = new dialogLogin(null, true);
         login.setVisible(true);
 
         if (Configs.loginOK) {
             interf = new clientInterface();
             interf.setVisible(true);
         }
+
     }
 
     public static void setUIFont(javax.swing.plaf.FontUIResource f) {

@@ -1,10 +1,7 @@
 package pt.ua.ibank.interfaces.internalFrames;
 
-import java.awt.Component;
 import java.util.ArrayList;
-import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 import pt.ua.ibank.DTO.Transacoes;
 import pt.ua.ibank.DAO.TransacoesDAO;
 import static pt.ua.ibank.IBank.client;
@@ -15,7 +12,7 @@ public class DashBoard extends javax.swing.JInternalFrame {
     public DashBoard() {
         initComponents();
         popular(TransacoesDAO.getTransacoes(client.numCliente));
-        saldo.setText(client.saldo.toString());
+        saldo.setText(client.saldo.toString() + " EUR");
     }
 
     private void popular(ArrayList<Transacoes> ltransacoes) {
@@ -43,13 +40,13 @@ public class DashBoard extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        transacao = new RoundedShadowPanel(15);
+        transacao = new RoundedShadowPanel(10);
         jSeparator2 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         t_table = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        stat = new RoundedShadowPanel(15);
+        stat = new RoundedShadowPanel(10);
         jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
@@ -57,12 +54,11 @@ public class DashBoard extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        cards = new RoundedShadowPanel(15);
+        cards = new RoundedShadowPanel(10);
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
-        cards1 = new RoundedShadowPanel(15);
-        jSeparator4 = new javax.swing.JSeparator();
-        jLabel5 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        cards1 = new RoundedShadowPanel(10);
 
         setClosable(true);
         setIconifiable(true);
@@ -111,7 +107,6 @@ public class DashBoard extends javax.swing.JInternalFrame {
             t_table.getColumnModel().getColumn(0).setMinWidth(130);
             t_table.getColumnModel().getColumn(0).setMaxWidth(130);
             t_table.getColumnModel().getColumn(2).setMaxWidth(100);
-            t_table.getColumnModel().getColumn(2).setCellRenderer(null);
         }
 
         jButton1.setText("Atualizar");
@@ -216,15 +211,27 @@ public class DashBoard extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Cartões principal");
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout cardsLayout = new javax.swing.GroupLayout(cards);
         cards.setLayout(cardsLayout);
         cardsLayout.setHorizontalGroup(
             cardsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardsLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardsLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addGroup(cardsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1)
-                    .addGroup(cardsLayout.createSequentialGroup()
+                .addGroup(cardsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, cardsLayout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 146, Short.MAX_VALUE)))
                 .addGap(12, 12, 12))
@@ -236,35 +243,23 @@ public class DashBoard extends javax.swing.JInternalFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
         );
 
         cards1.setBackground(new java.awt.Color(255, 255, 255));
         cards1.setPreferredSize(new java.awt.Dimension(287, 170));
 
-        jLabel5.setText("Cartões principal");
-
         javax.swing.GroupLayout cards1Layout = new javax.swing.GroupLayout(cards1);
         cards1.setLayout(cards1Layout);
         cards1Layout.setHorizontalGroup(
             cards1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cards1Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(cards1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator4)
-                    .addGroup(cards1Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 146, Short.MAX_VALUE)))
-                .addGap(12, 12, 12))
+            .addGap(0, 294, Short.MAX_VALUE)
         );
         cards1Layout.setVerticalGroup(
             cards1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cards1Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 170, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -288,9 +283,9 @@ public class DashBoard extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(stat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cards1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cards, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cards1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(stat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(12, 12, 12)
                 .addComponent(transacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(12, 12, 12))
@@ -328,13 +323,12 @@ public class DashBoard extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JLabel saldo;
     private javax.swing.JPanel stat;
     private javax.swing.JTable t_table;

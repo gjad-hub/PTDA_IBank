@@ -1,10 +1,7 @@
-package pt.ua.ibank.interfaces;
+package pt.ua.ibank.interfaces.tmp;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import javax.swing.JComponent;
-import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
 import pt.ua.ibank.DTO.Cliente;
 import static pt.ua.ibank.IBank.client;
 import pt.ua.ibank.utilities.Configs;
@@ -209,6 +206,7 @@ public class loginDia extends javax.swing.JDialog {
             Configs.Usave = false;
             Configs.save();
         }
+        
         client = new Cliente(email_input.getText(), new String(password_input.getPassword()));
         if (client.autenticar()) {
             Configs.loginOK = true;
