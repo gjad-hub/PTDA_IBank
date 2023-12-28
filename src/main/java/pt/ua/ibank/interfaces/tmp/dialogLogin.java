@@ -42,7 +42,6 @@ public class dialogLogin extends javax.swing.JDialog {
     private void initComponents() {
 
         panelLogin = new javax.swing.JPanel();
-        lblExitX = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lblWrongCredentials = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -58,7 +57,6 @@ public class dialogLogin extends javax.swing.JDialog {
         jLabel15 = new javax.swing.JLabel();
         lblCreateAccount1 = new javax.swing.JLabel();
         panelCreateAccount = new javax.swing.JPanel();
-        lblExit2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtFieldPhoneNumber = new javax.swing.JTextField();
@@ -88,18 +86,6 @@ public class dialogLogin extends javax.swing.JDialog {
 
         panelLogin.setBackground(new java.awt.Color(25, 118, 211));
         panelLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblExitX.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblExitX.setForeground(new java.awt.Color(255, 255, 255));
-        lblExitX.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblExitX.setText("X");
-        lblExitX.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblExitX.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblExitXMouseClicked(evt);
-            }
-        });
-        panelLogin.add(lblExitX, new org.netbeans.lib.awtextra.AbsoluteConstraints(384, 0, 36, 29));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 32)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -199,18 +185,6 @@ public class dialogLogin extends javax.swing.JDialog {
 
         panelCreateAccount.setBackground(new java.awt.Color(25, 118, 211));
         panelCreateAccount.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblExit2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblExit2.setForeground(new java.awt.Color(255, 255, 255));
-        lblExit2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblExit2.setText("X");
-        lblExit2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblExit2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblExit2MouseClicked(evt);
-            }
-        });
-        panelCreateAccount.add(lblExit2, new org.netbeans.lib.awtextra.AbsoluteConstraints(384, 0, 36, 29));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 32)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -366,11 +340,6 @@ public class dialogLogin extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lblExitXMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitXMouseClicked
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_lblExitXMouseClicked
-
     private void checkBoxSavePassword1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxSavePassword1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_checkBoxSavePassword1ActionPerformed
@@ -397,10 +366,6 @@ public class dialogLogin extends javax.swing.JDialog {
         panelLogin.setVisible(false);
         panelCreateAccount.setVisible(true);
     }//GEN-LAST:event_lblCreateAccount1MouseClicked
-
-    private void lblExit2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExit2MouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_lblExit2MouseClicked
 
     private void btnCreateAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreateAccountMouseClicked
         // TODO add your handling code here:
@@ -539,8 +504,6 @@ public class dialogLogin extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lblCreateAccount1;
-    private javax.swing.JLabel lblExit2;
-    private javax.swing.JLabel lblExitX;
     private javax.swing.JLabel lblForgotPassword1;
     private javax.swing.JLabel lblLogin;
     private javax.swing.JLabel lblWrongCredentials;
