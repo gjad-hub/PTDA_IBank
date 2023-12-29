@@ -4,8 +4,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.SwingUtilities;
@@ -24,6 +22,7 @@ public class dialogLogin extends javax.swing.JDialog {
     }
 
     private void startup() {
+        email_input.requestFocus();
         email_input.setBackground(new java.awt.Color(0, 0, 0, 1));
         password_input.setBackground(new java.awt.Color(0, 0, 0, 1));
 

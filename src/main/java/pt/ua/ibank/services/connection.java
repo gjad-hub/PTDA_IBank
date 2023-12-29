@@ -13,15 +13,15 @@ public class connection {
 //    private static final String USER = "ha0ujyebgtdfvmayuzn1"; 
 //    private static final String PASS = "pscale_pw_8GbO0eJIOncOHuWNu928gQp7FVqzn1kpib3G81l8Uli";
     
-    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost/IbankDB";
-    private static final String USER = "richard";
-    private static final String PASS = "qwerty";
-    
 //    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-//    private static final String URL = "jdbc:mysql://10.10.1.100/IbankDB";
-//    private static final String USER = "dias";
+//    private static final String URL = "jdbc:mysql://localhost/IbankDB";
+//    private static final String USER = "richard";
 //    private static final String PASS = "qwerty";
+    
+    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String URL = "jdbc:mysql://10.10.1.100/IbankDB";
+    private static final String USER = "dias";
+    private static final String PASS = "qwerty";
 
     public static final Connection conn = getConnection();
 

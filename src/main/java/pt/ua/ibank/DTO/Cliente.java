@@ -50,4 +50,9 @@ public class Cliente {
         }
         return false;
     }
+    
+    public int alterarInformacoes(String old_email){
+        int status = ClientDAO.UpdateClient(nome, morada, email, telemovel, nif, password, old_email);
+        return status;
+    }
 }

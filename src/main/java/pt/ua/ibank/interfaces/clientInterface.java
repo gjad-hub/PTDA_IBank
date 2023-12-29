@@ -4,6 +4,7 @@ import pt.ua.ibank.interfaces.internalFrames.DashBoard;
 import java.awt.Component;
 import java.awt.Dimension;
 import static pt.ua.ibank.IBank.client;
+import pt.ua.ibank.interfaces.internalFrames.ProfilePage;
 import pt.ua.ibank.utilities.MDIDesktopPane;
 import pt.ua.ibank.utilities.WindowMenu;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
@@ -25,9 +26,12 @@ public class clientInterface extends javax.swing.JFrame {
     private void start_up() {
         small_side_bar.setVisible(false);
         menu_bar.add(new WindowMenu((MDIDesktopPane) desktop));
-        
-        // Info utilizador
+        UpdateInfo();
+    }
+
+    public void UpdateInfo() {
         display_user.setText(client.nome);
+        logout.setText("Fechar (" + client.email + ")");
     }
 
     private void center(Component comp) {
@@ -75,6 +79,11 @@ public class clientInterface extends javax.swing.JFrame {
 
         display_user.setFont(new java.awt.Font("SF Pro Display", 1, 14)); // NOI18N
         display_user.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        display_user.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                display_userMouseClicked(evt);
+            }
+        });
 
         dashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/dashboard.png"))); // NOI18N
         dashboard.setText("DashBoard");
@@ -103,7 +112,6 @@ public class clientInterface extends javax.swing.JFrame {
         jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/logout.png"))); // NOI18N
-        logout.setText("Logout");
         logout.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,6 +121,11 @@ public class clientInterface extends javax.swing.JFrame {
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/account_circle.png"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout side_barLayout = new javax.swing.GroupLayout(side_bar);
         side_bar.setLayout(side_barLayout);
@@ -206,6 +219,11 @@ public class clientInterface extends javax.swing.JFrame {
 
         saccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/account_circle.png"))); // NOI18N
         saccount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        saccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saccountActionPerformed(evt);
+            }
+        });
 
         slogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/logout.png"))); // NOI18N
         slogout.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -326,6 +344,18 @@ public class clientInterface extends javax.swing.JFrame {
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         System.exit(0);
     }//GEN-LAST:event_logoutActionPerformed
+
+    private void saccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saccountActionPerformed
+        addWindow(new ProfilePage());
+    }//GEN-LAST:event_saccountActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        addWindow(new ProfilePage());
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void display_userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_display_userMouseClicked
+        addWindow(new ProfilePage());
+    }//GEN-LAST:event_display_userMouseClicked
 
     /**
      * @param args the command line arguments
