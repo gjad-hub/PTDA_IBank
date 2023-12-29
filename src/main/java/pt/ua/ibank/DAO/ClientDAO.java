@@ -3,7 +3,6 @@ package pt.ua.ibank.DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 import pt.ua.ibank.DTO.Cliente;
 import pt.ua.ibank.services.connection;
 import static pt.ua.ibank.services.connection.conn;
@@ -11,13 +10,26 @@ import static pt.ua.ibank.utilities.IbanGenerator.generateRandomIban;
 
 public class ClientDAO {
 
-    public static void CreateClient(String nome, String morada, String email, String telefone, String nif, String password) {
+    public static int CreateClient(String nome, String morada, String email, String telefone, String nif, String password) {
+        // Números para verificar o sucesso, erro e email já existente.
+        // Sucesso: 1; Erro Comum: 2; Erro email: 3;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         String num_conta;
 
         try {
 
+            // Verifica se já existe alguma conta com aquele e-mail
+            stmt = conn.prepareStatement("SELECT count(num_cliente) AS valor FROM cliente where email like ?;");
+            stmt.setString(1, email);
+            rs = stmt.executeQuery();
+            rs.next();
+            
+            if (rs.getInt("valor") > 0) {
+                return 3;
+            }
+
+            // Gera um novo iban até não existir um cliente com o iban
             do {
                 num_conta = generateRandomIban();
                 stmt = conn.prepareStatement("SELECT count(num_cliente) AS valor FROM cliente where num_conta like ?;");
@@ -36,10 +48,10 @@ public class ClientDAO {
             stmt.setString(6, num_conta);
             stmt.setString(7, password);
             stmt.execute();
-            JOptionPane.showMessageDialog(null, "Registado com sucesso !");
+            return 1;
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao criar cliente: " + e);
+            return 2;
         } finally {
             connection.closeConnection(stmt);
         }

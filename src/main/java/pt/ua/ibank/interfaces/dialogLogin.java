@@ -4,8 +4,11 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.SwingUtilities;
 import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.DTO.Cliente;
 import static pt.ua.ibank.IBank.client;
@@ -370,8 +373,8 @@ public class dialogLogin extends javax.swing.JDialog {
         jLabel6.setText("Bem-vindo! Por favor, preencha as informações abaixo para criar sua nova conta.");
         panelCreateAccount.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 420, -1));
 
-        erro_create.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        erro_create.setForeground(new java.awt.Color(255, 0, 0));
+        erro_create.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        erro_create.setForeground(new java.awt.Color(249, 157, 22));
         erro_create.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         panelCreateAccount.add(erro_create, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 58, 420, 20));
 
@@ -390,10 +393,7 @@ public class dialogLogin extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(image_1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -523,7 +523,29 @@ public class dialogLogin extends javax.swing.JDialog {
 
             try {
                 String hashedPassword = Hash.generateStorngPasswordHash(new String(FPass.getPassword()));
-                ClientDAO.CreateClient(Fnome.getText(), "morada", Femail.getText(), Ftelemovel.getText(), FNif.getText(), hashedPassword);
+                int verify = ClientDAO.CreateClient(Fnome.getText(), "morada", Femail.getText(), Ftelemovel.getText(), FNif.getText(), hashedPassword);
+
+                switch (verify) {
+                    case 3 ->
+                        erro_create.setText("Endereço de email já existente !");
+                    case 2 ->
+                        erro_create.setText("Algo inesperado aconteceu tente novamente mais tarde !");
+                    case 1 -> {
+                        erro_create.setText("Sucesso ao criar cliente !");
+                        SwingUtilities.invokeLater(() -> {
+                            try {
+                                Thread.sleep(1500);
+                                panel.setSelectedIndex(0);
+                                email_input.requestFocus();
+                                email_input.setText(Femail.getText());
+                            } catch (InterruptedException ex) {
+                                System.out.println(ex);
+                            }
+                        });
+
+                    }
+                }
+
             } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
                 ex.printStackTrace();
             }
@@ -541,7 +563,6 @@ public class dialogLogin extends javax.swing.JDialog {
             password_input.setEchoChar('*');
         }
     }//GEN-LAST:event_seeActionPerformed
-
     /**
      * @param args the command line arguments
      */
