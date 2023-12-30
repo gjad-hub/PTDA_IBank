@@ -4,6 +4,7 @@
  */
 package Staff;
 
+import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.AbstractListModel;
@@ -16,24 +17,24 @@ import pt.ua.ibank.DTO.Funcionario;
 public class ClientProfileCompanyDataListModel extends AbstractListModel {
 
     Funcionario funcionario;
-    List<String> data;
+    List<Pair<String, String>> data;
 
     public ClientProfileCompanyDataListModel(Funcionario client) {
         this.funcionario = client;
         data = new ArrayList<>();
-        data.add("Nome:\t" + funcionario.getNome());
-        data.add("Email:\t" + funcionario.getEmail());
-        data.add("NIF:\t" + funcionario.getNif());
-        data.add("Morada:\t " + funcionario.getMorada());
+        data.add(new Pair<>("Nome:", funcionario.getNome()));
+        data.add(new Pair<>("Email:", funcionario.getEmail()));
+        data.add(new Pair<>("NIF:", funcionario.getNif()));
+        data.add(new Pair<>("Morada:", funcionario.getMorada()));
     }
 
     public ClientProfileCompanyDataListModel() {
         this.funcionario = null;
         data = new ArrayList<>();
-        data.add("Nome:\t" + "email@email.pt");
-        data.add("Email:\t" + "92312312");
-        data.add("NIF:\t" + "1231245");
-        data.add("Morada:\t " + "adas avenue 23da ");
+        data.add(new Pair<>("Nome:\t", "email@email.pt"));
+        data.add(new Pair<>("Email:\t", "92312312"));
+        data.add(new Pair<>("NIF:\t", "1231245"));
+        data.add(new Pair<>("Morada:\t ", "adas avenue 23da "));
     }
 
     @Override

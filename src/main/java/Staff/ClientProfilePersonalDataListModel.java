@@ -4,6 +4,7 @@
  */
 package Staff;
 
+import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.AbstractListModel;
@@ -16,7 +17,7 @@ import pt.ua.ibank.DTO.Cliente;
 public class ClientProfilePersonalDataListModel extends AbstractListModel {
 
     private Cliente client;
-    private List<String> data;
+    private List<Pair<String, String>> data;
 
     public ClientProfilePersonalDataListModel(Cliente client) {
         this.client = client;
@@ -26,7 +27,8 @@ public class ClientProfilePersonalDataListModel extends AbstractListModel {
 //nteger numCliente, String nome, String morada, String email, String telemovel, String nif, String password, String numConta, Double saldo
 
     public ClientProfilePersonalDataListModel() {
-        this.client = new Cliente(1, "jose", "", "asd", "123123", "2131", "3",
+        this.client = new Cliente(1, "jose", "Avenida das coves", "asd",
+                "123123", "2131", "3",
                 "39", 20.4);
         data = new ArrayList<>();
         init();
@@ -34,10 +36,10 @@ public class ClientProfilePersonalDataListModel extends AbstractListModel {
     }
 
     public void init() {
-        data.add("Nome:\t" + client.nome);
-        data.add("Email:\t" + client.telemovel);
-        data.add("NIF:\t" + client.nif);
-        data.add("Morada:\t " + client.morada);
+        data.add(new Pair<>("Nome:", client.nome));
+        data.add(new Pair<>("Email:", client.telemovel));
+        data.add(new Pair<>("NIF:", client.nif));
+        data.add(new Pair<>("Morada:", client.morada));
     }
 
     @Override

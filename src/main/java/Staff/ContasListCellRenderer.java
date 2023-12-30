@@ -15,7 +15,7 @@ import Staff.ClientOverview;
  *
  * @author ricar
  */
-public class ListActionCellRenderer extends DefaultListCellRenderer {
+public class ContasListCellRenderer extends DefaultListCellRenderer {
 
     @Override
     public Component getListCellRendererComponent(
