@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import pt.ua.ibank.DTO.Transacoes;
 import pt.ua.ibank.DAO.TransacoesDAO;
-import static pt.ua.ibank.IBank.client;
+import static pt.ua.ibank.DTO.Cliente.LocalClient;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
 
 public class DashBoard extends javax.swing.JInternalFrame {
 
     public DashBoard() {
         initComponents();
-        popular(TransacoesDAO.getTransacoes(client.numCliente));
-        saldo.setText(client.saldo.toString() + " EUR");
-        iban.setText(maskString(client.numConta, 10));
+        popular(TransacoesDAO.getTransacoes(LocalClient.numCliente));
+        saldo.setText(LocalClient.saldo.toString() + " EUR");
+        iban.setText(maskString(LocalClient.numConta, 10));
     }
     
     private String maskString(String string, int char_visible){
@@ -28,8 +28,8 @@ public class DashBoard extends javax.swing.JInternalFrame {
             for (Transacoes tr : ltransacoes) {
                 modelo.addRow(new Object[]{
                     tr.data,
-                    tr.getDescricao(),
-                    (tr.getValor() > 0 ? "+" + tr.getValor() : tr.getValor()) + " €"
+                    tr.descricao,
+                    (tr.valor > 0 ? "+" + tr.valor : tr.valor) + " €"
                 });
             }
         }
@@ -64,7 +64,7 @@ public class DashBoard extends javax.swing.JInternalFrame {
         cards = new RoundedShadowPanel(10);
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel1 = new RoundedShadowPanel(8);
         nomeTitularCartao = new javax.swing.JLabel();
         numeroCartao = new javax.swing.JLabel();
         dataValidade = new javax.swing.JLabel();
@@ -272,12 +272,9 @@ public class DashBoard extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(numeroCartao)
-                                    .addComponent(nomeTitularCartao))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel5)
+                            .addComponent(numeroCartao)
+                            .addComponent(nomeTitularCartao)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(dataValidade)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -400,14 +397,14 @@ public class DashBoard extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        popular(TransacoesDAO.getTransacoes(client.numCliente));
+        popular(TransacoesDAO.getTransacoes(LocalClient.numCliente));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void see_ibanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_see_ibanActionPerformed
         if (see_iban.isSelected()) {
-            iban.setText(client.numConta);
+            iban.setText(LocalClient.numConta);
         }else{
-            iban.setText(maskString(client.numConta, 10));
+            iban.setText(maskString(LocalClient.numConta, 10));
         }
     }//GEN-LAST:event_see_ibanActionPerformed
 

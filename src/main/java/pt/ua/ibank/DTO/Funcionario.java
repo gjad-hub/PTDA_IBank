@@ -1,13 +1,8 @@
 package pt.ua.ibank.DTO;
 
-public class Funcionario {
+public class Funcionario extends Pessoa{
+
     private int numFun;
-    private String nome;
-    private String morada;
-    private String email;
-    private String telemovel;
-    private String nif;
-    private String password;
     private int gerente;
 
     public int getNumFun() {

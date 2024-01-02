@@ -400,6 +400,9 @@
                   <Color blue="7d" green="79" red="0" type="rgb"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new RoundedShadowPanel(8)"/>
+              </AuxValues>
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -409,14 +412,9 @@
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                              <Component id="numeroCartao" min="-2" max="-2" attributes="0"/>
-                                              <Component id="nomeTitularCartao" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                      </Group>
+                                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                      <Component id="numeroCartao" min="-2" max="-2" attributes="0"/>
+                                      <Component id="nomeTitularCartao" min="-2" max="-2" attributes="0"/>
                                       <Group type="102" attributes="0">
                                           <Component id="dataValidade" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>

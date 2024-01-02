@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 import javax.swing.SwingUtilities;
 import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.DTO.Cliente;
-import static pt.ua.ibank.IBank.client;
+import static pt.ua.ibank.DTO.Cliente.LocalClient;
 import pt.ua.ibank.utilities.Configs;
 import pt.ua.ibank.utilities.Hash;
 
@@ -466,8 +466,8 @@ public class dialogLogin extends javax.swing.JDialog {
             Configs.save();
         }
 
-        client = new Cliente(email_input.getText(), new String(password_input.getPassword()));
-        if (client.autenticar()) {
+        LocalClient = new Cliente(email_input.getText(), new String(password_input.getPassword()));
+        if (LocalClient.autenticar()) {
             Configs.loginOK = true;
             this.dispose();
         } else {

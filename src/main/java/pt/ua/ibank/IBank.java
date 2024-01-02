@@ -6,16 +6,13 @@ import java.util.Collections;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import pt.ua.ibank.DTO.Cliente;
 import pt.ua.ibank.interfaces.clientInterface;
+import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
 import pt.ua.ibank.interfaces.dialogLogin;
 import pt.ua.ibank.utilities.Configs;
 
 public class IBank {
-
-    public static Cliente client = null;
-    public static clientInterface interf;
-
+    
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
@@ -37,8 +34,8 @@ public class IBank {
         login.setVisible(true);
 
         if (Configs.loginOK) {
-            interf = new clientInterface();
-            interf.setVisible(true);
+            localClientInterface = new clientInterface();
+            localClientInterface.setVisible(true);
         }
 
     }

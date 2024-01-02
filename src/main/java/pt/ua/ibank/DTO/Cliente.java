@@ -3,20 +3,15 @@ package pt.ua.ibank.DTO;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import pt.ua.ibank.DAO.ClientDAO;
-import static pt.ua.ibank.IBank.client;
 import pt.ua.ibank.utilities.Hash;
 
-public class Cliente {
+public class Cliente extends Pessoa{
 
     public Integer numCliente;
-    public String nome;
-    public String morada;
-    public String email;
-    public String telemovel;
-    public String nif;
-    public String password;
     public String numConta;
     public Double saldo;
+    
+    public static Cliente LocalClient;
 
     public Cliente(Integer numCliente, String nome, String morada, String email, String telemovel, String nif, String password, String numConta, Double saldo) {
         this.numCliente = numCliente;
@@ -41,7 +36,7 @@ public class Cliente {
         if (tmp != null) {
             try {
                 if (Hash.validatePassword(password, tmp.password)) {
-                    client = tmp;
+                    LocalClient = tmp;
                     return true;
                 }
             } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
@@ -54,5 +49,10 @@ public class Cliente {
     public int alterarInformacoes(String old_email){
         int status = ClientDAO.UpdateClient(nome, morada, email, telemovel, nif, password, old_email);
         return status;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "numCliente=" + numCliente + ", numConta=" + numConta + ", saldo=" + saldo + '}';
     }
 }

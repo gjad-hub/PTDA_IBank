@@ -24,10 +24,10 @@ public class TransacoesDAO {
 
             while (rs.next()) {
                 Transacoes tr = new Transacoes();
-                tr.setId(rs.getInt("id"));
-                tr.setNum_cli(rs.getInt("num_cli"));
-                tr.setDescricao(rs.getString("descricao"));
-                tr.setValor(rs.getInt("valor"));
+                tr.id = rs.getInt("id");
+                tr.num_cli = rs.getInt("num_cli");
+                tr.descricao = rs.getString("descricao");
+                tr.valor = rs.getInt("valor");
                 tr.data = rs.getTimestamp("data");
                 ltransacoes.add(tr);
             }

@@ -3,13 +3,16 @@ package pt.ua.ibank.interfaces;
 import pt.ua.ibank.interfaces.internalFrames.DashBoard;
 import java.awt.Component;
 import java.awt.Dimension;
-import static pt.ua.ibank.IBank.client;
+import static pt.ua.ibank.DTO.Cliente.LocalClient;
 import pt.ua.ibank.interfaces.internalFrames.ProfilePage;
+import pt.ua.ibank.interfaces.internalFrames.TransferPage;
 import pt.ua.ibank.utilities.MDIDesktopPane;
 import pt.ua.ibank.utilities.WindowMenu;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
 
 public class clientInterface extends javax.swing.JFrame {
+
+    public static clientInterface localClientInterface;
 
     public clientInterface() {
         initComponents();
@@ -30,8 +33,8 @@ public class clientInterface extends javax.swing.JFrame {
     }
 
     public void UpdateInfo() {
-        display_user.setText(client.nome);
-        logout.setText("Fechar (" + client.email + ")");
+        display_user.setText(LocalClient.nome);
+        logout.setText("Fechar (" + LocalClient.email + ")");
     }
 
     private void center(Component comp) {
@@ -312,7 +315,7 @@ public class clientInterface extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void transfersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transfersActionPerformed
-        // TODO add your handling code here:
+        addWindow(new TransferPage());
     }//GEN-LAST:event_transfersActionPerformed
 
     private void dashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardActionPerformed

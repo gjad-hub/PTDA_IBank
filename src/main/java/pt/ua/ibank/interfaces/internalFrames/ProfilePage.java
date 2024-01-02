@@ -2,12 +2,9 @@ package pt.ua.ibank.interfaces.internalFrames;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
-import pt.ua.ibank.DTO.Cliente;
-import static pt.ua.ibank.IBank.client;
-import static pt.ua.ibank.IBank.interf;
+import static pt.ua.ibank.DTO.Cliente.LocalClient;
+import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
 import pt.ua.ibank.utilities.Hash;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
 
@@ -27,12 +24,12 @@ public class ProfilePage extends javax.swing.JInternalFrame {
     }
 
     private void populate() {
-        name_input.setText(client.nome);
-        email_input.setText(client.email);
-        address_input.setText(client.morada);
-        phone_input.setText(client.telemovel);
-        nif_input.setText(client.nif);
-        AC_input.setText(maskString(client.numConta, 10));
+        name_input.setText(LocalClient.nome);
+        email_input.setText(LocalClient.email);
+        address_input.setText(LocalClient.morada);
+        phone_input.setText(LocalClient.telemovel);
+        nif_input.setText(LocalClient.nif);
+        AC_input.setText(maskString(LocalClient.numConta, 10));
     }
 
     private String maskString(String string, int char_visible) {
@@ -283,10 +280,10 @@ public class ProfilePage extends javax.swing.JInternalFrame {
         String email = email_input.getText();
         String address = address_input.getText();
         String phone = phone_input.getText();
-        String old_email = client.email;
+        String old_email = LocalClient.email;
 
         try {
-            if (!Hash.validatePassword(new String(old_password.getPassword()), client.password)) {
+            if (!Hash.validatePassword(new String(old_password.getPassword()), LocalClient.password)) {
                 status.setText("Password antiga não corresponde !");
                 return;
             }
@@ -316,24 +313,24 @@ public class ProfilePage extends javax.swing.JInternalFrame {
             }
 
             if (!new String(new_password.getPassword()).isEmpty()) {
-                client.password = Hash.generateStorngPasswordHash(new String(new_password.getPassword()));
+                LocalClient.password = Hash.generateStorngPasswordHash(new String(new_password.getPassword()));
             }
 
-            client.nome = name.equals(client.nome) ? client.nome : name;
-            client.email = email.equals(client.email) ? client.email : email;
-            client.morada = address.equals(client.morada) ? client.morada : address;
-            client.telemovel = phone.equals(client.telemovel) ? client.telemovel : phone;
+            LocalClient.nome = name.equals(LocalClient.nome) ? LocalClient.nome : name;
+            LocalClient.email = email.equals(LocalClient.email) ? LocalClient.email : email;
+            LocalClient.morada = address.equals(LocalClient.morada) ? LocalClient.morada : address;
+            LocalClient.telemovel = phone.equals(LocalClient.telemovel) ? LocalClient.telemovel : phone;
 
-            int status_int = client.alterarInformacoes(old_email);
+            int status_int = LocalClient.alterarInformacoes(old_email);
 
             switch (status_int) {
                 case 3 -> {
                     status.setText("Endereço de email já existente !");
-                    client.email = old_email;
+                    LocalClient.email = old_email;
                 }
                 case 2 -> {
                     status.setText("Algo inesperado aconteceu tente novamente mais tarde !");
-                    client.email = old_email;
+                    LocalClient.email = old_email;
                 }
                 case 1 -> {
                     status.setText("Sucesso ao atualizar infromações!");
@@ -342,7 +339,7 @@ public class ProfilePage extends javax.swing.JInternalFrame {
                             Thread.sleep(1500);
                             hideStuff();
                             populate();
-                            interf.UpdateInfo();
+                            localClientInterface.UpdateInfo();
                         } catch (InterruptedException ex) {
                         }
                     });
@@ -356,9 +353,9 @@ public class ProfilePage extends javax.swing.JInternalFrame {
 
     private void seeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seeActionPerformed
         if (see.isSelected()) {
-            AC_input.setText(client.numConta);
+            AC_input.setText(LocalClient.numConta);
         } else {
-            AC_input.setText(maskString(client.numConta, 10));
+            AC_input.setText(maskString(LocalClient.numConta, 10));
         }
     }//GEN-LAST:event_seeActionPerformed
 
@@ -377,7 +374,13 @@ public class ProfilePage extends javax.swing.JInternalFrame {
         email_input.setEnabled(false);
         address_input.setEnabled(false);
         phone_input.setEnabled(false);
+        clearCamps();
         this.pack();
+    }
+
+    private void clearCamps() {
+        old_password.setText("");
+        new_password.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

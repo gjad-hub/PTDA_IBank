@@ -3,7 +3,7 @@ package pt.ua.ibank.interfaces.tmp;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import pt.ua.ibank.DTO.Cliente;
-import static pt.ua.ibank.IBank.client;
+import static pt.ua.ibank.DTO.Cliente.LocalClient;
 import pt.ua.ibank.utilities.Configs;
 
 public class loginDia extends javax.swing.JDialog {
@@ -207,8 +207,8 @@ public class loginDia extends javax.swing.JDialog {
             Configs.save();
         }
         
-        client = new Cliente(email_input.getText(), new String(password_input.getPassword()));
-        if (client.autenticar()) {
+        LocalClient = new Cliente(email_input.getText(), new String(password_input.getPassword()));
+        if (LocalClient.autenticar()) {
             Configs.loginOK = true;
             this.dispose();
         } else {
