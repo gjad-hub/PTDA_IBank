@@ -5,18 +5,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import pt.ua.ibank.DTO.Transacoes;
-import pt.ua.ibank.services.connection;
-import static pt.ua.ibank.services.connection.conn;
+import pt.ua.ibank.services.DBConnection;
+import static pt.ua.ibank.services.DBConnection.conn;
 
 public class TransacoesDAO {
-     public static ArrayList<Transacoes> getTransacoes(int num_cliente) {
+
+    public static ArrayList<Transacoes> getTransacoes(int num_cliente) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
         ArrayList<Transacoes> ltransacoes = new ArrayList<>();
 
         try {
-            stmt = conn.prepareStatement("SELECT * FROM  transacoes WHERE num_cli = ?;");
+            stmt = conn.prepareStatement(
+                    "SELECT * FROM  transacoes WHERE num_cli = ?;");
             stmt.setInt(1, num_cliente);
             rs = stmt.executeQuery();
 
@@ -32,7 +34,7 @@ public class TransacoesDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            connection.closeConnection(stmt, rs);
+            DBConnection.closeConnection(stmt, rs);
         }
 
         return ltransacoes;

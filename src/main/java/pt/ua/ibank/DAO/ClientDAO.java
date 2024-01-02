@@ -4,13 +4,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import pt.ua.ibank.DTO.Cliente;
-import pt.ua.ibank.services.connection;
-import static pt.ua.ibank.services.connection.conn;
+import pt.ua.ibank.services.DBConnection;
+import static pt.ua.ibank.services.DBConnection.conn;
 import static pt.ua.ibank.utilities.IbanGenerator.generateRandomIban;
 
 public class ClientDAO {
 
-    public static int CreateClient(String nome, String morada, String email, String telefone, String nif, String password) {
+    public static int CreateClient(String nome, String morada, String email,
+            String telefone, String nif, String password) {
         // Números para verificar o sucesso, erro e email já existente.
         // Sucesso: 1; Erro Comum: 2; Erro email: 3;
         PreparedStatement stmt = null;
@@ -20,11 +21,12 @@ public class ClientDAO {
         try {
 
             // Verifica se já existe alguma conta com aquele e-mail
-            stmt = conn.prepareStatement("SELECT count(num_cliente) AS valor FROM cliente where email like ?;");
+            stmt = conn.prepareStatement(
+                    "SELECT count(num_cliente) AS valor FROM cliente where email like ?;");
             stmt.setString(1, email);
             rs = stmt.executeQuery();
             rs.next();
-            
+
             if (rs.getInt("valor") > 0) {
                 return 3;
             }
@@ -32,13 +34,15 @@ public class ClientDAO {
             // Gera um novo iban até não existir um cliente com o iban
             do {
                 num_conta = generateRandomIban();
-                stmt = conn.prepareStatement("SELECT count(num_cliente) AS valor FROM cliente where num_conta like ?;");
+                stmt = conn.prepareStatement(
+                        "SELECT count(num_cliente) AS valor FROM cliente where num_conta like ?;");
                 stmt.setString(1, num_conta);
                 rs = stmt.executeQuery();
                 rs.next();
             } while (rs.getInt("valor") != 0);
 
-            stmt = conn.prepareStatement("INSERT INTO cliente (nome, morada, email, telemovel, nif, num_conta, password) "
+            stmt = conn.prepareStatement(
+                    "INSERT INTO cliente (nome, morada, email, telemovel, nif, num_conta, password) "
                     + "VALUES (?, ?, ?, ?, ?, ?, ?)");
             stmt.setString(1, nome);
             stmt.setString(2, morada);
@@ -53,7 +57,7 @@ public class ClientDAO {
         } catch (SQLException e) {
             return 2;
         } finally {
-            connection.closeConnection(stmt);
+            DBConnection.closeConnection(stmt);
         }
     }
 
@@ -64,7 +68,8 @@ public class ClientDAO {
 
         try {
 
-            stmt = conn.prepareStatement("SELECT * FROM cliente where email like ?;");
+            stmt = conn.prepareStatement(
+                    "SELECT * FROM cliente where email like ?;");
             stmt.setString(1, email);
             rs = stmt.executeQuery();
 
@@ -85,12 +90,13 @@ public class ClientDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            connection.closeConnection(stmt);
+            DBConnection.closeConnection(stmt);
         }
         return null;
     }
 
-    public static int UpdateClient(String nome, String morada, String email, String telefone, String nif, String password, String old_email) {
+    public static int UpdateClient(String nome, String morada, String email,
+            String telefone, String nif, String password, String old_email) {
         // Números para verificar o sucesso, erro e email já existente.
         // Sucesso: 1; Erro Comum: 2; Erro email: 3;
         PreparedStatement stmt = null;
@@ -100,16 +106,18 @@ public class ClientDAO {
         try {
 
             // Verifica se já existe alguma conta com aquele e-mail
-            stmt = conn.prepareStatement("SELECT count(num_cliente) AS valor FROM cliente where email like ?;");
+            stmt = conn.prepareStatement(
+                    "SELECT count(num_cliente) AS valor FROM cliente where email like ?;");
             stmt.setString(1, email);
             rs = stmt.executeQuery();
             rs.next();
-            
+
             if (rs.getInt("valor") > 0 && !email.equals(old_email)) {
                 return 3;
             }
 
-            stmt = conn.prepareStatement("UPDATE cliente SET nome = ? , morada = ?, email = ?, telemovel = ?, password = ? WHERE email = ?");
+            stmt = conn.prepareStatement(
+                    "UPDATE cliente SET nome = ? , morada = ?, email = ?, telemovel = ?, password = ? WHERE email = ?");
             stmt.setString(1, nome);
             stmt.setString(2, morada);
             stmt.setString(3, email);
@@ -122,7 +130,7 @@ public class ClientDAO {
         } catch (SQLException e) {
             return 2;
         } finally {
-            connection.closeConnection(stmt);
+            DBConnection.closeConnection(stmt);
         }
     }
 }
