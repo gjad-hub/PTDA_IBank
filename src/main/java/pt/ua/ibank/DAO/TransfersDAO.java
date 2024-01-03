@@ -7,8 +7,12 @@ import static pt.ua.ibank.services.DBConnection.conn;
 
 public class TransfersDAO {
 
+    private final static int codigoSucesso = 1;
+    private final static int codigoErro = 2;
+    private final static int codigoErroEmail = 3;
+
     public static int doTransfer(double valor, int clienteRealiza, int clienteRecebe, String motivo) {
-       // Adiconar as verificacoes
+        // Adiconar as verificacoes
         PreparedStatement stmt = null;
 
         try {
@@ -21,10 +25,10 @@ public class TransfersDAO {
             stmt.setInt(3, clienteRecebe);
             stmt.setString(4, motivo);
             stmt.execute();
-            return 1;
+            return codigoSucesso;
 
         } catch (SQLException e) {
-            return 2;
+            return codigoErro;
         } finally {
             DBConnection.closeConnection(stmt);
         }

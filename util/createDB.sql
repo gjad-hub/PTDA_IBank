@@ -38,7 +38,7 @@ CREATE TABLE pagamento_servicos_compras (
     referencia INT PRIMARY KEY,
     entidade INT,
     valor DECIMAL(10,2),
-    estado VARCHAR(50),
+    pago BOOLEAN,
     cliente INT,
     FOREIGN KEY (cliente) REFERENCES cliente(num_cliente)
 );
@@ -80,7 +80,7 @@ CREATE TABLE funcionario_cliente (
 CREATE TABLE deposito (
     id_deposito INT PRIMARY KEY AUTO_INCREMENT,
     valor DECIMAL(10,2),
-    estado VARCHAR(50),
+    aprovado BOOLEAN,
     num_fun INT,
     num_cli INT,
     FOREIGN KEY (num_fun) REFERENCES funcionario(num_fun),

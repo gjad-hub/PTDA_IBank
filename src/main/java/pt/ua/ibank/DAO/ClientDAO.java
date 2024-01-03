@@ -10,10 +10,12 @@ import static pt.ua.ibank.utilities.IbanGenerator.generateRandomIban;
 
 public class ClientDAO {
 
+    private final static int codigoSucesso = 1;
+    private final static int codigoErro = 2;
+    private final static int codigoErroEmail = 3;
+
     public static int CreateClient(String nome, String morada, String email,
             String telefone, String nif, String password) {
-        // Números para verificar o sucesso, erro e email já existente.
-        // Sucesso: 1; Erro Comum: 2; Erro email: 3;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         String num_conta;
@@ -28,7 +30,7 @@ public class ClientDAO {
             rs.next();
 
             if (rs.getInt("valor") > 0) {
-                return 3;
+                return codigoErroEmail;
             }
 
             // Gera um novo iban até não existir um cliente com o iban
@@ -52,10 +54,10 @@ public class ClientDAO {
             stmt.setString(6, num_conta);
             stmt.setString(7, password);
             stmt.execute();
-            return 1;
+            return codigoSucesso;
 
         } catch (SQLException e) {
-            return 2;
+            return codigoErro;
         } finally {
             DBConnection.closeConnection(stmt);
         }
@@ -90,52 +92,65 @@ public class ClientDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            DBConnection.closeConnection(stmt);
+            DBConnection.closeConnection(stmt, rs);
         }
         return null;
     }
 
-    public static Cliente getClientByIBAN(String iban) {
+    public static Integer getClientIdByIBAN(String iban) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Cliente cl = null;
+        Integer num_cliente = null;
 
         try {
 
             stmt = conn.prepareStatement(
-                    "SELECT * FROM cliente where num_conta like ?;");
+                    "SELECT num_cliente FROM cliente where num_conta like ?;");
             stmt.setString(1, iban);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                cl = new Cliente(
-                        rs.getInt("num_cliente"),
-                        rs.getString("nome"),
-                        rs.getString("morada"),
-                        rs.getString("email"),
-                        rs.getString("telemovel"),
-                        rs.getString("nif"),
-                        rs.getString("password"),
-                        rs.getString("num_conta"),
-                        rs.getDouble("saldo"));
+                num_cliente = rs.getInt("num_cliente");
             }
 
-            return cl;
+            return num_cliente;
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            DBConnection.closeConnection(stmt);
+            DBConnection.closeConnection(stmt, rs);
         }
         return null;
     }
     
-    public static int UpdateClient(String nome, String morada, String email,
-            String telefone, String nif, String password, String old_email) {
-        // Números para verificar o sucesso, erro e email já existente.
-        // Sucesso: 1; Erro Comum: 2; Erro email: 3;
+        public static Double getClientBalance(int num_cliente) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        String num_conta;
+        Double saldo = null;
+
+        try {
+
+            stmt = conn.prepareStatement(
+                    "SELECT saldo FROM cliente where num_cliente like ?;");
+            stmt.setInt(1, num_cliente);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                saldo = rs.getDouble("saldo");
+            }
+
+            return saldo;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+        return null;
+    }
+
+    public static int UpdateClient(String nome, String morada, String email,
+            String telefone, String nif, String password, String old_email) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
 
         try {
 
@@ -147,7 +162,7 @@ public class ClientDAO {
             rs.next();
 
             if (rs.getInt("valor") > 0 && !email.equals(old_email)) {
-                return 3;
+                return codigoErroEmail;
             }
 
             stmt = conn.prepareStatement(
@@ -159,12 +174,12 @@ public class ClientDAO {
             stmt.setString(5, password);
             stmt.setString(6, old_email);
             stmt.execute();
-            return 1;
+            return codigoSucesso;
 
         } catch (SQLException e) {
-            return 2;
+            return codigoErro;
         } finally {
-            DBConnection.closeConnection(stmt);
+            DBConnection.closeConnection(stmt, rs);
         }
     }
 }

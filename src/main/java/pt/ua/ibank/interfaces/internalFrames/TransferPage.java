@@ -1,14 +1,17 @@
 package pt.ua.ibank.interfaces.internalFrames;
 
+import java.awt.Color;
+import java.util.Objects;
+import javax.swing.JOptionPane;
 import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.DAO.TransfersDAO;
-import pt.ua.ibank.DTO.Cliente;
 import static pt.ua.ibank.DTO.Cliente.LocalClient;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
 
-
 public class TransferPage extends javax.swing.JInternalFrame {
 
+    private final Color green = new Color(63, 153, 87);
+    private final Color red = new Color(230, 45, 9);
 
     public TransferPage() {
         initComponents();
@@ -107,7 +110,7 @@ public class TransferPage extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel5)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel6)))
-                                .addGap(0, 43, Short.MAX_VALUE))))
+                                .addGap(0, 124, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -167,15 +170,44 @@ public class TransferPage extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
-        String montateString = !montate.getText().isEmpty() ? montate.getText(): "0";
-        String montateDecimalString = !montate_decimal.getText().isEmpty() ? montate_decimal.getText(): "0";
-        
+        status.setForeground(red);
+        status.setText("");
+        String montateString = !montate.getText().isEmpty() ? montate.getText() : "0";
+        String montateDecimalString = !montate_decimal.getText().isEmpty() ? montate_decimal.getText() : "0";
         double valor = Double.parseDouble(montateString + "." + montateDecimalString);
-        System.out.println(valor);
-        Cliente sender = ClientDAO.getClientByIBAN(iban.getText());
-        String descriString = desc.getText();
-        
-        TransfersDAO.doTransfer(valor, LocalClient.numCliente, sender.numCliente, descriString);
+
+        if (iban.getText().isEmpty()) {
+            status.setText("Insira o IBAN do cliente para fazer a transferencia !");
+            iban.requestFocus();
+            return;
+        }
+
+        if (montate.getText().isEmpty()) {
+            status.setText("Insira o montate a transferir !");
+            montate.requestFocus();
+            return;
+        }
+
+        Integer sender_num = ClientDAO.getClientIdByIBAN(iban.getText());
+
+        if (!Objects.isNull(sender_num)) {
+            String descriString = desc.getText();
+
+            if (LocalClient.saldo < valor) {
+                status.setText("Saldo insuficiente, saldo atual: " + LocalClient.saldo);
+                return;
+            }
+
+            int reply = JOptionPane.showConfirmDialog(null, "Confirma a transferencia ?", title, JOptionPane.YES_NO_OPTION);
+            if (reply == JOptionPane.YES_OPTION) {
+                TransfersDAO.doTransfer(valor, LocalClient.numCliente, sender_num, descriString);
+                LocalClient.saldo = ClientDAO.getClientBalance(LocalClient.numCliente);
+                status.setForeground(green);
+                status.setText("Transferencia realizada com sucesso !");
+            }
+        } else {
+            status.setText("Cliente que pretende enviar dinheiro não existe !");
+        }
     }//GEN-LAST:event_sendActionPerformed
 
 

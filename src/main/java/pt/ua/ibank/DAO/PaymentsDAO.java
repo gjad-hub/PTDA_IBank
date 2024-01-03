@@ -6,11 +6,14 @@ import pt.ua.ibank.services.DBConnection;
 import static pt.ua.ibank.services.DBConnection.conn;
 
 public class PaymentsDAO {
-    
+
+    private final static int codigoSucesso = 1;
+    private final static int codigoErro = 2;
+
     public static int payService(double valor, int clienteRealiza, String entidade, String referencia) {
         PreparedStatement stmt = null;
         try {
-            
+
             stmt = conn.prepareStatement(
                     "INSERT INTO pagamento_servicos_compras (referencia, entidade, valor, estado, cliente) "
                     + "VALUES (?,?,?,?,?)"
@@ -22,10 +25,10 @@ public class PaymentsDAO {
             stmt.setString(4, "pago");
             stmt.setInt(5, clienteRealiza);
             stmt.execute();
-            return 1;
+            return codigoSucesso;
 
         } catch (SQLException e) {
-            return 2;
+            return codigoErro;
         } finally {
             DBConnection.closeConnection(stmt);
         }

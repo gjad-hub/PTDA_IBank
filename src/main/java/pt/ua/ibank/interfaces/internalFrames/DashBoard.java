@@ -5,6 +5,7 @@ import javax.swing.table.DefaultTableModel;
 import pt.ua.ibank.DTO.Transacoes;
 import pt.ua.ibank.DAO.TransacoesDAO;
 import static pt.ua.ibank.DTO.Cliente.LocalClient;
+import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
 
 public class DashBoard extends javax.swing.JInternalFrame {
@@ -178,6 +179,11 @@ public class DashBoard extends javax.swing.JInternalFrame {
         jLabel4.setText("Disponível");
 
         jButton3.setText("Transferencia");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Pagar Serviços e compras");
 
@@ -223,11 +229,11 @@ public class DashBoard extends javax.swing.JInternalFrame {
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(4, 4, 4)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(statLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(iban, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(see_iban, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(saldo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
@@ -295,7 +301,7 @@ public class DashBoard extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(stat, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
                         .addGap(12, 12, 12)
-                        .addComponent(cards, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
+                        .addComponent(cards, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(cards1, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)))
                 .addGap(12, 12, 12))
@@ -340,6 +346,10 @@ public class DashBoard extends javax.swing.JInternalFrame {
             iban.setText(maskString(LocalClient.numConta, 10));
         }
     }//GEN-LAST:event_see_ibanActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        localClientInterface.addWindow(new TransferPage());
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
