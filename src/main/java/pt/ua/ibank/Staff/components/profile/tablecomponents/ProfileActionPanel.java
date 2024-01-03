@@ -5,7 +5,6 @@
 package pt.ua.ibank.Staff.components.profile.tablecomponents;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  *
