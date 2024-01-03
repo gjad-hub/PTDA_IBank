@@ -173,8 +173,8 @@ INSERT INTO cliente (nome, morada, email, telemovel, nif, password, num_conta, s
 
 INSERT INTO cliente (nome, morada, email, telemovel, nif, password, num_conta, saldo) VALUES ('Richard', 'morada', 'richard@ua.pt', '321456789', '147587458', '1000:72d16789b31e32b9204e83e46a3bf14e:3e9c60d09bbcad8f3f33086852409a570c8ab3435106599e64444fa44406d260d377aac6fba56f27f61d336d52029018ad07914237ee40dd7041eefe0602409e', 'PT50002329487360799005510', 150);
 
-INSERT INTO pagamento_servicos_compras (referencia, entidade, valor, estado, cliente) VALUES (124548, 457866148, 124.70, 'pago', 1);
-INSERT INTO pagamento_servicos_compras (referencia, entidade, valor, estado, cliente) VALUES (124578, 124587963, 120.00, 'pago', 1);
-INSERT INTO pagamento_servicos_compras (referencia, entidade, valor, estado, cliente) VALUES (245784, 135789032, 12.00, 'pago', 1);
+INSERT INTO pagamento_servicos_compras (referencia, entidade, valor, estado, cliente) VALUES (457866148, 124548, 124.70, 'pago', 1);
+INSERT INTO pagamento_servicos_compras (referencia, entidade, valor, estado, cliente) VALUES (124587963, 124578, 120.00, 'pago', 1);
+INSERT INTO pagamento_servicos_compras (referencia, entidade, valor, estado, cliente) VALUES (135789032, 245784, 12.00, 'pago', 1);
 
 INSERT INTO transferencia (valor, cliente_realiza, cliente_recebe) VALUES (120.00, 1, 3);

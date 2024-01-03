@@ -4,6 +4,7 @@ import pt.ua.ibank.interfaces.internalFrames.DashBoard;
 import java.awt.Component;
 import java.awt.Dimension;
 import static pt.ua.ibank.DTO.Cliente.LocalClient;
+import pt.ua.ibank.interfaces.internalFrames.PayServices;
 import pt.ua.ibank.interfaces.internalFrames.ProfilePage;
 import pt.ua.ibank.interfaces.internalFrames.TransferPage;
 import pt.ua.ibank.utilities.MDIDesktopPane;
@@ -109,6 +110,11 @@ public class clientInterface extends javax.swing.JFrame {
         services.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/shopping_bag.png"))); // NOI18N
         services.setText("Serviços e compras");
         services.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        services.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                servicesActionPerformed(evt);
+            }
+        });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/credit_card.png"))); // NOI18N
         jButton1.setText("Cartões");
@@ -359,6 +365,11 @@ public class clientInterface extends javax.swing.JFrame {
     private void display_userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_display_userMouseClicked
         addWindow(new ProfilePage());
     }//GEN-LAST:event_display_userMouseClicked
+
+    private void servicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_servicesActionPerformed
+        // TODO add your handling code here:
+        addWindow(new PayServices());
+    }//GEN-LAST:event_servicesActionPerformed
 
     /**
      * @param args the command line arguments
