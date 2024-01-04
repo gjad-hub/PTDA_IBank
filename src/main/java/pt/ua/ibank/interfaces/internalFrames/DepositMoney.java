@@ -26,7 +26,7 @@ public class DepositMoney extends javax.swing.JInternalFrame {
                 atualizarSaldoFuturo();
             }
         };
-        
+
         montante_decimal.getDocument().addDocumentListener(documentListener);
         montante.getDocument().addDocumentListener(documentListener);
 
@@ -34,13 +34,17 @@ public class DepositMoney extends javax.swing.JInternalFrame {
 
     private void atualizarSaldoFuturo() {
         try {
-            double quantiaInteira = Double.parseDouble(montante.getText());
-            double quantiaDecimal = Double.parseDouble("0." + montante_decimal.getText());
+            int quantiaInteira = 0;
+            if (!montante.getText().trim().isEmpty()) {
+                quantiaInteira = Integer.parseInt(montante.getText());
+            }
+            double quantiaDecimal = 0;
+            if (!montante_decimal.getText().trim().isEmpty()) {
+                quantiaDecimal = Double.parseDouble("0." + montante_decimal.getText());
+            }
 
             double quantia = quantiaInteira + quantiaDecimal;
-
-            double saldoAtual = LocalClient.saldo;
-            saldoFuturo.setText("Saldo Futuro = " + (saldoAtual + quantia));
+            saldoFuturo.setText("Saldo Futuro = " + (LocalClient.saldo + quantia));
         } catch (NumberFormatException ex) {
             double saldoAtual = LocalClient.saldo;
             saldoFuturo.setText("Saldo Futuro = " + saldoAtual);
