@@ -122,7 +122,7 @@ public class ClientDAO {
         return null;
     }
     
-        public static Double getClientBalance(int num_cliente) {
+    public static Double getClientBalance(int num_cliente) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         Double saldo = null;

@@ -3,6 +3,7 @@ package pt.ua.ibank.interfaces.internalFrames;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import pt.ua.ibank.DAO.PaymentsDAO;
+import pt.ua.ibank.DTO.Cartao;
 import pt.ua.ibank.DTO.Cliente;
 import static pt.ua.ibank.DTO.Cliente.LocalClient;
 
@@ -88,7 +89,7 @@ public class PayServices extends javax.swing.JInternalFrame {
 
         saldoCartao.setText("saldo do cartão EUR");
 
-        numCartao.setText("numero do cartao");
+        numCartao.setText("numero do conta");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -119,6 +120,12 @@ public class PayServices extends javax.swing.JInternalFrame {
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setText("Cartão");
+
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -274,10 +281,14 @@ public class PayServices extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel1ComponentResized
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField entidade;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Cartao> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -31,7 +31,7 @@ public class IBank {
             System.exit(98);
         }
 
-        clientInterface login = new clientInterface();
+        dialogLogin login = new dialogLogin(null, true);
         login.setVisible(true);
 
         if (Configs.loginOK) {

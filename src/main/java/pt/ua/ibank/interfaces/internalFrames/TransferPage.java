@@ -27,13 +27,13 @@ public class TransferPage extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         iban = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        montate = new javax.swing.JTextField();
+        montante = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         desc = new javax.swing.JTextArea();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        montate_decimal = new javax.swing.JTextField();
+        montante_decimal = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         send = new javax.swing.JButton();
         status = new javax.swing.JLabel();
@@ -52,7 +52,7 @@ public class TransferPage extends javax.swing.JInternalFrame {
         jLabel2.setText("IBAN");
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("Montate");
+        jLabel4.setText("Montante");
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Descrição");
@@ -91,16 +91,16 @@ public class TransferPage extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE))
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(12, 12, 12)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(iban)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(montate)
+                                        .addComponent(montante)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(montate_decimal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(montante_decimal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -132,10 +132,10 @@ public class TransferPage extends javax.swing.JInternalFrame {
                 .addGap(8, 8, 8)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(montate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(montante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(montate_decimal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(montante_decimal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -172,8 +172,8 @@ public class TransferPage extends javax.swing.JInternalFrame {
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
         status.setForeground(red);
         status.setText("");
-        String montateString = !montate.getText().isEmpty() ? montate.getText() : "0";
-        String montateDecimalString = !montate_decimal.getText().isEmpty() ? montate_decimal.getText() : "0";
+        String montateString = !montante.getText().isEmpty() ? montante.getText() : "0";
+        String montateDecimalString = !montante_decimal.getText().isEmpty() ? montante_decimal.getText() : "0";
         double valor = Double.parseDouble(montateString + "." + montateDecimalString);
 
         if (iban.getText().isEmpty()) {
@@ -182,9 +182,9 @@ public class TransferPage extends javax.swing.JInternalFrame {
             return;
         }
 
-        if (montate.getText().isEmpty()) {
+        if (montante.getText().isEmpty()) {
             status.setText("Insira o montate a transferir !");
-            montate.requestFocus();
+            montante.requestFocus();
             return;
         }
 
@@ -224,8 +224,8 @@ public class TransferPage extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField montate;
-    private javax.swing.JTextField montate_decimal;
+    private javax.swing.JTextField montante;
+    private javax.swing.JTextField montante_decimal;
     private javax.swing.JButton send;
     private javax.swing.JLabel status;
     // End of variables declaration//GEN-END:variables

@@ -1,42 +1,29 @@
 package pt.ua.ibank.DTO;
 
 import java.sql.Date;
+import static pt.ua.ibank.DTO.Cliente.LocalClient;
 
 public class Cartao {
-    private int numCartao;
-    private Date dataValidade;
-    private String estado;
-    private String conta;
+    public int numCartao;
+    public Date dataValidade;
+    public String estado;
+    public String conta;
+    public boolean credito;
+    public double saldo_credito;
+    public Date data_venciemnto;
 
-    public int getNumCartao() {
-        return numCartao;
-    }
-
-    public void setNumCartao(int numCartao) {
+    public Cartao(int numCartao, Date dataValidade, String estado, String conta, boolean credito, double saldo_credito, Date data_venciemnto) {
         this.numCartao = numCartao;
-    }
-
-    public Date getDataValidade() {
-        return dataValidade;
-    }
-
-    public void setDataValidade(Date dataValidade) {
         this.dataValidade = dataValidade;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
         this.estado = estado;
-    }
-
-    public String getConta() {
-        return conta;
-    }
-
-    public void setConta(String conta) {
         this.conta = conta;
+        this.credito = credito;
+        this.saldo_credito = saldo_credito;
+        this.data_venciemnto = data_venciemnto;
+    }
+
+    @Override
+    public String toString() {
+        return "Núm. Cartão: " + numCartao + " Saldo: " + (credito == false ? LocalClient.saldo : saldo_credito);
     }
 }
