@@ -204,6 +204,11 @@ public class DashBoard extends javax.swing.JInternalFrame {
         });
 
         jButton5.setText("Deposito");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout statLayout = new javax.swing.GroupLayout(stat);
         stat.setLayout(statLayout);
@@ -231,7 +236,7 @@ public class DashBoard extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         statLayout.setVerticalGroup(
@@ -369,6 +374,10 @@ public class DashBoard extends javax.swing.JInternalFrame {
     private void update_saldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_saldoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_update_saldoActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        localClientInterface.addWindow(new DepositMoney());
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void updateSaldo() {
         saldo.setText(LocalClient.saldo.toString() + " EUR");
