@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package pt.ua.ibank.staff.components.listacontas;
+package pt.ua.ibank.staff.components.contas;
 
 import java.awt.event.ActionEvent;
 import pt.ua.ibank.staff.componentes.perfil.PerfilTableActionEvent;
@@ -20,9 +20,9 @@ public class ContasActionPanel extends javax.swing.JPanel {
         initComponents();
     }
 
-    public void InitEvent(PerfilTableActionEvent event, int row) {
+    public void InitEvent(ContasActionEvent event, int row) {
         contasActionButton1.addActionListener((ActionEvent e) -> {
-            event.onEdit(row);
+            event.onExpand(row);
         });
     }
 
@@ -50,11 +50,11 @@ public class ContasActionPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contasActionButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+            .addComponent(contasActionButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private pt.ua.ibank.staff.components.listacontas.ContasActionButton contasActionButton1;
+    private pt.ua.ibank.staff.components.contas.ContasActionButton contasActionButton1;
     // End of variables declaration//GEN-END:variables
 }

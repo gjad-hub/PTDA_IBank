@@ -1,10 +1,10 @@
-package pt.ua.ibank.staff.components.listacontas;
+package pt.ua.ibank.staff.components.contas;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import pt.ua.ibank.DTO.Transferencia;
+import pt.ua.ibank.DTO.Cliente;
 
 /**
  * Implementação tabela de Transferencias a ser usada na interface de staff.
@@ -13,13 +13,14 @@ import pt.ua.ibank.DTO.Transferencia;
 public class ContasTableModel extends AbstractTableModel {
 
     private List<String> header = null;
-    private List<Transferencia> data = null;
+    private List<Cliente> data = null;
 
     public ContasTableModel() {
         data = new ArrayList<>();
-        data.add(new Transferencia(2, 2.0, 2, 2, "String"));
+        data.add(new Cliente(1, "a", "a", "a", "2", "asd", "a", 23.2));
         header = new ArrayList<>(Arrays.asList(
-                "ID", "Autor", "Recetor", "Valor", "Descricao", "Açao"));
+                "numConta", "numCliente", "nome",
+                "email", "nif", ""));
     }
 
     @Override
@@ -39,23 +40,26 @@ public class ContasTableModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return true; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        return true;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
+            case 0 -> {
+                return data.get(rowIndex).numConta;
+            }
             case 1 -> {
-                data.get(rowIndex).getTransferenciaID();
+                return data.get(rowIndex).numCliente;
             }
             case 2 -> {
-                return data.get(rowIndex).getclienteRealizaID();
+                return data.get(rowIndex).nome;
             }
             case 3 -> {
-                return data.get(rowIndex).getclienteRecebeID();
+                return data.get(rowIndex).email;
             }
             case 4 -> {
-                return data.get(rowIndex).getDescricao();
+                return data.get(rowIndex).nif;
             }
         }
         return null;

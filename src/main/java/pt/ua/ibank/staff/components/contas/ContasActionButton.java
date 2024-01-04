@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pt.ua.ibank.staff.components.listacontas;
+package pt.ua.ibank.staff.components.contas;
 
 import pt.ua.ibank.staff.componentes.perfil.*;
 import java.awt.Color;
