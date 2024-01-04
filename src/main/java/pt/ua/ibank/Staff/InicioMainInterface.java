@@ -7,7 +7,6 @@ package pt.ua.ibank.Staff;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -78,6 +77,7 @@ public class InicioMainInterface extends javax.swing.JPanel {
         jPanel1.setOpaque(false);
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setOpaque(false);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));

@@ -12,11 +12,12 @@ import pt.ua.ibank.interfaces.dialogLogin;
 import pt.ua.ibank.utilities.Configs;
 
 public class IBank {
-    
+
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
-            FlatLightLaf.setGlobalExtraDefaults(Collections.singletonMap("@accentColor", "#79658C"));
+            FlatLightLaf.setGlobalExtraDefaults(Collections.singletonMap(
+                    "@accentColor", "#79658C"));
             FlatLightLaf.setup();
 
             //setUIFont (new javax.swing.plaf.FontUIResource("SF Pro Display",Font.PLAIN,12));
@@ -29,8 +30,8 @@ public class IBank {
             System.out.println("Erro ao carregar UI");
             System.exit(98);
         }
-        
-        dialogLogin login = new dialogLogin(null, true);
+
+        clientInterface login = new clientInterface();
         login.setVisible(true);
 
         if (Configs.loginOK) {
