@@ -1,18 +1,5 @@
 package pt.ua.ibank.Staff;
 
-import com.mysql.cj.conf.ConnectionUrlParser.Pair;
-import pt.ua.ibank.Staff.components.accountList.ContasListModel;
-import pt.ua.ibank.Staff.components.accountList.ContasListCellRenderer;
-import pt.ua.ibank.Staff.components.profile.tablecomponents.ProfileTableCellRenderer;
-import pt.ua.ibank.Staff.components.profile.tablecomponents.ProfilePersonalTableModel;
-import pt.ua.ibank.Staff.components.profile.tablecomponents.ProfileCompanyTableModel;
-import pt.ua.ibank.Staff.components.profile.tablecomponents.ProfileCellEditor;
-import pt.ua.ibank.Staff.components.profile.ProfileActionRenderer;
-import pt.ua.ibank.Staff.components.profile.tablecomponents.ProfileTableActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.JList;
-
 public class StaffInterface extends javax.swing.JInternalFrame {
 
     public StaffInterface() {
