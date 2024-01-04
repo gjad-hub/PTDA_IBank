@@ -24,15 +24,20 @@ public class ProfileTableCellRenderer extends DefaultTableCellRenderer {
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value,
             boolean isSelected, boolean hasFocus, int row, int column) {
+        Component comm = super.getTableCellRendererComponent(table, value,
+                isSelected,
+                hasFocus, row, column);
         var currClientObject = (Pair<String, String>) value;
 
-        JPanel profileChildElement = new ProfileTableElementPanel(
+        var profileChildElement = new ProfileTableElementPanel(
                 false,
                 currClientObject.left,
                 currClientObject.right);
 
-        if (isSelected) {
-            profileChildElement.setBackground(new Color(0xc7, 0xc6, 0xc5));
+        if (isSelected && row % 2 == 0) {
+            profileChildElement.setBackground(Color.WHITE);
+        } else {
+            // profileChildElement.setBackground(comm.getBackground());
         }
         //return currClientPanel;
         return profileChildElement;

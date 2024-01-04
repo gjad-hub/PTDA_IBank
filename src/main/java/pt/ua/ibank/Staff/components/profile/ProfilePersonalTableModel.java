@@ -14,19 +14,18 @@ import pt.ua.ibank.DTO.Cliente;
  *
  * @author ricar
  */
-public class ClientProfilePersonalTableModel extends AbstractTableModel {
+public class ProfilePersonalTableModel extends AbstractTableModel {
 
     private Cliente client;
     private List<Pair<String, String>> data;
 
-    public ClientProfilePersonalTableModel(Cliente client) {
+    public ProfilePersonalTableModel(Cliente client) {
         this.client = client;
         data = new ArrayList<>();
         init();
     }
-//Integer numCliente, String nome, String morada, String email, String telemovel, String nif, String password, String numConta, Double saldo
 
-    public ClientProfilePersonalTableModel() {
+    public ProfilePersonalTableModel() {
         this.client = new Cliente(1, "jose", "Avenida das coves", "asd",
                 "123123", "2131", "3",
                 "39", 20.4);
@@ -38,7 +37,7 @@ public class ClientProfilePersonalTableModel extends AbstractTableModel {
     public void init() {
         data.add(new Pair<>("Nome:", client.nome));
         data.add(new Pair<>("Email:", client.telemovel));
-        data.add(new Pair<>("NIF:", client.nif));
+        data.add(new Pair<>("*NIF:", client.nif));
         data.add(new Pair<>("Morada:", client.morada));
     }
 
@@ -54,6 +53,19 @@ public class ClientProfilePersonalTableModel extends AbstractTableModel {
     }
 
     @Override
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+        try {
+            data.set(rowIndex, (Pair<String, String>) aValue);
+            System.out.println(
+                    "value: " + data.get(rowIndex).left + "on row " + rowIndex + " on column " + columnIndex + "changed! to " + data.get(
+                    rowIndex).right);
+
+        } catch (java.lang.ClassCastException e) {
+            //nothing troll
+        }
+    }
+
+    @Override
     public Object getValueAt(int linha, int coluna) {
         switch (coluna) {
             case 0 -> {
@@ -61,6 +73,11 @@ public class ClientProfilePersonalTableModel extends AbstractTableModel {
             }
         }
         return null;
+    }
+
+    @Override
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return true; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
 
 }

@@ -6,8 +6,6 @@ package pt.ua.ibank.Staff.components.profile;
 
 import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 import pt.ua.ibank.Staff.components.profile.ProfileActionRenderer;
-import pt.ua.ibank.Staff.components.profile.tablecomponents.ProfileTableActionEvent;
-import pt.ua.ibank.Staff.components.profile.tablecomponents.ProfileTableCellRenderer;
 
 /**
  *
@@ -49,14 +47,14 @@ public class ProfileMainInterface extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        pt.ua.ibank.Staff.components.profile.tablecomponents.ProfilePersonalTableModel personalDataTable = new pt.ua.ibank.Staff.components.profile.tablecomponents.ProfilePersonalTableModel();
+        pt.ua.ibank.Staff.components.profile.ProfilePersonalTableModel personalDataTable = new pt.ua.ibank.Staff.components.profile.ProfilePersonalTableModel();
         jTablePersonalData = new javax.swing.JTable();
         jPanelDadosEmpregado = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        pt.ua.ibank.Staff.components.profile.tablecomponents.ProfileCompanyTableModel companyDataTable = new pt.ua.ibank.Staff.components.profile.tablecomponents.ProfileCompanyTableModel();
+        pt.ua.ibank.Staff.components.profile.ProfileCompanyTableModel companyDataTable = new pt.ua.ibank.Staff.components.profile.ProfileCompanyTableModel();
         jTableCompanyData = new javax.swing.JTable();
         jPanelDadosComentarios = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -283,7 +281,7 @@ public class ProfileMainInterface extends javax.swing.JPanel {
 
     jTablePersonalData.getColumnModel()
     .getColumn(1)
-    .setCellEditor(new pt.ua.ibank.Staff.components.profile.tablecomponents.ProfileCellEditor(eventPersonal));
+    .setCellEditor(new pt.ua.ibank.Staff.components.profile.ProfileCellEditor(eventPersonal));
     jTablePersonalData.setRowHeight(40);
 
     jTablePersonalData.setRowSelectionAllowed(false);
@@ -381,7 +379,7 @@ public class ProfileMainInterface extends javax.swing.JPanel {
 
     jTableCompanyData.getColumnModel()
     .getColumn(1)
-    .setCellEditor(new pt.ua.ibank.Staff.components.profile.tablecomponents.ProfileCellEditor(eventCompany));
+    .setCellEditor(new pt.ua.ibank.Staff.components.profile.ProfileCellEditor(eventCompany));
 
     javax.swing.GroupLayout jPanelDadosEmpregadoLayout = new javax.swing.GroupLayout(jPanelDadosEmpregado);
     jPanelDadosEmpregado.setLayout(jPanelDadosEmpregadoLayout);

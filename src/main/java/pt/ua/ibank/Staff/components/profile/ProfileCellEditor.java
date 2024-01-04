@@ -1,11 +1,11 @@
-package pt.ua.ibank.Staff.components.profile.tablecomponents;
+package pt.ua.ibank.Staff.components.profile;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-import pt.ua.ibank.Staff.components.profile.tablecomponents.ProfileTableActionEvent;
-import pt.ua.ibank.Staff.components.profile.tablecomponents.ProfileActionPanel;
+import pt.ua.ibank.Staff.components.profile.ProfileTableActionEvent;
+import pt.ua.ibank.Staff.components.profile.ProfileActionPanel;
 import com.mysql.cj.conf.ConnectionUrlParser;
 import java.awt.Component;
 import javax.swing.DefaultCellEditor;

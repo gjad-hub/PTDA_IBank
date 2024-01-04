@@ -4,7 +4,6 @@
  */
 package pt.ua.ibank.Staff.components.profile;
 
-import pt.ua.ibank.Staff.components.profile.tablecomponents.ProfileActionPanel;
 import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 import java.awt.Color;
 import java.awt.Component;
