@@ -5,12 +5,22 @@ import java.security.spec.InvalidKeySpecException;
 import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.utilities.Hash;
 
+public class Cliente {
 
     public Integer numCliente;
     public String numConta;
     public Double saldo;
     public static Cliente LocalClient;
+    public String nome;
+    public String morada;
+    public String email;
+    public String telemovel;
+    public String nif;
+    public String password;
 
+    public Cliente(Integer numCliente, String nome, String morada, String email,
+            String telemovel, String nif, String password, String numConta,
+            Double saldo) {
         this.numCliente = numCliente;
         this.nome = nome;
         this.morada = morada;
@@ -39,6 +49,12 @@ import pt.ua.ibank.utilities.Hash;
         this.password = password;
     }
 
+    public int alterarInformacoes(String old_email) {
+        int status = ClientDAO.UpdateClient(nome, morada, email, telemovel, nif,
+                password, old_email);
+        return status;
+    }
+
     public boolean autenticar() {
         Cliente tmp = ClientDAO.getClientByEmail(email);
 
@@ -53,8 +69,6 @@ import pt.ua.ibank.utilities.Hash;
             }
         }
         return false;
-    }
-        return status;
     }
 
     @Override

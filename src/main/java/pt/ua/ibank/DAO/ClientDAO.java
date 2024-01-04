@@ -121,7 +121,7 @@ public class ClientDAO {
         }
         return null;
     }
-    
+
     public static Double getClientBalance(int num_cliente) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -182,4 +182,5 @@ public class ClientDAO {
             DBConnection.closeConnection(stmt, rs);
         }
     }
+
 }
