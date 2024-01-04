@@ -2,39 +2,43 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pt.ua.ibank.Staff.components.profile;
+package pt.ua.ibank.Staff.components.profile.tablecomponents;
 
 import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import pt.ua.ibank.DTO.Funcionario;
+import pt.ua.ibank.DTO.Cliente;
 
 /**
  *
  * @author ricar
  */
-public class ProfileCompanyTableModel extends AbstractTableModel {
+public class ProfilePersonalTableModel extends AbstractTableModel {
 
-    private final Funcionario funcionario;
-    private final List<Pair<String, String>> data;
+    private Cliente client;
+    private List<Pair<String, String>> data;
 
-    public ProfileCompanyTableModel(Funcionario client) {
-        this.funcionario = client;
+    public ProfilePersonalTableModel(Cliente client) {
+        this.client = client;
         data = new ArrayList<>();
-        data.add(new Pair<>("Nome:", funcionario.getNome()));
-        data.add(new Pair<>("ID:", funcionario.getEmail()));
-        data.add(new Pair<>("Cargo:", funcionario.getNif()));
-        data.add(new Pair<>("Morada:", funcionario.getMorada()));
+        init();
     }
 
-    public ProfileCompanyTableModel() {
-        this.funcionario = null;
+    public ProfilePersonalTableModel() {
+        this.client = new Cliente(1, "jose", "Avenida das coves", "asd",
+                "123123", "2131", "3",
+                "39", 20.4);
         data = new ArrayList<>();
-        data.add(new Pair<>("Nome:\t", "email@email.pt"));
-        data.add(new Pair<>("ID:\t", "92312312"));
-        data.add(new Pair<>("Cargo:\t", "1231245"));
-        data.add(new Pair<>("Morada:\t ", "adas avenue 23da "));
+        init();
+
+    }
+
+    public void init() {
+        data.add(new Pair<>("Nome:", client.nome));
+        data.add(new Pair<>("Email:", client.telemovel));
+        data.add(new Pair<>("*NIF:", client.nif));
+        data.add(new Pair<>("Morada:", client.morada));
     }
 
     @Override

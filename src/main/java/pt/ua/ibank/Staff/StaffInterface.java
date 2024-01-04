@@ -1,13 +1,9 @@
 package pt.ua.ibank.Staff;
 
-import javax.swing.JPanel;
-import pt.ua.ibank.Staff.components.profile.ProfileMainInterface;
-
 public class StaffInterface extends javax.swing.JInternalFrame {
 
     public StaffInterface() {
         initComponents();
-
     }
 
     /**
@@ -29,6 +25,7 @@ public class StaffInterface extends javax.swing.JInternalFrame {
         jBtnTransacoes = new javax.swing.JButton();
         jBtnInicio = new javax.swing.JButton();
         jPanelContent = new javax.swing.JPanel();
+        LayeredPaneEditarConta = new javax.swing.JLayeredPane();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
@@ -40,7 +37,7 @@ public class StaffInterface extends javax.swing.JInternalFrame {
         setFrameIcon(null);
         setMinimumSize(new java.awt.Dimension(859, 485));
 
-        jPanelTop.setBackground(new java.awt.Color(13, 10, 11));
+        jPanelTop.setBackground(new java.awt.Color(76, 88, 160));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -99,7 +96,6 @@ public class StaffInterface extends javax.swing.JInternalFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanelNavBar.setBackground(new java.awt.Color(69, 73, 85));
         jPanelNavBar.setMinimumSize(new java.awt.Dimension(0, 40));
         jPanelNavBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -121,9 +117,9 @@ public class StaffInterface extends javax.swing.JInternalFrame {
         jBtnTransacoes.setPreferredSize(new java.awt.Dimension(72, 27));
         jPanelNavBar.add(jBtnTransacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(316, 6, 145, 30));
 
-        jBtnInicio.setBackground(new java.awt.Color(243, 239, 245));
+        jBtnInicio.setBackground(new java.awt.Color(76, 88, 160));
         jBtnInicio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jBtnInicio.setForeground(new java.awt.Color(0, 0, 0));
+        jBtnInicio.setForeground(new java.awt.Color(255, 255, 255));
         jBtnInicio.setText("Inicio");
         jBtnInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,10 +128,31 @@ public class StaffInterface extends javax.swing.JInternalFrame {
         });
         jPanelNavBar.add(jBtnInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 145, -1));
 
-        jPanelContent.setVisible(true);
         jPanelContent.setBackground(new java.awt.Color(255, 255, 255));
-        jPanelContent.setLayout(new java.awt.BorderLayout());
-        jPanelContent.add(new ProfileMainInterface());
+
+        LayeredPaneEditarConta.setPreferredSize(new java.awt.Dimension(776, 553));
+
+        javax.swing.GroupLayout LayeredPaneEditarContaLayout = new javax.swing.GroupLayout(LayeredPaneEditarConta);
+        LayeredPaneEditarConta.setLayout(LayeredPaneEditarContaLayout);
+        LayeredPaneEditarContaLayout.setHorizontalGroup(
+            LayeredPaneEditarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 859, Short.MAX_VALUE)
+        );
+        LayeredPaneEditarContaLayout.setVerticalGroup(
+            LayeredPaneEditarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 562, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanelContentLayout = new javax.swing.GroupLayout(jPanelContent);
+        jPanelContent.setLayout(jPanelContentLayout);
+        jPanelContentLayout.setHorizontalGroup(
+            jPanelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(LayeredPaneEditarConta, javax.swing.GroupLayout.DEFAULT_SIZE, 859, Short.MAX_VALUE)
+        );
+        jPanelContentLayout.setVerticalGroup(
+            jPanelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(LayeredPaneEditarConta, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,6 +186,7 @@ public class StaffInterface extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBtnInicioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLayeredPane LayeredPaneEditarConta;
     private javax.swing.JButton jBtnContas;
     private javax.swing.JButton jBtnInicio;
     private javax.swing.JButton jBtnTransacoes;

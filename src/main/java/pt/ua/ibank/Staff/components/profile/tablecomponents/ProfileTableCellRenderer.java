@@ -2,12 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pt.ua.ibank.Staff.components.profile;
+package pt.ua.ibank.Staff.components.profile.tablecomponents;
 
-import pt.ua.ibank.Staff.components.profile.tablecomponents.ProfileActionPanel;
 import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 import java.awt.Color;
 import java.awt.Component;
+import java.util.HashMap;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -15,7 +18,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  * @author ricar
  */
-public class ProfileActionRenderer extends DefaultTableCellRenderer {
+public class ProfileTableCellRenderer extends DefaultTableCellRenderer {
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value,
@@ -23,23 +26,20 @@ public class ProfileActionRenderer extends DefaultTableCellRenderer {
         Component comm = super.getTableCellRendererComponent(table, value,
                 isSelected,
                 hasFocus, row, column);
+        var currClientObject = (Pair<String, String>) value;
 
-        Pair<String, String> componentValue = (Pair) table.getModel().getValueAt(
-                row, 0);
-
-        if (componentValue.left.contains("*")) {
-            return comm;
-        }
-
-        ProfileActionPanel action = new ProfileActionPanel(componentValue.right);
+        var profileChildElement = new ProfileTableElementPanel(
+                false,
+                currClientObject.left,
+                currClientObject.right);
 
         if (isSelected && row % 2 == 0) {
-            action.setBackground(Color.WHITE);
+            profileChildElement.setBackground(Color.WHITE);
         } else {
-            //action.setBackground(comm.getBackground());
+            // profileChildElement.setBackground(comm.getBackground());
         }
-        return action;
-
+        //return currClientPanel;
+        return profileChildElement;
     }
 
 }

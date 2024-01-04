@@ -4,6 +4,7 @@
  */
 package pt.ua.ibank.Staff.components.profile;
 
+import pt.ua.ibank.Staff.components.profile.ProfileTableElementPanel;
 import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 import java.awt.Color;
 import java.awt.Component;
@@ -23,20 +24,15 @@ public class ProfileTableCellRenderer extends DefaultTableCellRenderer {
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value,
             boolean isSelected, boolean hasFocus, int row, int column) {
-        Component comm = super.getTableCellRendererComponent(table, value,
-                isSelected,
-                hasFocus, row, column);
         var currClientObject = (Pair<String, String>) value;
 
-        var profileChildElement = new ProfileTableElementPanel(
+        JPanel profileChildElement = new ProfileTableElementPanel(
                 false,
                 currClientObject.left,
                 currClientObject.right);
 
-        if (isSelected && row % 2 == 0) {
-            profileChildElement.setBackground(Color.WHITE);
-        } else {
-            // profileChildElement.setBackground(comm.getBackground());
+        if (isSelected) {
+            profileChildElement.setBackground(new Color(0xc7, 0xc6, 0xc5));
         }
         //return currClientPanel;
         return profileChildElement;

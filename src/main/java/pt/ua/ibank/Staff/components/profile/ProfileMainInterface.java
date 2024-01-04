@@ -6,6 +6,8 @@ package pt.ua.ibank.Staff.components.profile;
 
 import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 import pt.ua.ibank.Staff.components.profile.ProfileActionRenderer;
+import pt.ua.ibank.Staff.components.profile.tablecomponents.ProfileTableActionEvent;
+import pt.ua.ibank.Staff.components.profile.tablecomponents.ProfileTableCellRenderer;
 
 /**
  *
@@ -47,14 +49,14 @@ public class ProfileMainInterface extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        ProfilePersonalTableModel personalDataTable = new ProfilePersonalTableModel();
+        pt.ua.ibank.Staff.components.profile.tablecomponents.ProfilePersonalTableModel personalDataTable = new pt.ua.ibank.Staff.components.profile.tablecomponents.ProfilePersonalTableModel();
         jTablePersonalData = new javax.swing.JTable();
         jPanelDadosEmpregado = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        pt.ua.ibank.Staff.components.profile.ProfileCompanyTableModel companyDataTable = new pt.ua.ibank.Staff.components.profile.ProfileCompanyTableModel();
+        pt.ua.ibank.Staff.components.profile.tablecomponents.ProfileCompanyTableModel companyDataTable = new pt.ua.ibank.Staff.components.profile.tablecomponents.ProfileCompanyTableModel();
         jTableCompanyData = new javax.swing.JTable();
         jPanelDadosComentarios = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -281,7 +283,7 @@ public class ProfileMainInterface extends javax.swing.JPanel {
 
     jTablePersonalData.getColumnModel()
     .getColumn(1)
-    .setCellEditor(new pt.ua.ibank.Staff.components.profile.ProfileCellEditor(eventPersonal));
+    .setCellEditor(new pt.ua.ibank.Staff.components.profile.tablecomponents.ProfileCellEditor(eventPersonal));
     jTablePersonalData.setRowHeight(40);
 
     jTablePersonalData.setRowSelectionAllowed(false);
@@ -292,7 +294,7 @@ public class ProfileMainInterface extends javax.swing.JPanel {
     jPanelDadosPessoais.setLayout(jPanelDadosPessoaisLayout);
     jPanelDadosPessoaisLayout.setHorizontalGroup(
         jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
     );
     jPanelDadosPessoaisLayout.setVerticalGroup(
@@ -379,13 +381,13 @@ public class ProfileMainInterface extends javax.swing.JPanel {
 
     jTableCompanyData.getColumnModel()
     .getColumn(1)
-    .setCellEditor(new pt.ua.ibank.Staff.components.profile.ProfileCellEditor(eventCompany));
+    .setCellEditor(new pt.ua.ibank.Staff.components.profile.tablecomponents.ProfileCellEditor(eventCompany));
 
     javax.swing.GroupLayout jPanelDadosEmpregadoLayout = new javax.swing.GroupLayout(jPanelDadosEmpregado);
     jPanelDadosEmpregado.setLayout(jPanelDadosEmpregadoLayout);
     jPanelDadosEmpregadoLayout.setHorizontalGroup(
         jPanelDadosEmpregadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
     );
     jPanelDadosEmpregadoLayout.setVerticalGroup(
@@ -430,7 +432,7 @@ public class ProfileMainInterface extends javax.swing.JPanel {
     jPanelDadosComentarios.setLayout(jPanelDadosComentariosLayout);
     jPanelDadosComentariosLayout.setHorizontalGroup(
         jPanelDadosComentariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
     );
     jPanelDadosComentariosLayout.setVerticalGroup(
         jPanelDadosComentariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -477,7 +479,7 @@ public class ProfileMainInterface extends javax.swing.JPanel {
     jPanelDepositosPorAprovar.setLayout(jPanelDepositosPorAprovarLayout);
     jPanelDepositosPorAprovarLayout.setHorizontalGroup(
         jPanelDepositosPorAprovarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
         .addComponent(jListComentariosModeracao1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
     jPanelDepositosPorAprovarLayout.setVerticalGroup(
