@@ -157,7 +157,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
         jPanelDadosDescricaoLayout.setHorizontalGroup(
             jPanelDadosDescricaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-            .addComponent(jPanelFotoPerfil, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+            .addComponent(jPanelFotoPerfil, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 257, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDadosDescricaoLayout.createSequentialGroup()
                 .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(5, 5, 5)
@@ -292,7 +292,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
     jPanelDadosPessoais.setLayout(jPanelDadosPessoaisLayout);
     jPanelDadosPessoaisLayout.setHorizontalGroup(
         jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
     );
     jPanelDadosPessoaisLayout.setVerticalGroup(
@@ -350,7 +350,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
     .getColumn(1)
     .setCellRenderer(new pt.ua.ibank.staff.componentes.perfil.PerfilActionRenderer());
 
-        pt.ua.ibank.staff.componentes.perfil.PerfilTableActionEvent eventCompany = new pt.ua.ibank.staff.componentes.perfil.PerfilTableActionEvent() {
+    pt.ua.ibank.staff.componentes.perfil.PerfilTableActionEvent eventCompany = new pt.ua.ibank.staff.componentes.perfil.PerfilTableActionEvent() {
         String oldLeft;
 
         @Override
@@ -385,7 +385,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
     jPanelDadosEmpregado.setLayout(jPanelDadosEmpregadoLayout);
     jPanelDadosEmpregadoLayout.setHorizontalGroup(
         jPanelDadosEmpregadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
     );
     jPanelDadosEmpregadoLayout.setVerticalGroup(
@@ -430,7 +430,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
     jPanelDadosComentarios.setLayout(jPanelDadosComentariosLayout);
     jPanelDadosComentariosLayout.setHorizontalGroup(
         jPanelDadosComentariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
     );
     jPanelDadosComentariosLayout.setVerticalGroup(
         jPanelDadosComentariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -477,7 +477,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
     jPanelDepositosPorAprovar.setLayout(jPanelDepositosPorAprovarLayout);
     jPanelDepositosPorAprovarLayout.setHorizontalGroup(
         jPanelDepositosPorAprovarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
         .addComponent(jListComentariosModeracao1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
     jPanelDepositosPorAprovarLayout.setVerticalGroup(
@@ -527,7 +527,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
                             .addComponent(jPanelDadosEmpregado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jPanelDepositosPorAprovar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addContainerGap())))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
     );
 
     LayeredPaneEditarConta.setLayer(jPanelDadosContainer, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -563,7 +563,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(LayeredPaneEditarConta, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+                .addComponent(LayeredPaneEditarConta, javax.swing.GroupLayout.PREFERRED_SIZE, 550, Short.MAX_VALUE)
                 .addContainerGap()))
     );
     }// </editor-fold>//GEN-END:initComponents

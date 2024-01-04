@@ -20,6 +20,8 @@ public class ContasMainInterface extends javax.swing.JPanel {
      */
     public ContasMainInterface() {
         initComponents();
+        jTable1.getColumnModel().getColumn(5).setCellRenderer(
+                new ContasActionRenderer());
     }
 
     /**
@@ -33,8 +35,10 @@ public class ContasMainInterface extends javax.swing.JPanel {
 
         LayeredPaneContas = new javax.swing.JLayeredPane();
         jLabel15 = new javax.swing.JLabel();
-        jListTodasContas = new javax.swing.JList<>();
         jSeparator1 = new javax.swing.JSeparator();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(859, 562));
@@ -47,13 +51,20 @@ public class ContasMainInterface extends javax.swing.JPanel {
         jLabel15.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         jLabel15.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
-        ContasListCellRenderer contasCellRenderer = new ContasListCellRenderer();
-        jListTodasContas.setModel(null);
-        jListTodasContas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 469, Short.MAX_VALUE)
+        );
 
         LayeredPaneContas.setLayer(jLabel15, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        LayeredPaneContas.setLayer(jListTodasContas, javax.swing.JLayeredPane.DEFAULT_LAYER);
         LayeredPaneContas.setLayer(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        LayeredPaneContas.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout LayeredPaneContasLayout = new javax.swing.GroupLayout(LayeredPaneContas);
         LayeredPaneContas.setLayout(LayeredPaneContasLayout);
@@ -62,12 +73,15 @@ public class ContasMainInterface extends javax.swing.JPanel {
             .addGroup(LayeredPaneContasLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(LayeredPaneContasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jListTodasContas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator1)
                     .addGroup(LayeredPaneContasLayout.createSequentialGroup()
                         .addComponent(jLabel15)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 678, Short.MAX_VALUE)))
                 .addGap(10, 10, 10))
+            .addGroup(LayeredPaneContasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         LayeredPaneContasLayout.setVerticalGroup(
             LayeredPaneContasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -76,28 +90,21 @@ public class ContasMainInterface extends javax.swing.JPanel {
                 .addComponent(jLabel15)
                 .addGap(4, 4, 4)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jListTodasContas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jListTodasContas.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                JList list = (JList) evt.getSource();
-                if (evt.getClickCount() == 2) {
-
-                    // Double-click detected
-                    int index = list.locationToIndex(evt.getPoint());
-                    System.out.println((index + 1) + " double clicked");
-                }
-            }
-        });
+        jTable1.setModel(new ContasTableModel());
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+                .addGap(434, 434, 434))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -106,7 +113,10 @@ public class ContasMainInterface extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -118,7 +128,9 @@ public class ContasMainInterface extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane LayeredPaneContas;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JList<String> jListTodasContas;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

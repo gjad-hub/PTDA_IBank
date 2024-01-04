@@ -24,7 +24,7 @@ public class ContasActionRenderer extends DefaultTableCellRenderer {
                 isSelected,
                 hasFocus, row, column);
 
-        PerfilActionPanel action = new PerfilActionPanel();
+        ContasActionPanel action = new ContasActionPanel();
 
         return action;
 

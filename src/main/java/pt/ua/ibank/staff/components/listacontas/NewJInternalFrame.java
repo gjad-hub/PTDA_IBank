@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package pt.ua.ibank.staff.components.listacontas;
 
@@ -8,12 +8,12 @@ package pt.ua.ibank.staff.components.listacontas;
  *
  * @author ricar
  */
-public class ContasActionElement extends javax.swing.JPanel {
+public class NewJInternalFrame extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form NewJPanel
+     * Creates new form NewJInternalFrame
      */
-    public ContasActionElement() {
+    public NewJInternalFrame() {
         initComponents();
     }
 
@@ -26,24 +26,23 @@ public class ContasActionElement extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        contasActionButton1 = new ContasActionButton();
+        contasMainInterface1 = new pt.ua.ibank.staff.components.listacontas.ContasMainInterface();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addComponent(contasActionButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(contasMainInterface1, javax.swing.GroupLayout.DEFAULT_SIZE, 915, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contasActionButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(contasMainInterface1, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private pt.ua.ibank.staff.components.listacontas.ContasActionButton contasActionButton1;
+    private pt.ua.ibank.staff.components.listacontas.ContasMainInterface contasMainInterface1;
     // End of variables declaration//GEN-END:variables
 }

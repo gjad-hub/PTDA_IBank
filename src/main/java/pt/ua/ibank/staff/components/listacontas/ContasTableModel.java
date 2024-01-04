@@ -17,8 +17,9 @@ public class ContasTableModel extends AbstractTableModel {
 
     public ContasTableModel() {
         data = new ArrayList<>();
+        data.add(new Transferencia(2, 2.0, 2, 2, "String"));
         header = new ArrayList<>(Arrays.asList(
-                "ID", "Autor", "Recetor", "Descricao", "Açao"));
+                "ID", "Autor", "Recetor", "Valor", "Descricao", "Açao"));
     }
 
     @Override
@@ -29,6 +30,16 @@ public class ContasTableModel extends AbstractTableModel {
     @Override
     public int getColumnCount() {
         return header.size();
+    }
+
+    @Override
+    public String getColumnName(int column) {
+        return header.get(column);
+    }
+
+    @Override
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return true; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
 
     @Override

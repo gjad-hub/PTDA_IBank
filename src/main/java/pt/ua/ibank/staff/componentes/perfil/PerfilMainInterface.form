@@ -124,7 +124,7 @@
                                       <Component id="jPanelDepositosPorAprovar" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -327,7 +327,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel2" alignment="0" pref="211" max="32767" attributes="0"/>
+                      <Component id="jPanel2" alignment="0" pref="234" max="32767" attributes="0"/>
                       <Component id="jScrollPane1" alignment="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
@@ -460,7 +460,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel7" alignment="0" pref="248" max="32767" attributes="0"/>
+                      <Component id="jPanel7" alignment="0" pref="271" max="32767" attributes="0"/>
                       <Component id="jScrollPane3" alignment="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
@@ -566,7 +566,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel5" alignment="0" pref="161" max="32767" attributes="0"/>
+                      <Component id="jPanel5" alignment="0" pref="184" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -643,7 +643,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel9" alignment="0" pref="298" max="32767" attributes="0"/>
+                      <Component id="jPanel9" alignment="0" pref="321" max="32767" attributes="0"/>
                       <Component id="jListComentariosModeracao1" alignment="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
