@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pt.ua.ibank.Staff.components.profile;
+package pt.ua.ibank.staff.componentes.perfil;
 
-import pt.ua.ibank.Staff.components.profile.ProfileTableElementPanel;
+import pt.ua.ibank.staff.componentes.perfil.PerfilTableElementPanel;
 import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 import java.awt.Color;
 import java.awt.Component;
@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  * @author ricar
  */
-public class ProfileTableCellRenderer extends DefaultTableCellRenderer {
+public class PerfilTableCellRenderer extends DefaultTableCellRenderer {
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value,
@@ -29,7 +29,7 @@ public class ProfileTableCellRenderer extends DefaultTableCellRenderer {
                 hasFocus, row, column);
         var currClientObject = (Pair<String, String>) value;
 
-        var profileChildElement = new ProfileTableElementPanel(
+        var profileChildElement = new PerfilTableElementPanel(
                 false,
                 currClientObject.left,
                 currClientObject.right);

@@ -4,7 +4,6 @@ import pt.ua.ibank.interfaces.internalFrames.DashBoard;
 import java.awt.Component;
 import java.awt.Dimension;
 import static pt.ua.ibank.DTO.Cliente.LocalClient;
-import pt.ua.ibank.Staff.StaffInterface;
 import pt.ua.ibank.interfaces.internalFrames.PayServices;
 import pt.ua.ibank.interfaces.internalFrames.ProfilePage;
 import pt.ua.ibank.interfaces.internalFrames.TransferPage;
@@ -18,7 +17,7 @@ public class clientInterface extends javax.swing.JFrame {
 
     public clientInterface() {
         initComponents();
-        //start_up();
+        start_up();
     }
 
     public void addWindow(Component comp) {
@@ -326,7 +325,7 @@ public class clientInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_transfersActionPerformed
 
     private void dashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardActionPerformed
-        addWindow(new StaffInterface());
+        addWindow(new DashBoard());
     }//GEN-LAST:event_dashboardActionPerformed
 
     private void hideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hideActionPerformed

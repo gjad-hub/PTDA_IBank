@@ -327,7 +327,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel2" alignment="0" pref="190" max="32767" attributes="0"/>
+                      <Component id="jPanel2" alignment="0" pref="211" max="32767" attributes="0"/>
                       <Component id="jScrollPane1" alignment="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
@@ -445,9 +445,9 @@
                         </Property>
                       </Properties>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="//collumn 1&#xa;jTablePersonalData.getColumnModel().getColumn(0)&#xa;        .setCellRenderer(new ProfileTableCellRenderer());&#xa;&#xa;jTablePersonalData.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setCellRenderer(new ProfileActionRenderer());&#xa;&#xa;jTablePersonalData.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setMinWidth(40);&#xa;jTablePersonalData.getColumnModel()&#xa;        .getColumn(0)&#xa;        .setMinWidth(90);&#xa;&#xa;// MAX WIDTH&#xa;&#xa;&#xa;&#xa;// EDIT BUTTON STUFF&#xa;    ProfileTableActionEvent eventPersonal = new ProfileTableActionEvent() {&#xa;        String oldLeft;&#xa;&#xa;        @Override&#xa;        public void onEdit(int row) {&#xa;            oldLeft = ((Pair&lt;String, String&gt;) personalDataTable.getValueAt(&#xa;                    row, 0)).left;&#xa;        }&#xa;&#xa;        @Override&#xa;        public void onCancel(int row) {&#xa;            // do nothing&#xa;        }&#xa;&#xa;        @Override&#xa;        public void onSave(int row, String newValue) {&#xa;        System.out.println(newValue);&#xa;        if(newValue.length() &gt; 2)&#xa;        {&#xa;            personalDataTable.getValueAt(row, 0);&#xa;            Pair&lt;String, String&gt; newRecord = new Pair(oldLeft, newValue);&#xa;            personalDataTable.setValueAt(newRecord, row, 0);&#xa;            jTablePersonalData.repaint();&#xa;        }&#xa;}&#xa;    };&#xa;&#xa;jTablePersonalData.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setCellEditor(new pt.ua.ibank.Staff.components.profile.ProfileCellEditor(eventPersonal));&#xa;jTablePersonalData.setRowHeight(40);&#xa;&#xa;jTablePersonalData.setRowSelectionAllowed(false);&#xa;&#xa;jTablePersonalData.setSelectionBackground(new java.awt.Color(255, 255, 255));"/>
+                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="//collumn 1&#xa;jTablePersonalData.getColumnModel().getColumn(0)&#xa;        .setCellRenderer(new pt.ua.ibank.staff.componentes.perfil.PerfilTableCellRenderer());&#xa;&#xa;jTablePersonalData.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setCellRenderer(new pt.ua.ibank.staff.componentes.perfil.PerfilActionRenderer());&#xa;&#xa;jTablePersonalData.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setMinWidth(40);&#xa;jTablePersonalData.getColumnModel()&#xa;        .getColumn(0)&#xa;        .setMinWidth(90);&#xa;&#xa;// MAX WIDTH&#xa;&#xa;&#xa;&#xa;// EDIT BUTTON STUFF&#xa;    pt.ua.ibank.staff.componentes.perfil.PerfilTableActionEvent eventPersonal = new pt.ua.ibank.staff.componentes.perfil.PerfilTableActionEvent() {&#xa;        String oldLeft;&#xa;&#xa;        @Override&#xa;        public void onEdit(int row) {&#xa;            oldLeft = ((Pair&lt;String, String&gt;) personalDataTable.getValueAt(&#xa;                    row, 0)).left;&#xa;        }&#xa;&#xa;        @Override&#xa;        public void onCancel(int row) {&#xa;            // do nothing&#xa;        }&#xa;&#xa;        @Override&#xa;        public void onSave(int row, String newValue) {&#xa;        System.out.println(newValue);&#xa;        if(newValue.length() &gt; 2)&#xa;        {&#xa;            personalDataTable.getValueAt(row, 0);&#xa;            Pair&lt;String, String&gt; newRecord = new Pair(oldLeft, newValue);&#xa;            personalDataTable.setValueAt(newRecord, row, 0);&#xa;            jTablePersonalData.repaint();&#xa;        }&#xa;}&#xa;    };&#xa;&#xa;jTablePersonalData.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setCellEditor(new pt.ua.ibank.staff.componentes.perfil.PerfilCellEditor(eventPersonal));&#xa;jTablePersonalData.setRowHeight(40);&#xa;&#xa;jTablePersonalData.setRowSelectionAllowed(false);&#xa;&#xa;jTablePersonalData.setSelectionBackground(new java.awt.Color(255, 255, 255));"/>
                         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable()"/>
-                        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="pt.ua.ibank.Staff.components.profile.ProfilePersonalTableModel personalDataTable = new pt.ua.ibank.Staff.components.profile.ProfilePersonalTableModel();"/>
+                        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="pt.ua.ibank.staff.componentes.perfil.PerfilPersonalTableModel personalDataTable = new pt.ua.ibank.staff.componentes.perfil.PerfilPersonalTableModel();"/>
                         <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jTablePersonalData.setTableHeader(null);"/>
                       </AuxValues>
                     </Component>
@@ -460,7 +460,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel7" alignment="0" pref="227" max="32767" attributes="0"/>
+                      <Component id="jPanel7" alignment="0" pref="248" max="32767" attributes="0"/>
                       <Component id="jScrollPane3" alignment="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
@@ -553,8 +553,8 @@
                         </Property>
                       </Properties>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTableCompanyData.setTableHeader(null);&#xa;&#xa;jTableCompanyData.getColumnModel().getColumn(0)&#xa;    .setCellRenderer(new ProfileTableCellRenderer());&#xa;//collumn 1&#xa;jTableCompanyData.getColumnModel().getColumn(0)&#xa;        .setCellRenderer(new ProfileTableCellRenderer());&#xa;jTableCompanyData.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setCellRenderer(new ProfileActionRenderer());&#xa;    &#xa; ProfileTableActionEvent eventCompany = new ProfileTableActionEvent() {&#xa;        String oldLeft;&#xa;&#xa;        @Override&#xa;        public void onEdit(int row) {&#xa;            oldLeft = ((Pair&lt;String, String&gt;) companyDataTable.getValueAt(&#xa;                    row, 0)).left;&#xa;        }&#xa;&#xa;        @Override&#xa;        public void onCancel(int row) {&#xa;            // do nothing&#xa;        }&#xa;&#xa;        @Override&#xa;        public void onSave(int row, String newValue) {&#xa;        System.out.println(newValue);&#xa;        if(newValue.length() &gt; 2)&#xa;        {&#xa;            companyDataTable.getValueAt(row, 0);&#xa;            Pair&lt;String, String&gt; newRecord = new Pair(oldLeft, newValue);&#xa;            companyDataTable.setValueAt(newRecord, row, 0);&#xa;            jTableCompanyData.repaint();&#xa;        }&#xa;}&#xa;    };&#xa;&#xa;&#xa;jTableCompanyData.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setCellEditor(new pt.ua.ibank.Staff.components.profile.ProfileCellEditor(eventCompany));"/>
-                        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="pt.ua.ibank.Staff.components.profile.ProfileCompanyTableModel companyDataTable = new pt.ua.ibank.Staff.components.profile.ProfileCompanyTableModel();"/>
+                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTableCompanyData.setTableHeader(null);&#xa;&#xa;jTableCompanyData.getColumnModel().getColumn(0)&#xa;    .setCellRenderer(new pt.ua.ibank.staff.componentes.perfil.PerfilTableCellRenderer());&#xa;//collumn 1&#xa;jTableCompanyData.getColumnModel().getColumn(0)&#xa;        .setCellRenderer(new pt.ua.ibank.staff.componentes.perfil.PerfilTableCellRenderer());&#xa;jTableCompanyData.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setCellRenderer(new pt.ua.ibank.staff.componentes.perfil.PerfilActionRenderer());&#xa;    &#xa; pt.ua.ibank.staff.componentes.perfil.PerfilTableActionEvent eventCompany = new pt.ua.ibank.staff.componentes.perfil.PerfilTableActionEvent() {&#xa;        String oldLeft;&#xa;&#xa;        @Override&#xa;        public void onEdit(int row) {&#xa;            oldLeft = ((Pair&lt;String, String&gt;) companyDataTable.getValueAt(&#xa;                    row, 0)).left;&#xa;        }&#xa;&#xa;        @Override&#xa;        public void onCancel(int row) {&#xa;            // do nothing&#xa;        }&#xa;&#xa;        @Override&#xa;        public void onSave(int row, String newValue) {&#xa;        System.out.println(newValue);&#xa;        if(newValue.length() &gt; 2)&#xa;        {&#xa;            companyDataTable.getValueAt(row, 0);&#xa;            Pair&lt;String, String&gt; newRecord = new Pair(oldLeft, newValue);&#xa;            companyDataTable.setValueAt(newRecord, row, 0);&#xa;            jTableCompanyData.repaint();&#xa;        }&#xa;}&#xa;    };&#xa;&#xa;&#xa;jTableCompanyData.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setCellEditor(new pt.ua.ibank.staff.componentes.perfil.PerfilCellEditor(eventCompany));"/>
+                        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="pt.ua.ibank.staff.componentes.perfil.PerfilCompanyTableModel companyDataTable = new pt.ua.ibank.staff.componentes.perfil.PerfilCompanyTableModel();"/>
                       </AuxValues>
                     </Component>
                   </SubComponents>
@@ -566,7 +566,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel5" alignment="0" pref="140" max="32767" attributes="0"/>
+                      <Component id="jPanel5" alignment="0" pref="161" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -643,7 +643,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel9" alignment="0" pref="277" max="32767" attributes="0"/>
+                      <Component id="jPanel9" alignment="0" pref="298" max="32767" attributes="0"/>
                       <Component id="jListComentariosModeracao1" alignment="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>

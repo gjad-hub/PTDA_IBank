@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pt.ua.ibank.Staff.components.profile;
+package pt.ua.ibank.staff.componentes.perfil;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -18,11 +18,11 @@ import javax.swing.border.EmptyBorder;
  *
  * @author ricar
  */
-public class ProfileActionButton extends JButton {
+public class PerfilActionButton extends JButton {
 
     private boolean mousePress;
 
-    public ProfileActionButton() {
+    public PerfilActionButton() {
         setContentAreaFilled(false);
         setBorder(new EmptyBorder(3, 3, 3, 3));
         addMouseListener(new MouseAdapter() {

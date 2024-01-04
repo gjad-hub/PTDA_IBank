@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pt.ua.ibank.Staff.components.profile;
+package pt.ua.ibank.staff.components.listacontas;
 
+import pt.ua.ibank.staff.componentes.perfil.*;
 import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 import java.awt.Color;
 import java.awt.Component;
@@ -14,7 +15,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  * @author ricar
  */
-public class ProfileActionRenderer extends DefaultTableCellRenderer {
+public class ContasActionRenderer extends DefaultTableCellRenderer {
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value,
@@ -23,20 +24,8 @@ public class ProfileActionRenderer extends DefaultTableCellRenderer {
                 isSelected,
                 hasFocus, row, column);
 
-        Pair<String, String> componentValue = (Pair) table.getModel().getValueAt(
-                row, 0);
+        PerfilActionPanel action = new PerfilActionPanel();
 
-        if (componentValue.left.contains("*")) {
-            return comm;
-        }
-
-        ProfileActionPanel action = new ProfileActionPanel(componentValue.right);
-
-        if (isSelected && row % 2 == 0) {
-            action.setBackground(Color.WHITE);
-        } else {
-            //action.setBackground(comm.getBackground());
-        }
         return action;
 
     }

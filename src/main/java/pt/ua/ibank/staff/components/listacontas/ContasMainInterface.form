@@ -103,12 +103,12 @@
         <Component class="javax.swing.JList" name="jListTodasContas">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="clm" type="code"/>
+              <Connection code="null" type="code"/>
             </Property>
             <Property name="selectionMode" type="int" value="0"/>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ContasListModel clm = new ContasListModel();&#xa;    ContasListCellRenderer contasCellRenderer = new ContasListCellRenderer();"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ContasListCellRenderer contasCellRenderer = new ContasListCellRenderer();"/>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
             <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="jListTodasContas.addMouseListener(new MouseAdapter() {&#xa;            public void mouseClicked(MouseEvent evt) {&#xa;                JList list = (JList) evt.getSource();&#xa;                if (evt.getClickCount() == 2) {&#xa;&#xa;                    // Double-click detected&#xa;                    int index = list.locationToIndex(evt.getPoint());&#xa;                    System.out.println((index + 1) + &quot; double clicked&quot;);&#xa;                }&#xa;            }&#xa;        });"/>
           </AuxValues>

@@ -1,27 +1,27 @@
-package pt.ua.ibank.Staff.components.profile;
+package pt.ua.ibank.staff.componentes.perfil;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-import pt.ua.ibank.Staff.components.profile.ProfileTableActionEvent;
-import pt.ua.ibank.Staff.components.profile.ProfileActionPanel;
+import pt.ua.ibank.staff.componentes.perfil.PerfilActionPanel;
 import com.mysql.cj.conf.ConnectionUrlParser;
 import java.awt.Component;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import pt.ua.ibank.staff.componentes.perfil.PerfilTableActionEvent;
 
 /**
  *
  * @author ricar
  */
-public class ProfileCellEditor extends DefaultCellEditor {
+public class PerfilCellEditor extends DefaultCellEditor {
 
-    private ProfileTableActionEvent event;
+    private PerfilTableActionEvent event;
 
-    public ProfileCellEditor(ProfileTableActionEvent event) {
+    public PerfilCellEditor(PerfilTableActionEvent event) {
         super(new JCheckBox());
         this.event = event;
     }
@@ -32,13 +32,13 @@ public class ProfileCellEditor extends DefaultCellEditor {
 
         ConnectionUrlParser.Pair<String, String> componentValue = (ConnectionUrlParser.Pair) table.getModel().getValueAt(
                 row, 0);
-//AAAAAAAAA CENAS
+
         if (componentValue.left.contains("*")) {
             return new Component() {
             };
         }
 
-        ProfileActionPanel action = new ProfileActionPanel();
+        PerfilActionPanel action = new PerfilActionPanel();
         action.InitEvent(event, row);
         action.setBackground(table.getSelectionBackground());
         return action;

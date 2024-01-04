@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package pt.ua.ibank.Staff.components.profile;
+package pt.ua.ibank.staff.componentes.perfil;
 
 import java.awt.Color;
 
@@ -10,7 +10,7 @@ import java.awt.Color;
  *
  * @author ricar
  */
-public class ProfileTableElementPanel extends javax.swing.JPanel {
+public class PerfilTableElementPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ClientProfileListElementPanel
@@ -19,7 +19,7 @@ public class ProfileTableElementPanel extends javax.swing.JPanel {
      * @param title
      * @param value
      */
-    public ProfileTableElementPanel(boolean isGray, String title,
+    public PerfilTableElementPanel(boolean isGray, String title,
             String value) {
         initComponents();
         this.lblTtitle.setText(title);

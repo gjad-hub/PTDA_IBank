@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package pt.ua.ibank.Staff.components.accountList;
+package pt.ua.ibank.staff.components.listacontas;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JList;
-import pt.ua.ibank.Staff.components.accountList.ContasListModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -47,9 +47,8 @@ public class ContasMainInterface extends javax.swing.JPanel {
         jLabel15.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         jLabel15.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
-        ContasListModel clm = new ContasListModel();
         ContasListCellRenderer contasCellRenderer = new ContasListCellRenderer();
-        jListTodasContas.setModel(clm);
+        jListTodasContas.setModel(null);
         jListTodasContas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         LayeredPaneContas.setLayer(jLabel15, javax.swing.JLayeredPane.DEFAULT_LAYER);

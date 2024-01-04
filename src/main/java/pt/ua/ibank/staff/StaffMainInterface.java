@@ -1,8 +1,8 @@
-package pt.ua.ibank.Staff;
+package pt.ua.ibank.staff;
 
-public class StaffInterface extends javax.swing.JInternalFrame {
+public class StaffMainInterface extends javax.swing.JInternalFrame {
 
-    public StaffInterface() {
+    public StaffMainInterface() {
         initComponents();
     }
 
@@ -26,6 +26,7 @@ public class StaffInterface extends javax.swing.JInternalFrame {
         jBtnInicio = new javax.swing.JButton();
         jPanelContent = new javax.swing.JPanel();
         LayeredPaneEditarConta = new javax.swing.JLayeredPane();
+        contasActionButton2 = new pt.ua.ibank.staff.components.listacontas.ContasActionButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
@@ -83,17 +84,17 @@ public class StaffInterface extends javax.swing.JInternalFrame {
             jPanelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTopLayout.createSequentialGroup()
                 .addGap(55, 55, 55)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                 .addGap(336, 336, 336)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanelTopLayout.setVerticalGroup(
             jPanelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanelTopLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanelNavBar.setMinimumSize(new java.awt.Dimension(0, 40));
@@ -132,15 +133,23 @@ public class StaffInterface extends javax.swing.JInternalFrame {
 
         LayeredPaneEditarConta.setPreferredSize(new java.awt.Dimension(776, 553));
 
+        LayeredPaneEditarConta.setLayer(contasActionButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout LayeredPaneEditarContaLayout = new javax.swing.GroupLayout(LayeredPaneEditarConta);
         LayeredPaneEditarConta.setLayout(LayeredPaneEditarContaLayout);
         LayeredPaneEditarContaLayout.setHorizontalGroup(
             LayeredPaneEditarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 859, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LayeredPaneEditarContaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(contasActionButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(347, 347, 347))
         );
         LayeredPaneEditarContaLayout.setVerticalGroup(
             LayeredPaneEditarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 562, Short.MAX_VALUE)
+            .addGroup(LayeredPaneEditarContaLayout.createSequentialGroup()
+                .addGap(116, 116, 116)
+                .addComponent(contasActionButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(410, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelContentLayout = new javax.swing.GroupLayout(jPanelContent);
@@ -187,6 +196,7 @@ public class StaffInterface extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane LayeredPaneEditarConta;
+    private pt.ua.ibank.staff.components.listacontas.ContasActionButton contasActionButton2;
     private javax.swing.JButton jBtnContas;
     private javax.swing.JButton jBtnInicio;
     private javax.swing.JButton jBtnTransacoes;

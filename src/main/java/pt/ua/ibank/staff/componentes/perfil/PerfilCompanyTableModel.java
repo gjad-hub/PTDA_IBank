@@ -2,43 +2,39 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pt.ua.ibank.Staff.components.profile;
+package pt.ua.ibank.staff.componentes.perfil;
 
 import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import pt.ua.ibank.DTO.Cliente;
+import pt.ua.ibank.DTO.Funcionario;
 
 /**
  *
  * @author ricar
  */
-public class ProfilePersonalTableModel extends AbstractTableModel {
+public class PerfilCompanyTableModel extends AbstractTableModel {
 
-    private Cliente client;
-    private List<Pair<String, String>> data;
+    private final Funcionario funcionario;
+    private final List<Pair<String, String>> data;
 
-    public ProfilePersonalTableModel(Cliente client) {
-        this.client = client;
+    public PerfilCompanyTableModel(Funcionario client) {
+        this.funcionario = client;
         data = new ArrayList<>();
-        init();
+        data.add(new Pair<>("Nome:", funcionario.getNome()));
+        data.add(new Pair<>("ID:", funcionario.getEmail()));
+        data.add(new Pair<>("Cargo:", funcionario.getNif()));
+        data.add(new Pair<>("Morada:", funcionario.getMorada()));
     }
 
-    public ProfilePersonalTableModel() {
-        this.client = new Cliente(1, "jose", "Avenida das coves", "asd",
-                "123123", "2131", "3",
-                "39", 20.4);
+    public PerfilCompanyTableModel() {
+        this.funcionario = null;
         data = new ArrayList<>();
-        init();
-
-    }
-
-    public void init() {
-        data.add(new Pair<>("Nome:", client.nome));
-        data.add(new Pair<>("Email:", client.telemovel));
-        data.add(new Pair<>("*NIF:", client.nif));
-        data.add(new Pair<>("Morada:", client.morada));
+        data.add(new Pair<>("Nome:\t", "email@email.pt"));
+        data.add(new Pair<>("ID:\t", "92312312"));
+        data.add(new Pair<>("Cargo:\t", "1231245"));
+        data.add(new Pair<>("Morada:\t ", "adas avenue 23da "));
     }
 
     @Override
