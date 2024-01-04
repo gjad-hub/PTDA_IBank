@@ -17,6 +17,22 @@ public class Cliente {
     public String telemovel;
     public String nif;
     public String password;
+    public String cartaoDefault;
+
+    public Cliente(Integer numCliente, String nome, String morada, String email,
+            String telemovel, String nif, String password, String numConta,
+            Double saldo, String cardaoDefault) {
+        this.numCliente = numCliente;
+        this.nome = nome;
+        this.morada = morada;
+        this.email = email;
+        this.telemovel = telemovel;
+        this.nif = nif;
+        this.password = password;
+        this.numConta = numConta;
+        this.saldo = saldo;
+        this.cartaoDefault = cardaoDefault;
+    }
 
     public Cliente(Integer numCliente, String nome, String morada, String email,
             String telemovel, String nif, String password, String numConta,

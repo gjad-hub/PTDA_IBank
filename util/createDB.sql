@@ -12,20 +12,23 @@ CREATE TABLE cliente (
     password VARCHAR(255) NOT NULL,
     num_conta VARCHAR(255) UNIQUE NOT NULL,
     saldo DECIMAL(10,2) DEFAULT 0,
-	saldo_cativo DECIMAL(10,2) DEFAULT 0
+	saldo_cativo DECIMAL(10,2) DEFAULT 0,
+    cartao_default VARCHAR(255)
 );
 
 -- Tabela Cartao
 CREATE TABLE cartao (
-    num_cartao INT PRIMARY KEY,
+    num_cartao VARCHAR(255) PRIMARY KEY,
     data_validade DATE,
     estado VARCHAR(50),
-    conta VARCHAR(255),
+    cliente INT,
     credito BOOLEAN,
     saldo_credito DECIMAL(10,2),
     data_vencimento DATE,
-    FOREIGN KEY (conta) REFERENCES cliente(num_conta)
+    FOREIGN KEY (cliente) REFERENCES cliente(num_cliente)
 );
+
+ALTER TABLE cliente ADD FOREIGN KEY (cartao_default) REFERENCES cartao(num_cartao);
 
 -- Tabela Pagamento_Servicos_Compras
 CREATE TABLE pagamento_servicos_compras (

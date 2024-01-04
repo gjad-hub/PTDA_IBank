@@ -45,6 +45,7 @@ public class PayServices extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        setTitle("Serviços e Compras");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.addComponentListener(new java.awt.event.ComponentAdapter() {

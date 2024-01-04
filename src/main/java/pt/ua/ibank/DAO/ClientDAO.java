@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import pt.ua.ibank.DTO.Cliente;
 import pt.ua.ibank.services.DBConnection;
 import static pt.ua.ibank.services.DBConnection.conn;
+import pt.ua.ibank.utilities.CardGenerator;
+import static pt.ua.ibank.utilities.CardGenerator.generateCardNumber;
 import static pt.ua.ibank.utilities.IbanGenerator.generateRandomIban;
 
 public class ClientDAO {
@@ -19,6 +21,7 @@ public class ClientDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         String num_conta;
+        String num_cartao;
 
         try {
 
@@ -43,9 +46,26 @@ public class ClientDAO {
                 rs.next();
             } while (rs.getInt("valor") != 0);
 
+            // Gera um novo cartao até não existir nenhum cartao com este numero
+            do {
+                num_cartao = generateCardNumber();
+                stmt = conn.prepareStatement(
+                        "SELECT count(num_cartao) AS valor FROM cartao where num_cartao like ?;");
+                stmt.setString(1, num_cartao);
+                rs = stmt.executeQuery();
+                rs.next();
+            } while (rs.getInt("valor") != 0);
+
             stmt = conn.prepareStatement(
-                    "INSERT INTO cliente (nome, morada, email, telemovel, nif, num_conta, password) "
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?)");
+                    "INSERT INTO cartao (num_cartao, data_validade, estado, credito) "
+                    + "VALUES (?, (SELECT DATE_ADD(CURDATE(), INTERVAL +5 YEAR )), \"activo\", ?);");
+            stmt.setString(1, num_cartao);
+            stmt.setBoolean(2, false);
+            stmt.execute();
+
+            stmt = conn.prepareStatement(
+                    "INSERT INTO cliente (nome, morada, email, telemovel, nif, num_conta, password, cartao_default) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             stmt.setString(1, nome);
             stmt.setString(2, morada);
             stmt.setString(3, email);
@@ -53,7 +73,16 @@ public class ClientDAO {
             stmt.setString(5, nif);
             stmt.setString(6, num_conta);
             stmt.setString(7, password);
+            stmt.setString(8, num_cartao);
             stmt.execute();
+
+            int num_cli = getClientIdByEmail(email);
+
+            stmt = conn.prepareStatement("UPDATE cartao SET cliente = ? WHERE num_cartao like ?;");
+            stmt.setInt(1, num_cli);
+            stmt.setString(2, num_cartao);
+            stmt.execute();
+
             return codigoSucesso;
 
         } catch (SQLException e) {
@@ -85,7 +114,8 @@ public class ClientDAO {
                         rs.getString("nif"),
                         rs.getString("password"),
                         rs.getString("num_conta"),
-                        rs.getDouble("saldo"));
+                        rs.getDouble("saldo"),
+                        rs.getString("cartao_default"));
             }
 
             return cl;
@@ -107,6 +137,31 @@ public class ClientDAO {
             stmt = conn.prepareStatement(
                     "SELECT num_cliente FROM cliente where num_conta like ?;");
             stmt.setString(1, iban);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                num_cliente = rs.getInt("num_cliente");
+            }
+
+            return num_cliente;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+        return null;
+    }
+
+    public static Integer getClientIdByEmail(String email) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Integer num_cliente = null;
+
+        try {
+
+            stmt = conn.prepareStatement(
+                    "SELECT num_cliente FROM cliente where email like ?;");
+            stmt.setString(1, email);
             rs = stmt.executeQuery();
 
             while (rs.next()) {

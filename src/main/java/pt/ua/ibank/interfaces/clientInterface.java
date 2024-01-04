@@ -3,6 +3,10 @@ package pt.ua.ibank.interfaces;
 import pt.ua.ibank.interfaces.internalFrames.DashBoard;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
 import static pt.ua.ibank.DTO.Cliente.LocalClient;
 import pt.ua.ibank.interfaces.internalFrames.PayServices;
 import pt.ua.ibank.interfaces.internalFrames.ProfilePage;
@@ -31,6 +35,13 @@ public class clientInterface extends javax.swing.JFrame {
         small_side_bar.setVisible(false);
         menu_bar.add(new WindowMenu((MDIDesktopPane) desktop));
         UpdateInfo();
+
+        try {
+            DashBoard ds = new DashBoard();
+            ds.setMaximum(true);
+            addWindow(ds);
+        } catch (PropertyVetoException ex) {
+        }
     }
 
     public void UpdateInfo() {
@@ -176,12 +187,10 @@ public class clientInterface extends javax.swing.JFrame {
                 .addComponent(services)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 473, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 528, Short.MAX_VALUE)
                 .addComponent(logout)
                 .addContainerGap())
         );
-
-        desktop.setBackground(new java.awt.Color(255, 255, 255));
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/logo_png_BW.png"))); // NOI18N
 
@@ -192,7 +201,7 @@ public class clientInterface extends javax.swing.JFrame {
         desktopLayout.setHorizontalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopLayout.createSequentialGroup()
-                .addGap(0, 513, Short.MAX_VALUE)
+                .addGap(0, 593, Short.MAX_VALUE)
                 .addComponent(logo))
         );
         desktopLayout.setVerticalGroup(

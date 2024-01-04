@@ -1,26 +1,27 @@
 package pt.ua.ibank.interfaces.internalFrames;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import pt.ua.ibank.DTO.Transacoes;
 import pt.ua.ibank.DAO.TransacoesDAO;
+import static pt.ua.ibank.DTO.Cartao.LocalClientCard;
 import static pt.ua.ibank.DTO.Cliente.LocalClient;
 import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
 
 public class DashBoard extends javax.swing.JInternalFrame {
 
+    private final SimpleDateFormat dataFormat = new SimpleDateFormat("MM/yy");
+    
     public DashBoard() {
         initComponents();
         popular(TransacoesDAO.getTransacoes(LocalClient.numCliente));
-        saldo.setText(LocalClient.saldo.toString() + " EUR");
-        iban.setText(maskString(LocalClient.numConta, 10));
-        nomeTitularCartao.setText(LocalClient.nome);
-        numeroCartao.setText("0000 0000 0000 0000");
-        dataValidade.setText("12/28");
+        setDefaultInfo();
+        updateSaldo();
     }
-    
-    private String maskString(String string, int char_visible){
+
+    private String maskString(String string, int char_visible) {
         return string.substring(0, char_visible) + "*".repeat(string.length() - char_visible);
     }
 
@@ -54,10 +55,10 @@ public class DashBoard extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         t_table = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        update_transacoes = new javax.swing.JButton();
         stat = new RoundedShadowPanel(10);
         jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        update_saldo = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
         saldo = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -126,10 +127,10 @@ public class DashBoard extends javax.swing.JInternalFrame {
             t_table.getColumnModel().getColumn(2).setMaxWidth(100);
         }
 
-        jButton1.setText("Atualizar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        update_transacoes.setText("Atualizar");
+        update_transacoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                update_transacoesActionPerformed(evt);
             }
         });
 
@@ -145,7 +146,7 @@ public class DashBoard extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, transacaoLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(update_transacoes)))
                 .addGap(15, 15, 15))
         );
         transacaoLayout.setVerticalGroup(
@@ -156,7 +157,7 @@ public class DashBoard extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addGroup(transacaoLayout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(update_transacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
@@ -170,7 +171,12 @@ public class DashBoard extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel3.setText("Saldo Atual");
 
-        jButton2.setText("Atualizar");
+        update_saldo.setText("Atualizar");
+        update_saldo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                update_saldoActionPerformed(evt);
+            }
+        });
 
         saldo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         saldo.setForeground(new java.awt.Color(0, 0, 51));
@@ -211,7 +217,7 @@ public class DashBoard extends javax.swing.JInternalFrame {
                             .addGroup(statLayout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2))
+                                .addComponent(update_saldo))
                             .addGroup(statLayout.createSequentialGroup()
                                 .addComponent(iban, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -234,7 +240,7 @@ public class DashBoard extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(statLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(update_saldo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(4, 4, 4)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -282,7 +288,7 @@ public class DashBoard extends javax.swing.JInternalFrame {
         dataValidade.setText("Validade");
         cards.add(dataValidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
 
-        bgcardImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/270wchipcontactless.png"))); // NOI18N
+        bgcardImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/270wchipcontactless_darker.png"))); // NOI18N
         cards.add(bgcardImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 50, -1, -1));
 
         cards1.setBackground(new java.awt.Color(255, 255, 255));
@@ -344,14 +350,14 @@ public class DashBoard extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void update_transacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_transacoesActionPerformed
         popular(TransacoesDAO.getTransacoes(LocalClient.numCliente));
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_update_transacoesActionPerformed
 
     private void see_ibanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_see_ibanActionPerformed
         if (see_iban.isSelected()) {
             iban.setText(LocalClient.numConta);
-        }else{
+        } else {
             iban.setText(maskString(LocalClient.numConta, 10));
         }
     }//GEN-LAST:event_see_ibanActionPerformed
@@ -360,6 +366,31 @@ public class DashBoard extends javax.swing.JInternalFrame {
         localClientInterface.addWindow(new TransferPage());
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void update_saldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_saldoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_update_saldoActionPerformed
+
+    private void updateSaldo() {
+        saldo.setText(LocalClient.saldo.toString() + " EUR");
+    }
+
+    private void setDefaultInfo() {
+        iban.setText(maskString(LocalClient.numConta, 10));
+        nomeTitularCartao.setText(LocalClient.nome);
+        numeroCartao.setText(printDividedString(LocalClientCard.numCartao, 4));
+        dataValidade.setText(dataFormat.format(LocalClientCard.dataValidade));
+    }
+
+    private static String printDividedString(String inputString, int chunkSize) {
+        String tmp = "";
+        for (int i = 0; i < inputString.length(); i += chunkSize) {
+            int end = Math.min(i + chunkSize, inputString.length());
+            String chunk = inputString.substring(i, end);
+            tmp += chunk + " ";
+        }
+        return tmp;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bgcardImage;
@@ -367,8 +398,6 @@ public class DashBoard extends javax.swing.JInternalFrame {
     private javax.swing.JPanel cards1;
     private javax.swing.JLabel dataValidade;
     private javax.swing.JLabel iban;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -390,5 +419,7 @@ public class DashBoard extends javax.swing.JInternalFrame {
     private javax.swing.JTable t_table;
     private javax.swing.JLabel tipoCartãoPrincipal;
     private javax.swing.JPanel transacao;
+    private javax.swing.JButton update_saldo;
+    private javax.swing.JButton update_transacoes;
     // End of variables declaration//GEN-END:variables
 }

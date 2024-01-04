@@ -73,6 +73,7 @@ public class ProfilePage extends javax.swing.JInternalFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
         setIconifiable(true);
+        setTitle("Perfil");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
