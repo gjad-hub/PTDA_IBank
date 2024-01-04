@@ -103,6 +103,7 @@ public class ProfilePage extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Nome completo");
 
+        name_input.setToolTipText("");
         name_input.setEnabled(false);
 
         email_input.setEnabled(false);
