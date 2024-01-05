@@ -1,5 +1,7 @@
 package pt.ua.ibank.interfaces.internalFrames;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import pt.ua.ibank.DAO.PaymentsDAO;
@@ -233,16 +235,27 @@ public class PayServices extends javax.swing.JInternalFrame {
         String montanteString = !montante.getText().isEmpty() ? montante.getText() : "0";
         String montanteDecimalString = !montate_decimal.getText().isEmpty() ? montate_decimal.getText() : "0";
         double valor = Double.parseDouble(montanteString + "." + montanteDecimalString);
+        status.setFont(new Font(status.getFont().getName(), Font.PLAIN, 12));
+        status.setForeground(Color.RED);
 
         if (entidade.getText().isEmpty() && referencia.getText().isEmpty()) {
             status.setText("Campos entidade e referência vazios!");
+            entidade.requestFocus();
+            referencia.requestFocus();
             return;
         } else if (entidade.getText().isEmpty()) {
             status.setText("Campo entidade vazio!");
+            entidade.requestFocus();
             return;
         } else if (referencia.getText().isEmpty()) {
             status.setText("Campo referência vazio!");
+            referencia.requestFocus();
             return;
+        }
+
+        if (valor <= 0) {
+            montante.requestFocus();
+            status.setText("Montante inválido!");
         }
 
         String regexEntidade = "^\\d{5}$";
@@ -253,6 +266,7 @@ public class PayServices extends javax.swing.JInternalFrame {
             entidadeValida = entidade.getText();
         } else {
             status.setText("Entidade inválida!(5 números)");
+            entidade.requestFocus();
             return;
         }
 
@@ -265,17 +279,20 @@ public class PayServices extends javax.swing.JInternalFrame {
             referenciaValida = referencia.getText();
         } else {
             status.setText("Referência inválida!(9 números)");
+            referencia.requestFocus();
             return;
         }
-        
+
         if (LocalClient.saldo < valor) {
             status.setText("Saldo Insuficiente!");
             return;
         }
-        
+
         PaymentsDAO.payService(valor, LocalClient.numCliente, entidadeValida, referenciaValida);
+        status.setFont(new Font(status.getFont().getName(), Font.BOLD, 18));
+        status.setForeground(Color.GREEN);
         status.setText("PAGO!");
-        
+
     }//GEN-LAST:event_payActionPerformed
 
     private void jPanel1ComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel1ComponentResized

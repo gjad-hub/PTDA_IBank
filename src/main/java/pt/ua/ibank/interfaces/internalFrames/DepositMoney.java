@@ -1,7 +1,10 @@
 package pt.ua.ibank.interfaces.internalFrames;
 
+import java.awt.Color;
+import java.awt.Font;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import pt.ua.ibank.DAO.DepositsDAO;
 import pt.ua.ibank.DTO.Cliente;
 import static pt.ua.ibank.DTO.Cliente.LocalClient;
 
@@ -27,9 +30,8 @@ public class DepositMoney extends javax.swing.JInternalFrame {
             }
         };
 
-        montante_decimal.getDocument().addDocumentListener(documentListener);
         montante.getDocument().addDocumentListener(documentListener);
-
+        montante_decimal.getDocument().addDocumentListener(documentListener);
     }
 
     private void atualizarSaldoFuturo() {
@@ -103,7 +105,7 @@ public class DepositMoney extends javax.swing.JInternalFrame {
             }
         });
 
-        status.setForeground(new java.awt.Color(255, 200, 96));
+        status.setForeground(new java.awt.Color(255, 0, 51));
         status.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         status.setToolTipText("");
 
@@ -139,7 +141,7 @@ public class DepositMoney extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/25pxsacolas-de-compras.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/deposit.png"))); // NOI18N
 
         saldoFuturo.setText("Futuro Saldo = ");
 
@@ -233,18 +235,24 @@ public class DepositMoney extends javax.swing.JInternalFrame {
         String montanteString = !montante.getText().isEmpty() ? montante.getText() : "0";
         String montanteDecimalString = !montante_decimal.getText().isEmpty() ? montante_decimal.getText() : "0";
         double valor = Double.parseDouble(montanteString + "." + montanteDecimalString);
+        status.setFont(new Font(status.getFont().getName(), Font.PLAIN, 12));
+        status.setForeground(Color.RED);
 
         if (montante.getText().isEmpty() && montante_decimal.getText().isEmpty()) {
             status.setText("Campos vazios! Insira algum valor.");
+            montante.requestFocus();
             return;
         }
 
         if (valor <= 0) {
             status.setText("Valor inserido inválido!");
+            montante.requestFocus();
             return;
         }
 
-        //depositar
+        DepositsDAO.requestDeposit(valor, LocalClient.numCliente);
+        status.setFont(new Font(status.getFont().getName(), Font.BOLD, 6));
+        status.setForeground(Color.GREEN);
         status.setText("O seu pedido de depósito foi enviado aos nossos administradores, aguarde aprovação!");
 
     }//GEN-LAST:event_depositActionPerformed
