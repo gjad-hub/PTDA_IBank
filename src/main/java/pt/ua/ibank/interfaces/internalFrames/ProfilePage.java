@@ -2,6 +2,8 @@ package pt.ua.ibank.interfaces.internalFrames;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.SwingUtilities;
 import static pt.ua.ibank.DTO.Cliente.LocalClient;
 import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
@@ -120,7 +122,7 @@ public class ProfilePage extends javax.swing.JInternalFrame {
         phone_input.setEnabled(false);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel5.setText("Número telefone");
+        jLabel5.setText("Número telemóvel");
 
         nif_input.setEnabled(false);
 
@@ -311,6 +313,47 @@ public class ProfilePage extends javax.swing.JInternalFrame {
             if (phone.isEmpty()) {
                 status.setText("Campo telefone vazio !");
                 phone_input.requestFocus();
+                return;
+            }
+
+            String regexNome = "^[a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜãõÃÕñÑçÇ\\s'-]+$";
+            String regexEmail = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+            String regexTelefoneNif = "^\\d{9}$";
+            String regexPassword = "^.{8,}$";
+
+            Pattern patternNome = Pattern.compile(regexNome);
+            Matcher matcherNome = patternNome.matcher(name_input.getText());
+
+            Pattern patternEmail = Pattern.compile(regexEmail);
+            Matcher matcherEmail = patternEmail.matcher(email_input.getText());
+
+            Pattern patternPhoneNumberNif = Pattern.compile(regexTelefoneNif);
+            Matcher matcherPhoneNumber = patternPhoneNumberNif.matcher(phone_input.getText());
+            Matcher matcherNIF = patternPhoneNumberNif.matcher(nif_input.getText());
+
+            String novaPassword = new String(new_password.getPassword());
+            Pattern patternPassword = Pattern.compile(regexPassword);
+            Matcher matcherPassword = patternPassword.matcher(novaPassword);
+
+            if (!matcherNome.find() && !name.isEmpty()) {
+                status.setText("Nome inválido!");
+                name_input.setText("");
+                return;
+            } else if (!matcherEmail.find() && !email.isEmpty()) {
+                status.setText("Email inválido!");
+                email_input.setText("");
+                return;
+            } else if (!matcherPhoneNumber.find() && !phone.isEmpty()) {
+                status.setText("Nº de Telemóvel Inválido!");
+                phone_input.setText("");
+                return;
+            } else if (!matcherNIF.find() && !nif_input.getText().isEmpty()) {
+                status.setText("NIF inválido!");
+                nif_input.setText("");
+                return;
+            } else if (!matcherPassword.find() && !novaPassword.isEmpty()) {
+                status.setText("Password inválida! (min 8 caracteres)");
+                new_password.setText("");
                 return;
             }
 
