@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import pt.ua.ibank.DTO.Cliente;
 import pt.ua.ibank.services.DBConnection;
 import static pt.ua.ibank.services.DBConnection.conn;
-import pt.ua.ibank.utilities.CardGenerator;
 import static pt.ua.ibank.utilities.CardGenerator.generateCardNumber;
 import static pt.ua.ibank.utilities.IbanGenerator.generateRandomIban;
 

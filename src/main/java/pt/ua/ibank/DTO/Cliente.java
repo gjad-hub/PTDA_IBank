@@ -5,19 +5,15 @@ import java.security.spec.InvalidKeySpecException;
 import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.utilities.Hash;
 
-public class Cliente {
+public class Cliente extends Pessoa{
 
     public Integer numCliente;
     public String numConta;
     public Double saldo;
-    public static Cliente LocalClient;
-    public String nome;
-    public String morada;
-    public String email;
-    public String telemovel;
-    public String nif;
-    public String password;
+    public Double saldo_cativo;
     public String cartaoDefault;
+
+    public static Cliente LocalClient;
 
     public Cliente(Integer numCliente, String nome, String morada, String email,
             String telemovel, String nif, String password, String numConta,

@@ -9,14 +9,14 @@ public class Cartao {
     public String numCartao;
     public Date dataValidade;
     public String estado;
-    public String cliente;
+    public int cliente;
     public boolean credito;
     public double saldo_credito;
     public Date data_venciemnto;
 
     public static Cartao LocalClientCard = getCardByNumber(LocalClient.cartaoDefault);
 
-    public Cartao(String numCartao, Date dataValidade, String estado, String cliente, boolean credito, double saldo_credito, Date data_venciemnto) {
+    public Cartao(String numCartao, Date dataValidade, String estado, int cliente, boolean credito, double saldo_credito, Date data_venciemnto) {
         this.numCartao = numCartao;
         this.dataValidade = dataValidade;
         this.estado = estado;
@@ -27,7 +27,7 @@ public class Cartao {
     }
 
 
-    public Cartao(String numCartao, Date dataValidade, String cliente, boolean credito) {
+    public Cartao(String numCartao, Date dataValidade, int cliente, boolean credito) {
         this.numCartao = numCartao;
         this.dataValidade = dataValidade;
         this.cliente = cliente;

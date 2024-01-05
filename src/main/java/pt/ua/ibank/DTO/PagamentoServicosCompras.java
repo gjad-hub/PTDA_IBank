@@ -1,49 +1,18 @@
 package pt.ua.ibank.DTO;
 
 public class PagamentoServicosCompras {
-    private int referencia;
-    private int entidade;
-    private double valor;
-    private String estado;
-    private int cliente;
 
-    public int getReferencia() {
-        return referencia;
-    }
+   public int referencia;
+   public int entidade;
+   public double valor;
+   public boolean pago;
+   public int cliente;
 
-    public void setReferencia(int referencia) {
+    public PagamentoServicosCompras(int referencia, int entidade, double valor, boolean pago, int cliente) {
         this.referencia = referencia;
-    }
-
-    public int getEntidade() {
-        return entidade;
-    }
-
-    public void setEntidade(int entidade) {
         this.entidade = entidade;
-    }
-
-    public double getValor() {
-        return valor;
-    }
-
-    public void setValor(double valor) {
         this.valor = valor;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public int getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(int cliente) {
+        this.pago = pago;
         this.cliente = cliente;
     }
 }

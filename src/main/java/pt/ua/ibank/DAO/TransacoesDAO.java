@@ -23,12 +23,12 @@ public class TransacoesDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Transacoes tr = new Transacoes();
-                tr.id = rs.getInt("id");
-                tr.num_cli = rs.getInt("num_cli");
-                tr.descricao = rs.getString("descricao");
-                tr.valor = rs.getInt("valor");
-                tr.data = rs.getTimestamp("data");
+                Transacoes tr = new Transacoes(
+                        rs.getInt("id"),
+                        rs.getInt("num_cli"), 
+                        rs.getString("descricao"), 
+                        rs.getDouble("valor"), 
+                        rs.getTimestamp("data"));
                 ltransacoes.add(tr);
             }
         } catch (SQLException e) {

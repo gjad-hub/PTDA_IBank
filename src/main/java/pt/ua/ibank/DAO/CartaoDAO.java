@@ -25,7 +25,7 @@ public class CartaoDAO {
                 cartao = new Cartao(
                         rs.getString("num_cartao"),
                         rs.getDate("data_validade"),
-                        rs.getString("cliente"),
+                        rs.getInt("cliente"),
                         rs.getBoolean("credito"));
             }
 

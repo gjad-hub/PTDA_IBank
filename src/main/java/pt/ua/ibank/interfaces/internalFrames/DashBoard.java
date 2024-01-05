@@ -2,7 +2,10 @@ package pt.ua.ibank.interfaces.internalFrames;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.DTO.Transacoes;
 import pt.ua.ibank.DAO.TransacoesDAO;
 import static pt.ua.ibank.DTO.Cartao.LocalClientCard;
@@ -13,12 +16,24 @@ import pt.ua.ibank.utilities.RoundedShadowPanel;
 public class DashBoard extends javax.swing.JInternalFrame {
 
     private final SimpleDateFormat dataFormat = new SimpleDateFormat("MM/yy");
-    
+
     public DashBoard() {
         initComponents();
-        popular(TransacoesDAO.getTransacoes(LocalClient.numCliente));
         setDefaultInfo();
-        updateSaldo();
+        updateInfoInterval();
+    }
+
+    private void updateInfoInterval() {
+        new Thread(() -> {
+            try {
+                while (true) {
+                    updateInfo();
+                    Thread.sleep(5000);
+                }
+            } catch (InterruptedException ex) {
+                System.out.println(ex);
+            }
+        }).start();
     }
 
     private String maskString(String string, int char_visible) {
@@ -117,10 +132,8 @@ public class DashBoard extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        t_table.setColumnSelectionAllowed(true);
         t_table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane2.setViewportView(t_table);
-        t_table.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         if (t_table.getColumnModel().getColumnCount() > 0) {
             t_table.getColumnModel().getColumn(0).setMinWidth(130);
             t_table.getColumnModel().getColumn(0).setMaxWidth(130);
@@ -379,8 +392,10 @@ public class DashBoard extends javax.swing.JInternalFrame {
         localClientInterface.addWindow(new DepositMoney());
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void updateSaldo() {
+    public final void updateInfo() {
+        LocalClient.saldo = ClientDAO.getClientBalance(LocalClient.numCliente);
         saldo.setText(LocalClient.saldo.toString() + " EUR");
+        popular(TransacoesDAO.getTransacoes(LocalClient.numCliente));
     }
 
     private void setDefaultInfo() {
