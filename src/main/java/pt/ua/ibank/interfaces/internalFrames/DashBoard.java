@@ -2,8 +2,6 @@ package pt.ua.ibank.interfaces.internalFrames;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.DTO.Transacoes;
@@ -11,6 +9,7 @@ import pt.ua.ibank.DAO.TransacoesDAO;
 import static pt.ua.ibank.DTO.Cartao.LocalClientCard;
 import static pt.ua.ibank.DTO.Cliente.LocalClient;
 import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
+import static pt.ua.ibank.interfaces.clientInterface.updateThread;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
 
 public class DashBoard extends javax.swing.JInternalFrame {
@@ -24,7 +23,7 @@ public class DashBoard extends javax.swing.JInternalFrame {
     }
 
     private void updateInfoInterval() {
-        new Thread(() -> {
+        updateThread = new Thread(() -> {
             try {
                 while (true) {
                     updateInfo();
@@ -33,7 +32,8 @@ public class DashBoard extends javax.swing.JInternalFrame {
             } catch (InterruptedException ex) {
                 System.out.println(ex);
             }
-        }).start();
+        });
+        updateThread.start();
     }
 
     private String maskString(String string, int char_visible) {
