@@ -8,33 +8,34 @@ import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
+import pt.ua.ibank.DTO.Cartao;
 import pt.ua.ibank.DTO.Funcionario;
 
 /**
  *
  * @author ricar
  */
-public class PerfilCompanyTableModel extends AbstractTableModel {
+public class PerfilCardTableModel extends AbstractTableModel {
 
     private final Funcionario funcionario;
-    private final List<Pair<String, String>> data;
+    private final List<Cartao> data;
 
-    public PerfilCompanyTableModel(Funcionario client) {
+    public PerfilCardTableModel(Funcionario client) {
         this.funcionario = client;
         data = new ArrayList<>();
-        data.add(new Pair<>("Nome:", funcionario.getNome()));
-        data.add(new Pair<>("ID:", funcionario.getEmail()));
-        data.add(new Pair<>("Cargo:", funcionario.getNif()));
-        data.add(new Pair<>("Morada:", funcionario.getMorada()));
+        //data.add(new Pair<>("Nome:", funcionario.getNome()));
+        //data.add(new Pair<>("ID:", funcionario.getEmail()));
+        //data.add(new Pair<>("Cargo:", funcionario.getNif()));
+        //data.add(new Pair<>("Morada:", funcionario.getMorada()));
     }
 
-    public PerfilCompanyTableModel() {
+    public PerfilCardTableModel() {
         this.funcionario = null;
         data = new ArrayList<>();
-        data.add(new Pair<>("Nome:\t", "email@email.pt"));
-        data.add(new Pair<>("ID:\t", "92312312"));
-        data.add(new Pair<>("Cargo:\t", "1231245"));
-        data.add(new Pair<>("Morada:\t ", "adas avenue 23da "));
+        //data.add(new Pair<>("Nome:\t", "email@email.pt"));
+        //data.add(new Pair<>("ID:\t", "92312312"));
+        //data.add(new Pair<>("Cargo:\t", "1231245"));
+        //data.add(new Pair<>("Morada:\t ", "adas avenue 23da "));
     }
 
     @Override
@@ -46,19 +47,6 @@ public class PerfilCompanyTableModel extends AbstractTableModel {
     @Override
     public int getColumnCount() {
         return 2;
-    }
-
-    @Override
-    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        try {
-            data.set(rowIndex, (Pair<String, String>) aValue);
-            System.out.println(
-                    "value: " + data.get(rowIndex).left + "on row " + rowIndex + " on column " + columnIndex + "changed! to " + data.get(
-                    rowIndex).right);
-
-        } catch (java.lang.ClassCastException e) {
-            //nothing troll
-        }
     }
 
     @Override
