@@ -11,9 +11,9 @@ import static pt.ua.ibank.utilities.IbanGenerator.generateRandomIban;
 
 public class ClientDAO {
 
-    private final static int codigoSucesso = 1;
-    private final static int codigoErro = 2;
-    private final static int codigoErroEmail = 3;
+    protected final static int codigoSucesso = 1;
+    protected final static int codigoErro = 2;
+    protected final static int codigoErroEmail = 3;
 
     public static int CreateClient(String nome, String morada, String email,
             String telefone, String nif, String password) {
