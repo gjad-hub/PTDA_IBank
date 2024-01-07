@@ -2,6 +2,8 @@ package pt.ua.ibank.utilities;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
 import java.beans.PropertyVetoException;
 import java.util.ArrayList;
@@ -19,7 +21,15 @@ public /**
     private static final int FRAME_OFFSET = 20;
 
     private final MDIDesktopManager manager;
-    
+    private Image backgroundImage = null;
+
+    public MDIDesktopPane(Image backgroundImage) {
+        manager = new MDIDesktopManager(this);
+        this.backgroundImage = backgroundImage;
+        setDesktopManager(manager);
+        setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
+    }
+
     public MDIDesktopPane() {
         manager = new MDIDesktopManager(this);
         setDesktopManager(manager);
@@ -30,6 +40,12 @@ public /**
     public void setBounds(int x, int y, int w, int h) {
         super.setBounds(x, y, w, h);
         checkDesktopSize();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), null);
     }
 
     public Component add(JInternalFrame frame) {

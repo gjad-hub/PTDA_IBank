@@ -8,12 +8,12 @@ package pt.ua.ibank.staff.components.contas;
  *
  * @author ricar
  */
-public class NewJInternalFrame extends javax.swing.JInternalFrame {
+public class JInternalFrameContas extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form NewJInternalFrame
      */
-    public NewJInternalFrame() {
+    public JInternalFrameContas() {
         initComponents();
     }
 
