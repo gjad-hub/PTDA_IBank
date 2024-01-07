@@ -7,8 +7,8 @@ import static pt.ua.ibank.utilities.DBConnection.conn;
 
 public class DepositsDAO {
 
-    private final static int codigoSucesso = 1;
-    private final static int codigoErro = 2;
+    protected final static int codigoSucesso = 1;
+    protected final static int codigoErro = 2;
 
     public static int requestDeposit(double valor, int clienteRealiza) {
         PreparedStatement stmt = null;
