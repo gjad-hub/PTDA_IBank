@@ -11,8 +11,8 @@ import static pt.ua.ibank.DTO.Cliente.LocalClient;
 import pt.ua.ibank.interfaces.internalFrames.PayServices;
 import pt.ua.ibank.interfaces.internalFrames.ProfilePage;
 import pt.ua.ibank.interfaces.internalFrames.TransferPage;
-import pt.ua.ibank.services.DBConnection;
-import static pt.ua.ibank.services.DBConnection.conn;
+import pt.ua.ibank.utilities.DBConnection;
+import static pt.ua.ibank.utilities.DBConnection.conn;
 import pt.ua.ibank.utilities.MDIDesktopPane;
 import pt.ua.ibank.utilities.WindowMenu;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
@@ -27,7 +27,7 @@ public class clientInterface extends javax.swing.JFrame {
         DBConnection.closeConnection(conn);
         updateThread = null;
     }
-    
+
     public clientInterface() {
         initComponents();
         start_up();

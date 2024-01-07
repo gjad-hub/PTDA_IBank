@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package pt.ua.ibank.staff.components.contas;
+package pt.ua.ibank.staff.componentes.contas;
 
 import java.awt.event.ActionEvent;
 import pt.ua.ibank.staff.componentes.perfil.PerfilTableActionEvent;
@@ -55,6 +55,6 @@ public class ContasActionPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private pt.ua.ibank.staff.components.contas.ContasActionButton contasActionButton1;
+    private pt.ua.ibank.staff.componentes.contas.ContasActionButton contasActionButton1;
     // End of variables declaration//GEN-END:variables
 }

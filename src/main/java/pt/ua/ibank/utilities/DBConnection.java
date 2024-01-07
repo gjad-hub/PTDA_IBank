@@ -1,4 +1,4 @@
-package pt.ua.ibank.services;
+package pt.ua.ibank.utilities;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

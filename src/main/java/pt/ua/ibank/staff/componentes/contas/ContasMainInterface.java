@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package pt.ua.ibank.staff.components.contas;
+package pt.ua.ibank.staff.componentes.contas;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

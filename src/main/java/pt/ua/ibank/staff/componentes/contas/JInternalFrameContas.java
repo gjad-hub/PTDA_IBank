@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package pt.ua.ibank.staff.components.contas;
+package pt.ua.ibank.staff.componentes.contas;
 
 /**
  *
@@ -26,7 +26,7 @@ public class JInternalFrameContas extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        contasMainInterface2 = new pt.ua.ibank.staff.components.contas.ContasMainInterface();
+        contasMainInterface2 = new pt.ua.ibank.staff.componentes.contas.ContasMainInterface();
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -45,6 +45,6 @@ public class JInternalFrameContas extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private pt.ua.ibank.staff.components.contas.ContasMainInterface contasMainInterface2;
+    private pt.ua.ibank.staff.componentes.contas.ContasMainInterface contasMainInterface2;
     // End of variables declaration//GEN-END:variables
 }

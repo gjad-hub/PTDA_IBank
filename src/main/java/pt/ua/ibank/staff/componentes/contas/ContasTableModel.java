@@ -1,4 +1,4 @@
-package pt.ua.ibank.staff.components.contas;
+package pt.ua.ibank.staff.componentes.contas;
 
 import java.util.ArrayList;
 import java.util.Arrays;

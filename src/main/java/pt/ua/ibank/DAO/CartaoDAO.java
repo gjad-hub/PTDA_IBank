@@ -4,8 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import pt.ua.ibank.DTO.Cartao;
-import pt.ua.ibank.services.DBConnection;
-import static pt.ua.ibank.services.DBConnection.conn;
+import pt.ua.ibank.utilities.DBConnection;
+import static pt.ua.ibank.utilities.DBConnection.conn;
 
 public class CartaoDAO {
 

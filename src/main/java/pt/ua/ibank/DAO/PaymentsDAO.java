@@ -2,8 +2,8 @@ package pt.ua.ibank.DAO;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import pt.ua.ibank.services.DBConnection;
-import static pt.ua.ibank.services.DBConnection.conn;
+import pt.ua.ibank.utilities.DBConnection;
+import static pt.ua.ibank.utilities.DBConnection.conn;
 
 public class PaymentsDAO {
 
