@@ -1,10 +1,10 @@
 # PTDA_IBank ඞ
 
-iBank is a bank APP made with sockets, swing and implements networking, multithreading, and hopefully a database system in the near future.ඞ
+iBank is a bank APP made with Swing and implements a connection to a MYSQL Database
 
 ## Installation ඞ
 
-Be sure to install a version of Java SDK that supports Java 8
+Be sure to install a version of Java SDK that supports Java 8 and/or and IDE that can run and compile the code
 
 ```
 javac file.java
@@ -16,7 +16,7 @@ javac file.java
 Just to let you know, pull requests are welcome. For significant changes, please open an issue first
 We'd like to discuss what you would like to change.
 
-Please make sure to update tests as appropriate.ඞ
+Please make sure to update tests as appropriate.
 
 
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
