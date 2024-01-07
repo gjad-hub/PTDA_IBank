@@ -16,8 +16,9 @@ public class Cartao {
     public double saldo_credito;
     public Date data_venciemnto;
 
-    //public static Cartao LocalClientCard = getCardByNumber(
-    //      LocalClient.cartaoDefault);
+    public static Cartao LocalClientCard = getCardByNumber(
+            LocalClient.cartaoDefault);
+
     public Cartao(String numCartao, Date dataValidade, String estado,
             int cliente, boolean credito, double saldo_credito,
             Date data_venciemnto) {
