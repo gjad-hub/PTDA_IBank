@@ -3,20 +3,20 @@ package pt.ua.ibank.interfaces;
 import pt.ua.ibank.interfaces.*;
 import pt.ua.ibank.interfaces.internalFrames.DashBoard;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.beans.PropertyVetoException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import static pt.ua.ibank.DTO.Cliente.LocalClient;
 import pt.ua.ibank.interfaces.internalFrames.PayServices;
 import pt.ua.ibank.interfaces.internalFrames.ProfilePage;
 import pt.ua.ibank.interfaces.internalFrames.TransferPage;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
-import pt.ua.ibank.staff.componentes.contas.JInternalFrameContas;
+import pt.ua.ibank.interfaces.internalFrames.StaffAccountList;
+import pt.ua.ibank.interfaces.internalFrames.StaffProfilePanel;
 import pt.ua.ibank.utilities.MDIDesktopPane;
 import pt.ua.ibank.utilities.WindowMenu;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
@@ -88,8 +88,6 @@ public class staffInterface extends javax.swing.JFrame {
         display_user = new javax.swing.JLabel();
         dashboard = new javax.swing.JButton();
         transfers = new javax.swing.JButton();
-        services = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         logout = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -128,7 +126,6 @@ public class staffInterface extends javax.swing.JFrame {
         stransfers = new javax.swing.JButton();
         saccount = new javax.swing.JButton();
         slogout = new javax.swing.JButton();
-        stransfers1 = new javax.swing.JButton();
         menu_bar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         hide = new javax.swing.JMenuItem();
@@ -169,7 +166,7 @@ public class staffInterface extends javax.swing.JFrame {
 
         dashboard.setBackground(new java.awt.Color(62, 92, 118));
         dashboard.setForeground(new java.awt.Color(240, 235, 216));
-        dashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/dashboard.png"))); // NOI18N
+        dashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_20/transacoes.png"))); // NOI18N
         dashboard.setText("Ver Transações");
         dashboard.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         dashboard.addActionListener(new java.awt.event.ActionListener() {
@@ -180,7 +177,7 @@ public class staffInterface extends javax.swing.JFrame {
 
         transfers.setBackground(new java.awt.Color(62, 92, 118));
         transfers.setForeground(new java.awt.Color(240, 235, 216));
-        transfers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/payments.png"))); // NOI18N
+        transfers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_20/account-list.png"))); // NOI18N
         transfers.setText("Ver Lista de Contas");
         transfers.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         transfers.addActionListener(new java.awt.event.ActionListener() {
@@ -188,23 +185,6 @@ public class staffInterface extends javax.swing.JFrame {
                 transfersActionPerformed(evt);
             }
         });
-
-        services.setBackground(new java.awt.Color(62, 92, 118));
-        services.setForeground(new java.awt.Color(240, 235, 216));
-        services.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/shopping_bag.png"))); // NOI18N
-        services.setText("Lista de Depositos por Aprovar");
-        services.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        services.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                servicesActionPerformed(evt);
-            }
-        });
-
-        jButton1.setBackground(new java.awt.Color(62, 92, 118));
-        jButton1.setForeground(new java.awt.Color(240, 235, 216));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/credit_card.png"))); // NOI18N
-        jButton1.setText("Cartões");
-        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/logout.png"))); // NOI18N
         logout.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -229,6 +209,17 @@ public class staffInterface extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(62, 171, 191));
         jLabel14.setText("Funcionario");
+        jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel14MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel14MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel14MouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout side_barLayout = new javax.swing.GroupLayout(side_bar);
         side_bar.setLayout(side_barLayout);
@@ -241,10 +232,8 @@ public class staffInterface extends javax.swing.JFrame {
                         .addGroup(side_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(dashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(transfers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(services, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(side_barLayout.createSequentialGroup()
-                                .addComponent(display_user, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(display_user, javax.swing.GroupLayout.DEFAULT_SIZE, 11, Short.MAX_VALUE)
                                 .addGroup(side_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(side_barLayout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -281,10 +270,6 @@ public class staffInterface extends javax.swing.JFrame {
                 .addComponent(dashboard)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(transfers)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(services)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logout)
                 .addContainerGap())
@@ -305,7 +290,7 @@ public class staffInterface extends javax.swing.JFrame {
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setForeground(new java.awt.Color(62, 171, 191));
         jLabel2.setText("2500");
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
@@ -405,7 +390,7 @@ public class staffInterface extends javax.swing.JFrame {
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setForeground(new java.awt.Color(62, 171, 191));
         jLabel4.setText("2500");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -489,7 +474,7 @@ public class staffInterface extends javax.swing.JFrame {
 
         jLabel21.setBackground(new java.awt.Color(255, 255, 255));
         jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel21.setForeground(new java.awt.Color(62, 171, 191));
         jLabel21.setText("Nome");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -567,7 +552,7 @@ public class staffInterface extends javax.swing.JFrame {
         desktopLayout.setHorizontalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(desktopLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addGroup(desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(desktopLayout.createSequentialGroup()
                         .addComponent(jLabel24)
@@ -577,16 +562,16 @@ public class staffInterface extends javax.swing.JFrame {
                         .addComponent(jPanelAccounts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(JPanelWidget3, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
                         .addComponent(jPanelEmployeeOfMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(666, Short.MAX_VALUE))
+                .addContainerGap(658, Short.MAX_VALUE))
         );
         desktopLayout.setVerticalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(desktopLayout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
                 .addGroup(desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25)
                     .addComponent(jLabel24))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(jPanelAccounts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
                 .addComponent(JPanelWidget3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -598,7 +583,7 @@ public class staffInterface extends javax.swing.JFrame {
         small_side_bar.setBackground(new java.awt.Color(252, 252, 255));
 
         sdashboard.setBackground(new java.awt.Color(62, 92, 118));
-        sdashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/dashboard.png"))); // NOI18N
+        sdashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_20/transacoes.png"))); // NOI18N
         sdashboard.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         sdashboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -607,7 +592,7 @@ public class staffInterface extends javax.swing.JFrame {
         });
 
         stransfers.setBackground(new java.awt.Color(62, 92, 118));
-        stransfers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/payments.png"))); // NOI18N
+        stransfers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_20/account-list.png"))); // NOI18N
         stransfers.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         stransfers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -632,15 +617,6 @@ public class staffInterface extends javax.swing.JFrame {
             }
         });
 
-        stransfers1.setBackground(new java.awt.Color(62, 92, 118));
-        stransfers1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/payments.png"))); // NOI18N
-        stransfers1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        stransfers1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                stransfers1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout small_side_barLayout = new javax.swing.GroupLayout(small_side_bar);
         small_side_bar.setLayout(small_side_barLayout);
         small_side_barLayout.setHorizontalGroup(
@@ -656,8 +632,7 @@ public class staffInterface extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, small_side_barLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(slogout))
-                    .addComponent(stransfers1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(slogout)))
                 .addContainerGap())
         );
         small_side_barLayout.setVerticalGroup(
@@ -669,8 +644,6 @@ public class staffInterface extends javax.swing.JFrame {
                 .addComponent(sdashboard)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(stransfers)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(stransfers1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(slogout)
                 .addContainerGap())
@@ -718,14 +691,6 @@ public class staffInterface extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void transfersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transfersActionPerformed
-        addWindow(new JInternalFrameContas());
-    }//GEN-LAST:event_transfersActionPerformed
-
-    private void dashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardActionPerformed
-        addWindow(new DashBoard());
-    }//GEN-LAST:event_dashboardActionPerformed
-
     private void hideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hideActionPerformed
         if (side_bar.isVisible()) {
             side_bar.setVisible(false);
@@ -741,37 +706,49 @@ public class staffInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_sdashboardActionPerformed
 
     private void stransfersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stransfersActionPerformed
-        // TODO add your handling code here:
+        transfersActionPerformed(evt);
     }//GEN-LAST:event_stransfersActionPerformed
 
     private void slogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_slogoutActionPerformed
         System.exit(0);
     }//GEN-LAST:event_slogoutActionPerformed
 
-    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_logoutActionPerformed
-
     private void saccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saccountActionPerformed
-        addWindow(new ProfilePage());
+        addWindow(new DashBoard());
     }//GEN-LAST:event_saccountActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         addWindow(new ProfilePage());
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void servicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_servicesActionPerformed
-        // TODO add your handling code here:
-        addWindow(new PayServices());
-    }//GEN-LAST:event_servicesActionPerformed
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_logoutActionPerformed
+
+    private void transfersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transfersActionPerformed
+        addWindow(new StaffAccountList());
+    }//GEN-LAST:event_transfersActionPerformed
+
+    private void dashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardActionPerformed
+
+    }//GEN-LAST:event_dashboardActionPerformed
 
     private void display_userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_display_userMouseClicked
         addWindow(new ProfilePage());
     }//GEN-LAST:event_display_userMouseClicked
 
-    private void stransfers1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stransfers1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_stransfers1ActionPerformed
+    private void jLabel14MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseEntered
+        jLabel1.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_jLabel14MouseEntered
+
+    private void jLabel14MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseExited
+        jLabel14.setCursor(new Cursor(Cursor.HAND_CURSOR
+        ));
+    }//GEN-LAST:event_jLabel14MouseExited
+
+    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
+        addWindow(new ProfilePage());
+    }//GEN-LAST:event_jLabel14MouseClicked
 
     /**
      * @param args the command line arguments
@@ -881,7 +858,6 @@ public class staffInterface extends javax.swing.JFrame {
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel display_user;
     private javax.swing.JMenuItem hide;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -921,12 +897,10 @@ public class staffInterface extends javax.swing.JFrame {
     private javax.swing.JMenuBar menu_bar;
     private javax.swing.JButton saccount;
     private javax.swing.JButton sdashboard;
-    private javax.swing.JButton services;
     private javax.swing.JPanel side_bar;
     private javax.swing.JButton slogout;
     private javax.swing.JPanel small_side_bar;
     private javax.swing.JButton stransfers;
-    private javax.swing.JButton stransfers1;
     private javax.swing.JButton transfers;
     // End of variables declaration//GEN-END:variables
 }
