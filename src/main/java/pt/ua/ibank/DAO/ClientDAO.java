@@ -77,7 +77,8 @@ public class ClientDAO {
 
             int num_cli = getClientIdByEmail(email);
 
-            stmt = conn.prepareStatement("UPDATE cartao SET cliente = ? WHERE num_cartao like ?;");
+            stmt = conn.prepareStatement(
+                    "UPDATE cartao SET cliente = ? WHERE num_cartao like ?;");
             stmt.setInt(1, num_cli);
             stmt.setString(2, num_cartao);
             stmt.execute();
@@ -199,6 +200,44 @@ public class ClientDAO {
             DBConnection.closeConnection(stmt, rs);
         }
         return null;
+    }
+
+    public static int UpdateClient(
+            String nome, String morada,
+            String email, String telefone,
+            String nif, String old_email) {
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+
+            // Verifica se já existe alguma conta com aquele e-mail
+            stmt = conn.prepareStatement(
+                    "SELECT count(num_cliente) AS valor FROM cliente where email like ?;");
+            stmt.setString(1, email);
+            rs = stmt.executeQuery();
+            rs.next();
+
+            if (rs.getInt("valor") > 0 && !email.equals(old_email)) {
+                return codigoErroEmail;
+            }
+
+            stmt = conn.prepareStatement(
+                    "UPDATE cliente SET nome = ? , morada = ?, email = ?, telemovel = ? WHERE email = ?");
+            stmt.setString(1, nome);
+            stmt.setString(2, morada);
+            stmt.setString(3, email);
+            stmt.setString(4, telefone);
+            stmt.setString(5, old_email);
+            stmt.execute();
+            return codigoSucesso;
+
+        } catch (SQLException e) {
+            return codigoErro;
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
     }
 
     public static int UpdateClient(String nome, String morada, String email,

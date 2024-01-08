@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
@@ -8,18 +9,12 @@ package pt.ua.ibank.interfaces.internalFrames;
  *
  * @author ricar
  */
-public class StaffProfilePanel extends javax.swing.JInternalFrame {
+public class StaffTransferList extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form JInternalFramePerfil
-     *
-     * @param userEmail
+     * Creates new form StaffTransferList
      */
-    public StaffProfilePanel(String userEmail) {
-        initComponents();
-    }
-
-    public StaffProfilePanel() {
+    public StaffTransferList() {
         initComponents();
     }
 
@@ -32,20 +27,28 @@ public class StaffProfilePanel extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        perfilMainInterface1 = new pt.ua.ibank.interfaces.internalFrames.staff.profile.PerfilMainInterface();
+        transfersMainInterface1 = new pt.ua.ibank.interfaces.internalFrames.staff.transfers.TransfersMainInterface();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
 
-        perfilMainInterface1.setMinimumSize(new java.awt.Dimension(859, 562));
-        getContentPane().add(perfilMainInterface1);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(transfersMainInterface1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(transfersMainInterface1, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private pt.ua.ibank.interfaces.internalFrames.staff.profile.PerfilMainInterface perfilMainInterface1;
+    private pt.ua.ibank.interfaces.internalFrames.staff.transfers.TransfersMainInterface transfersMainInterface1;
     // End of variables declaration//GEN-END:variables
 }

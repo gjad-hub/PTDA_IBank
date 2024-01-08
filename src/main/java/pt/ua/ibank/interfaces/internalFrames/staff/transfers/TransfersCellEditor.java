@@ -1,4 +1,4 @@
-package pt.ua.ibank.interfaces.internalFrames.staff.transactions;
+package pt.ua.ibank.interfaces.internalFrames.staff.transfers;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -14,11 +14,11 @@ import javax.swing.JTable;
  *
  * @author ricar
  */
-public class TransactionsCellEditor extends DefaultCellEditor {
+public class TransfersCellEditor extends DefaultCellEditor {
 
-    private TransactionsActionEvent event;
+    private TransfersActionEvent event;
 
-    public TransactionsCellEditor(TransactionsActionEvent event) {
+    public TransfersCellEditor(TransfersActionEvent event) {
         super(new JCheckBox());
         this.event = event;
     }
@@ -27,7 +27,7 @@ public class TransactionsCellEditor extends DefaultCellEditor {
     public Component getTableCellEditorComponent(JTable table, Object value,
             boolean isSelected, int row, int column) {
 
-        TransactionsActionPanel action = new TransactionsActionPanel();
+        TransfersActionPanel action = new TransfersActionPanel();
         action.InitEvent(event, row);
         action.setBackground(table.getSelectionBackground());
         return action;

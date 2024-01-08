@@ -4,6 +4,12 @@
  */
 package pt.ua.ibank.interfaces.internalFrames;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import pt.ua.ibank.interfaces.staffInterface;
+
 /**
  *
  * @author ricar
@@ -12,9 +18,20 @@ public class StaffAccountList extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form NewJInternalFrame
+     *
+     * @param parent
      */
-    public StaffAccountList() {
+    public StaffAccountList(staffInterface parent) {
         initComponents();
+
+        javax.swing.JButton btn = contasMainInterface2.getThing();
+
+        btn.addActionListener((ActionEvent e) -> {
+            parent.addWindow(new StaffProfilePanel());
+            // parent.addWindow(new StaffProfilePanel(
+            //       contasMainInterface2.currCliente.email));
+        });
+
     }
 
     /**
@@ -33,16 +50,8 @@ public class StaffAccountList extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contasMainInterface2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contasMainInterface2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        contasMainInterface2.setBackground(new java.awt.Color(51, 51, 51));
+        getContentPane().add(contasMainInterface2, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

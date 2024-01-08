@@ -4,31 +4,25 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.profile;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import javax.swing.table.AbstractTableModel;
 import pt.ua.ibank.DTO.Cartao;
 
 /**
  *
  * @author ricar
  */
-public class PerfilCardTableModel extends AbstractTableModel {
+public class PerfilCardTableModel extends javax.swing.table.AbstractTableModel {
 
-    private final List<Cartao> data;
+    private final java.util.List<Cartao> data;
 
-    public PerfilCardTableModel(int clientID) {
+    public PerfilCardTableModel(String clientEmail) {
         data = null;
         // data = CartaoDAO.getCardListFromUserID(clientID);
     }
 
-    //Cartao(String numCartao, Date dataValidade, String estado, int cliente, boolean credito, double saldo_credito, Date data_venciemnto) {
     public PerfilCardTableModel() {
-        data = new ArrayList<>();
+        data = new java.util.ArrayList<>();
         java.sql.Date ea = new java.sql.Date(1, 2, 2002);
-        data.add(new Cartao("1231", ea, 2.2, "estado"));
+        data.add(new Cartao("213123211231", ea, 2.2, "estado"));
     }
 
     @Override

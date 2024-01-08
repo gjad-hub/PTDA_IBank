@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pt.ua.ibank.interfaces.internalFrames.staff.transactions;
+package pt.ua.ibank.interfaces.internalFrames.staff.transfers;
 
 import pt.ua.ibank.interfaces.internalFrames.staff.accounts.*;
 import java.awt.Color;
@@ -20,11 +20,11 @@ import javax.swing.border.EmptyBorder;
  *
  * @author ricar
  */
-public class TransactionsActionButton extends JButton {
+public class TransfersActionButton extends JButton {
 
     private boolean mousePress;
 
-    public TransactionsActionButton() {
+    public TransfersActionButton() {
         setContentAreaFilled(false);
         setBorder(new EmptyBorder(3, 3, 3, 3));
         addMouseListener(new MouseAdapter() {

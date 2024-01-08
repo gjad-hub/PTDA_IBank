@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package pt.ua.ibank.interfaces.internalFrames.staff.transactions;
+package pt.ua.ibank.interfaces.internalFrames.staff.transfers;
 
 import pt.ua.ibank.interfaces.internalFrames.staff.accounts.*;
 import java.awt.event.ActionEvent;
@@ -12,16 +12,16 @@ import pt.ua.ibank.interfaces.internalFrames.staff.profile.PerfilTableActionEven
  *
  * @author ricar
  */
-public class TransactionsActionPanel extends javax.swing.JPanel {
+public class TransfersActionPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form NewJPanel
      */
-    public TransactionsActionPanel() {
+    public TransfersActionPanel() {
         initComponents();
     }
 
-    public void InitEvent(TransactionsActionEvent event, int row) {
+    public void InitEvent(TransfersActionEvent event, int row) {
         contasActionButton.addActionListener((ActionEvent e) -> {
             event.onExpand(row);
         });
@@ -36,7 +36,7 @@ public class TransactionsActionPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        contasActionButton = new pt.ua.ibank.interfaces.internalFrames.staff.transactions.TransactionsActionButton();
+        contasActionButton = new pt.ua.ibank.interfaces.internalFrames.staff.transfers.TransfersActionButton();
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -54,6 +54,6 @@ public class TransactionsActionPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private pt.ua.ibank.interfaces.internalFrames.staff.transactions.TransactionsActionButton contasActionButton;
+    private pt.ua.ibank.interfaces.internalFrames.staff.transfers.TransfersActionButton contasActionButton;
     // End of variables declaration//GEN-END:variables
 }

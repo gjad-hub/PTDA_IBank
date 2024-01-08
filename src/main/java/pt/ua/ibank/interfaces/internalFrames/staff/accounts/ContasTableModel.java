@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
+import pt.ua.ibank.DAO.CartaoDAO;
 import pt.ua.ibank.DTO.Cliente;
 
 /**
@@ -19,8 +20,8 @@ public class ContasTableModel extends AbstractTableModel {
         data = new ArrayList<>();
         data.add(new Cliente(1, "a", "a", "a", "2", "asd", "a", 23.2));
         header = new ArrayList<>(Arrays.asList(
-                "numConta", "numCliente", "nome",
-                "email", "nif", ""));
+                "N.Conta", "N.Cliente", "Nome",
+                "Email", "NIF", ""));
     }
 
     @Override
@@ -41,6 +42,20 @@ public class ContasTableModel extends AbstractTableModel {
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return true;
+    }
+
+    public Cliente getAccount(int rowIndex) {
+        return data.get(rowIndex);
+    }
+
+    public String getDepositAmountNumberFromID(int id) {
+        return String.valueOf(420);
+        //return CartaoDAO.getDepositAmountByNumber(number);
+    }
+
+    public String getCardAmountNumberFromID(int id) {
+        return String.valueOf(69);
+        //return CartaoDAO.getCardAmountByNumber(number);
     }
 
     @Override

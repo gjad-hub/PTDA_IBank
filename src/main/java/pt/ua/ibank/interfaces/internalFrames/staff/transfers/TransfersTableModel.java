@@ -1,27 +1,27 @@
-package pt.ua.ibank.interfaces.internalFrames.staff.transactions;
+package pt.ua.ibank.interfaces.internalFrames.staff.transfers;
 
 import pt.ua.ibank.interfaces.internalFrames.staff.accounts.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import pt.ua.ibank.DTO.Cliente;
+import pt.ua.ibank.DTO.Transferencias;
 
 /**
  * Implementação tabela de Transferencias a ser usada na interface de staff.
- * ultima modificação: 04 Janeiro 2024
+ * ultima modificação: 08 Janeiro 2024
  */
-public class TransactionsTableModel extends AbstractTableModel {
+public class TransfersTableModel extends AbstractTableModel {
 
     private List<String> header = null;
-    private List<Cliente> data = null;
+    private List<Transferencias> data = null;
 
-    public TransactionsTableModel() {
+    public TransfersTableModel() {
+        //data = new TransferenciaDAO.getTransferList();
         data = new ArrayList<>();
-        data.add(new Cliente(1, "a", "a", "a", "2", "asd", "a", 23.2));
+        data.add(new Transferencias(1, 2.0, 1, 3, "razao"));
         header = new ArrayList<>(Arrays.asList(
-                "numConta", "numCliente", "nome",
-                "email", "nif", ""));
+                "ID", "Valor", "Autor", "Receptor", "motivo", ""));
     }
 
     @Override
@@ -48,19 +48,19 @@ public class TransactionsTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0 -> {
-                return data.get(rowIndex).numConta;
+                return data.get(rowIndex).getTransferenciaID();
             }
             case 1 -> {
-                return data.get(rowIndex).numCliente;
+                return data.get(rowIndex).getvalorEmEuros();
             }
             case 2 -> {
-                return data.get(rowIndex).nome;
+                return data.get(rowIndex).getclienteRealizaID();
             }
             case 3 -> {
-                return data.get(rowIndex).email;
+                return data.get(rowIndex).getclienteRecebeID();
             }
             case 4 -> {
-                return data.get(rowIndex).nif;
+                return data.get(rowIndex).getDescricao();
             }
         }
         return null;

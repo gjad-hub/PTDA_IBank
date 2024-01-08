@@ -26,7 +26,7 @@ public class PerfilActionRenderer extends DefaultTableCellRenderer {
         Pair<String, String> componentValue = (Pair) table.getModel().getValueAt(
                 row, 0);
 
-        if (componentValue.left.contains("*")) {
+        if (componentValue.left.contains(": ")) {
             return comm;
         }
 
