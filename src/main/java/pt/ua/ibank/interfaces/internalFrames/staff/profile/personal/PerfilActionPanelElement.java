@@ -2,23 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package pt.ua.ibank.interfaces.internalFrames.staff.profile;
+package pt.ua.ibank.interfaces.internalFrames.staff.profile.personal;
 
 import java.awt.event.ActionEvent;
-import pt.ua.ibank.interfaces.internalFrames.staff.profile.PerfilTableActionEvent;
+import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilTableActionEvent;
 
 /**
  *
  * @author ricar
  */
-public class PerfilActionPanel extends javax.swing.JPanel {
+public class PerfilActionPanelElement extends javax.swing.JPanel {
 
     /**
      * Creates new form ClientProfilePanelAction
      */
     String data;
 
-    public PerfilActionPanel() {
+    public PerfilActionPanelElement() {
         initComponents();
         data = "";
         jTextFieldNewValue.setVisible(false);
@@ -27,7 +27,7 @@ public class PerfilActionPanel extends javax.swing.JPanel {
         cmdEdit.setLocation(cmdCancel.getLocation());
     }
 
-    public PerfilActionPanel(String initialValue) {
+    public PerfilActionPanelElement(String initialValue) {
         initComponents();
         this.data = initialValue;
         jTextFieldNewValue.setVisible(false);
@@ -62,9 +62,9 @@ public class PerfilActionPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jTextFieldNewValue = new javax.swing.JTextField();
-        cmdEdit = new pt.ua.ibank.interfaces.internalFrames.staff.profile.PerfilActionButton();
-        cmdSave = new pt.ua.ibank.interfaces.internalFrames.staff.profile.PerfilActionButton();
-        cmdCancel = new pt.ua.ibank.interfaces.internalFrames.staff.profile.PerfilActionButton();
+        cmdEdit = new pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilActionButton();
+        cmdSave = new pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilActionButton();
+        cmdCancel = new pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilActionButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -137,9 +137,9 @@ public class PerfilActionPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextFieldNewValueActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private pt.ua.ibank.interfaces.internalFrames.staff.profile.PerfilActionButton cmdCancel;
-    private pt.ua.ibank.interfaces.internalFrames.staff.profile.PerfilActionButton cmdEdit;
-    private pt.ua.ibank.interfaces.internalFrames.staff.profile.PerfilActionButton cmdSave;
+    private pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilActionButton cmdCancel;
+    private pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilActionButton cmdEdit;
+    private pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilActionButton cmdSave;
     private javax.swing.JTextField jTextFieldNewValue;
     // End of variables declaration//GEN-END:variables
 }

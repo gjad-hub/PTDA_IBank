@@ -55,14 +55,14 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldNewValueActionPerformed"/>
       </Events>
     </Component>
-    <Component class="pt.ua.ibank.interfaces.internalFrames.staff.profile.PerfilActionButton" name="cmdEdit">
+    <Component class="pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilActionButton" name="cmdEdit">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/resources/images/icons_20/edit.png"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="pt.ua.ibank.interfaces.internalFrames.staff.profile.PerfilActionButton" name="cmdSave">
+    <Component class="pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilActionButton" name="cmdSave">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/resources/images/icons_20/tick.png"/>
@@ -72,7 +72,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdSaveActionPerformed"/>
       </Events>
     </Component>
-    <Component class="pt.ua.ibank.interfaces.internalFrames.staff.profile.PerfilActionButton" name="cmdCancel">
+    <Component class="pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilActionButton" name="cmdCancel">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/resources/images/icons_20/cancel.jpg"/>

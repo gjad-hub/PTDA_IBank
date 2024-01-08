@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pt.ua.ibank.interfaces.internalFrames.staff.profile;
+package pt.ua.ibank.interfaces.internalFrames.staff.profile.personal;
 
 import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 import java.util.ArrayList;

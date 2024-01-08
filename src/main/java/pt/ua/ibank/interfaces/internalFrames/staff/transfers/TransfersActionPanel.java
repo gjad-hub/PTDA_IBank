@@ -6,7 +6,7 @@ package pt.ua.ibank.interfaces.internalFrames.staff.transfers;
 
 import pt.ua.ibank.interfaces.internalFrames.staff.accounts.*;
 import java.awt.event.ActionEvent;
-import pt.ua.ibank.interfaces.internalFrames.staff.profile.PerfilTableActionEvent;
+import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilTableActionEvent;
 
 /**
  *

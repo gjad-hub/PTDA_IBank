@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pt.ua.ibank.interfaces.internalFrames.staff.profile;
+package pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment;
 
+import pt.ua.ibank.interfaces.internalFrames.staff.profile.card.*;
 import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 import java.awt.Color;
 import java.awt.Component;
@@ -16,7 +17,7 @@ import pt.ua.ibank.DTO.Cartao;
  *
  * @author ricar
  */
-public class PerfilCardTableCellRenderer extends DefaultTableCellRenderer {
+public class PerfilCommentTableCellRenderer extends DefaultTableCellRenderer {
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value,
@@ -32,14 +33,14 @@ public class PerfilCardTableCellRenderer extends DefaultTableCellRenderer {
                 currClientObject.numCartao.length() - 4,
                 currClientObject.numCartao.length());
 
-        var profileChildElement = new PerfilCardTableElementPanel(
-                cardNumber,
-                expireDate,
-                currClientObject.saldo_credito,
-                currClientObject.estado
-        );
-
-        return profileChildElement;
+        // var profileChildElement = new PerfilCommentTableElementPanel(
+        //       cardNumber,
+        //     expireDate,
+        //   currClientObject.saldo_credito,
+        // currClientObject.estado
+        //);
+        //return profileChildElement;
+        return comm;
     }
 
 }

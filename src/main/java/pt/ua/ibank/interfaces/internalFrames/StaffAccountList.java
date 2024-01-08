@@ -24,12 +24,12 @@ public class StaffAccountList extends javax.swing.JInternalFrame {
     public StaffAccountList(staffInterface parent) {
         initComponents();
 
-        javax.swing.JButton btn = contasMainInterface2.getThing();
+        javax.swing.JButton openProfileButton = contasInterfaceContainer.getOpenProfileButton();
 
-        btn.addActionListener((ActionEvent e) -> {
+        openProfileButton.addActionListener((ActionEvent e) -> {
             parent.addWindow(new StaffProfilePanel());
-            // parent.addWindow(new StaffProfilePanel(
-            //       contasMainInterface2.currCliente.email));
+            parent.addWindow(new StaffProfilePanel(
+                    contasInterfaceContainer.getCurrCliente().email));
         });
 
     }
@@ -43,20 +43,20 @@ public class StaffAccountList extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        contasMainInterface2 = new pt.ua.ibank.interfaces.internalFrames.staff.accounts.ContasMainInterface();
+        contasInterfaceContainer = new pt.ua.ibank.interfaces.internalFrames.staff.accounts.ContasMainInterface();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
 
-        contasMainInterface2.setBackground(new java.awt.Color(51, 51, 51));
-        getContentPane().add(contasMainInterface2, java.awt.BorderLayout.CENTER);
+        contasInterfaceContainer.setBackground(new java.awt.Color(51, 51, 51));
+        getContentPane().add(contasInterfaceContainer, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private pt.ua.ibank.interfaces.internalFrames.staff.accounts.ContasMainInterface contasMainInterface2;
+    private pt.ua.ibank.interfaces.internalFrames.staff.accounts.ContasMainInterface contasInterfaceContainer;
     // End of variables declaration//GEN-END:variables
 }

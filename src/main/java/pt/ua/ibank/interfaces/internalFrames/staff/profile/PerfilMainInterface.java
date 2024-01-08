@@ -4,13 +4,19 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.profile;
 
+import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilCellEditor;
+import pt.ua.ibank.interfaces.internalFrames.staff.profile.card.PerfilCardTableModel;
+import pt.ua.ibank.interfaces.internalFrames.staff.profile.card.PerfilCardTableCellRenderer;
+import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilTableActionEvent;
+import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilTableCellRenderer;
+import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilPersonalTableModel;
 import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import pt.ua.ibank.interfaces.internalFrames.staff.profile.PerfilActionRenderer;
+import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilActionRenderer;
 
 /**
  *
@@ -20,8 +26,8 @@ public class PerfilMainInterface extends javax.swing.JPanel {
 
     private String clientEmail;
     //PerfilPersonalTableModel personalDataTable = new PerfilPersonalTableModel(clientEmail);
-    PerfilPersonalTableModel personalDataTable = new PerfilPersonalTableModel();
     //PerfilCardTableModel cardDataTable = new PerfilCardTableModel(clientEmail);
+    PerfilPersonalTableModel personalDataTable = new PerfilPersonalTableModel();
     PerfilCardTableModel cardDataTable = new PerfilCardTableModel();
 
     /**
@@ -338,7 +344,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
     jPanelDadosPessoais.setLayout(jPanelDadosPessoaisLayout);
     jPanelDadosPessoaisLayout.setHorizontalGroup(
         jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
+        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
     );
     jPanelDadosPessoaisLayout.setVerticalGroup(
@@ -398,7 +404,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
     jPanelDadosCartao.setLayout(jPanelDadosCartaoLayout);
     jPanelDadosCartaoLayout.setHorizontalGroup(
         jPanelDadosCartaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
+        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
     );
     jPanelDadosCartaoLayout.setVerticalGroup(
@@ -431,7 +437,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel12)
-            .addContainerGap(202, Short.MAX_VALUE))
+            .addContainerGap(121, Short.MAX_VALUE))
     );
     jPanel5Layout.setVerticalGroup(
         jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -447,7 +453,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
     jPanelDadosComentarios.setLayout(jPanelDadosComentariosLayout);
     jPanelDadosComentariosLayout.setHorizontalGroup(
         jPanelDadosComentariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
     );
     jPanelDadosComentariosLayout.setVerticalGroup(
         jPanelDadosComentariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -478,7 +484,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
             .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel18)
-            .addContainerGap(193, Short.MAX_VALUE))
+            .addContainerGap(113, Short.MAX_VALUE))
     );
     jPanel9Layout.setVerticalGroup(
         jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -497,7 +503,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
     jPanelDepositosPorAprovar.setLayout(jPanelDepositosPorAprovarLayout);
     jPanelDepositosPorAprovarLayout.setHorizontalGroup(
         jPanelDepositosPorAprovarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
         .addComponent(jListComentariosModeracao1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
     jPanelDepositosPorAprovarLayout.setVerticalGroup(
@@ -517,7 +523,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
         .addGroup(jPanelDadosContainerLayout.createSequentialGroup()
             .addContainerGap()
             .addComponent(jPanelDadosDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(12, 12, 12)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addGroup(jPanelDadosContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelDadosContainerLayout.createSequentialGroup()
                     .addComponent(jPanelDadosComentarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -533,7 +539,10 @@ public class PerfilMainInterface extends javax.swing.JPanel {
         jPanelDadosContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanelDadosContainerLayout.createSequentialGroup()
             .addContainerGap()
-            .addGroup(jPanelDadosContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanelDadosContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelDadosContainerLayout.createSequentialGroup()
+                    .addComponent(jPanelDadosDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 58, Short.MAX_VALUE))
                 .addGroup(jPanelDadosContainerLayout.createSequentialGroup()
                     .addGroup(jPanelDadosContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jPanelDadosPessoais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -541,9 +550,10 @@ public class PerfilMainInterface extends javax.swing.JPanel {
                     .addGap(6, 6, 6)
                     .addGroup(jPanelDadosContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jPanelDepositosPorAprovar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanelDadosComentarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jPanelDadosDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(105, 105, 105))
+                        .addGroup(jPanelDadosContainerLayout.createSequentialGroup()
+                            .addComponent(jPanelDadosComentarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGap(153, 153, 153)))))
+            .addContainerGap())
     );
 
     int personalDataTableWidth = jTablePersonalData.getSize().width;
@@ -557,9 +567,9 @@ public class PerfilMainInterface extends javax.swing.JPanel {
     LayeredPaneEditarContaLayout.setHorizontalGroup(
         LayeredPaneEditarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LayeredPaneEditarContaLayout.createSequentialGroup()
-            .addContainerGap()
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanelDadosContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addContainerGap())
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     LayeredPaneEditarContaLayout.setVerticalGroup(
         LayeredPaneEditarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

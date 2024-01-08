@@ -1,9 +1,11 @@
-package pt.ua.ibank.interfaces.internalFrames.staff.profile;
+package pt.ua.ibank.interfaces.internalFrames.staff.profile.personal;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilTableActionEvent;
+import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilActionPanelElement;
 import com.mysql.cj.conf.ConnectionUrlParser;
 import java.awt.Component;
 import javax.swing.DefaultCellEditor;
@@ -35,7 +37,7 @@ public class PerfilCellEditor extends DefaultCellEditor {
             };
         }
 
-        PerfilActionPanel action = new PerfilActionPanel();
+        PerfilActionPanelElement action = new PerfilActionPanelElement();
         action.InitEvent(event, row);
         action.setBackground(table.getSelectionBackground());
         return action;

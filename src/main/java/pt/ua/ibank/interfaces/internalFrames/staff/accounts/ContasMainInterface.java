@@ -4,6 +4,8 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.accounts;
 
+import pt.ua.ibank.DTO.Cliente;
+
 /**
  *
  * @author ricar
@@ -13,7 +15,7 @@ public class ContasMainInterface extends javax.swing.JPanel {
     /**
      * Creates new form ContasMainInterface
      */
-    public pt.ua.ibank.DTO.Cliente currCliente;
+    private pt.ua.ibank.DTO.Cliente currCliente;
 
     public ContasMainInterface() {
         initComponents();
@@ -360,8 +362,12 @@ public class ContasMainInterface extends javax.swing.JPanel {
     );
     }// </editor-fold>//GEN-END:initComponents
 
-    public javax.swing.JButton getThing() {
+    public javax.swing.JButton getOpenProfileButton() {
         return jButton2;
+    }
+
+    public Cliente getCurrCliente() {
+        return currCliente;
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
