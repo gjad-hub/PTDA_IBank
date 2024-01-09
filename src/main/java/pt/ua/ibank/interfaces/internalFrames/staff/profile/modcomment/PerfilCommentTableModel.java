@@ -4,8 +4,10 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment;
 
+import java.time.LocalDateTime;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.card.*;
 import pt.ua.ibank.DTO.Cartao;
+import pt.ua.ibank.DTO.ModCommentProfile;
 
 /**
  *
@@ -13,17 +15,16 @@ import pt.ua.ibank.DTO.Cartao;
  */
 public class PerfilCommentTableModel extends javax.swing.table.AbstractTableModel {
 
-    private final java.util.List<Cartao> data;
+    private final java.util.List<ModCommentProfile> data;
 
     public PerfilCommentTableModel(String clientEmail) {
         data = null;
-        // data = CartaoDAO.getCardListFromUserID(clientID);
+        // data = UserProfileDAO.getCardListFromUserID(clientID);
     }
 
     public PerfilCommentTableModel() {
         data = new java.util.ArrayList<>();
-        java.sql.Date ea = new java.sql.Date(1, 2, 2002);
-        data.add(new Cartao("213123211231", ea, 2.2, "estado"));
+        data.add(new ModCommentProfile("2", "", LocalDateTime.now()));
     }
 
     @Override

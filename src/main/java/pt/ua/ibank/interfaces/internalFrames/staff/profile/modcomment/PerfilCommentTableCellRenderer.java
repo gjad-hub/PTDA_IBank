@@ -4,14 +4,12 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment;
 
-import pt.ua.ibank.interfaces.internalFrames.staff.profile.card.*;
-import com.mysql.cj.conf.ConnectionUrlParser.Pair;
-import java.awt.Color;
 import java.awt.Component;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
-import pt.ua.ibank.DTO.Cartao;
+import pt.ua.ibank.DTO.ModCommentProfile;
 
 /**
  *
@@ -25,22 +23,20 @@ public class PerfilCommentTableCellRenderer extends DefaultTableCellRenderer {
         Component comm = super.getTableCellRendererComponent(table, value,
                 isSelected,
                 hasFocus, row, column);
-        var currClientObject = (Cartao) value;
+        var currCommentObject = (ModCommentProfile) value;
 
-        SimpleDateFormat dateDisplay = new SimpleDateFormat("MM/yy");
-        String expireDate = dateDisplay.format(currClientObject.dataValidade);
-        String cardNumber = currClientObject.numCartao.substring(
-                currClientObject.numCartao.length() - 4,
-                currClientObject.numCartao.length());
+        String str = "2016-03-04 11:30";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
+                "yyyy-MM-dd HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
 
-        // var profileChildElement = new PerfilCommentTableElementPanel(
-        //       cardNumber,
-        //     expireDate,
-        //   currClientObject.saldo_credito,
-        // currClientObject.estado
-        //);
+        var profileChildElement = new PerfilCommentTableElementPanel(
+                currCommentObject.getFuncionarioID(),
+                currCommentObject.getDescricao(),
+                currCommentObject.getDataFeita().toString()
+        );
         //return profileChildElement;
-        return comm;
+        return profileChildElement;
     }
 
 }

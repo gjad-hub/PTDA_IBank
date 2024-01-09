@@ -4,6 +4,9 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment;
 
+import java.time.LocalDateTime;
+import pt.ua.ibank.DTO.ModCommentProfile;
+
 /**
  *
  * @author ricar
@@ -23,6 +26,21 @@ public class PerfilCommentTableElementPanel extends javax.swing.JPanel {
 
         jXTextArea1.setLineWrap(true);
         jXTextArea1.setWrapStyleWord(true);
+        jXTextArea1.setText("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
+        lblmodName.setText("Administrator");
+        lblDateTime.setText("01-02-24 5:20 PM");
+    }
+
+    public PerfilCommentTableElementPanel(String funcionarioID, String descricao,
+            String date) {
+        initComponents();
+
+        jXTextArea1.setLineWrap(true);
+        jXTextArea1.setWrapStyleWord(true);
+        jXTextArea1.setText(descricao);
+        //substituir por um metodo DAO que pega o nome da pessoa
+        lblmodName.setText(funcionarioID);
+        lblDateTime.setText(date);
     }
 
     /**
@@ -35,9 +53,9 @@ public class PerfilCommentTableElementPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         lblTtitle = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblmodName = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblDateTime = new javax.swing.JLabel();
         jXTextArea1 = new org.jdesktop.swingx.JXTextArea();
 
         setBackground(new java.awt.Color(254, 254, 254));
@@ -45,20 +63,20 @@ public class PerfilCommentTableElementPanel extends javax.swing.JPanel {
         lblTtitle.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblTtitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_20/moderator-comment.png"))); // NOI18N
 
-        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel1.setText("nomeModerador");
+        lblmodName.setForeground(new java.awt.Color(102, 102, 102));
+        lblmodName.setText("nomeModerador");
 
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("em");
 
-        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel3.setText("data");
+        lblDateTime.setForeground(new java.awt.Color(102, 102, 102));
+        lblDateTime.setText("data");
 
         jXTextArea1.setBorder(null);
         jXTextArea1.setColumns(20);
         jXTextArea1.setLineWrap(true);
         jXTextArea1.setRows(5);
-        jXTextArea1.setText("Comentario de moderador aqui");
+        jXTextArea1.setText("CWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWomentario de moderador aqui");
         jXTextArea1.setWrapStyleWord(true);
         jXTextArea1.setAutoscrolls(false);
         jXTextArea1.setOpaque(false);
@@ -74,11 +92,11 @@ public class PerfilCommentTableElementPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(lblmodName)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblDateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jXTextArea1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -92,21 +110,21 @@ public class PerfilCommentTableElementPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblTtitle)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jXTextArea1, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
+                    .addComponent(jXTextArea1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblmodName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(lblDateTime))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private org.jdesktop.swingx.JXTextArea jXTextArea1;
+    private javax.swing.JLabel lblDateTime;
     private javax.swing.JLabel lblTtitle;
+    private javax.swing.JLabel lblmodName;
     // End of variables declaration//GEN-END:variables
 }
