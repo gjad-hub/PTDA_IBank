@@ -15,9 +15,4 @@ public class PagamentoServicosCompras {
         this.pago = pago;
         this.cliente = cliente;
     }
-
-    @Override
-    public String toString() {
-        return "PagamentoServicosCompras{" + "referencia=" + referencia + ", entidade=" + entidade + ", valor=" + valor + ", pago=" + pago + ", cliente=" + cliente + '}';
-    }
 }

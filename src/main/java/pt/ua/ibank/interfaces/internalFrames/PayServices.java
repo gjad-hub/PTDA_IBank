@@ -1,12 +1,11 @@
 package pt.ua.ibank.interfaces.internalFrames;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import pt.ua.ibank.DAO.PaymentsDAO;
-import pt.ua.ibank.DAO.ServicesDAO;
+import static pt.ua.ibank.DAO.PaymentsDAO.getServicosCompras;
 import pt.ua.ibank.DTO.Cartao;
 import pt.ua.ibank.DTO.Cliente;
 import static pt.ua.ibank.DTO.Cliente.LocalClient;
@@ -292,7 +291,7 @@ public class PayServices extends javax.swing.JInternalFrame {
             return;
         }
 
-        PagamentoServicosCompras servicosCompras = ServicesDAO.getServicosCompras(Integer.parseInt(referenciaValida), Integer.parseInt(entidadeValida));
+        PagamentoServicosCompras servicosCompras = getServicosCompras(Integer.parseInt(referenciaValida), Integer.parseInt(entidadeValida));
 
         if (Objects.isNull(servicosCompras)) {
             status.setText("O par entidade referencia não existe !");

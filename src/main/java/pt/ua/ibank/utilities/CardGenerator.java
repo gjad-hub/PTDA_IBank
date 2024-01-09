@@ -14,8 +14,4 @@ public class CardGenerator {
 
         return "4001" + accountNumberBuilder.toString();
     }
-
-    public static void main(String[] args) {
-        System.out.println(generateCardNumber());
-}
 }

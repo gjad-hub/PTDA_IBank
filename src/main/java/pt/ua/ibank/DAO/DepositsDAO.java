@@ -13,11 +13,6 @@ public class DepositsDAO {
     public static int requestDeposit(double valor, int clienteRealiza) {
         PreparedStatement stmt = null;
         try {
-
-            stmt = conn.prepareStatement(
-                    "INSERT INTO pagamento_servicos_compras (referencia, entidade, valor, estado, cliente) "
-                    + "VALUES (?,?,?,?,?)"
-            );
             
             stmt = conn.prepareStatement(
                     "INSERT INTO deposito (valor, num_cli) "
