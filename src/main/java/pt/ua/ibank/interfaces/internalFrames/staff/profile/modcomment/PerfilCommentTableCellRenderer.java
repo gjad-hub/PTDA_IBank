@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
-import pt.ua.ibank.DTO.ModCommentProfile;
+import pt.ua.ibank.DTO.ModeratorComment;
 
 /**
  *
@@ -23,7 +23,7 @@ public class PerfilCommentTableCellRenderer extends DefaultTableCellRenderer {
         Component comm = super.getTableCellRendererComponent(table, value,
                 isSelected,
                 hasFocus, row, column);
-        var currCommentObject = (ModCommentProfile) value;
+        var currCommentObject = (ModeratorComment) value;
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
                 "yyyy-MM-dd HH:mm");

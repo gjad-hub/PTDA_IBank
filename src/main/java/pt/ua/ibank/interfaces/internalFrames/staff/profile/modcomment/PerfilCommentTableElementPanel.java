@@ -5,7 +5,7 @@
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment;
 
 import java.time.LocalDateTime;
-import pt.ua.ibank.DTO.ModCommentProfile;
+import pt.ua.ibank.DTO.ModeratorComment;
 
 /**
  *
@@ -100,7 +100,7 @@ public class PerfilCommentTableElementPanel extends javax.swing.JPanel {
                 .addGap(6, 6, 6)
                 .addComponent(lblTtitle)
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
+                .addComponent(jScrollPane1))
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(lblmodName)

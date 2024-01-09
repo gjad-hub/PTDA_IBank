@@ -3,10 +3,10 @@ package pt.ua.ibank.interfaces.internalFrames;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import static pt.ua.ibank.DAO.CartaoDAO.LocalClientCard;
 import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.DTO.Transacoes;
 import pt.ua.ibank.DAO.TransacoesDAO;
-import static pt.ua.ibank.DTO.Cartao.LocalClientCard;
 import static pt.ua.ibank.DTO.Cliente.LocalClient;
 import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
 import static pt.ua.ibank.interfaces.clientInterface.updateThread;
@@ -37,7 +37,8 @@ public class DashBoard extends javax.swing.JInternalFrame {
     }
 
     private String maskString(String string, int char_visible) {
-        return string.substring(0, char_visible) + "*".repeat(string.length() - char_visible);
+        return string.substring(0, char_visible) + "*".repeat(
+                string.length() - char_visible);
     }
 
     private void popular(ArrayList<Transacoes> ltransacoes) {
@@ -414,7 +415,6 @@ public class DashBoard extends javax.swing.JInternalFrame {
         }
         return tmp;
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bgcardImage;

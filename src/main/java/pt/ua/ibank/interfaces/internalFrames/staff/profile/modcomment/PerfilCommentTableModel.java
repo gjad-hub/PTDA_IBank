@@ -7,7 +7,7 @@ package pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment;
 import java.time.LocalDateTime;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.card.*;
 import pt.ua.ibank.DTO.Cartao;
-import pt.ua.ibank.DTO.ModCommentProfile;
+import pt.ua.ibank.DTO.ModeratorComment;
 
 /**
  *
@@ -15,19 +15,20 @@ import pt.ua.ibank.DTO.ModCommentProfile;
  */
 public class PerfilCommentTableModel extends javax.swing.table.AbstractTableModel {
 
-    private final java.util.List<ModCommentProfile> data;
+    private final java.util.List<ModeratorComment> data;
 
     public PerfilCommentTableModel(String clientEmail) {
         data = null;
-        // data = UserProfileDAO.getProfileCommentListFromUserID(clientID);
+        // data = CommentsDAO.getProfileCommentListFromUserID(clientID);
     }
 
     public PerfilCommentTableModel() {
         data = new java.util.ArrayList<>();
-        data.add(new ModCommentProfile("2",
+        data.add(new ModeratorComment(,
+                "2",
                 " this user is very awesomeASDKLJASJKLDJASKLDJSKLDJSKLDJADKLSJAL ",
                 LocalDateTime.now()));
-        data.add(new ModCommentProfile("1",
+        data.add(new ModeratorComment("1",
                 " this user is very awesomeASDKLJASJKLDJASKLDJSKLDJSKLDJADKLSJAL ",
                 LocalDateTime.now()));
     }
@@ -40,6 +41,14 @@ public class PerfilCommentTableModel extends javax.swing.table.AbstractTableMode
     @Override
     public int getColumnCount() {
         return 1;
+    }
+
+    public boolean adicionarComentario() {
+
+    }
+
+    public boolean removerComentario() {
+        CommentsDAO.deleteBook(0)
     }
 
     @Override

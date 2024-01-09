@@ -330,6 +330,9 @@ public class PerfilMainInterface extends javax.swing.JPanel {
                 Pair<String, String> newRecord = new Pair(oldLeft, newValue);
                 personalDataTable.setValueAt(newRecord, row, 0);
                 jTablePersonalData.repaint();
+                if(oldLeft == "Nome:"){
+                    lblNomeCompleto.setText(newValue);
+                }
             }
         }
     };

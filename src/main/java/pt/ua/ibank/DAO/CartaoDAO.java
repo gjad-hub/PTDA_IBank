@@ -4,10 +4,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import pt.ua.ibank.DTO.Cartao;
+import static pt.ua.ibank.DTO.Cliente.LocalClient;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 
 public class CartaoDAO {
+
+    public static Cartao LocalClientCard = getCardByNumber(
+            LocalClient.cartaoDefault);
 
     public static Cartao getCardByNumber(String number) {
         PreparedStatement stmt = null;
