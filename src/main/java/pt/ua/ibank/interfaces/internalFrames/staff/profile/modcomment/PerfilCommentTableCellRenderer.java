@@ -5,7 +5,6 @@
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment;
 
 import java.awt.Component;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -27,16 +26,16 @@ public class PerfilCommentTableCellRenderer extends DefaultTableCellRenderer {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
                 "yyyy-MM-dd HH:mm");
-        String str = formatter.format(currCommentObject.getDataFeita());
-        System.out.println(str);
-
-        var profileChildElement = new PerfilCommentTableElementPanel(
-                currCommentObject.getFuncionarioID(),
-                currCommentObject.getDescricao(),
-                str
-        );
+        // String str = formatter.format(currCommentObject.getDataFeita());
+        //System.out.println(str);
+        //var profileChildElement = new PerfilCommentTableElementPanel(
+        //      currCommentObject.getFuncionarioID(),
+        //    currCommentObject.getDescricao(),
+        //  str
+        //);
+        return comm;
         //return profileChildElement;
-        return profileChildElement;
+        //return profileChildElement;
     }
 
 }

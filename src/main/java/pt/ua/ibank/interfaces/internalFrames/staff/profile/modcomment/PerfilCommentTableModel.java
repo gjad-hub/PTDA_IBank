@@ -24,13 +24,10 @@ public class PerfilCommentTableModel extends javax.swing.table.AbstractTableMode
 
     public PerfilCommentTableModel() {
         data = new java.util.ArrayList<>();
-        data.add(new ModeratorComment(,
-                "2",
-                " this user is very awesomeASDKLJASJKLDJASKLDJSKLDJSKLDJADKLSJAL ",
-                LocalDateTime.now()));
-        data.add(new ModeratorComment("1",
-                " this user is very awesomeASDKLJASJKLDJASKLDJSKLDJSKLDJADKLSJAL ",
-                LocalDateTime.now()));
+        //data.add(new ModeratorComment(
+        //        2,
+        //          " this user is very awesomeASDKLJASJKLDJASKLDJSKLDJSKLDJADKLSJAL ",
+        //            "String",new Date;
     }
 
     @Override
@@ -43,14 +40,13 @@ public class PerfilCommentTableModel extends javax.swing.table.AbstractTableMode
         return 1;
     }
 
-    public boolean adicionarComentario() {
-
-    }
-
-    public boolean removerComentario() {
-        CommentsDAO.deleteBook(0)
-    }
-
+//    public boolean adicionarComentario() {
+//
+//    }
+//
+//    public boolean removerComentario() {
+//        CommentsDAO.deleteBook(0)
+//    }
     @Override
     public Object getValueAt(int linha, int coluna) {
         switch (coluna) {
