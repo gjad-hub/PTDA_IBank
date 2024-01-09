@@ -111,7 +111,7 @@ BEGIN
 END;
 
 -- Trigger pagar serviço
-CREATE TRIGGER pagar_servico AFTER INSERT ON pagamento_servicos_compras FOR EACH ROW 
+CREATE TRIGGER pagar_servico AFTER UPDATE ON pagamento_servicos_compras FOR EACH ROW 
 BEGIN
     DECLARE existe INT;
 	DECLARE saldo DECIMAL(10,2);
@@ -164,15 +164,33 @@ END;
 \\
 DELIMITER ;
 
+DELIMITER \\
+CREATE PROCEDURE aprovar_deposito(IN depostio INTEGER, IN funcionario INTEGER)
+BEGIN
+    DECLARE data TIMESTAMP;
+    SELECT CURRENT_TIMESTAMP() INTO data;
+
+	UPDATE cliente SET saldo_cativo = saldo_cativo - (select valor from deposito where id_deposito = depostio);
+	UPDATE deposito SET aprovado = true, num_fun = funcionario WHERE id_deposito = depostio;
+	INSERT INTO transacoes (num_cli, descricao, valor, data)
+	    VALUES ((SELECT num_cli FROM deposito WHERE id_deposito = depostio),
+	            "Depostio",
+	            (select valor from deposito where id_deposito = depostio),
+	            data);
+END;
+\\
+DELIMITER ;
+
+
 -- Dados de teste
 
-INSERT INTO cliente (nome, morada, email, telemovel, nif, password, num_conta, saldo) VALUES ('Gonçalo', 'morada', 'goncalojdias@ua.pt', '123456789', '987654321', '1000:2cb67de5732ebf184ea454adc3ff78fb:326e6ab663e6950dca8bd0f7697877d56a2eaacf83a8a271f55701a287dc5f2172456212ba0d292a11f248f310c723b2940aa306e536c5f84e1c111c572d03d2', 'PT50000830064410685224784', 500);
-INSERT INTO cliente (nome, morada, email, telemovel, nif, password, num_conta, saldo) VALUES ('Ricardo', 'morada', 'ricardo@ua.pt', '321456789', '147587458', '1000:72d16789b31e32b9204e83e46a3bf14e:3e9c60d09bbcad8f3f33086852409a570c8ab3435106599e64444fa44406d260d377aac6fba56f27f61d336d52029018ad07914237ee40dd7041eefe0602409e', 'PT50002329487360799005570', 100);
+-- INSERT INTO cliente (nome, morada, email, telemovel, nif, password, num_conta, saldo) VALUES ('Gonçalo', 'morada', 'goncalojdias@ua.pt', '123456789', '987654321', '1000:2cb67de5732ebf184ea454adc3ff78fb:326e6ab663e6950dca8bd0f7697877d56a2eaacf83a8a271f55701a287dc5f2172456212ba0d292a11f248f310c723b2940aa306e536c5f84e1c111c572d03d2', 'PT50000830064410685224784', 500);
+-- INSERT INTO cliente (nome, morada, email, telemovel, nif, password, num_conta, saldo) VALUES ('Ricardo', 'morada', 'ricardo@ua.pt', '321456789', '147587458', '1000:72d16789b31e32b9204e83e46a3bf14e:3e9c60d09bbcad8f3f33086852409a570c8ab3435106599e64444fa44406d260d377aac6fba56f27f61d336d52029018ad07914237ee40dd7041eefe0602409e', 'PT50002329487360799005570', 100);
 
-INSERT INTO cliente (nome, morada, email, telemovel, nif, password, num_conta, saldo) VALUES ('Richard', 'morada', 'richard@ua.pt', '321456789', '147587458', '1000:72d16789b31e32b9204e83e46a3bf14e:3e9c60d09bbcad8f3f33086852409a570c8ab3435106599e64444fa44406d260d377aac6fba56f27f61d336d52029018ad07914237ee40dd7041eefe0602409e', 'PT50002329487360799005510', 150);
+-- INSERT INTO cliente (nome, morada, email, telemovel, nif, password, num_conta, saldo) VALUES ('Richard', 'morada', 'richard@ua.pt', '321456789', '147587458', '1000:72d16789b31e32b9204e83e46a3bf14e:3e9c60d09bbcad8f3f33086852409a570c8ab3435106599e64444fa44406d260d377aac6fba56f27f61d336d52029018ad07914237ee40dd7041eefe0602409e', 'PT50002329487360799005510', 150);
 
-INSERT INTO pagamento_servicos_compras (referencia, entidade, valor, pago, cliente) VALUES (457866148, 124548, 124.70, true, 1);
-INSERT INTO pagamento_servicos_compras (referencia, entidade, valor, pago, cliente) VALUES (124587963, 124578, 120.00, true, 1);
-INSERT INTO pagamento_servicos_compras (referencia, entidade, valor, pago, cliente) VALUES (135789032, 245784, 12.00, true, 1);
+-- INSERT INTO pagamento_servicos_compras (referencia, entidade, valor, pago, cliente) VALUES (457866148, 124548, 124.70, true, 1);
+-- INSERT INTO pagamento_servicos_compras (referencia, entidade, valor, pago, cliente) VALUES (124587963, 124578, 120.00, true, 1);
+-- INSERT INTO pagamento_servicos_compras (referencia, entidade, valor, pago, cliente) VALUES (135789032, 245784, 12.00, true, 1);
 
-INSERT INTO transferencia (valor, cliente_realiza, cliente_recebe) VALUES (120.00, 1, 3);
+-- INSERT INTO transferencia (valor, cliente_realiza, cliente_recebe) VALUES (120.00, 1, 3);

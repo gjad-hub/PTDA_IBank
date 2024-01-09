@@ -2,14 +2,22 @@ package pt.ua.ibank.interfaces.internalFrames;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import pt.ua.ibank.DAO.PaymentsDAO;
+import pt.ua.ibank.DAO.ServicesDAO;
 import pt.ua.ibank.DTO.Cartao;
 import pt.ua.ibank.DTO.Cliente;
 import static pt.ua.ibank.DTO.Cliente.LocalClient;
+import pt.ua.ibank.DTO.PagamentoServicosCompras;
 
 public class PayServices extends javax.swing.JInternalFrame {
+
+    private final Color green = new Color(63, 153, 87);
+    private final Color red = new Color(230, 45, 9);
+    private final String regexEntidade = "^\\d{5}$";
+    private final String regexReferencia = "^\\d{9}$";
 
     public PayServices() {
         initComponents();
@@ -105,7 +113,7 @@ public class PayServices extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(saldoCartao)
                     .addComponent(numCartao))
-                .addContainerGap(220, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,34 +152,31 @@ public class PayServices extends javax.swing.JInternalFrame {
                         .addGap(8, 8, 8))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, 0, 310, Short.MAX_VALUE))
                             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(montante)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(montate_decimal, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE))
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(referencia)
-                                    .addComponent(entidade))))
+                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(montante)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(montate_decimal, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(referencia, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(entidade, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addGap(10, 10, 10))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -232,16 +237,15 @@ public class PayServices extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void payActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payActionPerformed
+        status.setForeground(red);
+        status.setText("");
+
         String montanteString = !montante.getText().isEmpty() ? montante.getText() : "0";
         String montanteDecimalString = !montate_decimal.getText().isEmpty() ? montate_decimal.getText() : "0";
         double valor = Double.parseDouble(montanteString + "." + montanteDecimalString);
-        status.setFont(new Font(status.getFont().getName(), Font.PLAIN, 12));
-        status.setForeground(Color.RED);
 
         if (entidade.getText().isEmpty() && referencia.getText().isEmpty()) {
             status.setText("Campos entidade e referência vazios!");
-            entidade.requestFocus();
-            referencia.requestFocus();
             return;
         } else if (entidade.getText().isEmpty()) {
             status.setText("Campo entidade vazio!");
@@ -255,13 +259,14 @@ public class PayServices extends javax.swing.JInternalFrame {
 
         if (valor <= 0) {
             montante.requestFocus();
-            status.setText("Montante inválido!");
+            status.setText("Montante não pode ser vazio!");
+            return;
         }
 
-        String regexEntidade = "^\\d{5}$";
         Pattern pattern = Pattern.compile(regexEntidade);
         Matcher matcher = pattern.matcher(entidade.getText());
         String entidadeValida = null;
+
         if (matcher.matches()) {
             entidadeValida = entidade.getText();
         } else {
@@ -270,11 +275,10 @@ public class PayServices extends javax.swing.JInternalFrame {
             return;
         }
 
-        String regexReferencia = "^\\d{9}$";
         Pattern pattern2 = Pattern.compile(regexReferencia);
         Matcher matcher2 = pattern2.matcher(referencia.getText());
-        //matcher = pattern2.matcher(referencia.getText());
         String referenciaValida = null;
+
         if (matcher2.matches()) {
             referenciaValida = referencia.getText();
         } else {
@@ -288,11 +292,26 @@ public class PayServices extends javax.swing.JInternalFrame {
             return;
         }
 
-        PaymentsDAO.payService(valor, LocalClient.numCliente, entidadeValida, referenciaValida);
-        status.setFont(new Font(status.getFont().getName(), Font.BOLD, 18));
+        PagamentoServicosCompras servicosCompras = ServicesDAO.getServicosCompras(Integer.parseInt(referenciaValida), Integer.parseInt(entidadeValida));
+
+        if (Objects.isNull(servicosCompras)) {
+            status.setText("O par entidade referencia não existe !");
+            return;
+        }
+
+        if (servicosCompras.pago) {
+            status.setText("A referencia que está a tentar pagar já está paga");
+            return;
+        }
+
+        if (valor != servicosCompras.valor) {
+            status.setText("Valor incorreto !");
+            return;
+        }
+
+        PaymentsDAO.payService(valor, LocalClient.numCliente, Integer.parseInt(entidadeValida), Integer.parseInt(referenciaValida));
         status.setForeground(Color.GREEN);
         status.setText("PAGO!");
-
     }//GEN-LAST:event_payActionPerformed
 
     private void jPanel1ComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel1ComponentResized
