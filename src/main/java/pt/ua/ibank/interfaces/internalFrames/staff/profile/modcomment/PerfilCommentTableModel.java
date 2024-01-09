@@ -19,12 +19,17 @@ public class PerfilCommentTableModel extends javax.swing.table.AbstractTableMode
 
     public PerfilCommentTableModel(String clientEmail) {
         data = null;
-        // data = UserProfileDAO.getCardListFromUserID(clientID);
+        // data = UserProfileDAO.getProfileCommentListFromUserID(clientID);
     }
 
     public PerfilCommentTableModel() {
         data = new java.util.ArrayList<>();
-        data.add(new ModCommentProfile("2", "", LocalDateTime.now()));
+        data.add(new ModCommentProfile("2",
+                " this user is very awesomeASDKLJASJKLDJASKLDJSKLDJSKLDJADKLSJAL ",
+                LocalDateTime.now()));
+        data.add(new ModCommentProfile("1",
+                " this user is very awesomeASDKLJASJKLDJASKLDJSKLDJSKLDJADKLSJAL ",
+                LocalDateTime.now()));
     }
 
     @Override
@@ -49,7 +54,7 @@ public class PerfilCommentTableModel extends javax.swing.table.AbstractTableMode
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return true; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        return false; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
 
 }

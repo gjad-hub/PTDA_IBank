@@ -52,10 +52,12 @@ public class PerfilCommentTableElementPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        textBoxes1 = new org.fit.cssbox.demo.TextBoxes();
         lblTtitle = new javax.swing.JLabel();
         lblmodName = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lblDateTime = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
         jXTextArea1 = new org.jdesktop.swingx.JXTextArea();
 
         setBackground(new java.awt.Color(254, 254, 254));
@@ -72,15 +74,23 @@ public class PerfilCommentTableElementPanel extends javax.swing.JPanel {
         lblDateTime.setForeground(new java.awt.Color(102, 102, 102));
         lblDateTime.setText("data");
 
-        jXTextArea1.setBorder(null);
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        jScrollPane1.setHorizontalScrollBar(null);
+        jScrollPane1.setViewportView(jXTextArea1);
+
         jXTextArea1.setColumns(20);
         jXTextArea1.setLineWrap(true);
         jXTextArea1.setRows(5);
-        jXTextArea1.setText("CWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWomentario de moderador aqui");
+        jXTextArea1.setToolTipText("");
         jXTextArea1.setWrapStyleWord(true);
-        jXTextArea1.setAutoscrolls(false);
-        jXTextArea1.setOpaque(false);
-        jXTextArea1.setPreferredSize(new java.awt.Dimension(100, 20));
+        jXTextArea1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jXTextArea1PropertyChange(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jXTextArea1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -89,42 +99,44 @@ public class PerfilCommentTableElementPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(lblTtitle)
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(lblmodName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblmodName)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblDateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jXTextArea1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(10, 10, 10))))
+                .addComponent(lblDateTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(2, 2, 2))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblTtitle)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jXTextArea1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addContainerGap()
+                        .addComponent(lblTtitle))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblmodName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2)
-                    .addComponent(lblDateTime))
-                .addContainerGap())
+                    .addComponent(lblDateTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jXTextArea1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jXTextArea1PropertyChange
+
+    }//GEN-LAST:event_jXTextArea1PropertyChange
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private org.jdesktop.swingx.JXTextArea jXTextArea1;
     private javax.swing.JLabel lblDateTime;
     private javax.swing.JLabel lblTtitle;
     private javax.swing.JLabel lblmodName;
+    private org.fit.cssbox.demo.TextBoxes textBoxes1;
     // End of variables declaration//GEN-END:variables
 }

@@ -32,7 +32,7 @@ public class PerfilCellEditor extends DefaultCellEditor {
         ConnectionUrlParser.Pair<String, String> componentValue = (ConnectionUrlParser.Pair) table.getModel().getValueAt(
                 row, 0);
 
-        if (componentValue.left.contains("*")) {
+        if (componentValue.left.contains(": ")) {
             return new Component() {
             };
         }

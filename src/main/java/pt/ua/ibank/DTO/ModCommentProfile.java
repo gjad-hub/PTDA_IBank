@@ -13,9 +13,9 @@ import java.time.LocalDateTime;
  */
 public class ModCommentProfile {
 
-    private String funcionarioID;
-    private String descricao;
-    private LocalDateTime dataFeita;
+    private final String funcionarioID;
+    private final String descricao;
+    private final LocalDateTime dataFeita;
 
     public ModCommentProfile(String funcionarioID, String descricao,
             LocalDateTime dataFeita) {

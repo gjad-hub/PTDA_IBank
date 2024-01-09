@@ -73,9 +73,9 @@ public class PerfilPersonalTableModel extends AbstractTableModel {
                     + "on row " + rowIndex + " on column " + columnIndex
                     + "changed! to " + data.get(rowIndex).right);
 
-            ClientDAO.UpdateClient(client.nome, client.morada,
-                    client.email, client.telemovel,
-                    client.nif, oldEmail);
+            //ClientDAO.UpdateClient(client.nome, client.morada,
+            //      client.email, client.telemovel,
+            //    client.nif, oldEmail);
         } catch (java.lang.ClassCastException e) {
             //nothing
         }
@@ -93,7 +93,7 @@ public class PerfilPersonalTableModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return columnIndex > 0; // only the second column should be clickable
+        return true; // only the second column should be clickable
     }
 
 }

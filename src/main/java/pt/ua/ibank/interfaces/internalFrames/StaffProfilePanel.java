@@ -40,7 +40,7 @@ public class StaffProfilePanel extends javax.swing.JInternalFrame {
         setResizable(true);
 
         perfilMainInterface1.setMinimumSize(new java.awt.Dimension(859, 562));
-        getContentPane().add(perfilMainInterface1);
+        getContentPane().add(perfilMainInterface1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

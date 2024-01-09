@@ -25,15 +25,15 @@ public class PerfilCommentTableCellRenderer extends DefaultTableCellRenderer {
                 hasFocus, row, column);
         var currCommentObject = (ModCommentProfile) value;
 
-        String str = "2016-03-04 11:30";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
                 "yyyy-MM-dd HH:mm");
-        LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
+        String str = formatter.format(currCommentObject.getDataFeita());
+        System.out.println(str);
 
         var profileChildElement = new PerfilCommentTableElementPanel(
                 currCommentObject.getFuncionarioID(),
                 currCommentObject.getDescricao(),
-                currCommentObject.getDataFeita().toString()
+                str
         );
         //return profileChildElement;
         return profileChildElement;
