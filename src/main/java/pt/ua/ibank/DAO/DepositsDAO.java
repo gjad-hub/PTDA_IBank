@@ -46,7 +46,8 @@ public class DepositsDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Deposito tr = new Deposito(rs.getDouble("valor"), rs.getBoolean("aprovado"));
+                Deposito tr = new Deposito(rs.getDouble("valor"), rs.getBoolean(
+                        "aprovado"));
                 ldeposito.add(tr);
             }
         } catch (SQLException e) {
@@ -57,4 +58,26 @@ public class DepositsDAO {
 
         return ldeposito;
     }
+
+    public static int getDepositCount(int num_cliente) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            stmt = conn.prepareStatement(
+                    "SELECT count(*) AS qtd FROM deposito WHERE num_cli = ?");
+            stmt.setInt(1, num_cliente);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                return rs.getInt("qtd");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+        return -1;
+    }
+
 }

@@ -48,7 +48,6 @@ public class PerfilMainInterface extends javax.swing.JPanel {
     PerfilCardTableModel cardDataTable = new PerfilCardTableModel();
     PerfilCommentTableModel pctm = new PerfilCommentTableModel();
     DepositTableModel dtm = new DepositTableModel();
-    PerfilCommentTableCellRenderer fuckme = new PerfilCommentTableCellRenderer();
 
     /**
      * Creates new form NewJPanel

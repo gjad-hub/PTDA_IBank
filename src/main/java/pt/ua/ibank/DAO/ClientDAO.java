@@ -3,6 +3,7 @@ package pt.ua.ibank.DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import pt.ua.ibank.DTO.Cliente;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
@@ -15,7 +16,8 @@ public class ClientDAO {
     protected final static int codigoErro = 2;
     protected final static int codigoErroEmail = 3;
 
-    public static int CreateClient(String nome, String morada, String email, String telefone, String nif,
+    public static int CreateClient(String nome, String morada, String email,
+            String telefone, String nif,
             String password) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -25,7 +27,8 @@ public class ClientDAO {
         try {
 
             // Verifica se já existe alguma conta com aquele e-mail
-            stmt = conn.prepareStatement("SELECT count(num_cliente) AS valor FROM cliente where email like ?;");
+            stmt = conn.prepareStatement(
+                    "SELECT count(num_cliente) AS valor FROM cliente where email like ?;");
             stmt.setString(1, email);
             rs = stmt.executeQuery();
             rs.next();
@@ -37,7 +40,8 @@ public class ClientDAO {
             // Gera um novo iban até não existir um cliente com o iban
             do {
                 num_conta = generateRandomIban();
-                stmt = conn.prepareStatement("SELECT count(num_cliente) AS valor FROM cliente where num_conta like ?;");
+                stmt = conn.prepareStatement(
+                        "SELECT count(num_cliente) AS valor FROM cliente where num_conta like ?;");
                 stmt.setString(1, num_conta);
                 rs = stmt.executeQuery();
                 rs.next();
@@ -46,14 +50,16 @@ public class ClientDAO {
             // Gera um novo cartao até não existir nenhum cartao com este numero
             do {
                 num_cartao = generateCardNumber();
-                stmt = conn.prepareStatement("SELECT count(num_cartao) AS valor FROM cartao where num_cartao like ?;");
+                stmt = conn.prepareStatement(
+                        "SELECT count(num_cartao) AS valor FROM cartao where num_cartao like ?;");
                 stmt.setString(1, num_cartao);
                 rs = stmt.executeQuery();
                 rs.next();
             } while (rs.getInt("valor") != 0);
             stmt.close();
 
-            stmt = conn.prepareStatement("INSERT INTO cartao (num_cartao, data_validade, estado, credito) "
+            stmt = conn.prepareStatement(
+                    "INSERT INTO cartao (num_cartao, data_validade, estado, credito) "
                     + "VALUES (?, (SELECT DATE_ADD(CURDATE(), INTERVAL +5 YEAR )), \"activo\", ?);");
             stmt.setString(1, num_cartao);
             stmt.setBoolean(2, false);
@@ -125,6 +131,42 @@ public class ClientDAO {
         return null;
     }
 
+    public static ArrayList<Cliente> getClientList() {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Integer num_cliente = null;
+
+        ArrayList list = new ArrayList<>();
+        try {
+            stmt = conn.prepareStatement(
+                    "SELECT num_cliente,nome,morada,email,telemovel,nif,num_conta FROM cliente");
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Integer numero = rs.getInt("num_cliente");
+                String nome = rs.getString("nome");
+                String morada = rs.getString("morada");
+                String email = rs.getString("email");
+                String telemovel = rs.getString("telemovel");
+                String nif = rs.getString("nif");
+                String numConta = rs.getString("num_conta");
+                //balance will be null bc we dont need it
+
+                num_cliente = rs.getInt("num_cliente");
+                list.add(
+                        new Cliente(numero, nome, morada, email,
+                                telemovel, nif, numConta, 0.0));
+            }
+
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+        return null;
+    }
+
     public static Integer getClientIdByIBAN(String iban) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -175,7 +217,8 @@ public class ClientDAO {
         return null;
     }
 
-    public static int UpdateClient(String nome, String morada, String email, String telefone, String nif,
+    public static int UpdateClient(String nome, String morada, String email,
+            String telefone, String nif,
             String old_email) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -210,7 +253,8 @@ public class ClientDAO {
         }
     }
 
-    public static int UpdateClient(String nome, String morada, String email, String telefone, String nif,
+    public static int UpdateClient(String nome, String morada, String email,
+            String telefone, String nif,
             String password, String old_email) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -253,12 +297,14 @@ public class ClientDAO {
 
         try {
 
-            stmt = conn.prepareStatement("SELECT saldo, saldo_cativo FROM cliente where num_cliente = ?;");
+            stmt = conn.prepareStatement(
+                    "SELECT saldo, saldo_cativo FROM cliente where num_cliente = ?;");
             stmt.setInt(1, num_cliente);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                cl = new Cliente(rs.getDouble("saldo"), rs.getDouble("saldo_cativo"));
+                cl = new Cliente(rs.getDouble("saldo"), rs.getDouble(
+                        "saldo_cativo"));
             }
 
             return cl;
@@ -277,7 +323,8 @@ public class ClientDAO {
 
         try {
 
-            stmt = conn.prepareStatement("SELECT cartao_default FROM cliente where num_cliente = ?;");
+            stmt = conn.prepareStatement(
+                    "SELECT cartao_default FROM cliente where num_cliente = ?;");
             stmt.setInt(1, num_cliente);
             rs = stmt.executeQuery();
 

@@ -49,8 +49,6 @@ public class StaffAccountList extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-
-        contasInterfaceContainer.setBackground(new java.awt.Color(51, 51, 51));
         getContentPane().add(contasInterfaceContainer, java.awt.BorderLayout.CENTER);
 
         pack();

@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import pt.ua.ibank.DAO.CardsDAO;
+import pt.ua.ibank.DAO.ClientDAO;
+import pt.ua.ibank.DAO.DepositsDAO;
 import pt.ua.ibank.DTO.Cliente;
 
 /**
@@ -17,11 +19,10 @@ public class ContasTableModel extends AbstractTableModel {
     private List<Cliente> data = null;
 
     public ContasTableModel() {
-        data = new ArrayList<>();
-        data.add(new Cliente(1, "a", "a", "a", "2", "asd", "a", 23.2));
+        data = ClientDAO.getClientList();
         header = new ArrayList<>(Arrays.asList(
                 "N.Conta", "N.Cliente", "Nome",
-                "Email", "NIF", ""));
+                "Email", "NIF", "Depositos pendente", ""));
     }
 
     @Override
@@ -48,14 +49,13 @@ public class ContasTableModel extends AbstractTableModel {
         return data.get(rowIndex);
     }
 
-    public String getDepositAmountNumberFromID(int id) {
-        return String.valueOf(420);
-        //return CartaoDAO.getDepositAmountByNumber(number);
+    public int getDepositAmountNumberFromID(int id) {
+        return DepositsDAO.getDepositCount(id);
+
     }
 
-    public String getCardAmountNumberFromID(int id) {
-        return String.valueOf(69);
-        //return CartaoDAO.getCardAmountByNumber(number);
+    public int getCardAmountNumberFromID(int id) {
+        return CardsDAO.getCardAmountByID(id);
     }
 
     @Override
@@ -75,6 +75,10 @@ public class ContasTableModel extends AbstractTableModel {
             }
             case 4 -> {
                 return data.get(rowIndex).nif;
+            }
+            case 5 -> {
+                Integer id = Integer.valueOf(data.get(rowIndex).numConta);
+                return getDepositAmountNumberFromID(id);
             }
         }
         return null;
