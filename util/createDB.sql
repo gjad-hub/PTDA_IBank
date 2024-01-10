@@ -96,6 +96,15 @@ CREATE TABLE transacoes (
     FOREIGN KEY (num_cli) REFERENCES cliente(num_cliente)
 );
 
+-- Tabela Comentarios
+CREATE TABLE comentario_perfil (
+id INTEGER AUTO_INCREMENT PRIMARY KEY,
+id_empregado INTEGER references funcionario(num_fun),
+id_cliente INTEGER references cliente(num_cliente),
+descricao VARCHAR(255),
+data TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 DELIMITER \\
 
 -- Trigger deposito
