@@ -17,12 +17,10 @@ import pt.ua.ibank.utilities.RoundedShadowPanel;
 public class clientInterface extends javax.swing.JFrame {
 
     public static clientInterface localClientInterface;
-    public static Thread updateThread = null;
 
     @Override
     public void dispose() {
         DBConnection.closeConnection(conn);
-        updateThread = null;
     }
 
     public clientInterface() {
@@ -193,7 +191,7 @@ public class clientInterface extends javax.swing.JFrame {
                 .addComponent(services)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 528, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 548, Short.MAX_VALUE)
                 .addComponent(logout)
                 .addContainerGap())
         );
@@ -207,7 +205,7 @@ public class clientInterface extends javax.swing.JFrame {
         desktopLayout.setHorizontalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopLayout.createSequentialGroup()
-                .addGap(0, 593, Short.MAX_VALUE)
+                .addGap(0, 800, Short.MAX_VALUE)
                 .addComponent(logo))
         );
         desktopLayout.setVerticalGroup(

@@ -1,10 +1,6 @@
 package pt.ua.ibank.DTO;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Arrays;
-import static pt.ua.ibank.DAO.CartaoDAO.getCardByNumber;
-import static pt.ua.ibank.DTO.Cliente.LocalClient;
 
 public class Cartao {
 
@@ -43,5 +39,4 @@ public class Cartao {
         this.estado = estado;
         this.saldo_credito = saldo;
     }
-
 }

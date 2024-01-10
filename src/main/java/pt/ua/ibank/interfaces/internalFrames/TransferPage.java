@@ -7,6 +7,7 @@ import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.DAO.TransfersDAO;
 import static pt.ua.ibank.DTO.Cliente.LocalClient;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
+import static pt.ua.ibank.utilities.ClientInfo.updateClientBalance;
 
 public class TransferPage extends javax.swing.JInternalFrame {
 
@@ -202,7 +203,7 @@ public class TransferPage extends javax.swing.JInternalFrame {
             int reply = JOptionPane.showConfirmDialog(null, "Confirma a transferencia ?", title, JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
                 TransfersDAO.doTransfer(valor, LocalClient.numCliente, sender_num, descriString);
-                LocalClient.saldo = ClientDAO.getClientBalance(LocalClient.numCliente);
+                updateClientBalance(LocalClient);
                 status.setForeground(green);
                 status.setText("Transferencia realizada com sucesso !");
             }

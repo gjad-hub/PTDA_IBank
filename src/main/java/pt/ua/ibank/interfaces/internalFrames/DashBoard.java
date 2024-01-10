@@ -4,17 +4,23 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import static pt.ua.ibank.DAO.CartaoDAO.LocalClientCard;
-import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.DTO.Transacoes;
 import pt.ua.ibank.DAO.TransacoesDAO;
 import static pt.ua.ibank.DTO.Cliente.LocalClient;
 import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
-import static pt.ua.ibank.interfaces.clientInterface.updateThread;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
+import static pt.ua.ibank.utilities.ClientInfo.updateClientBalance;
 
 public class DashBoard extends javax.swing.JInternalFrame {
 
     private final SimpleDateFormat dataFormat = new SimpleDateFormat("MM/yy");
+    private Thread updateThread = null;
+    private volatile boolean stopThread = false;
+
+    @Override
+    public void dispose() {
+        stopThread = true;
+    }
 
     public DashBoard() {
         initComponents();
@@ -25,8 +31,9 @@ public class DashBoard extends javax.swing.JInternalFrame {
     private void updateInfoInterval() {
         updateThread = new Thread(() -> {
             try {
-                while (true) {
+                while (!stopThread) {
                     updateInfo();
+                    System.out.println(LocalClient);
                     Thread.sleep(5000);
                 }
             } catch (InterruptedException ex) {
@@ -394,7 +401,7 @@ public class DashBoard extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     public final void updateInfo() {
-        LocalClient.saldo = ClientDAO.getClientBalance(LocalClient.numCliente);
+        updateClientBalance(LocalClient);
         saldo.setText(LocalClient.saldo.toString() + " EUR");
         popular(TransacoesDAO.getTransacoes(LocalClient.numCliente));
     }
