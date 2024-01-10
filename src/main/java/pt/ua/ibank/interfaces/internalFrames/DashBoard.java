@@ -4,9 +4,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import static pt.ua.ibank.DAO.CartaoDAO.LocalClientCard;
+import pt.ua.ibank.DAO.DepositsDAO;
 import pt.ua.ibank.DTO.Transacoes;
 import pt.ua.ibank.DAO.TransacoesDAO;
 import static pt.ua.ibank.DTO.Cliente.LocalClient;
+import pt.ua.ibank.DTO.Deposito;
 import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
 import static pt.ua.ibank.utilities.ClientInfo.updateClientBalance;
@@ -33,7 +35,6 @@ public class DashBoard extends javax.swing.JInternalFrame {
             try {
                 while (!stopThread) {
                     updateInfo();
-                    System.out.println(LocalClient);
                     Thread.sleep(5000);
                 }
             } catch (InterruptedException ex) {
@@ -48,7 +49,7 @@ public class DashBoard extends javax.swing.JInternalFrame {
                 string.length() - char_visible);
     }
 
-    private void popular(ArrayList<Transacoes> ltransacoes) {
+    private void popularTransacoes(ArrayList<Transacoes> ltransacoes) {
         DefaultTableModel modelo = (DefaultTableModel) t_table.getModel();
         modelo.setNumRows(0);
 
@@ -57,7 +58,22 @@ public class DashBoard extends javax.swing.JInternalFrame {
                 modelo.addRow(new Object[]{
                     tr.data,
                     tr.descricao,
-                    (tr.valor > 0 ? "+" + tr.valor : tr.valor) + " €"
+                    (tr.valor > 0 ? "+" + tr.valor : tr.valor) + " EUR"
+                });
+            }
+        }
+    }
+    
+    
+    private void popularDepositos(ArrayList<Deposito> ldeposito) {
+        DefaultTableModel modelo = (DefaultTableModel) table_depositos.getModel();
+        modelo.setNumRows(0);
+
+        if (ldeposito != null) {
+            for (Deposito dp : ldeposito) {
+                modelo.addRow(new Object[]{
+                    dp.valor + " EUR",
+                    dp.aprovado
                 });
             }
         }
@@ -86,7 +102,7 @@ public class DashBoard extends javax.swing.JInternalFrame {
         saldo = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        servicos = new javax.swing.JButton();
         iban = new javax.swing.JLabel();
         see_iban = new javax.swing.JCheckBox();
         jButton5 = new javax.swing.JButton();
@@ -100,13 +116,18 @@ public class DashBoard extends javax.swing.JInternalFrame {
         dataValidade = new javax.swing.JLabel();
         bgcardImage = new javax.swing.JLabel();
         cards1 = new RoundedShadowPanel(10);
+        jSeparator4 = new javax.swing.JSeparator();
+        update_saldo1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table_depositos = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
         setTitle("DashBoard");
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_20/dashboard.png"))); // NOI18N
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/dashboard.png"))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -162,12 +183,12 @@ public class DashBoard extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transacaoLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(transacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2)
                     .addComponent(jSeparator2)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, transacaoLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 947, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(update_transacoes)))
+                        .addComponent(update_transacoes))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(15, 15, 15))
         );
         transacaoLayout.setVerticalGroup(
@@ -182,7 +203,7 @@ public class DashBoard extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
                 .addGap(15, 15, 15))
         );
 
@@ -213,7 +234,12 @@ public class DashBoard extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton4.setText("Serviços e compras");
+        servicos.setText("Serviços e compras");
+        servicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                servicosActionPerformed(evt);
+            }
+        });
 
         iban.setForeground(new java.awt.Color(0, 0, 51));
 
@@ -255,7 +281,7 @@ public class DashBoard extends javax.swing.JInternalFrame {
                     .addGroup(statLayout.createSequentialGroup()
                         .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(servicos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -279,7 +305,7 @@ public class DashBoard extends javax.swing.JInternalFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(statLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
+                    .addComponent(servicos)
                     .addComponent(jButton3)
                     .addComponent(jButton5))
                 .addGap(12, 12, 12))
@@ -320,15 +346,68 @@ public class DashBoard extends javax.swing.JInternalFrame {
         cards1.setBackground(new java.awt.Color(255, 255, 255));
         cards1.setPreferredSize(new java.awt.Dimension(287, 170));
 
+        update_saldo1.setText("Atualizar");
+        update_saldo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                update_saldo1ActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel5.setText("Depositos");
+
+        table_depositos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Valor", "Aprovado"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(table_depositos);
+
         javax.swing.GroupLayout cards1Layout = new javax.swing.GroupLayout(cards1);
         cards1.setLayout(cards1Layout);
         cards1Layout.setHorizontalGroup(
             cards1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 368, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cards1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(cards1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, cards1Layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(update_saldo1))
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(6, 6, 6))
         );
         cards1Layout.setVerticalGroup(
             cards1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 202, Short.MAX_VALUE)
+            .addGroup(cards1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(cards1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(update_saldo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(4, 4, 4)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -354,7 +433,7 @@ public class DashBoard extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(cards1, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
                     .addComponent(cards, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                    .addComponent(stat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 202, Short.MAX_VALUE))
+                    .addComponent(stat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
                 .addGap(12, 12, 12)
                 .addComponent(transacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(12, 12, 12))
@@ -377,7 +456,7 @@ public class DashBoard extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void update_transacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_transacoesActionPerformed
-        popular(TransacoesDAO.getTransacoes(LocalClient.numCliente));
+        updateInfo();
     }//GEN-LAST:event_update_transacoesActionPerformed
 
     private void see_ibanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_see_ibanActionPerformed
@@ -393,17 +472,26 @@ public class DashBoard extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void update_saldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_saldoActionPerformed
-        // TODO add your handling code here:
+        updateInfo();
     }//GEN-LAST:event_update_saldoActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         localClientInterface.addWindow(new DepositMoney());
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void update_saldo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_saldo1ActionPerformed
+        updateInfo();
+    }//GEN-LAST:event_update_saldo1ActionPerformed
+
+    private void servicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_servicosActionPerformed
+       localClientInterface.addWindow(new PayServices());
+    }//GEN-LAST:event_servicosActionPerformed
+
     public final void updateInfo() {
         updateClientBalance(LocalClient);
         saldo.setText(LocalClient.saldo.toString() + " EUR");
-        popular(TransacoesDAO.getTransacoes(LocalClient.numCliente));
+        popularTransacoes(TransacoesDAO.getTransacoes(LocalClient.numCliente));
+        popularDepositos(DepositsDAO.getDeposits(LocalClient.numCliente));
     }
 
     private void setDefaultInfo() {
@@ -430,27 +518,32 @@ public class DashBoard extends javax.swing.JInternalFrame {
     private javax.swing.JLabel dataValidade;
     private javax.swing.JLabel iban;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JLabel logoOuNome;
     private javax.swing.JLabel nomeTitularCartao;
     private javax.swing.JLabel numeroCartao;
     private javax.swing.JLabel saldo;
     private javax.swing.JCheckBox see_iban;
+    private javax.swing.JButton servicos;
     private javax.swing.JPanel stat;
     private javax.swing.JTable t_table;
+    private javax.swing.JTable table_depositos;
     private javax.swing.JLabel tipoCartãoPrincipal;
     private javax.swing.JPanel transacao;
     private javax.swing.JButton update_saldo;
+    private javax.swing.JButton update_saldo1;
     private javax.swing.JButton update_transacoes;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,7 +1,10 @@
 package pt.ua.ibank.DAO;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import pt.ua.ibank.DTO.Deposito;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 
@@ -13,7 +16,7 @@ public class DepositsDAO {
     public static int requestDeposit(double valor, int clienteRealiza) {
         PreparedStatement stmt = null;
         try {
-            
+
             stmt = conn.prepareStatement(
                     "INSERT INTO deposito (valor, num_cli) "
                     + "VALUES (?,?)"
@@ -28,5 +31,30 @@ public class DepositsDAO {
         } finally {
             DBConnection.closeConnection(stmt);
         }
+    }
+
+    public static ArrayList<Deposito> getDeposits(int num_cliente) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        ArrayList<Deposito> ldeposito = new ArrayList<>();
+
+        try {
+            stmt = conn.prepareStatement(
+                    "SELECT valor, aprovado FROM deposito WHERE num_cli = ? ORDER BY data desc;");
+            stmt.setInt(1, num_cliente);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Deposito tr = new Deposito(rs.getDouble("valor"), rs.getBoolean("aprovado"));
+                ldeposito.add(tr);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+
+        return ldeposito;
     }
 }

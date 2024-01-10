@@ -21,4 +21,9 @@ public class Deposito {
         this.idDeposito = idDeposito;
         this.valor = valor;
     }
+
+    public Deposito(double valor, boolean aprovado){
+        this.valor = valor;
+        this.aprovado = aprovado;
+    }
 }

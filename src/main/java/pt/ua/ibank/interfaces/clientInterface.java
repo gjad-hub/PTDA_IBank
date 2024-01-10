@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.beans.PropertyVetoException;
 import static pt.ua.ibank.DTO.Cliente.LocalClient;
+import pt.ua.ibank.interfaces.internalFrames.DepositMoney;
 import pt.ua.ibank.interfaces.internalFrames.PayServices;
 import pt.ua.ibank.interfaces.internalFrames.ProfilePage;
 import pt.ua.ibank.interfaces.internalFrames.TransferPage;
@@ -75,9 +76,10 @@ public class clientInterface extends javax.swing.JFrame {
         dashboard = new javax.swing.JButton();
         transfers = new javax.swing.JButton();
         services = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        card = new javax.swing.JButton();
         logout = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        depo = new javax.swing.JButton();
         desktop = new MDIDesktopPane();
         logo = new javax.swing.JLabel();
         small_side_bar = new RoundedShadowPanel(5);
@@ -87,6 +89,7 @@ public class clientInterface extends javax.swing.JFrame {
         sservices = new javax.swing.JButton();
         saccount = new javax.swing.JButton();
         slogout = new javax.swing.JButton();
+        sdepo = new javax.swing.JButton();
         menu_bar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         hide = new javax.swing.JMenuItem();
@@ -131,9 +134,9 @@ public class clientInterface extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/credit_card.png"))); // NOI18N
-        jButton1.setText("Cartões");
-        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        card.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/credit_card.png"))); // NOI18N
+        card.setText("Cartões");
+        card.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/logout.png"))); // NOI18N
         logout.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -151,6 +154,15 @@ public class clientInterface extends javax.swing.JFrame {
             }
         });
 
+        depo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/deposit.png"))); // NOI18N
+        depo.setText("Depostio");
+        depo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        depo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                depoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout side_barLayout = new javax.swing.GroupLayout(side_bar);
         side_bar.setLayout(side_barLayout);
         side_barLayout.setHorizontalGroup(
@@ -165,7 +177,8 @@ public class clientInterface extends javax.swing.JFrame {
                             .addComponent(dashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(transfers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(services, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(card, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(depo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(side_barLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -190,8 +203,10 @@ public class clientInterface extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(services)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 548, Short.MAX_VALUE)
+                .addComponent(card)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(depo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 505, Short.MAX_VALUE)
                 .addComponent(logout)
                 .addContainerGap())
         );
@@ -235,9 +250,19 @@ public class clientInterface extends javax.swing.JFrame {
 
         scard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/credit_card.png"))); // NOI18N
         scard.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        scard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                scardActionPerformed(evt);
+            }
+        });
 
         sservices.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/shopping_bag.png"))); // NOI18N
         sservices.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        sservices.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sservicesActionPerformed(evt);
+            }
+        });
 
         saccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/account_circle.png"))); // NOI18N
         saccount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -255,6 +280,14 @@ public class clientInterface extends javax.swing.JFrame {
             }
         });
 
+        sdepo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/deposit.png"))); // NOI18N
+        sdepo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        sdepo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sdepoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout small_side_barLayout = new javax.swing.GroupLayout(small_side_bar);
         small_side_bar.setLayout(small_side_barLayout);
         small_side_barLayout.setHorizontalGroup(
@@ -266,7 +299,8 @@ public class clientInterface extends javax.swing.JFrame {
                     .addComponent(stransfers, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(sservices, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(scard, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(saccount, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(saccount, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sdepo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, small_side_barLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -286,6 +320,8 @@ public class clientInterface extends javax.swing.JFrame {
                 .addComponent(sservices)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(scard)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(sdepo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(slogout)
                 .addContainerGap())
@@ -356,7 +392,7 @@ public class clientInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_sdashboardActionPerformed
 
     private void stransfersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stransfersActionPerformed
-        // TODO add your handling code here:
+        addWindow(new TransferPage());
     }//GEN-LAST:event_stransfersActionPerformed
 
     private void slogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_slogoutActionPerformed
@@ -380,9 +416,24 @@ public class clientInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_display_userMouseClicked
 
     private void servicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_servicesActionPerformed
-        // TODO add your handling code here:
         addWindow(new PayServices());
     }//GEN-LAST:event_servicesActionPerformed
+
+    private void depoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depoActionPerformed
+        addWindow(new DepositMoney());
+    }//GEN-LAST:event_depoActionPerformed
+
+    private void sservicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sservicesActionPerformed
+        addWindow(new PayServices());
+    }//GEN-LAST:event_sservicesActionPerformed
+
+    private void scardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scardActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_scardActionPerformed
+
+    private void sdepoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sdepoActionPerformed
+        addWindow(new DepositMoney());
+    }//GEN-LAST:event_sdepoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -439,11 +490,12 @@ public class clientInterface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton card;
     private javax.swing.JButton dashboard;
+    private javax.swing.JButton depo;
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel display_user;
     private javax.swing.JMenuItem hide;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JSeparator jSeparator1;
@@ -453,6 +505,7 @@ public class clientInterface extends javax.swing.JFrame {
     private javax.swing.JButton saccount;
     private javax.swing.JButton scard;
     private javax.swing.JButton sdashboard;
+    private javax.swing.JButton sdepo;
     private javax.swing.JButton services;
     private javax.swing.JPanel side_bar;
     private javax.swing.JButton slogout;

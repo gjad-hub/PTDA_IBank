@@ -4,12 +4,13 @@ import java.awt.Color;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import pt.ua.ibank.DAO.PaymentsDAO;
 import static pt.ua.ibank.DAO.PaymentsDAO.getServicosCompras;
 import pt.ua.ibank.DTO.Cartao;
-import pt.ua.ibank.DTO.Cliente;
 import static pt.ua.ibank.DTO.Cliente.LocalClient;
 import pt.ua.ibank.DTO.PagamentoServicosCompras;
+import pt.ua.ibank.utilities.RoundedShadowPanel;
 
 public class PayServices extends javax.swing.JInternalFrame {
 
@@ -20,15 +21,14 @@ public class PayServices extends javax.swing.JInternalFrame {
 
     public PayServices() {
         initComponents();
-        numCartao.setText(Cliente.LocalClient.numConta);
-        saldoCartao.setText(Cliente.LocalClient.saldo.toString() + " EUR");
+        saldo_actual.setText(LocalClient.saldo.toString() + " EUR");
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanel1 = new RoundedShadowPanel(5);
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -42,10 +42,9 @@ public class PayServices extends javax.swing.JInternalFrame {
         status = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         referencia = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
+        jPanel2 = new RoundedShadowPanel(5);
         jLabel8 = new javax.swing.JLabel();
-        saldoCartao = new javax.swing.JLabel();
-        numCartao = new javax.swing.JLabel();
+        saldo_actual = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -55,6 +54,7 @@ public class PayServices extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         setTitle("Serviços e Compras");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/shopping_bag.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -95,11 +95,7 @@ public class PayServices extends javax.swing.JInternalFrame {
         jLabel7.setText("Referência");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setText("De");
-
-        saldoCartao.setText("saldo do cartão EUR");
-
-        numCartao.setText("numero do conta");
+        jLabel8.setText("Saldo atual: ");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -108,22 +104,20 @@ public class PayServices extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(saldoCartao)
-                    .addComponent(numCartao))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(saldo_actual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(numCartao))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(saldoCartao)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(saldo_actual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/25pxsacolas-de-compras.png"))); // NOI18N
@@ -308,9 +302,12 @@ public class PayServices extends javax.swing.JInternalFrame {
             return;
         }
 
-        PaymentsDAO.payService(valor, LocalClient.numCliente, Integer.parseInt(entidadeValida), Integer.parseInt(referenciaValida));
-        status.setForeground(Color.GREEN);
-        status.setText("PAGO!");
+        int reply = JOptionPane.showConfirmDialog(null, "Confirma a pagamento ?", title, JOptionPane.YES_NO_OPTION);
+        if (reply == JOptionPane.YES_OPTION) {
+            PaymentsDAO.payService(valor, LocalClient.numCliente, Integer.parseInt(entidadeValida), Integer.parseInt(referenciaValida));
+            status.setForeground(Color.GREEN);
+            status.setText("PAGO!");
+        }
     }//GEN-LAST:event_payActionPerformed
 
     private void jPanel1ComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel1ComponentResized
@@ -339,10 +336,9 @@ public class PayServices extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField montante;
     private javax.swing.JTextField montate_decimal;
-    private javax.swing.JLabel numCartao;
     private javax.swing.JButton pay;
     private javax.swing.JTextField referencia;
-    private javax.swing.JLabel saldoCartao;
+    private javax.swing.JLabel saldo_actual;
     private javax.swing.JLabel status;
     // End of variables declaration//GEN-END:variables
 }

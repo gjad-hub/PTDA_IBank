@@ -47,7 +47,7 @@ public class ProfilePage extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new RoundedShadowPanel(10);
+        jPanel1 = new RoundedShadowPanel(5);
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         edit_profile = new javax.swing.JButton();
@@ -76,6 +76,7 @@ public class ProfilePage extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Perfil");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/account_circle.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 

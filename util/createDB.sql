@@ -81,6 +81,7 @@ CREATE TABLE deposito (
     aprovado BOOLEAN,
     num_fun INT,
     num_cli INT,
+    data TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (num_fun) REFERENCES funcionario(num_fun),
     FOREIGN KEY (num_cli) REFERENCES cliente(num_cliente)
 );
@@ -91,7 +92,7 @@ CREATE TABLE transacoes (
     num_cli INT NOT NULL,
     descricao VARCHAR(50),
     valor DECIMAL(10,2),
-	data TIMESTAMP,
+	data TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (num_cli) REFERENCES cliente(num_cliente)
 );
 
@@ -115,16 +116,14 @@ CREATE TRIGGER pagar_servico AFTER UPDATE ON pagamento_servicos_compras FOR EACH
 BEGIN
     DECLARE existe INT;
 	DECLARE saldo DECIMAL(10,2);
-	DECLARE data TIMESTAMP;
 
 	-- Cria mais alguma segurança no trigger
     SELECT COUNT(*) INTO existe FROM cliente WHERE num_cliente = NEW.cliente;
 	SELECT cliente.saldo INTO saldo FROM cliente WHERE num_cliente = NEW.cliente;
-	SELECT CURRENT_TIMESTAMP() INTO data;
 
     IF existe > 0 THEN
         IF saldo >= NEW.valor THEN
-			INSERT INTO transacoes (num_cli, descricao, valor, data) VALUES (NEW.cliente, "Pagamento serviços", 0 - NEW.valor, data);
+			INSERT INTO transacoes (num_cli, descricao, valor) VALUES (NEW.cliente, "Pagamento serviços", 0 - NEW.valor);
         END IF;
     END IF;
 END;
@@ -134,17 +133,15 @@ CREATE TRIGGER do_transferencia AFTER INSERT ON transferencia FOR EACH ROW
 BEGIN
     DECLARE existe INT;
 	DECLARE saldo DECIMAL(10,2);
-	DECLARE data TIMESTAMP;
 
 	-- Cria mais alguma segurança no trigger
     SELECT COUNT(*) INTO existe FROM cliente WHERE num_cliente = NEW.cliente_realiza;
 	SELECT cliente.saldo INTO saldo FROM cliente WHERE num_cliente = NEW.cliente_realiza;
-	SELECT CURRENT_TIMESTAMP() INTO data;
 
     IF existe > 0 THEN
 		IF saldo >= NEW.valor THEN
-			INSERT INTO transacoes (num_cli, descricao, valor, data) VALUES (NEW.cliente_realiza, "Transferencia", 0 - NEW.valor, data);
-			INSERT INTO transacoes (num_cli, descricao, valor, data) VALUES (NEW.cliente_recebe, "Transferencia", NEW.valor, data);
+			INSERT INTO transacoes (num_cli, descricao, valor) VALUES (NEW.cliente_realiza, "Transferencia", 0 - NEW.valor);
+			INSERT INTO transacoes (num_cli, descricao, valor) VALUES (NEW.cliente_recebe, "Transferencia", NEW.valor);
         END IF;
     END IF;
 END;
@@ -161,22 +158,18 @@ BEGIN
         UPDATE cliente SET saldo = saldo + NEW.valor WHERE num_cliente = NEW.num_cli;
     END IF;
 END;
-\\
-DELIMITER ;
 
-DELIMITER \\
+-- Procedure aprovar deposito
 CREATE PROCEDURE aprovar_deposito(IN depostio INTEGER, IN funcionario INTEGER)
 BEGIN
-    DECLARE data TIMESTAMP;
-    SELECT CURRENT_TIMESTAMP() INTO data;
+	UPDATE cliente SET saldo_cativo = saldo_cativo - (select valor from deposito where id_deposito = depostio)
+	               WHERE num_cliente = (select num_cli from deposito where id_deposito = depostio);
 
-	UPDATE cliente SET saldo_cativo = saldo_cativo - (select valor from deposito where id_deposito = depostio);
-	UPDATE deposito SET aprovado = true, num_fun = funcionario WHERE id_deposito = depostio;
-	INSERT INTO transacoes (num_cli, descricao, valor, data)
-	    VALUES ((SELECT num_cli FROM deposito WHERE id_deposito = depostio),
-	            "Depostio",
-	            (select valor from deposito where id_deposito = depostio),
-	            data);
+	UPDATE deposito SET aprovado = true, num_fun = funcionario
+	                WHERE id_deposito = depostio;
+
+	INSERT INTO transacoes (num_cli, descricao, valor)
+	    VALUES ((SELECT num_cli FROM deposito WHERE id_deposito = depostio),"Depostio",(select valor from deposito where id_deposito = depostio));
 END;
 \\
 DELIMITER ;
