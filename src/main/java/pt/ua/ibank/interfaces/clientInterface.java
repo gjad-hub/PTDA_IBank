@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.beans.PropertyVetoException;
 import static pt.ua.ibank.DTO.Cliente.LocalClient;
+import pt.ua.ibank.interfaces.internalFrames.CardManager;
 import pt.ua.ibank.interfaces.internalFrames.DepositMoney;
 import pt.ua.ibank.interfaces.internalFrames.PayServices;
 import pt.ua.ibank.interfaces.internalFrames.ProfilePage;
@@ -137,6 +138,11 @@ public class clientInterface extends javax.swing.JFrame {
         card.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/credit_card.png"))); // NOI18N
         card.setText("Cartões");
         card.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        card.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cardActionPerformed(evt);
+            }
+        });
 
         logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/logout.png"))); // NOI18N
         logout.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -428,12 +434,16 @@ public class clientInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_sservicesActionPerformed
 
     private void scardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scardActionPerformed
-        // TODO add your handling code here:
+        addWindow(new CardManager());
     }//GEN-LAST:event_scardActionPerformed
 
     private void sdepoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sdepoActionPerformed
         addWindow(new DepositMoney());
     }//GEN-LAST:event_sdepoActionPerformed
+
+    private void cardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cardActionPerformed
+        addWindow(new CardManager());
+    }//GEN-LAST:event_cardActionPerformed
 
     /**
      * @param args the command line arguments

@@ -3,15 +3,18 @@ package pt.ua.ibank.interfaces.internalFrames;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import static pt.ua.ibank.DAO.CartaoDAO.LocalClientCard;
+import static pt.ua.ibank.DAO.CardsDAO.LocalClientCard;
 import pt.ua.ibank.DAO.DepositsDAO;
 import pt.ua.ibank.DTO.Transacoes;
 import pt.ua.ibank.DAO.TransacoesDAO;
 import static pt.ua.ibank.DTO.Cliente.LocalClient;
 import pt.ua.ibank.DTO.Deposito;
 import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
+import pt.ua.ibank.utilities.ClientInfo;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
 import static pt.ua.ibank.utilities.ClientInfo.updateClientBalance;
+import static pt.ua.ibank.utilities.ClientInfo.updateClientCardInfo;
+import static pt.ua.ibank.utilities.ClientInfo.updateLocalCard;
 
 public class DashBoard extends javax.swing.JInternalFrame {
 
@@ -63,8 +66,7 @@ public class DashBoard extends javax.swing.JInternalFrame {
             }
         }
     }
-    
-    
+
     private void popularDepositos(ArrayList<Deposito> ldeposito) {
         DefaultTableModel modelo = (DefaultTableModel) table_depositos.getModel();
         modelo.setNumRows(0);
@@ -484,12 +486,17 @@ public class DashBoard extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_update_saldo1ActionPerformed
 
     private void servicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_servicosActionPerformed
-       localClientInterface.addWindow(new PayServices());
+        localClientInterface.addWindow(new PayServices());
     }//GEN-LAST:event_servicosActionPerformed
 
     public final void updateInfo() {
         updateClientBalance(LocalClient);
+        updateLocalCard(LocalClientCard, LocalClient);
+        
         saldo.setText(LocalClient.saldo.toString() + " EUR");
+        numeroCartao.setText(printDividedString(LocalClientCard.numCartao, 4));
+        dataValidade.setText(dataFormat.format(LocalClientCard.dataValidade));
+        
         popularTransacoes(TransacoesDAO.getTransacoes(LocalClient.numCliente));
         popularDepositos(DepositsDAO.getDeposits(LocalClient.numCliente));
     }
@@ -497,15 +504,13 @@ public class DashBoard extends javax.swing.JInternalFrame {
     private void setDefaultInfo() {
         iban.setText(maskString(LocalClient.numConta, 10));
         nomeTitularCartao.setText(LocalClient.nome);
-        numeroCartao.setText(printDividedString(LocalClientCard.numCartao, 4));
-        dataValidade.setText(dataFormat.format(LocalClientCard.dataValidade));
     }
 
-    private static String printDividedString(String inputString, int chunkSize) {
+    private String printDividedString(String string, int size) {
         String tmp = "";
-        for (int i = 0; i < inputString.length(); i += chunkSize) {
-            int end = Math.min(i + chunkSize, inputString.length());
-            String chunk = inputString.substring(i, end);
+        for (int i = 0; i < string.length(); i += size) {
+            int end = Math.min(i + size, string.length());
+            String chunk = string.substring(i, end);
             tmp += chunk + " ";
         }
         return tmp;

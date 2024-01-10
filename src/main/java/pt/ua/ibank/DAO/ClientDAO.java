@@ -42,7 +42,6 @@ public class ClientDAO {
                 rs = stmt.executeQuery();
                 rs.next();
             } while (rs.getInt("valor") != 0);
-  
 
             // Gera um novo cartao até não existir nenhum cartao com este numero
             do {
@@ -62,7 +61,7 @@ public class ClientDAO {
 
             stmt = conn.prepareStatement(
                     "INSERT INTO cliente (nome, morada, email, telemovel, nif, num_conta, password, cartao_default) "
-                            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             stmt.setString(1, nome);
             stmt.setString(2, morada);
             stmt.setString(3, email);
@@ -247,19 +246,19 @@ public class ClientDAO {
         }
     }
 
-    public static Cliente getClientBalance(int num_cliente){
+    public static Cliente getClientBalance(int num_cliente) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         Cliente cl = null;
 
         try {
 
-            stmt = conn.prepareStatement("SELECT saldo, saldo_cativo FROM cliente where num_cliente like ?;");
+            stmt = conn.prepareStatement("SELECT saldo, saldo_cativo FROM cliente where num_cliente = ?;");
             stmt.setInt(1, num_cliente);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                cl =  new Cliente(rs.getDouble("saldo"), rs.getDouble("saldo_cativo"));
+                cl = new Cliente(rs.getDouble("saldo"), rs.getDouble("saldo_cativo"));
             }
 
             return cl;
@@ -269,7 +268,29 @@ public class ClientDAO {
             DBConnection.closeConnection(stmt, rs);
         }
         return null;
+    }
 
-        
+    public static String getClientDefaultCard(int num_cliente) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String card = null;
+
+        try {
+
+            stmt = conn.prepareStatement("SELECT cartao_default FROM cliente where num_cliente = ?;");
+            stmt.setInt(1, num_cliente);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                card = rs.getString("cartao_default");
+            }
+
+            return card;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+        return null;
     }
 }

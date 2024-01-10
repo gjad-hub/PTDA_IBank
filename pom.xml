@@ -18,7 +18,7 @@
             <resource>
                 <directory>src/main/java</directory>
             </resource>
-         </resources>
+        </resources>
     </build>
 
     <dependencies>

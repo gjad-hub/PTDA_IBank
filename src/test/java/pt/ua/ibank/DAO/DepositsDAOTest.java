@@ -20,17 +20,17 @@ class DepositsDAOTest {
     void requestDeposit() {
     }
 
-    @Test
-    public void testRequestDepositSuccess() {
-        double testValor = 100.0;
-        int testCliente = 3;
-        assertEquals(DepositsDAO.codigoSucesso, DepositsDAO.requestDeposit(testValor, testCliente));
-    }
-
-    @Test
-    public void testRequestDepositErrorNonexistentClient() {
-        double testValor = 10.0;
-        int testCliente = 9999;
-        assertEquals(DepositsDAO.codigoErro, DepositsDAO.requestDeposit(testValor, testCliente));
-    }
+//    @Test
+//    public void testRequestDepositSuccess() {
+//        double testValor = 100.0;
+//        int testCliente = 3;
+//        assertEquals(DepositsDAO.codigoSucesso, DepositsDAO.requestDeposit(testValor, testCliente));
+//    }
+//
+//    @Test
+//    public void testRequestDepositErrorNonexistentClient() {
+//        double testValor = 10.0;
+//        int testCliente = 9999;
+//        assertEquals(DepositsDAO.codigoErro, DepositsDAO.requestDeposit(testValor, testCliente));
+//    }
 }

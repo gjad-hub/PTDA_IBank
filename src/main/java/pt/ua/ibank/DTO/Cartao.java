@@ -39,4 +39,11 @@ public class Cartao {
         this.estado = estado;
         this.saldo_credito = saldo;
     }
+
+    public Cartao(String numCartao, Date dataValidade, String estado, boolean credito) {
+        this.numCartao = numCartao;
+        this.dataValidade = dataValidade;
+        this.estado = estado;
+        this.credito = credito;
+    }
 }

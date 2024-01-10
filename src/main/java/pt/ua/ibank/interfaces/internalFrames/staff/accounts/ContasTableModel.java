@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import pt.ua.ibank.DAO.CartaoDAO;
+import pt.ua.ibank.DAO.CardsDAO;
 import pt.ua.ibank.DTO.Cliente;
 
 /**
