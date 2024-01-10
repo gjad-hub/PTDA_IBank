@@ -22,7 +22,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jTextFieldNewValue" pref="66" max="32767" attributes="0"/>
+              <Component id="jTextFieldNewValue" pref="62" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="cmdCancel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -79,6 +79,9 @@
           <Image iconType="3" name="/resources/images/icons_20/cancel.jpg"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdCancelActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

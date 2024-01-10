@@ -24,18 +24,11 @@ public class PerfilCommentTableCellRenderer extends DefaultTableCellRenderer {
                 hasFocus, row, column);
         var currCommentObject = (ModeratorComment) value;
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
-                "yyyy-MM-dd HH:mm");
-        // String str = formatter.format(currCommentObject.getDataFeita());
-        //System.out.println(str);
-        //var profileChildElement = new PerfilCommentTableElementPanel(
-        //      currCommentObject.getFuncionarioID(),
-        //    currCommentObject.getDescricao(),
-        //  str
-        //);
-        return comm;
-        //return profileChildElement;
-        //return profileChildElement;
+        var profileChildElement = new PerfilCommentTableElementPanel(
+                currCommentObject.getNomeFuncionario(),
+                currCommentObject.getDescricao(),
+                currCommentObject.getDataFeita().toString());
+        return profileChildElement;
     }
 
 }

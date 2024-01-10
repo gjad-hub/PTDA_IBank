@@ -15,6 +15,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
+import pt.ua.ibank.DTO.Deposito;
 
 /**
  *
@@ -28,20 +29,25 @@ public class DepositTableCellRenderer extends DefaultTableCellRenderer {
         Component comm = super.getTableCellRendererComponent(table, value,
                 isSelected,
                 hasFocus, row, column);
-        var currClientObject = (Pair<String, String>) value;
+        var currClientObject = (Deposito) value;
 
-        var profileChildElement = new PerfilTableElementPanel(
-                false,
-                currClientObject.left,
-                currClientObject.right);
+        DepositTableElementPanel depositChildElement;
 
-        if (isSelected && row % 2 == 0) {
-            profileChildElement.setBackground(Color.WHITE);
+        if (currClientObject.pendenteAprovacao) {
+            depositChildElement = new DepositTableElementPanel(
+                    Integer.toString(currClientObject.idDeposito),
+                    Double.toString(currClientObject.valor)
+            );
         } else {
-            // profileChildElement.setBackground(comm.getBackground());
+            depositChildElement = new DepositTableElementPanel(
+                    Integer.toString(currClientObject.idDeposito),
+                    Double.toString(currClientObject.valor),
+                    currClientObject.aprovado
+            );
         }
-        //return currClientPanel;
-        return profileChildElement;
+
+        depositChildElement.setBackground(Color.WHITE);
+        return depositChildElement;
     }
 
 }

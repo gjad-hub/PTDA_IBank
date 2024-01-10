@@ -23,16 +23,10 @@ public class PerfilCommentTableElementPanel extends javax.swing.JPanel {
      */
     public PerfilCommentTableElementPanel() {
         initComponents();
-
-        jXTextArea1.setLineWrap(true);
-        jXTextArea1.setWrapStyleWord(true);
-        jXTextArea1.setText("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
-        lblmodName.setText("Administrator");
-        lblDateTime.setText("01-02-24 5:20 PM");
     }
 
     public PerfilCommentTableElementPanel(String funcionarioID, String descricao,
-            String date) {
+            String timestamp) {
         initComponents();
 
         jXTextArea1.setLineWrap(true);
@@ -40,7 +34,7 @@ public class PerfilCommentTableElementPanel extends javax.swing.JPanel {
         jXTextArea1.setText(descricao);
         //substituir por um metodo DAO que pega o nome da pessoa
         lblmodName.setText(funcionarioID);
-        lblDateTime.setText(date);
+        lblDateTime.setText(timestamp);
     }
 
     /**
@@ -104,11 +98,11 @@ public class PerfilCommentTableElementPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(lblmodName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblDateTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(2, 2, 2))
+                .addGap(8, 8, 8))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,11 +112,11 @@ public class PerfilCommentTableElementPanel extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(lblTtitle))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(3, 3, 3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblmodName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2)
-                    .addComponent(lblDateTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(lblDateTime)))
         );
     }// </editor-fold>//GEN-END:initComponents
 

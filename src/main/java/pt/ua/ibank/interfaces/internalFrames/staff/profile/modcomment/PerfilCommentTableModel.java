@@ -4,9 +4,9 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment;
 
-import java.time.LocalDateTime;
-import pt.ua.ibank.interfaces.internalFrames.staff.profile.card.*;
-import pt.ua.ibank.DTO.Cartao;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+
 import pt.ua.ibank.DTO.ModeratorComment;
 
 /**
@@ -16,18 +16,17 @@ import pt.ua.ibank.DTO.ModeratorComment;
 public class PerfilCommentTableModel extends javax.swing.table.AbstractTableModel {
 
     private final java.util.List<ModeratorComment> data;
+    String clientEmail;
 
     public PerfilCommentTableModel(String clientEmail) {
+        this.clientEmail = clientEmail;
         data = null;
         // data = CommentsDAO.getProfileCommentListFromUserID(clientID);
     }
 
     public PerfilCommentTableModel() {
         data = new java.util.ArrayList<>();
-        //data.add(new ModeratorComment(
-        //        2,
-        //          " this user is very awesomeASDKLJASJKLDJASKLDJSKLDJSKLDJADKLSJAL ",
-        //            "String",new Date;
+
     }
 
     @Override
@@ -40,26 +39,30 @@ public class PerfilCommentTableModel extends javax.swing.table.AbstractTableMode
         return 1;
     }
 
-//    public boolean adicionarComentario() {
-//
-//    }
-//
-//    public boolean removerComentario() {
-//        CommentsDAO.deleteBook(0)
-//    }
+    public boolean adicionarComentario(String comment) {
+        data.add(new ModeratorComment(data.size(), "admin", comment,
+                new Timestamp(2)));
+        //return CommentsDAO.addNewComment(this.clientEmail, c);
+        fireTableRowsInserted(data.size() - 1, data.size() - 1);
+        return true;
+    }
+
+    public boolean removerComentario(int row) {
+        data.remove(row);
+        //int id = data.get(row).getId();
+        //return CommentsDAO.deleteComment(id);
+        fireTableRowsDeleted(row, row);
+        return true;
+    }
+
     @Override
     public Object getValueAt(int linha, int coluna) {
-        switch (coluna) {
-            case 0 -> {
-                return data.get(linha);
-            }
-        }
-        return null;
+        return data.get(linha);
     }
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return false; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        return true; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
 
 }

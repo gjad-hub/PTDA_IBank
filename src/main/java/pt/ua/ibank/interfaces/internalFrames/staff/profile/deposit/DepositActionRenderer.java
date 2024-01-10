@@ -4,12 +4,11 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.deposit;
 
-import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.*;
-import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
+import pt.ua.ibank.DTO.Deposito;
 
 /**
  *
@@ -24,22 +23,17 @@ public class DepositActionRenderer extends DefaultTableCellRenderer {
                 isSelected,
                 hasFocus, row, column);
 
-        Pair<String, String> componentValue = (Pair) table.getModel().getValueAt(
+        Deposito deposito = (Deposito) table.getModel().getValueAt(
                 row, 0);
-
-        if (componentValue.left.contains(": ")) {
-            return comm;
+        if (!deposito.pendenteAprovacao) {
+            return new Component() {
+            };
         }
 
-        DepositlActionPanelElement action = new DepositlActionPanelElement(componentValue.right);
+        DepositActionPanelElement action = new DepositActionPanelElement();
+        action.setBackground(Color.WHITE);
 
-        if (isSelected && row % 2 == 0) {
-            action.setBackground(Color.WHITE);
-        } else {
-            //action.setBackground(comm.getBackground());
-        }
         return action;
-
     }
 
 }

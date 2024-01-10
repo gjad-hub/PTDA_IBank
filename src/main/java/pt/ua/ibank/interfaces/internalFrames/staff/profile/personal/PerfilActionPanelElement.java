@@ -4,8 +4,8 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.personal;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
-import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilTableActionEvent;
 
 /**
  *
@@ -17,6 +17,12 @@ public class PerfilActionPanelElement extends javax.swing.JPanel {
      * Creates new form ClientProfilePanelAction
      */
     String data;
+
+    public PerfilActionPanelElement(boolean isVisible) {
+        //initComponents();
+        this.setEnabled(false);
+
+    }
 
     public PerfilActionPanelElement() {
         initComponents();
@@ -90,13 +96,18 @@ public class PerfilActionPanelElement extends javax.swing.JPanel {
         });
 
         cmdCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_20/cancel.jpg"))); // NOI18N
+        cmdCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTextFieldNewValue, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
+                .addComponent(jTextFieldNewValue, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmdCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package pt.ua.ibank.interfaces.internalFrames.staff.transfers;
+package pt.ua.ibank.interfaces.internalFrames.staff.transferlist;
 
 import pt.ua.ibank.interfaces.internalFrames.staff.accounts.*;
 import java.awt.event.ActionEvent;
@@ -36,7 +36,7 @@ public class TransfersActionPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        contasActionButton = new pt.ua.ibank.interfaces.internalFrames.staff.transfers.TransfersActionButton();
+        contasActionButton = new pt.ua.ibank.interfaces.internalFrames.staff.transferlist.TransfersActionButton();
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -54,6 +54,6 @@ public class TransfersActionPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private pt.ua.ibank.interfaces.internalFrames.staff.transfers.TransfersActionButton contasActionButton;
+    private pt.ua.ibank.interfaces.internalFrames.staff.transferlist.TransfersActionButton contasActionButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -27,7 +27,7 @@ public class StaffTransferList extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        transfersMainInterface1 = new pt.ua.ibank.interfaces.internalFrames.staff.transfers.TransfersMainInterface();
+        transfersMainInterface1 = new pt.ua.ibank.interfaces.internalFrames.staff.transferlist.TransfersMainInterface();
 
         setClosable(true);
         setIconifiable(true);
@@ -49,6 +49,6 @@ public class StaffTransferList extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private pt.ua.ibank.interfaces.internalFrames.staff.transfers.TransfersMainInterface transfersMainInterface1;
+    private pt.ua.ibank.interfaces.internalFrames.staff.transferlist.TransfersMainInterface transfersMainInterface1;
     // End of variables declaration//GEN-END:variables
 }

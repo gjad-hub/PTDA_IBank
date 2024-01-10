@@ -7,6 +7,7 @@ package pt.ua.ibank.interfaces.internalFrames.staff.profile.personal;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilTableActionEvent;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilActionPanelElement;
 import com.mysql.cj.conf.ConnectionUrlParser;
+import java.awt.Color;
 import java.awt.Component;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
@@ -28,17 +29,19 @@ public class PerfilCellEditor extends DefaultCellEditor {
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value,
             boolean isSelected, int row, int column) {
-
+        Component comm = super.getTableCellEditorComponent(table, value,
+                isSelected, row, column);
         ConnectionUrlParser.Pair<String, String> componentValue = (ConnectionUrlParser.Pair) table.getModel().getValueAt(
                 row, 0);
 
         if (componentValue.left.contains(": ")) {
-            return new Component() {
-            };
+            return new PerfilActionPanelElement(false);
         }
 
         PerfilActionPanelElement action = new PerfilActionPanelElement();
+
         action.InitEvent(event, row);
+
         action.setBackground(table.getSelectionBackground());
         return action;
     }

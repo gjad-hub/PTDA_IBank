@@ -35,7 +35,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="pt.ua.ibank.interfaces.internalFrames.staff.transfers.TransfersMainInterface" name="transfersMainInterface1">
+    <Component class="pt.ua.ibank.interfaces.internalFrames.staff.transferlist.TransfersMainInterface" name="transfersMainInterface1">
     </Component>
   </SubComponents>
 </Form>

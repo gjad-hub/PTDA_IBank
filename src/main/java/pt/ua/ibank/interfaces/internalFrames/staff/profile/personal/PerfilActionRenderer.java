@@ -27,16 +27,14 @@ public class PerfilActionRenderer extends DefaultTableCellRenderer {
                 row, 0);
 
         if (componentValue.left.contains(": ")) {
+            comm.setEnabled(false);
+            comm.setBackground(Color.WHITE);
             return comm;
         }
 
-        PerfilActionPanelElement action = new PerfilActionPanelElement(componentValue.right);
-
-        if (isSelected && row % 2 == 0) {
-            action.setBackground(Color.WHITE);
-        } else {
-            //action.setBackground(comm.getBackground());
-        }
+        PerfilActionPanelElement action = new PerfilActionPanelElement(
+                componentValue.right);
+        action.setBackground(Color.WHITE);
         return action;
 
     }

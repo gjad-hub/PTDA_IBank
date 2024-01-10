@@ -391,7 +391,7 @@
             <Component class="javax.swing.JTable" name="jTable1">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new pt.ua.ibank.interfaces.internalFrames.staff.transfers.TransfersTableModel()" type="code"/>
+                  <Connection code="new pt.ua.ibank.interfaces.internalFrames.staff.transferlist.TransfersTableModel()" type="code"/>
                 </Property>
                 <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>

@@ -22,9 +22,9 @@ public class PerfilCardTableElementPanel extends javax.swing.JPanel {
             double saldo, String estado) {
         initComponents();
         this.lblNumeroCartao.setText(numCartao);
-        this.lblEstadoValue.setText(dataValidade);
+        this.lblEstadoValue.setText(estado);
         this.lblValidadeValue.setText(dataValidade);
-        this.lblSaldoValue.setText(dataValidade);
+        this.lblSaldoValue.setText(Double.toString(saldo));
     }
 
     /**
@@ -42,7 +42,6 @@ public class PerfilCardTableElementPanel extends javax.swing.JPanel {
         lblValidadeValue = new javax.swing.JLabel();
         lblSaldo = new javax.swing.JLabel();
         lblSaldoValue = new javax.swing.JLabel();
-        lblEstado = new javax.swing.JLabel();
         lblEstadoValue = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(254, 254, 254));
@@ -50,63 +49,66 @@ public class PerfilCardTableElementPanel extends javax.swing.JPanel {
         lblTtitle.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblTtitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_20/card.png"))); // NOI18N
 
+        lblNumeroCartao.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         lblNumeroCartao.setText("**34");
 
-        lblValidade.setText(" | validade:");
+        lblValidade.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        lblValidade.setText(" Validade:");
 
+        lblValidadeValue.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         lblValidadeValue.setText("01/24");
 
-        lblSaldo.setText("| Saldo(€):");
+        lblSaldo.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        lblSaldo.setText("Saldo(€):");
 
+        lblSaldoValue.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         lblSaldoValue.setText("2000");
 
-        lblEstado.setText("| Estado:");
-
-        lblEstadoValue.setText("ativo");
+        lblEstadoValue.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        lblEstadoValue.setText("Ativo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblTtitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblNumeroCartao)
                 .addGap(5, 5, 5)
-                .addComponent(lblValidade)
-                .addGap(2, 2, 2)
-                .addComponent(lblValidadeValue)
-                .addGap(5, 5, 5)
-                .addComponent(lblSaldo)
-                .addGap(2, 2, 2)
-                .addComponent(lblSaldoValue)
-                .addGap(5, 5, 5)
-                .addComponent(lblEstado)
-                .addGap(2, 2, 2)
-                .addComponent(lblEstadoValue)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTtitle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblNumeroCartao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblValidade)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblValidadeValue))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblSaldo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblSaldoValue)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblEstadoValue)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTtitle, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblNumeroCartao)
                         .addComponent(lblValidade)
-                        .addComponent(lblValidadeValue)
+                        .addComponent(lblValidadeValue)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblSaldo)
-                        .addComponent(lblSaldoValue)
-                        .addComponent(lblEstado)
-                        .addComponent(lblEstadoValue)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblSaldoValue))
+                    .addComponent(lblEstadoValue)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblEstadoValue;
     private javax.swing.JLabel lblNumeroCartao;
     private javax.swing.JLabel lblSaldo;

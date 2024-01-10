@@ -67,6 +67,7 @@ public class staffInterface extends javax.swing.JFrame {
         Dimension jInternalFrameSize = comp.getSize();
         comp.setLocation((desktopSize.width - jInternalFrameSize.width) / 2,
                 (desktopSize.height - jInternalFrameSize.height) / 2);
+        System.out.println("");
     }
 
     /**
@@ -88,7 +89,6 @@ public class staffInterface extends javax.swing.JFrame {
         display_user = new javax.swing.JLabel();
         transferList = new javax.swing.JButton();
         accountlList = new javax.swing.JButton();
-        transactionList = new javax.swing.JButton();
         logout = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblPosition = new javax.swing.JLabel();
@@ -127,7 +127,6 @@ public class staffInterface extends javax.swing.JFrame {
         btnAccountlList = new javax.swing.JButton();
         btnaccount = new javax.swing.JButton();
         slogout = new javax.swing.JButton();
-        btntransactions = new javax.swing.JButton();
         menu_bar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         hide = new javax.swing.JMenuItem();
@@ -185,17 +184,6 @@ public class staffInterface extends javax.swing.JFrame {
         accountlList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 accountlListActionPerformed(evt);
-            }
-        });
-
-        transactionList.setBackground(new java.awt.Color(62, 92, 118));
-        transactionList.setForeground(new java.awt.Color(240, 235, 216));
-        transactionList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_20/transacoes.png"))); // NOI18N
-        transactionList.setText("Ver Transações");
-        transactionList.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        transactionList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                transactionListActionPerformed(evt);
             }
         });
 
@@ -260,7 +248,6 @@ public class staffInterface extends javax.swing.JFrame {
                         .addGap(5, 5, 5)
                         .addGroup(side_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(accountlList, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(transactionList, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(transferList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
@@ -285,8 +272,6 @@ public class staffInterface extends javax.swing.JFrame {
                 .addComponent(accountlList)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(transferList)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(transactionList)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logout)
                 .addContainerGap())
@@ -634,15 +619,6 @@ public class staffInterface extends javax.swing.JFrame {
             }
         });
 
-        btntransactions.setBackground(new java.awt.Color(62, 92, 118));
-        btntransactions.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_20/transacoes.png"))); // NOI18N
-        btntransactions.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btntransactions.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btntransactionsActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout small_side_barLayout = new javax.swing.GroupLayout(small_side_bar);
         small_side_bar.setLayout(small_side_barLayout);
         small_side_barLayout.setHorizontalGroup(
@@ -658,8 +634,7 @@ public class staffInterface extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, small_side_barLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(slogout))
-                    .addComponent(btntransactions, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(slogout)))
                 .addContainerGap())
         );
         small_side_barLayout.setVerticalGroup(
@@ -671,8 +646,6 @@ public class staffInterface extends javax.swing.JFrame {
                 .addComponent(btnAccountlList)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btntransfers)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btntransactions)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(slogout)
                 .addContainerGap())
@@ -778,14 +751,6 @@ public class staffInterface extends javax.swing.JFrame {
     private void lblsaccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblsaccountMouseClicked
         addWindow(new ProfilePage());
     }//GEN-LAST:event_lblsaccountMouseClicked
-
-    private void transactionListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionListActionPerformed
-
-    }//GEN-LAST:event_transactionListActionPerformed
-
-    private void btntransactionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntransactionsActionPerformed
-        transactionListActionPerformed(evt);
-    }//GEN-LAST:event_btntransactionsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -894,7 +859,6 @@ public class staffInterface extends javax.swing.JFrame {
     private javax.swing.JButton accountlList;
     private javax.swing.JButton btnAccountlList;
     private javax.swing.JButton btnaccount;
-    private javax.swing.JButton btntransactions;
     private javax.swing.JButton btntransfers;
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel display_user;
@@ -939,7 +903,6 @@ public class staffInterface extends javax.swing.JFrame {
     private javax.swing.JPanel side_bar;
     private javax.swing.JButton slogout;
     private javax.swing.JPanel small_side_bar;
-    private javax.swing.JButton transactionList;
     private javax.swing.JButton transferList;
     // End of variables declaration//GEN-END:variables
 }

@@ -12,6 +12,7 @@ import java.awt.Component;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
+import pt.ua.ibank.DTO.Deposito;
 
 /**
  *
@@ -19,9 +20,9 @@ import javax.swing.JTable;
  */
 public class DepositCellEditor extends DefaultCellEditor {
 
-    private PerfilTableActionEvent event;
+    private DepositTableActionEvent event;
 
-    public DepositCellEditor(PerfilTableActionEvent event) {
+    public DepositCellEditor(DepositTableActionEvent event) {
         super(new JCheckBox());
         this.event = event;
     }
@@ -30,15 +31,14 @@ public class DepositCellEditor extends DefaultCellEditor {
     public Component getTableCellEditorComponent(JTable table, Object value,
             boolean isSelected, int row, int column) {
 
-        ConnectionUrlParser.Pair<String, String> componentValue = (ConnectionUrlParser.Pair) table.getModel().getValueAt(
+        Deposito deposito = (Deposito) table.getModel().getValueAt(
                 row, 0);
-
-        if (componentValue.left.contains(": ")) {
+        if (!deposito.pendenteAprovacao) {
             return new Component() {
             };
         }
 
-        PerfilActionPanelElement action = new PerfilActionPanelElement();
+        DepositActionPanelElement action = new DepositActionPanelElement();
         action.InitEvent(event, row);
         action.setBackground(table.getSelectionBackground());
         return action;

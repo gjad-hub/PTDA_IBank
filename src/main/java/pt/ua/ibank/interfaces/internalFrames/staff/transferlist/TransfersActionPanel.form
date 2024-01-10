@@ -30,7 +30,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="pt.ua.ibank.interfaces.internalFrames.staff.transfers.TransfersActionButton" name="contasActionButton">
+    <Component class="pt.ua.ibank.interfaces.internalFrames.staff.transferlist.TransfersActionButton" name="contasActionButton">
     </Component>
   </SubComponents>
 </Form>

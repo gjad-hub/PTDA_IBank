@@ -1,4 +1,4 @@
-package pt.ua.ibank.interfaces.internalFrames.staff.transfers;
+package pt.ua.ibank.interfaces.internalFrames.staff.transferlist;
 
 import pt.ua.ibank.interfaces.internalFrames.staff.accounts.*;
 import java.util.ArrayList;

@@ -39,7 +39,6 @@ public class PerfilTableCellRenderer extends DefaultTableCellRenderer {
         } else {
             // profileChildElement.setBackground(comm.getBackground());
         }
-        //return currClientPanel;
         return profileChildElement;
     }
 

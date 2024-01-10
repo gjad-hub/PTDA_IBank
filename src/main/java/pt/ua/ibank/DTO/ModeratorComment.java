@@ -1,14 +1,16 @@
 package pt.ua.ibank.DTO;
 
+import java.sql.Timestamp;
+
 public class ModeratorComment {
 
     private final int id;
     private final String nomeFuncionario;
     private final String descricao;
-    private final java.sql.Date dataFeita;
+    private final Timestamp dataFeita;
 
     public ModeratorComment(int id, String nomeFuncionario, String descricao,
-            java.sql.Date dataFeita) {
+            Timestamp dataFeita) {
         this.id = id;
         this.nomeFuncionario = nomeFuncionario;
         this.descricao = descricao;
@@ -23,7 +25,7 @@ public class ModeratorComment {
         return descricao;
     }
 
-    public java.sql.Date getDataFeita() {
+    public Timestamp getDataFeita() {
         return dataFeita;
     }
 

@@ -2,16 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package pt.ua.ibank.interfaces.internalFrames.staff.transfers;
+package pt.ua.ibank.interfaces.internalFrames.staff.transferlist;
 
 import pt.ua.ibank.interfaces.internalFrames.staff.accounts.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JList;
 import javax.swing.table.DefaultTableModel;
-import pt.ua.ibank.interfaces.internalFrames.staff.transfers.TransfersActionEvent;
-import pt.ua.ibank.interfaces.internalFrames.staff.transfers.TransfersActionRenderer;
-import pt.ua.ibank.interfaces.internalFrames.staff.transfers.TransfersCellEditor;
+import pt.ua.ibank.interfaces.internalFrames.staff.transferlist.TransfersActionEvent;
+import pt.ua.ibank.interfaces.internalFrames.staff.transferlist.TransfersActionRenderer;
+import pt.ua.ibank.interfaces.internalFrames.staff.transferlist.TransfersCellEditor;
 
 /**
  *
@@ -254,7 +254,7 @@ public class TransfersMainInterface extends javax.swing.JPanel {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new pt.ua.ibank.interfaces.internalFrames.staff.transfers.TransfersTableModel());
+        jTable1.setModel(new pt.ua.ibank.interfaces.internalFrames.staff.transferlist.TransfersTableModel());
         jTable1.setGridColor(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(jTable1);
 

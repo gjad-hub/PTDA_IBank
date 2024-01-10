@@ -1,4 +1,4 @@
-package pt.ua.ibank.interfaces.internalFrames.staff.transfers;
+package pt.ua.ibank.interfaces.internalFrames.staff.transferlist;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license

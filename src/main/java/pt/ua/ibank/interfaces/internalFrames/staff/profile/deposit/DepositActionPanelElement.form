@@ -22,48 +22,46 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="jTextFieldNewValue" pref="76" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+              <Component id="cmdRefuse" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="cmdCancel" min="-2" max="-2" attributes="0"/>
+              <Component id="cmdAccept" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="cmdSave" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jTextFieldNewValue" alignment="1" min="-2" pref="24" max="-2" attributes="0"/>
-          <Component id="cmdSave" alignment="0" min="-2" max="-2" attributes="0"/>
-          <Component id="cmdCancel" alignment="0" min="-2" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="cmdRefuse" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmdAccept" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="jTextFieldNewValue">
-      <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="eeeee"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldNewValueActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilActionButton" name="cmdSave">
+    <Component class="pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilActionButton" name="cmdAccept">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/resources/images/icons_20/tick.png"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdSaveActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdAcceptActionPerformed"/>
       </Events>
     </Component>
-    <Component class="pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilActionButton" name="cmdCancel">
+    <Component class="pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilActionButton" name="cmdRefuse">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/resources/images/icons_20/cancel.jpg"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdRefuseActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

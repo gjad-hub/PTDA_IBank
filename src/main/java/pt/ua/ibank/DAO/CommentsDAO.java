@@ -38,7 +38,7 @@ public class CommentsDAO {
                         rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getString("descricao"),
-                        rs.getDate("data_feita")));
+                        rs.getTimestamp("data_feita")));
             }
 
             return list;
@@ -50,7 +50,7 @@ public class CommentsDAO {
         return null;
     }
 
-    public static boolean addNewComment(int client_id, String comment) {
+    public static boolean addNewComment(String client_id, String comment) {
         PreparedStatement stmt = null;
         try {
 
@@ -61,7 +61,7 @@ public class CommentsDAO {
             );
 
             //stmt.setInt(1, 1);
-            stmt.setInt(2, client_id);
+            //stmt.setInt(2, client_id);
             stmt.setString(3, comment);
 
             return stmt.execute();

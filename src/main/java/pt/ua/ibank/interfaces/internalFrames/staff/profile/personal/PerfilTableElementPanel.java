@@ -46,9 +46,10 @@ public class PerfilTableElementPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(254, 254, 254));
 
-        lblTtitle.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblTtitle.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         lblTtitle.setText("Title");
 
+        lblValue.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         lblValue.setText("value");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -58,7 +59,7 @@ public class PerfilTableElementPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(5, 5, 5)
                 .addComponent(lblTtitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addComponent(lblValue)
                 .addContainerGap())
         );
@@ -69,7 +70,7 @@ public class PerfilTableElementPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTtitle)
                     .addComponent(lblValue))
-                .addGap(0, 5, Short.MAX_VALUE))
+                .addGap(0, 7, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

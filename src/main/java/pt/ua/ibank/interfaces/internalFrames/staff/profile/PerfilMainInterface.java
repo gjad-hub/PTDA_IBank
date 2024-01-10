@@ -4,18 +4,31 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.profile;
 
+import com.mysql.cj.conf.ConnectionUrlParser.Pair;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import pt.ua.ibank.DTO.Deposito;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilCellEditor;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.card.PerfilCardTableModel;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.card.PerfilCardTableCellRenderer;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilTableActionEvent;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilTableCellRenderer;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilPersonalTableModel;
-import com.mysql.cj.conf.ConnectionUrlParser.Pair;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
+import pt.ua.ibank.interfaces.internalFrames.staff.profile.deposit.DepositActionRenderer;
+import pt.ua.ibank.interfaces.internalFrames.staff.profile.deposit.DepositCellEditor;
+import pt.ua.ibank.interfaces.internalFrames.staff.profile.deposit.DepositTableActionEvent;
+import pt.ua.ibank.interfaces.internalFrames.staff.profile.deposit.DepositTableCellRenderer;
+import pt.ua.ibank.interfaces.internalFrames.staff.profile.deposit.DepositTableModel;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment.PerfilCommentTableCellRenderer;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment.PerfilCommentTableModel;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilActionRenderer;
@@ -27,12 +40,15 @@ import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilAction
 public class PerfilMainInterface extends javax.swing.JPanel {
 
     private String clientEmail;
+
     //PerfilPersonalTableModel personalDataTable = new PerfilPersonalTableModel(clientEmail);
     //PerfilCardTableModel cardDataTable = new PerfilCardTableModel(clientEmail);
     //PerfilCommentTableModel pctm = new PerfilCommentTableModel(clientEmail);
     PerfilPersonalTableModel personalDataTable = new PerfilPersonalTableModel();
     PerfilCardTableModel cardDataTable = new PerfilCardTableModel();
     PerfilCommentTableModel pctm = new PerfilCommentTableModel();
+    DepositTableModel dtm = new DepositTableModel();
+    PerfilCommentTableCellRenderer fuckme = new PerfilCommentTableCellRenderer();
 
     /**
      * Creates new form NewJPanel
@@ -47,6 +63,59 @@ public class PerfilMainInterface extends javax.swing.JPanel {
         initComponents();
         this.clientEmail = clientEmail;
         lblNomeCompleto.setText(personalDataTable.client.nome);
+    }
+
+    private static void AdicionarComentarioPerfil(
+            PerfilCommentTableModel commentModel, String message) {
+        JFrame frame = new JFrame("Comment Input");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        // Create a panel to hold components
+        JPanel panel = new JPanel();
+        frame.getContentPane().add(panel);
+
+        // Create a label
+        JLabel label = new JLabel("Enter your comment:");
+        panel.add(label);
+
+        // Create a text field for user input
+        JTextField textField = new JTextField(20);
+        panel.add(textField);
+
+        // Create a button
+        JButton submitButton = new JButton("Submit");
+        submitButton.addActionListener(e -> {
+            String input = textField.getText();
+            String resultado = commentModel.adicionarComentario(message + input)
+                    ? "Operação feita com sucesso"
+                    : "Operação feita sem sucesso, tente novamente";
+            JOptionPane.showMessageDialog(frame, resultado);
+            frame.dispose();
+
+        });
+        panel.add(submitButton);
+
+        textField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    submitButton.doClick(); // Simulate a click on the submitButton
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
+
+        // Set up the frame
+        frame.pack();
+        frame.setLocationRelativeTo(null); // Center the frame on the screen
+        frame.setVisible(true);
     }
 
     /**
@@ -95,12 +164,13 @@ public class PerfilMainInterface extends javax.swing.JPanel {
         jPanel5 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
         jXTable1 = new org.jdesktop.swingx.JXTable();
         jPanelDepositosPorAprovar = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jListComentariosModeracao1 = new javax.swing.JList<>();
+        jTableDepositDatatr = new org.jdesktop.swingx.JXTable();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setPreferredSize(new java.awt.Dimension(859, 562));
@@ -272,14 +342,15 @@ public class PerfilMainInterface extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setBorder(null);
 
         jTablePersonalData.setTableHeader(null);
         jTablePersonalData.setModel(personalDataTable);
@@ -296,13 +367,13 @@ public class PerfilMainInterface extends javax.swing.JPanel {
         jTablePersonalData.getColumnModel()
         .getColumn(1)
         .setCellRenderer(new PerfilActionRenderer());
-
         jTablePersonalData.getColumnModel()
         .getColumn(1)
-        .setMinWidth(40);
+        .setMaxWidth(100);
+
         jTablePersonalData.getColumnModel()
         .getColumn(0)
-        .setMinWidth(90);
+        .setMaxWidth(150);
 
         // MAX WIDTH
 
@@ -342,7 +413,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
     .setCellEditor(new PerfilCellEditor(eventPersonal));
     jTablePersonalData.setRowHeight(40);
 
-    jTablePersonalData.setRowSelectionAllowed(true);
+    jTablePersonalData.setRowSelectionAllowed(false);
 
     jTablePersonalData.setSelectionBackground(new java.awt.Color(255, 255, 255));
 
@@ -350,7 +421,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
     jPanelDadosPessoais.setLayout(jPanelDadosPessoaisLayout);
     jPanelDadosPessoaisLayout.setHorizontalGroup(
         jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
     );
     jPanelDadosPessoaisLayout.setVerticalGroup(
@@ -382,7 +453,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
             .addGap(5, 5, 5)
             .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
             .addGap(37, 37, 37))
     );
     jPanel7Layout.setVerticalGroup(
@@ -394,6 +465,9 @@ public class PerfilMainInterface extends javax.swing.JPanel {
                 .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
+
+    jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
+    jScrollPane3.setBorder(null);
 
     jTableCardData.setModel(cardDataTable);
     jTableCardData.setRowHeight(40);
@@ -410,7 +484,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
     jPanelDadosCartao.setLayout(jPanelDadosCartaoLayout);
     jPanelDadosCartaoLayout.setHorizontalGroup(
         jPanelDadosCartaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
     );
     jPanelDadosCartaoLayout.setVerticalGroup(
@@ -443,7 +517,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel12)
-            .addContainerGap(99, Short.MAX_VALUE))
+            .addContainerGap(119, Short.MAX_VALUE))
     );
     jPanel5Layout.setVerticalGroup(
         jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -455,36 +529,37 @@ public class PerfilMainInterface extends javax.swing.JPanel {
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
-    jXTable1.setModel(pctm);
-    jXTable1.setRowHeight(110);
+    jXTable1.setModel(pctm
+    );
+    jScrollPane2.setViewportView(jXTable1);
+    jXTable1.setRowHeight(90);
+    jXTable1.setTableHeader(null);
+
+    jXTable1.getColumnModel().getColumn(0)
+    .setCellRenderer(new PerfilCommentTableCellRenderer());
 
     javax.swing.GroupLayout jPanelDadosComentariosLayout = new javax.swing.GroupLayout(jPanelDadosComentarios);
     jPanelDadosComentarios.setLayout(jPanelDadosComentariosLayout);
     jPanelDadosComentariosLayout.setHorizontalGroup(
         jPanelDadosComentariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jXTable1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+        .addComponent(jScrollPane2)
     );
     jPanelDadosComentariosLayout.setVerticalGroup(
         jPanelDadosComentariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanelDadosComentariosLayout.createSequentialGroup()
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 0, 0)
             .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(0, 0, 0)
-            .addComponent(jXTable1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
     );
-
-    jXTable1.setTableHeader(null);
-
-    jXTable1.getColumnModel().getColumn(0)
-    .setCellRenderer(new PerfilCommentTableCellRenderer());
 
     jPanel9.setBackground(new java.awt.Color(0, 0, 0));
     jPanel9.setPreferredSize(new java.awt.Dimension(319, 36));
 
     jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
     jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-    jLabel18.setText("Depositos por aprovar");
+    jLabel18.setText("Depositos");
 
     jLabel19.setBackground(new java.awt.Color(51, 51, 51));
     jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -500,7 +575,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
             .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel18)
-            .addContainerGap(52, Short.MAX_VALUE))
+            .addContainerGap(192, Short.MAX_VALUE))
     );
     jPanel9Layout.setVerticalGroup(
         jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -512,25 +587,60 @@ public class PerfilMainInterface extends javax.swing.JPanel {
             .addGap(0, 7, Short.MAX_VALUE))
     );
 
-    jListComentariosModeracao1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-    //JListDadosEmpregado3.setCellRenderer(profileCellRenderer);
+    jTableDepositDatatr.setModel(dtm);
+    jTableDepositDatatr.setRowHeight(30);
 
     javax.swing.GroupLayout jPanelDepositosPorAprovarLayout = new javax.swing.GroupLayout(jPanelDepositosPorAprovar);
     jPanelDepositosPorAprovar.setLayout(jPanelDepositosPorAprovarLayout);
     jPanelDepositosPorAprovarLayout.setHorizontalGroup(
         jPanelDepositosPorAprovarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-        .addComponent(jListComentariosModeracao1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+        .addComponent(jTableDepositDatatr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
     jPanelDepositosPorAprovarLayout.setVerticalGroup(
         jPanelDepositosPorAprovarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanelDepositosPorAprovarLayout.createSequentialGroup()
-            .addGap(0, 0, 0)
             .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jListComentariosModeracao1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 0, 0)
+            .addComponent(jTableDepositDatatr, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
     );
+
+    //collumn 1
+    jTableDepositDatatr.getColumnModel().getColumn(0)
+    .setCellRenderer(new DepositTableCellRenderer());
+
+    jTableDepositDatatr.getColumnModel()
+    .getColumn(1)
+    .setCellRenderer(new DepositActionRenderer());
+
+    jTableDepositDatatr.getColumnModel()
+    .getColumn(1).setMaxWidth(90);
+    jTableDepositDatatr.getColumnModel()
+    .getColumn(1).setMinWidth(50);
+
+    // EDIT BUTTON STUFF
+    DepositTableActionEvent eventDeposit = new DepositTableActionEvent() {
+        String oldLeft;
+
+        @Override
+        public void onAcceptTransaction(int row){
+            dtm.aprovarDeposito(row);
+        }
+
+        @Override
+        public void onRejectTransaction(int row){
+            Deposito d = (Deposito)dtm.getValueAt(row,0);
+
+            AdicionarComentarioPerfil(pctm,"[deposito n"+d.idDeposito+"] ");
+            dtm.reprovarDeposito(row);
+        }
+    };
+
+    jTableDepositDatatr.getColumnModel()
+    .getColumn(1)
+    .setCellEditor(new DepositCellEditor(eventDeposit));
+
+    jTableDepositDatatr.setRowSelectionAllowed(true);
 
     javax.swing.GroupLayout jPanelDadosContainerLayout = new javax.swing.GroupLayout(jPanelDadosContainer);
     jPanelDadosContainer.setLayout(jPanelDadosContainerLayout);
@@ -539,16 +649,16 @@ public class PerfilMainInterface extends javax.swing.JPanel {
         .addGroup(jPanelDadosContainerLayout.createSequentialGroup()
             .addContainerGap()
             .addComponent(jPanelDadosDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGap(10, 10, 10)
             .addGroup(jPanelDadosContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelDadosContainerLayout.createSequentialGroup()
-                    .addComponent(jPanelDadosComentarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jPanelDepositosPorAprovar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanelDadosContainerLayout.createSequentialGroup()
                     .addComponent(jPanelDadosPessoais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jPanelDadosCartao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanelDadosCartao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanelDadosContainerLayout.createSequentialGroup()
+                    .addComponent(jPanelDadosComentarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jPanelDepositosPorAprovar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addContainerGap())
     );
     jPanelDadosContainerLayout.setVerticalGroup(
@@ -556,9 +666,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
         .addGroup(jPanelDadosContainerLayout.createSequentialGroup()
             .addContainerGap()
             .addGroup(jPanelDadosContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelDadosContainerLayout.createSequentialGroup()
-                    .addComponent(jPanelDadosDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 93, Short.MAX_VALUE))
+                .addComponent(jPanelDadosDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanelDadosContainerLayout.createSequentialGroup()
                     .addGroup(jPanelDadosContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jPanelDadosPessoais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -566,9 +674,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
                     .addGap(6, 6, 6)
                     .addGroup(jPanelDadosContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jPanelDepositosPorAprovar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanelDadosContainerLayout.createSequentialGroup()
-                            .addComponent(jPanelDadosComentarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addComponent(jPanelDadosComentarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addContainerGap())
     );
 
@@ -582,7 +688,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
     LayeredPaneEditarConta.setLayout(LayeredPaneEditarContaLayout);
     LayeredPaneEditarContaLayout.setHorizontalGroup(
         LayeredPaneEditarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LayeredPaneEditarContaLayout.createSequentialGroup()
+        .addGroup(LayeredPaneEditarContaLayout.createSequentialGroup()
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanelDadosContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -592,14 +698,14 @@ public class PerfilMainInterface extends javax.swing.JPanel {
         .addGroup(LayeredPaneEditarContaLayout.createSequentialGroup()
             .addGap(5, 5, 5)
             .addComponent(jPanelDadosContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addContainerGap(63, Short.MAX_VALUE))
     );
 
     add(LayeredPaneEditarConta, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        AdicionarComentarioPerfil(pctm, "");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -619,7 +725,6 @@ public class PerfilMainInterface extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JList<String> jListComentariosModeracao1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -634,8 +739,10 @@ public class PerfilMainInterface extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelDepositosPorAprovar;
     private javax.swing.JPanel jPanelFotoPerfil;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTableCardData;
+    private org.jdesktop.swingx.JXTable jTableDepositDatatr;
     private javax.swing.JTable jTablePersonalData;
     private org.jdesktop.swingx.JXTable jXTable1;
     private javax.swing.JLabel lblDataValue;

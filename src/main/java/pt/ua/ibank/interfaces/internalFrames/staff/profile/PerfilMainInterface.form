@@ -19,7 +19,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,-85,0,0,3,91"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,50,0,0,3,91"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
@@ -42,7 +42,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jPanelDadosContainer" max="32767" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
@@ -51,10 +51,10 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                   <Component id="jPanelDadosContainer" max="32767" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="63" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -79,19 +79,19 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="jPanelDadosDescricao" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jPanelDadosPessoais" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Component id="jPanelDadosCartao" max="32767" attributes="0"/>
+                          </Group>
                           <Group type="102" attributes="0">
                               <Component id="jPanelDadosComentarios" max="32767" attributes="0"/>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Component id="jPanelDepositosPorAprovar" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jPanelDadosPessoais" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="jPanelDadosCartao" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -100,13 +100,10 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jPanelDadosDescricao" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="93" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jPanelDadosDescricao" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jPanelDadosPessoais" max="32767" attributes="0"/>
@@ -115,10 +112,7 @@
                               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jPanelDepositosPorAprovar" max="32767" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Component id="jPanelDadosComentarios" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="jPanelDadosComentarios" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -339,7 +333,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel2" alignment="0" pref="212" max="32767" attributes="0"/>
+                      <Component id="jPanel2" pref="256" max="32767" attributes="0"/>
                       <Component id="jScrollPane1" alignment="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
@@ -367,10 +361,7 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
@@ -454,6 +445,14 @@
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="null"/>
+                    </Property>
+                  </Properties>
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
@@ -477,7 +476,7 @@
                         </Property>
                       </Properties>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="//collumn 1&#xa;jTablePersonalData.getColumnModel().getColumn(0)&#xa;        .setCellRenderer(new PerfilTableCellRenderer());&#xa;&#xa;jTablePersonalData.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setCellRenderer(new PerfilActionRenderer());&#xa;&#xa;jTablePersonalData.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setMinWidth(40);&#xa;jTablePersonalData.getColumnModel()&#xa;        .getColumn(0)&#xa;        .setMinWidth(90);&#xa;&#xa;// MAX WIDTH&#xa;&#xa;&#xa;&#xa;// EDIT BUTTON STUFF&#xa;    PerfilTableActionEvent eventPersonal = new PerfilTableActionEvent() {&#xa;        String oldLeft;&#xa;&#xa;        @Override&#xa;        public void onEdit(int row) {&#xa;            oldLeft = ((Pair&lt;String, String&gt;) personalDataTable.getValueAt(&#xa;                    row, 0)).left;&#xa;        }&#xa;&#xa;        @Override&#xa;        public void onCancel(int row) {&#xa;            // do nothing&#xa;        }&#xa;&#xa;        @Override&#xa;        public void onSave(int row, String newValue) {&#xa;        System.out.println(newValue);&#xa;        if(newValue.length() &gt; 2)&#xa;        {&#xa;            personalDataTable.getValueAt(row, 0);&#xa;            Pair&lt;String, String&gt; newRecord = new Pair(oldLeft, newValue);&#xa;            personalDataTable.setValueAt(newRecord, row, 0);&#xa;            jTablePersonalData.repaint();&#xa;if(oldLeft == &quot;Nome:&quot;){&#xa;lblNomeCompleto.setText(newValue);&#xa;}&#xa;        }&#xa;}&#xa;    };&#xa;&#xa;jTablePersonalData.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setCellEditor(new PerfilCellEditor(eventPersonal));&#xa;jTablePersonalData.setRowHeight(40);&#xa;&#xa;jTablePersonalData.setRowSelectionAllowed(true);&#xa;&#xa;jTablePersonalData.setSelectionBackground(new java.awt.Color(255, 255, 255));"/>
+                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="//collumn 1&#xa;jTablePersonalData.getColumnModel().getColumn(0)&#xa;        .setCellRenderer(new PerfilTableCellRenderer());&#xa;&#xa;jTablePersonalData.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setCellRenderer(new PerfilActionRenderer());&#xa;jTablePersonalData.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setMaxWidth(100);&#xa;&#xa;&#xa;jTablePersonalData.getColumnModel()&#xa;        .getColumn(0)&#xa;        .setMaxWidth(150);&#xa;&#xa;// MAX WIDTH&#xa;&#xa;&#xa;&#xa;// EDIT BUTTON STUFF&#xa;    PerfilTableActionEvent eventPersonal = new PerfilTableActionEvent() {&#xa;        String oldLeft;&#xa;&#xa;        @Override&#xa;        public void onEdit(int row) {&#xa;            oldLeft = ((Pair&lt;String, String&gt;) personalDataTable.getValueAt(&#xa;                    row, 0)).left;&#xa;        }&#xa;&#xa;        @Override&#xa;        public void onCancel(int row) {&#xa;            // do nothing&#xa;        }&#xa;&#xa;        @Override&#xa;        public void onSave(int row, String newValue) {&#xa;        System.out.println(newValue);&#xa;        if(newValue.length() &gt; 2)&#xa;        {&#xa;            personalDataTable.getValueAt(row, 0);&#xa;            Pair&lt;String, String&gt; newRecord = new Pair(oldLeft, newValue);&#xa;            personalDataTable.setValueAt(newRecord, row, 0);&#xa;            jTablePersonalData.repaint();&#xa;if(oldLeft == &quot;Nome:&quot;){&#xa;lblNomeCompleto.setText(newValue);&#xa;}&#xa;        }&#xa;}&#xa;    };&#xa;&#xa;jTablePersonalData.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setCellEditor(new PerfilCellEditor(eventPersonal));&#xa;jTablePersonalData.setRowHeight(40);&#xa;&#xa;jTablePersonalData.setRowSelectionAllowed(false);&#xa;&#xa;jTablePersonalData.setSelectionBackground(new java.awt.Color(255, 255, 255));"/>
                         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable()"/>
                         <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="//PerfilPersonalTableModel personalDataTable = new PerfilPersonalTableModel(clientEmail);&#xa;PerfilPersonalTableModel personalDataTable = new PerfilPersonalTableModel();"/>
                         <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jTablePersonalData.setTableHeader(null);"/>
@@ -492,7 +491,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel7" pref="210" max="32767" attributes="0"/>
+                      <Component id="jPanel7" alignment="0" pref="251" max="32767" attributes="0"/>
                       <Component id="jScrollPane3" alignment="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
@@ -525,7 +524,7 @@
                               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                               <Component id="jLabel27" min="-2" pref="19" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jLabel26" max="32767" attributes="0"/>
+                              <Component id="jLabel26" pref="178" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -573,6 +572,14 @@
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="null"/>
+                    </Property>
+                  </Properties>
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
@@ -604,17 +611,17 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jXTable1" max="32767" attributes="0"/>
-                      <Component id="jPanel5" alignment="0" pref="206" max="32767" attributes="0"/>
+                      <Component id="jPanel5" pref="226" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
                           <Component id="jPanel5" min="-2" pref="30" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="jXTable1" min="-2" pref="222" max="-2" attributes="0"/>
+                          <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -638,7 +645,7 @@
                               <Component id="jLabel13" min="-2" pref="21" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="99" max="32767" attributes="0"/>
+                              <EmptySpace pref="119" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -681,17 +688,25 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="org.jdesktop.swingx.JXTable" name="jXTable1">
-                  <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="pctm" type="code"/>
-                    </Property>
-                    <Property name="rowHeight" type="int" value="110"/>
-                  </Properties>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane2">
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jXTable1.setTableHeader(null);&#xa;&#xa;jXTable1.getColumnModel().getColumn(0)&#xa;    .setCellRenderer(new PerfilCommentTableCellRenderer());"/>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
-                </Component>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="org.jdesktop.swingx.JXTable" name="jXTable1">
+                      <Properties>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="pctm&#xa;    " type="code"/>
+                        </Property>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jXTable1.setRowHeight(90);&#xa;jXTable1.setTableHeader(null);&#xa;&#xa;jXTable1.getColumnModel().getColumn(0)&#xa;    .setCellRenderer(new PerfilCommentTableCellRenderer());"/>
+                      </AuxValues>
+                    </Component>
+                  </SubComponents>
+                </Container>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="jPanelDepositosPorAprovar">
@@ -699,18 +714,16 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel9" alignment="0" pref="216" max="32767" attributes="0"/>
-                      <Component id="jListComentariosModeracao1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jPanel9" pref="281" max="32767" attributes="0"/>
+                      <Component id="jTableDepositDatatr" alignment="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
                           <Component id="jPanel9" min="-2" pref="30" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jListComentariosModeracao1" min="-2" pref="0" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="jTableDepositDatatr" pref="228" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -734,7 +747,7 @@
                               <Component id="jLabel19" min="-2" pref="19" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="52" max="32767" attributes="0"/>
+                              <EmptySpace pref="192" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -760,7 +773,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Depositos por aprovar"/>
+                        <Property name="text" type="java.lang.String" value="Depositos"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel19">
@@ -777,15 +790,21 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JList" name="jListComentariosModeracao1">
+                <Component class="org.jdesktop.swingx.JXTable" name="jTableDepositDatatr">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="14" style="0"/>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="dtm" type="code"/>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0"/>
+                    </Property>
+                    <Property name="rowHeight" type="int" value="30"/>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="//JListDadosEmpregado3.setCellRenderer(profileCellRenderer);"/>
-                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                    <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="//collumn 1&#xa;jTableDepositDatatr.getColumnModel().getColumn(0)&#xa;        .setCellRenderer(new DepositTableCellRenderer());&#xa;&#xa;jTableDepositDatatr.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setCellRenderer(new DepositActionRenderer());&#xa;&#xa;&#xa;jTableDepositDatatr.getColumnModel()&#xa;        .getColumn(1).setMaxWidth(90);&#xa;jTableDepositDatatr.getColumnModel()&#xa;        .getColumn(1).setMinWidth(50);&#xa;&#xa;&#xa;&#xa;// EDIT BUTTON STUFF&#xa;    DepositTableActionEvent eventDeposit = new DepositTableActionEvent() {&#xa;        String oldLeft;&#xa;&#xa;        @Override&#xa;        public void onAcceptTransaction(int row){&#xa;            dtm.aprovarDeposito(row);&#xa;        }&#xa;&#xa;        @Override&#xa;        public void onRejectTransaction(int row){&#xa;Deposito d = (Deposito)dtm.getValueAt(row,0);&#xa;&#xa;             AdicionarComentarioPerfil(pctm,&quot;[deposito n&quot;+d.idDeposito+&quot;] &quot;);&#xa;            dtm.reprovarDeposito(row);&#xa;        }    &#xa;    };&#xa;&#xa;jTableDepositDatatr.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setCellEditor(new DepositCellEditor(eventDeposit));&#xa;&#xa;jTableDepositDatatr.setRowSelectionAllowed(true);"/>
                   </AuxValues>
                 </Component>
               </SubComponents>
