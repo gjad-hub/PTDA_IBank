@@ -90,7 +90,7 @@ CREATE TABLE deposito
     num_fun     INT,
     num_cli     INT,
     data        TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    pendente_aprovacao bool not null default 0,
+    pendente_aprovacao bool not null default 1,
     FOREIGN KEY (num_fun) REFERENCES funcionario (num_fun),
     FOREIGN KEY (num_cli) REFERENCES cliente (num_cliente)
 );
