@@ -73,7 +73,21 @@ VALUES ('Catarina Santos', 'Rua O, nº 444', 'catarina.santos@email.com', '98765
 INSERT INTO funcionario (nome, morada, email, telemovel, nif, password, gerente)
 VALUES ('Nuno Almeida', 'Avenida P, nº 555', 'nuno.almeida@email.com', '876543210', '555667788', 'senha555', 3);
 
+-- Inserir dados de teste na tabela Transferencia
+INSERT INTO transferencia (valor, cliente_realiza, cliente_recebe, motivo)
+VALUES (120.00, 1, 2, 'Compra Online');
 
+INSERT INTO transferencia (valor, cliente_realiza, cliente_recebe, motivo)
+VALUES (80.00, 2, 3, 'Pagamento de Serviços');
+
+INSERT INTO transferencia (valor, cliente_realiza, cliente_recebe, motivo)
+VALUES (200.00, 3, 4, 'Transferência Mensal');
+
+INSERT INTO transferencia (valor, cliente_realiza, cliente_recebe, motivo)
+VALUES (30.00, 4, 5, 'Reembolso');
+
+INSERT INTO transferencia (valor, cliente_realiza, cliente_recebe, motivo)
+VALUES (150.00, 5, 1, 'Empréstimo');
 
 -- Inserir dados de teste na tabela Deposito
 INSERT INTO deposito (valor, aprovado, num_fun, num_cli)
