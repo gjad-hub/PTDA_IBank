@@ -1,6 +1,3 @@
-create database if not exists IbankDB;
-use IbankDB;
-
 -- Tabela Cliente
 CREATE TABLE cliente
 (
