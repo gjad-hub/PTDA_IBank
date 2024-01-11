@@ -65,10 +65,9 @@ public class ClientDAO {
             stmt.close();
 
             stmt = conn.prepareStatement(
-                    "INSERT INTO cartao (num_cartao, data_validade, estado, credito) "
-                    + "VALUES (?, (SELECT DATE_ADD(CURDATE(), INTERVAL +5 YEAR )), \"activo\", ?);");
+                    "INSERT INTO cartao (num_cartao, data_validade, estado) "
+                    + "VALUES (?, (SELECT DATE_ADD(CURDATE(), INTERVAL +5 YEAR )), \"activo\");");
             stmt.setString(1, num_cartao);
-            stmt.setBoolean(2, false);
             stmt.execute();
 
             stmt = conn.prepareStatement(
@@ -96,6 +95,7 @@ public class ClientDAO {
             return codigoSucesso;
 
         } catch (SQLException e) {
+            e.printStackTrace();
             return codigoErro;
         } finally {
             DBConnection.closeConnection(stmt, rs);

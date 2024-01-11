@@ -32,6 +32,9 @@ VALUES ('Inês Pereira', 'Rua K, nº 555', 'ines.pereira@email.com', '876543210'
 
 -- Inserir dados de teste na tabela Funcionario
 INSERT INTO funcionario (nome, morada, email, telemovel, nif, password, gerente)
+VALUES ('admin', 'admin', 'admin@ibank.pt', '123456789', '123456789', '1000:9084140a6008be75562e71e82a93b5e6:59b3a43838bc479623e19ef78e9d428e7486aea20deb788297cb10e829a27e1def6c456bfd17e457eb611bd0781621d18a4f37a4f26a3e3e594488f8d76474ec', null);
+
+INSERT INTO funcionario (nome, morada, email, telemovel, nif, password, gerente)
 VALUES ('Ricardo Pereira', 'Avenida L, nº 111', 'ricardo.pereira@email.com', '765432109', '111223344', 'senha111', NULL);
 
 INSERT INTO funcionario (nome, morada, email, telemovel, nif, password, gerente)
@@ -45,6 +48,8 @@ VALUES ('Catarina Santos', 'Rua O, nº 444', 'catarina.santos@email.com', '98765
 
 INSERT INTO funcionario (nome, morada, email, telemovel, nif, password, gerente)
 VALUES ('Nuno Almeida', 'Avenida P, nº 555', 'nuno.almeida@email.com', '876543210', '555667788', 'senha555', 3);
+
+
 
 -- Inserir dados de teste na tabela Deposito
 INSERT INTO deposito (valor, aprovado, num_fun, num_cli)
