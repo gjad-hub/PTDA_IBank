@@ -89,6 +89,22 @@ VALUES (30.00, 4, 5, 'Reembolso');
 INSERT INTO transferencia (valor, cliente_realiza, cliente_recebe, motivo)
 VALUES (150.00, 5, 1, 'Empréstimo');
 
+-- Inserir dados de teste na tabela Pagamento_Servicos_Compras
+INSERT INTO pagamento_servicos_compras (entidade, referencia, valor, pago, cliente, cliente_cria, cancelada)
+VALUES (123, 789, 50.00, false, 1, 2, false);
+
+INSERT INTO pagamento_servicos_compras (entidade, referencia, valor, pago, cliente, cliente_cria, cancelada)
+VALUES (456, 234, 75.00, false, 2, 3, false);
+
+INSERT INTO pagamento_servicos_compras (entidade, referencia, valor, pago, cliente, cliente_cria, cancelada)
+VALUES (789, 567, 30.00, false, 3, 4, false);
+
+INSERT INTO pagamento_servicos_compras (entidade, referencia, valor, pago, cliente, cliente_cria, cancelada)
+VALUES (234, 901, 100.00, false, 4, 5, false);
+
+INSERT INTO pagamento_servicos_compras (entidade, referencia, valor, pago, cliente, cliente_cria, cancelada)
+VALUES (567, 123, 25.00, false, 5, 1, false);
+
 -- Inserir dados de teste na tabela Deposito
 INSERT INTO deposito (valor, aprovado, num_fun, num_cli)
 VALUES (500.00, true, null, 1);
