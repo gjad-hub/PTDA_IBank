@@ -59,6 +59,44 @@ public class DepositsDAO {
         return ldeposito;
     }
 
+    public static boolean aproveDeposit(int num_deposito, int num_cliente) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            stmt = conn.prepareStatement(
+                    "call aprovar_deposito(?,?)");
+            stmt.setInt(1, num_deposito);
+            stmt.setInt(2, num_cliente);
+            rs = stmt.executeQuery();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            return false;
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+    }
+
+    public static boolean denyDeposit(int num_deposito, int num_cliente) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            stmt = conn.prepareStatement(
+                    "call aprovar_deposito(?,?)");
+            stmt.setInt(1, num_deposito);
+            stmt.setInt(2, num_cliente);
+            rs = stmt.executeQuery();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            return false;
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+    }
+
     public static int getDepositCount(int num_cliente) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
