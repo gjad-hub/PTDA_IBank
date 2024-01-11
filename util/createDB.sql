@@ -84,16 +84,16 @@ CREATE TABLE deposito
 (
     id_deposito INT PRIMARY KEY AUTO_INCREMENT,
     valor       DECIMAL(10, 2),
-    aprovado    BOOLEAN CONSTRAINT check_approved CHECK 
-    ((aprovado = 1 AND num_fun IS NOT NULL) OR aprovado = 0),
-    pendente_aprovacao BOOLEAN NOT NULL DEFAULT 0,
+    aprovado    BOOLEAN,
+    pendente_aprovacao BOOLEAN NOT NULL DEFAULT 1 ,
     num_fun     INT,
     num_cli     INT,
     data        TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    pendente_aprovacao bool not null default 1,
     FOREIGN KEY (num_fun) REFERENCES funcionario (num_fun),
     FOREIGN KEY (num_cli) REFERENCES cliente (num_cliente)
 );
+alter table deposito add CONSTRAINT check_approved CHECK 
+    ((aprovado = 1 AND num_fun IS NOT NULL) OR aprovado = 0);
 
 -- Tabela transacoes
 CREATE TABLE transacoes
