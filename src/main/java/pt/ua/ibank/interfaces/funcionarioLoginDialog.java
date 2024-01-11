@@ -2,6 +2,8 @@ package pt.ua.ibank.interfaces;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import static pt.ua.ibank.DTO.Funcionario.LocalFuncionario;
 import pt.ua.ibank.DTO.Funcionario;
 import pt.ua.ibank.utilities.Configs;
@@ -216,7 +218,6 @@ public class funcionarioLoginDialog extends javax.swing.JDialog {
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         String email = email_input.getText();
         String password = new String(password_input.getPassword());
-        
 
         if (password.isEmpty() && email.isEmpty()) {
             error.setText("Campos vazios!");
@@ -242,13 +243,37 @@ public class funcionarioLoginDialog extends javax.swing.JDialog {
             Configs.save();
         }
 
+        String regex = "^[a-zA-Z0-9._%+-]+@ibank\\.com$"; //se for @ibank.com então é gerente
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
         LocalFuncionario = new Funcionario(email, password);
-        if (LocalFuncionario.autenticar()) {
-            Configs.loginOK = true;
-            this.dispose();
+
+        if (matcher.matches()) {
+            // é gerente
+            //abrir página destinada ao gerente
+            if (LocalFuncionario.autenticar()) {
+                Configs.loginOK = true;
+                this.dispose();
+            } else {
+                error.setText("Erro ao autenticar! Credenciais incorretas!");
+            }
         } else {
-            error.setText("Erro ao autenticar! Credenciais incorretas!");
+            // não é gerente
+            if (LocalFuncionario.autenticar()) {
+                Configs.loginOK = true;
+                this.dispose();
+            } else {
+                error.setText("Erro ao autenticar! Credenciais incorretas!");
+            }
         }
+
+//        if (LocalFuncionario.autenticar()) {
+//            Configs.loginOK = true;
+//            this.dispose();
+//        } else {
+//            error.setText("Erro ao autenticar! Credenciais incorretas!");
+//        }
+
     }//GEN-LAST:event_loginActionPerformed
 
     private void seeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seeActionPerformed

@@ -11,7 +11,24 @@ public class Funcionario extends Pessoa {
     private int gerente;
 
     public static Funcionario LocalFuncionario;
+    
+    /*
+     * Construtor se for funcionário comum
+     */
+    public Funcionario(Integer numFun, String nome, String morada, String email,
+            String telemovel, String nif, String password) {
+        this.numFun = numFun;
+        this.nome = nome;
+        this.morada = morada;
+        this.email = email;
+        this.telemovel = telemovel;
+        this.nif = nif;
+        this.password = password;
+    }
 
+    /*
+     * Construtor se for gerente
+     */
     public Funcionario(Integer numFun, String nome, String morada, String email,
             String telemovel, String nif, String password, Integer numGerente) {
         this.numFun = numFun;

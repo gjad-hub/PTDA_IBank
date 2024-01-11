@@ -34,15 +34,14 @@ public class FuncionarioDAO {
             }
 
             stmt = conn.prepareStatement(
-                    "INSERT INTO funcionario (nome, morada, email, telemovel, nif, password, gerente) "
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?)");
+                    "INSERT INTO funcionario (nome, morada, email, telemovel, nif, password) "
+                    + "VALUES (?, ?, ?, ?, ?, ?)");
             stmt.setString(1, nome);
             stmt.setString(2, morada);
             stmt.setString(3, email);
             stmt.setString(4, telefone);
             stmt.setString(5, nif);
             stmt.setString(6, password);
-            stmt.setInt(7, 1); // falta adicionar um número de gerente ao funcionário
             stmt.execute();
             int num_fun = getFuncionarioIdByEmail(email);
             return codigoSucesso;
@@ -57,7 +56,6 @@ public class FuncionarioDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         Funcionario fun = null;
-
         try {
 
             stmt = conn.prepareStatement(
