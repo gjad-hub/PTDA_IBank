@@ -14,6 +14,19 @@ VALUES ('4567890123', '2023-08-31', 'Ativo');
 INSERT INTO cartao (num_cartao, data_validade, estado)
 VALUES ('5678901234', '2024-04-30', 'Ativo');
 
+INSERT INTO cartao (num_cartao, data_validade, estado)
+VALUES ('6789012345', '2023-11-30', 'Ativo');
+
+INSERT INTO cartao (num_cartao, data_validade, estado)
+VALUES ('7890123456', '2024-09-30', 'Ativo');
+
+INSERT INTO cartao (num_cartao, data_validade, estado)
+VALUES ('8901234567', '2022-10-31', 'Ativo');
+
+INSERT INTO cartao (num_cartao, data_validade, estado)
+VALUES ('9012345678', '2023-07-31', 'Ativo');
+
+
 -- Inserir dados de teste na tabela Cliente
 INSERT INTO cliente (nome, morada, email, telemovel, nif, password, num_conta, saldo, saldo_cativo, cartao_default, entidade)
 VALUES ('Marta Rodrigues', 'Rua G, nº 111', 'marta.rodrigues@email.com', '876543210', '111223344', 'senha111', '1111222233334444', 1200.00, 800.00, '1234567890', 789);
@@ -29,6 +42,17 @@ VALUES ('Hugo Oliveira', 'Avenida J, nº 444', 'hugo.oliveira@email.com', '98765
 
 INSERT INTO cliente (nome, morada, email, telemovel, nif, password, num_conta, saldo, saldo_cativo, cartao_default, entidade)
 VALUES ('Inês Pereira', 'Rua K, nº 555', 'ines.pereira@email.com', '876543210', '555667788', 'senha555', '5555444455556666', 1100.00, 700.00, '5678901234', 456);
+
+UPDATE cartao SET cliente = 1 WHERE num_cartao = '1234567890';
+UPDATE cartao SET cliente = 2 WHERE num_cartao = '2345678901';
+UPDATE cartao SET cliente = 3 WHERE num_cartao = '3456789012';
+UPDATE cartao SET cliente = 4 WHERE num_cartao = '4567890123';
+UPDATE cartao SET cliente = 5 WHERE num_cartao = '5678901234';
+UPDATE cartao SET cliente = 1 WHERE num_cartao = '6789012345';
+UPDATE cartao SET cliente = 1 WHERE num_cartao = '7890123456';
+UPDATE cartao SET cliente = 2 WHERE num_cartao = '8901234567';
+UPDATE cartao SET cliente = 4 WHERE num_cartao = '9012345678';
+
 
 -- Inserir dados de teste na tabela Funcionario
 INSERT INTO funcionario (nome, morada, email, telemovel, nif, password, gerente)
