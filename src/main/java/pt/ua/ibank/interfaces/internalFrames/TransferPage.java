@@ -239,10 +239,14 @@ public class TransferPage extends javax.swing.JInternalFrame {
 
             int reply = JOptionPane.showConfirmDialog(null, "Confirma a transferencia ?", title, JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
-                TransfersDAO.doTransfer(valor, LocalClient.numCliente, sender_num, descriString);
-                updateClientBalance(LocalClient);
-                status.setForeground(green);
-                status.setText("Transferencia realizada com sucesso !");
+                if (TransfersDAO.doTransfer(valor, LocalClient.numCliente, sender_num, descriString) == TransfersDAO.codigoSucesso) {
+                    updateClientBalance(LocalClient);
+                    status.setForeground(green);
+                    status.setText("Transferencia realizada com sucesso !");
+                } else {
+                    status.setForeground(red);
+                    status.setText("Algo de errado aconteceu !");
+                }
             }
         } else {
             status.setText("Cliente que pretende enviar dinheiro não existe !");

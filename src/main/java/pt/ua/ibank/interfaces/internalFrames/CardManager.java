@@ -238,7 +238,7 @@ public class CardManager extends javax.swing.JInternalFrame {
         if (!Objects.isNull(selected_card) && !selected_card.isEmpty()) {
             int reply = JOptionPane.showConfirmDialog(null, "Deseja tornar o cartão no padrão ?", title, JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
-                if (CardsDAO.makeDefault(selected_card, LocalClient.numCliente) == 1) {
+                if (CardsDAO.makeDefault(selected_card, LocalClient.numCliente) == CardsDAO.codigoSucesso) {
                     status.setForeground(green);
                     status.setText("Cartão principal alterado !");
                     updateInfo();
@@ -290,7 +290,7 @@ public class CardManager extends javax.swing.JInternalFrame {
     private void create_cardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_create_cardActionPerformed
             int reply = JOptionPane.showConfirmDialog(null, "Deseja criar um novo cartão ? Todos os cartões têm uma valiadade de 5 anos !", title, JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
-                if (CardsDAO.createCard(LocalClient.numCliente) == 1) {
+                if (CardsDAO.createCard(LocalClient.numCliente) == CardsDAO.codigoSucesso) {
                     status.setForeground(green);
                     status.setText("Novo cartão criado!");
                     updateInfo();

@@ -5,6 +5,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.SwingUtilities;
+import pt.ua.ibank.DAO.ClientDAO;
 import static pt.ua.ibank.DTO.Cliente.LocalClient;
 import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
 import pt.ua.ibank.utilities.Hash;
@@ -370,15 +371,15 @@ public class ProfilePage extends javax.swing.JInternalFrame {
             int status_int = LocalClient.alterarInformacoes(old_email);
 
             switch (status_int) {
-                case 3 -> {
+                case ClientDAO.codigoErroEmail -> {
                     status.setText("Endereço de email já existente !");
                     LocalClient.email = old_email;
                 }
-                case 2 -> {
+                case ClientDAO.codigoErro -> {
                     status.setText("Algo inesperado aconteceu tente novamente mais tarde !");
                     LocalClient.email = old_email;
                 }
-                case 1 -> {
+                case ClientDAO.codigoSucesso -> {
                     status.setText("Sucesso ao atualizar infromações!");
                     SwingUtilities.invokeLater(() -> {
                         try {

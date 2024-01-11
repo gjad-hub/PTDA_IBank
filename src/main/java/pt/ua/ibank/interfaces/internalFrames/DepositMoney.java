@@ -230,7 +230,7 @@ public class DepositMoney extends javax.swing.JInternalFrame {
     private void depositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositActionPerformed
         status.setForeground(red);
         status.setText("");
-        
+
         String montanteString = !montante.getText().isEmpty() ? montante.getText() : "0";
         String montanteDecimalString = !montante_decimal.getText().isEmpty() ? montante_decimal.getText() : "0";
         double valor = Double.parseDouble(montanteString + "." + montanteDecimalString);
@@ -247,10 +247,15 @@ public class DepositMoney extends javax.swing.JInternalFrame {
             return;
         }
 
-        DepositsDAO.requestDeposit(valor, LocalClient.numCliente);
+        if (DepositsDAO.requestDeposit(valor, LocalClient.numCliente) == DepositsDAO.codigoSucesso) {
+            status.setForeground(green);
+            status.setText("Pedido de depósito enviado, aguarde aprovação !");
+        } else {
+            status.setForeground(red);
+            status.setText("Algo de errado aconteceu !");
+        }
 
-        status.setForeground(green);
-        status.setText("Pedido de depósito enviado, aguarde aprovação!");
+
     }//GEN-LAST:event_depositActionPerformed
 
     private void jPanel1ComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel1ComponentResized

@@ -537,11 +537,11 @@ public class dialogLogin extends javax.swing.JDialog {
                 int verify = ClientDAO.CreateClient(Fnome.getText(), FMorada.getText(), Femail.getText(), Ftelemovel.getText(), FNif.getText(), hashedPassword);
 
                 switch (verify) {
-                    case 3 ->
+                    case ClientDAO.codigoErroEmail ->
                         erro_create.setText("Endereço de email já existente !");
-                    case 2 ->
+                    case ClientDAO.codigoErro ->
                         erro_create.setText("Algo inesperado aconteceu tente novamente mais tarde !");
-                    case 1 -> {
+                    case ClientDAO.codigoSucesso -> {
                         erro_create.setText("Sucesso ao criar cliente !");
                         SwingUtilities.invokeLater(() -> {
                             try {
