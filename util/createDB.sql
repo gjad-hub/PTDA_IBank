@@ -25,9 +25,6 @@ CREATE TABLE cartao
     data_validade   DATE,
     estado          VARCHAR(50),
     cliente         INT,
-    credito         BOOLEAN,
-    saldo_credito   DECIMAL(10, 2),
-    data_vencimento DATE,
     FOREIGN KEY (cliente) REFERENCES cliente (num_cliente)
 );
 

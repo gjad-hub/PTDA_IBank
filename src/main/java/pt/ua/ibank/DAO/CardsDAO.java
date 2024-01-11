@@ -33,8 +33,7 @@ public class CardsDAO {
                 cartao = new Cartao(
                         rs.getString("num_cartao"),
                         rs.getDate("data_validade"),
-                        rs.getInt("cliente"),
-                        rs.getBoolean("credito"));
+                        rs.getInt("cliente"));
             }
 
             return cartao;
@@ -60,8 +59,7 @@ public class CardsDAO {
 
             while (rs.next()) {
                 Cartao tr = new Cartao(rs.getString("num_cartao"),
-                        rs.getDate("data_validade"), rs.getString("estado"),
-                        rs.getBoolean("credito"));
+                        rs.getDate("data_validade"), rs.getString("estado"));
                 lcartao.add(tr);
             }
         } catch (SQLException e) {

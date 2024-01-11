@@ -22,7 +22,7 @@ public class PerfilCardTableModel extends javax.swing.table.AbstractTableModel {
     public PerfilCardTableModel() {
         data = new java.util.ArrayList<>();
         java.sql.Date ea = new java.sql.Date(1, 2, 2002);
-        data.add(new Cartao("213123211231", ea, 2.2, "estado"));
+//        data.add(new Cartao("213123211231", ea, 2.2, "estado"));
     }
 
     @Override

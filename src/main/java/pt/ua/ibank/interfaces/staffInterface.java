@@ -1,6 +1,5 @@
 package pt.ua.ibank.interfaces;
 
-import pt.ua.ibank.interfaces.*;
 import pt.ua.ibank.interfaces.internalFrames.DashBoard;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -21,7 +20,7 @@ import pt.ua.ibank.utilities.RoundedShadowPanel;
 
 public class staffInterface extends javax.swing.JFrame {
 
-    public static staffInterface localClientInterface;
+    public static staffInterface localStaffInterface;
     public static Thread updateThread = null;
 
     @Override

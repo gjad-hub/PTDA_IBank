@@ -39,8 +39,7 @@ public class CardManager extends javax.swing.JInternalFrame {
                 modelo.addRow(new Object[]{
                     cartao.numCartao,
                     dataFormat.format(cartao.dataValidade),
-                    cartao.estado,
-                    cartao.credito ? "Credito" : "Débito"
+                    cartao.estado
                 });
             }
         }
@@ -80,6 +79,7 @@ public class CardManager extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        setTitle("Gestor cartões");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/credit_card.png"))); // NOI18N
 
         backdrop.setBackground(new java.awt.Color(255, 255, 255));
@@ -91,14 +91,14 @@ public class CardManager extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Núm Cartão", "Data validade", "Estado", "Tipo"
+                "Núm Cartão", "Data validade", "Estado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -109,7 +109,9 @@ public class CardManager extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        card_table.setColumnSelectionAllowed(true);
         jScrollPane1.setViewportView(card_table);
+        card_table.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         cancel_card.setText("Cancelar cartão");
         cancel_card.addActionListener(new java.awt.event.ActionListener() {
@@ -288,7 +290,7 @@ public class CardManager extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cancel_cardActionPerformed
 
     private void create_cardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_create_cardActionPerformed
-            int reply = JOptionPane.showConfirmDialog(null, "Deseja criar um novo cartão ? Todos os cartões têm uma valiadade de 5 anos !", title, JOptionPane.YES_NO_OPTION);
+            int reply = JOptionPane.showConfirmDialog(null, "Deseja criar um novo cartão ? Todos os cartões têm uma validade de 5 anos !", title, JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
                 if (CardsDAO.createCard(LocalClient.numCliente) == CardsDAO.codigoSucesso) {
                     status.setForeground(green);

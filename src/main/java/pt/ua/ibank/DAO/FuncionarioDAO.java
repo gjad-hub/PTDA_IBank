@@ -64,14 +64,13 @@ public class FuncionarioDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                fun = new Funcionario(rs.getInt("num_cliente"),
+                fun = new Funcionario(rs.getInt("num_fun"),
                         rs.getString("nome"),
                         rs.getString("morada"),
                         rs.getString("email"),
                         rs.getString("telemovel"),
                         rs.getString("nif"),
-                        rs.getString("password"),
-                        1); // falta adicionar um número de gerente ao funcionário
+                        rs.getString("password")); // falta adicionar um número de gerente ao funcionário
             }
 
             return fun;
@@ -86,7 +85,6 @@ public class FuncionarioDAO {
     public static ArrayList<Funcionario> getFuncionarioList() {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Integer num_fun = null; //não percebi para que serve esta linha
 
         ArrayList list = new ArrayList<>();
         try {
@@ -103,8 +101,7 @@ public class FuncionarioDAO {
                 String nif = rs.getString("nif");
                 Integer numGerente = rs.getInt("gerente");
 
-                num_fun = rs.getInt("num_cliente"); //não percebi porque precisamos disto
-                list.add(new Funcionario(num_fun, nome, morada, email, telemovel, nif, morada, numGerente));
+                list.add(new Funcionario(numero, nome, morada, email, telemovel, nif, morada, numGerente));
             }
             return list;
         } catch (SQLException e) {
