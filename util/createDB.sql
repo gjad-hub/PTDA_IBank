@@ -84,7 +84,8 @@ CREATE TABLE deposito
 (
     id_deposito INT PRIMARY KEY AUTO_INCREMENT,
     valor       DECIMAL(10, 2),
-    aprovado    BOOLEAN CONSTRAINT check_aproved CHECK ( aprovado = 1 AND num_fun IS NOT NULL ),
+    aprovado    BOOLEAN CONSTRAINT check_approved CHECK 
+    ((aprovado = 1 AND num_fun IS NOT NULL) OR aprovado = 0),
     num_fun     INT,
     num_cli     INT,
     data        TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
