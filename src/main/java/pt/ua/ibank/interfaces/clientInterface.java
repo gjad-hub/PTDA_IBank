@@ -10,6 +10,7 @@ import pt.ua.ibank.interfaces.internalFrames.DepositMoney;
 import pt.ua.ibank.interfaces.internalFrames.PayServices;
 import pt.ua.ibank.interfaces.internalFrames.ProfilePage;
 import pt.ua.ibank.interfaces.internalFrames.TransferPage;
+import pt.ua.ibank.interfaces.internalFrames.staff.login.createAccountFuncionario;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 import pt.ua.ibank.utilities.MDIDesktopPane;
@@ -27,7 +28,7 @@ public class clientInterface extends javax.swing.JFrame {
 
     public clientInterface() {
         initComponents();
-        start_up();
+        //start_up();
     }
 
     public void addWindow(Component comp) {
@@ -380,7 +381,8 @@ public class clientInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_transfersActionPerformed
 
     private void dashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardActionPerformed
-        addWindow(new DashBoard());
+        //addWindow(new DashBoard());
+        addWindow(new createAccountFuncionario());
     }//GEN-LAST:event_dashboardActionPerformed
 
     private void hideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hideActionPerformed

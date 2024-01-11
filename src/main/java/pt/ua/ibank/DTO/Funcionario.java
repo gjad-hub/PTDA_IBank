@@ -4,6 +4,18 @@ public class Funcionario extends Pessoa{
 
     private int numFun;
     private int gerente;
+    
+    public Funcionario(Integer numFun, String nome, String morada, String email,
+            String telemovel, String nif, String password,Integer numGerente) {
+        this.numFun = numFun;
+        this.nome = nome;
+        this.morada = morada;
+        this.email = email;
+        this.telemovel = telemovel;
+        this.nif = nif;
+        this.password = password;
+        this.gerente = numGerente;
+    }
 
     public int getNumFun() {
         return numFun;

@@ -1,30 +1,28 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package pt.ua.ibank.interfaces;
+package pt.ua.ibank.interfaces.internalFrames.staff.login;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-
+import javax.swing.SwingUtilities;
+import pt.ua.ibank.DAO.ClientDAO;
+import pt.ua.ibank.utilities.Hash;
 
 /**
  *
  * @author Asus
  */
-public class funcionarioCreateAccount extends javax.swing.JDialog {
+public class formCreateAccountFuncionario extends javax.swing.JPanel {
 
     /**
-     * Creates new form funcionarioCreateAccount
+     * Creates new form seila
      */
-    public funcionarioCreateAccount(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public formCreateAccountFuncionario() {
         initComponents();
-        startup();
-    }
-    
-    private void startup() {
         Fnome.setBackground(new java.awt.Color(0, 0, 0, 1));
         Femail.setBackground(new java.awt.Color(0, 0, 0, 1));
         Ftelemovel.setBackground(new java.awt.Color(0, 0, 0, 1));
@@ -53,8 +51,6 @@ public class funcionarioCreateAccount extends javax.swing.JDialog {
         FPass = new javax.swing.JPasswordField();
         jLabel8 = new javax.swing.JLabel();
         btnCreateAccount = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
-        lblLogin = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         FRPass = new javax.swing.JPasswordField();
         jLabel17 = new javax.swing.JLabel();
@@ -70,8 +66,6 @@ public class funcionarioCreateAccount extends javax.swing.JDialog {
         jLabel24 = new javax.swing.JLabel();
         FMorada = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         panelCreateAccount.setBackground(new java.awt.Color(0, 51, 51));
         panelCreateAccount.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -131,22 +125,6 @@ public class funcionarioCreateAccount extends javax.swing.JDialog {
             }
         });
         panelCreateAccount.add(btnCreateAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, 360, 40));
-
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(199, 226, 255));
-        jLabel11.setText("Já tem uma conta?");
-        panelCreateAccount.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 590, -1, -1));
-
-        lblLogin.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        lblLogin.setForeground(new java.awt.Color(255, 255, 255));
-        lblLogin.setText("Login");
-        lblLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblLogin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblLoginMouseClicked(evt);
-            }
-        });
-        panelCreateAccount.add(lblLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 590, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(199, 226, 255));
@@ -219,20 +197,18 @@ public class funcionarioCreateAccount extends javax.swing.JDialog {
         jLabel25.setText("_________________________________________________________________");
         panelCreateAccount.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 319, 40));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelCreateAccount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelCreateAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 637, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreateAccountMouseClicked
@@ -287,56 +263,38 @@ public class funcionarioCreateAccount extends javax.swing.JDialog {
             FRPass.setText("");
         } else {
             //CRIAR CONTA FUNCIONÁRIO
-            
+            try {
+                String hashedPassword = Hash.generateStorngPasswordHash(new String(FPass.getPassword()));
+                int verify = ClientDAO.CreateClient(Fnome.getText(), FMorada.getText(), Femail.getText(), Ftelemovel.getText(), FNif.getText(), hashedPassword);
+
+                switch (verify) {
+                    case 3 ->
+                        erro_create.setText("Endereço de email já existente !");
+                    case 2 ->
+                        erro_create.setText("Algo inesperado aconteceu tente novamente mais tarde !");
+                    case 1 -> {
+                        erro_create.setText("Sucesso ao criar cliente !");
+                        SwingUtilities.invokeLater(() -> {
+                            try {
+                                Thread.sleep(1500);
+//                                panel.setSelectedIndex(0);
+//                                email_input.requestFocus();
+//                                email_input.setText(Femail.getText());
+                            } catch (InterruptedException ex) {
+                                System.out.println(ex);
+                            }
+                        });
+
+                    }
+                }
+
+            } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+                ex.printStackTrace();
+            }
+
         }
     }//GEN-LAST:event_btnCreateAccountActionPerformed
 
-    private void lblLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoginMouseClicked
-        
-    }//GEN-LAST:event_lblLoginMouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(funcionarioCreateAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(funcionarioCreateAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(funcionarioCreateAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(funcionarioCreateAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                funcionarioCreateAccount dialog = new funcionarioCreateAccount(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField FMorada;
@@ -349,7 +307,6 @@ public class funcionarioCreateAccount extends javax.swing.JDialog {
     private javax.swing.JButton btnCreateAccount;
     private javax.swing.JLabel erro_create;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -364,7 +321,6 @@ public class funcionarioCreateAccount extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel lblLogin;
     private javax.swing.JPanel panelCreateAccount;
     // End of variables declaration//GEN-END:variables
 }
