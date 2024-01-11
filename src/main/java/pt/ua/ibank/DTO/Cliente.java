@@ -2,7 +2,10 @@ package pt.ua.ibank.DTO;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import static pt.ua.ibank.DAO.CardsDAO.getCardByNumber;
 import pt.ua.ibank.DAO.ClientDAO;
+import static pt.ua.ibank.utilities.Configs.LocalClientCard;
+import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.utilities.Hash;
 
 public class Cliente extends Pessoa {
@@ -13,8 +16,6 @@ public class Cliente extends Pessoa {
     public Double saldo_cativo;
     public String cartaoDefault;
     public Integer entidade;
-
-    public static Cliente LocalClient;
 
     /*
      * Construtor completo
@@ -96,6 +97,7 @@ public class Cliente extends Pessoa {
             try {
                 if (Hash.validatePassword(password, tmp.password)) {
                     LocalClient = tmp;
+                    LocalClientCard = getCardByNumber(LocalClient.cartaoDefault);
                     return true;
                 }
             } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {

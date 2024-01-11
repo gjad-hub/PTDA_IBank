@@ -1,12 +1,18 @@
 package pt.ua.ibank.utilities;
 
 import java.util.prefs.Preferences;
+import pt.ua.ibank.DTO.Cartao;
+import pt.ua.ibank.DTO.Cliente;
 import pt.ua.ibank.IBank;
 
 public class Configs {
 
     private static final Preferences prefs = Preferences.userNodeForPackage(IBank.class);
     public static boolean loginOK = false;
+    
+    public static Cliente LocalClient;
+    public static Cartao LocalClientCard;
+    
     public static String Uname;
     public static boolean Usave;
 

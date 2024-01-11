@@ -5,7 +5,7 @@ import java.util.Objects;
 import javax.swing.JOptionPane;
 import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.DAO.TransfersDAO;
-import static pt.ua.ibank.DTO.Cliente.LocalClient;
+import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
 import static pt.ua.ibank.utilities.ClientInfo.updateClientBalance;
 

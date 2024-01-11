@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 import javax.swing.SwingUtilities;
 import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.DTO.Cliente;
-import static pt.ua.ibank.DTO.Cliente.LocalClient;
+import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.utilities.Configs;
 import pt.ua.ibank.utilities.Hash;
 

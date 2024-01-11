@@ -1,12 +1,10 @@
 package pt.ua.ibank.interfaces.internalFrames;
 
 import java.awt.Color;
-import java.awt.Font;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import pt.ua.ibank.DAO.DepositsDAO;
-import pt.ua.ibank.DTO.Cliente;
-import static pt.ua.ibank.DTO.Cliente.LocalClient;
+import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
 
 public class DepositMoney extends javax.swing.JInternalFrame {
@@ -16,7 +14,7 @@ public class DepositMoney extends javax.swing.JInternalFrame {
 
     public DepositMoney() {
         initComponents();
-        saldo_actual.setText(Cliente.LocalClient.saldo + " EUR");
+        saldo_actual.setText(LocalClient.saldo + " EUR");
         saldo_futuro.setText(LocalClient.saldo + " EUR");
 
         DocumentListener documentListener = new DocumentListener() {

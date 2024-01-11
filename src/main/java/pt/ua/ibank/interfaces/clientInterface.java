@@ -4,7 +4,7 @@ import pt.ua.ibank.interfaces.internalFrames.DashBoard;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.beans.PropertyVetoException;
-import static pt.ua.ibank.DTO.Cliente.LocalClient;
+import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.interfaces.internalFrames.CardManager;
 import pt.ua.ibank.interfaces.internalFrames.DepositMoney;
 import pt.ua.ibank.interfaces.internalFrames.ManageReferences;

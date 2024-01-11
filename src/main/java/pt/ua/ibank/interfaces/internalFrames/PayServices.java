@@ -7,8 +7,7 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import pt.ua.ibank.DAO.PaymentsDAO;
 import static pt.ua.ibank.DAO.PaymentsDAO.getServicosCompras;
-import pt.ua.ibank.DTO.Cartao;
-import static pt.ua.ibank.DTO.Cliente.LocalClient;
+import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.DTO.PagamentoServicosCompras;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
 

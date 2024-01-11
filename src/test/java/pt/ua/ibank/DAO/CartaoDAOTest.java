@@ -4,7 +4,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ua.ibank.DTO.Cartao;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class CartaoDAOTest {
@@ -18,21 +17,17 @@ class CartaoDAOTest {
     }
 
     @Test
-    void getCardByNumber() {
+    public void testGetCardByNumberFound() { 
+        String testCardNumber = "4001385050156587";
+        Cartao cartao = CardsDAO.getCardByNumber(testCardNumber);
+        assertNotNull(cartao);
+        assertEquals(testCardNumber, cartao.numCartao);
     }
 
-//    @Test
-//    public void testGetCardByNumberFound() { //Cannot read field "cartaoDefault" because "pt.ua.ibank.DTO.Cliente.LocalClient" is null
-//        String testCardNumber = "4001265529223496";
-//        Cartao cartao = CardsDAO.getCardByNumber(testCardNumber);
-//        assertNotNull(cartao);
-//        assertEquals(testCardNumber, cartao.numCartao);
-//    }
-//
-//    @Test
-//    public void testGetCardByNumberNotFound() {
-//        String testCardNumber = "4000917308926013";
-//        Cartao cartao = CardsDAO.getCardByNumber(testCardNumber);
-//        assertNull(cartao);
-//    }
+    @Test
+    public void testGetCardByNumberNotFound() {
+        String testCardNumber = "4000917308926013";
+        Cartao cartao = CardsDAO.getCardByNumber(testCardNumber);
+        assertNull(cartao);
+    }
 }

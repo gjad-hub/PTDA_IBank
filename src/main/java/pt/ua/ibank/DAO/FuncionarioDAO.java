@@ -10,9 +10,9 @@ import static pt.ua.ibank.utilities.DBConnection.conn;
 
 public class FuncionarioDAO {
 
-    protected final static int codigoSucesso = 1;
-    protected final static int codigoErro = 2;
-    protected final static int codigoErroEmail = 3;
+    public final static int codigoSucesso = 1;
+    public final static int codigoErro = 2;
+    public final static int codigoErroEmail = 3;
 
     public static int CreateFuncionario(String nome, String morada, String email,
             String telefone, String nif,

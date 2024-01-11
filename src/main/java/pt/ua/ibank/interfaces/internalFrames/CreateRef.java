@@ -2,7 +2,7 @@ package pt.ua.ibank.interfaces.internalFrames;
 
 import java.awt.Color;
 import pt.ua.ibank.DAO.PaymentsDAO;
-import static pt.ua.ibank.DTO.Cliente.LocalClient;
+import static pt.ua.ibank.utilities.Configs.LocalClient;
 import static pt.ua.ibank.utilities.EntityRefGenerator.generateRef;
 import java.awt.datatransfer.StringSelection;
 import java.awt.Toolkit;

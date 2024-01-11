@@ -8,7 +8,7 @@ import java.awt.Image;
 import java.beans.PropertyVetoException;
 
 import javax.swing.ImageIcon;
-import static pt.ua.ibank.DTO.Cliente.LocalClient;
+import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.interfaces.internalFrames.ProfilePage;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;

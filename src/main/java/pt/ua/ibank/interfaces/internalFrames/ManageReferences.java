@@ -6,9 +6,8 @@ import java.util.Objects;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pt.ua.ibank.DAO.PaymentsDAO;
-import static pt.ua.ibank.DTO.Cliente.LocalClient;
+import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.DTO.PagamentoServicosCompras;
-import pt.ua.ibank.interfaces.clientInterface;
 import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
 

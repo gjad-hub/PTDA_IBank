@@ -267,11 +267,11 @@ public class formCreateAccountFuncionario extends javax.swing.JPanel {
                 int verify = FuncionarioDAO.CreateFuncionario(Fnome.getText(), FMorada.getText(), Femail.getText(), Ftelemovel.getText(), FNif.getText(), hashedPassword);
 
                 switch (verify) {
-                    case 3 ->
+                    case FuncionarioDAO.codigoErroEmail ->
                         erro_create.setText("Endereço de email já existente !");
-                    case 2 ->
+                    case FuncionarioDAO.codigoErro ->
                         erro_create.setText("Algo inesperado aconteceu tente novamente mais tarde !");
-                    case 1 -> {
+                    case FuncionarioDAO.codigoSucesso -> {
                         erro_create.setText("Sucesso ao criar funcionário !");
                         SwingUtilities.invokeLater(() -> {
                             try {
@@ -290,7 +290,6 @@ public class formCreateAccountFuncionario extends javax.swing.JPanel {
             } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
                 ex.printStackTrace();
             }
-
         }
     }//GEN-LAST:event_btnCreateAccountActionPerformed
 

@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import pt.ua.ibank.DTO.Cartao;
-import static pt.ua.ibank.DTO.Cliente.LocalClient;
 import static pt.ua.ibank.utilities.CardGenerator.generateCardNumber;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
@@ -14,8 +13,7 @@ public class CardsDAO {
 
     public final static int codigoSucesso = 1;
     public final static int codigoErro = 2;
-    public static Cartao LocalClientCard = getCardByNumber(
-            LocalClient.cartaoDefault);
+    
 
     public static Cartao getCardByNumber(String number) {
         PreparedStatement stmt = null;

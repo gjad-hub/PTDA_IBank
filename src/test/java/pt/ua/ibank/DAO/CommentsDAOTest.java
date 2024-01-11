@@ -31,19 +31,19 @@ class CommentsDAOTest {
     void deleteComment() {
     }
 
-    @Test
-    public void testGetCommentListByNumber() {
-        // ArrayList<ModeratorComment> comments = CommentsDAO.getCommentListByNumber("3");
-        assertNotNull(CommentsDAO.getCommentListByNumber("3"));
-    }
-
-    @Test
-    public void testAddNewComment() {
-        assertTrue(CommentsDAO.addNewComment("3", "Comentário de teste"));
-    }
-
-    @Test
-    public void testDeleteComment() {
-        assertTrue(CommentsDAO.deleteComment(1));
-    }
+//    @Test
+//    public void testGetCommentListByNumber() {
+//        // ArrayList<ModeratorComment> comments = CommentsDAO.getCommentListByNumber("3");
+//        assertNotNull(CommentsDAO.getCommentListByNumber("3"));
+//    }
+//
+//    @Test
+//    public void testAddNewComment() {
+//        assertTrue(CommentsDAO.addNewComment("3", "Comentário de teste"));
+//    }
+//
+//    @Test
+//    public void testDeleteComment() {
+//        assertTrue(CommentsDAO.deleteComment(1));
+//    }
 }

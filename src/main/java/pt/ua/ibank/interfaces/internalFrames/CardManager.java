@@ -8,8 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pt.ua.ibank.DAO.CardsDAO;
 import pt.ua.ibank.DTO.Cartao;
-import static pt.ua.ibank.DTO.Cliente.LocalClient;
-import pt.ua.ibank.utilities.ClientInfo;
+import static pt.ua.ibank.utilities.Configs.LocalClient;
 import static pt.ua.ibank.utilities.ClientInfo.updateClientCardInfo;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
 
