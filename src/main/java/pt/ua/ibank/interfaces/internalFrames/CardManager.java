@@ -167,10 +167,11 @@ public class CardManager extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(see_cardsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancel_card)
-                    .addComponent(default_card)
-                    .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(see_cardsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(see_cardsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cancel_card)
+                        .addComponent(default_card)))
                 .addContainerGap())
         );
 
@@ -275,7 +276,7 @@ public class CardManager extends javax.swing.JInternalFrame {
         if (!Objects.isNull(selected_card) && !selected_card.isEmpty()) {
             int reply = JOptionPane.showConfirmDialog(null, "Deseja cancelar o cartão ? Não caminho de volta !", title, JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
-                if (CardsDAO.cancelCard(selected_card) == 1) {
+                if (CardsDAO.cancelCard(selected_card) == CardsDAO.codigoSucesso) {
                     status.setForeground(green);
                     status.setText("Cartão cancelado !");
                     updateInfo();

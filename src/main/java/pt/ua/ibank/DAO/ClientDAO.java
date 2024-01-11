@@ -8,6 +8,7 @@ import pt.ua.ibank.DTO.Cliente;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 import static pt.ua.ibank.utilities.CardGenerator.generateCardNumber;
+import static pt.ua.ibank.utilities.EntityRefGenerator.generateEnt;
 import static pt.ua.ibank.utilities.IbanGenerator.generateRandomIban;
 
 public class ClientDAO {
@@ -16,19 +17,17 @@ public class ClientDAO {
     protected final static int codigoErro = 2;
     protected final static int codigoErroEmail = 3;
 
-    public static int CreateClient(String nome, String morada, String email,
-            String telefone, String nif,
-            String password) {
+    public static int CreateClient(String nome, String morada, String email, String telefone, String nif, String password) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         String num_conta;
         String num_cartao;
+        int ent;
 
         try {
 
             // Verifica se já existe alguma conta com aquele e-mail
-            stmt = conn.prepareStatement(
-                    "SELECT count(num_cliente) AS valor FROM cliente where email like ?;");
+            stmt = conn.prepareStatement("SELECT count(num_cliente) AS valor FROM cliente where email like ?;");
             stmt.setString(1, email);
             rs = stmt.executeQuery();
             rs.next();
@@ -40,8 +39,7 @@ public class ClientDAO {
             // Gera um novo iban até não existir um cliente com o iban
             do {
                 num_conta = generateRandomIban();
-                stmt = conn.prepareStatement(
-                        "SELECT count(num_cliente) AS valor FROM cliente where num_conta like ?;");
+                stmt = conn.prepareStatement("SELECT count(num_cliente) AS valor FROM cliente where num_conta like ?;");
                 stmt.setString(1, num_conta);
                 rs = stmt.executeQuery();
                 rs.next();
@@ -50,9 +48,17 @@ public class ClientDAO {
             // Gera um novo cartao até não existir nenhum cartao com este numero
             do {
                 num_cartao = generateCardNumber();
-                stmt = conn.prepareStatement(
-                        "SELECT count(num_cartao) AS valor FROM cartao where num_cartao like ?;");
+                stmt = conn.prepareStatement("SELECT count(num_cartao) AS valor FROM cartao where num_cartao like ?;");
                 stmt.setString(1, num_cartao);
+                rs = stmt.executeQuery();
+                rs.next();
+            } while (rs.getInt("valor") != 0);
+
+            // Gera uma nova referencia até não existir nenhuma com este numero
+            do {
+                ent = generateEnt();
+                stmt = conn.prepareStatement("SELECT count(num_cliente) AS valor FROM cliente where entidade = ?;");
+                stmt.setInt(1, ent);
                 rs = stmt.executeQuery();
                 rs.next();
             } while (rs.getInt("valor") != 0);
@@ -66,8 +72,8 @@ public class ClientDAO {
             stmt.execute();
 
             stmt = conn.prepareStatement(
-                    "INSERT INTO cliente (nome, morada, email, telemovel, nif, num_conta, password, cartao_default) "
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                    "INSERT INTO cliente (nome, morada, email, telemovel, nif, num_conta, password, cartao_default, entidade) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
             stmt.setString(1, nome);
             stmt.setString(2, morada);
             stmt.setString(3, email);
@@ -76,6 +82,7 @@ public class ClientDAO {
             stmt.setString(6, num_conta);
             stmt.setString(7, password);
             stmt.setString(8, num_cartao);
+            stmt.setInt(9, ent);
             stmt.execute();
 
             int num_cli = getClientIdByEmail(email);
@@ -91,7 +98,7 @@ public class ClientDAO {
         } catch (SQLException e) {
             return codigoErro;
         } finally {
-            DBConnection.closeConnection(stmt);
+            DBConnection.closeConnection(stmt, rs);
         }
     }
 
@@ -119,7 +126,8 @@ public class ClientDAO {
                         rs.getString("num_conta"),
                         rs.getDouble("saldo"),
                         rs.getDouble("saldo_cativo"),
-                        rs.getString("cartao_default"));
+                        rs.getString("cartao_default"),
+                        rs.getInt("entidade"));
             }
 
             return cl;

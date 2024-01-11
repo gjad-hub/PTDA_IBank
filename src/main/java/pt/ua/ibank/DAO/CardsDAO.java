@@ -12,8 +12,8 @@ import static pt.ua.ibank.utilities.DBConnection.conn;
 
 public class CardsDAO {
 
-    protected final static int codigoSucesso = 1;
-    protected final static int codigoErro = 2;
+    public final static int codigoSucesso = 1;
+    public final static int codigoErro = 2;
     public static Cartao LocalClientCard = getCardByNumber(
             LocalClient.cartaoDefault);
 
@@ -142,8 +142,7 @@ public class CardsDAO {
             // Gera um novo cartao até não existir nenhum cartao com este numero
             do {
                 num_cartao = generateCardNumber();
-                stmt = conn.prepareStatement(
-                        "SELECT count(num_cartao) AS valor FROM cartao where num_cartao like ?;");
+                stmt = conn.prepareStatement("SELECT count(num_cartao) AS valor FROM cartao where num_cartao like ?;");
                 stmt.setString(1, num_cartao);
                 rs = stmt.executeQuery();
                 rs.next();
@@ -158,7 +157,7 @@ public class CardsDAO {
             stmt.execute();
 
             return codigoSucesso;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             return codigoErro;
         } finally {
             DBConnection.closeConnection(stmt, rs);

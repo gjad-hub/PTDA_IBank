@@ -276,7 +276,12 @@ public class PayServices extends javax.swing.JInternalFrame {
         }
 
         if (servicosCompras.pago) {
-            status.setText("A referencia que está a tentar pagar já está paga");
+            status.setText("A referencia que está a tentar pagar já está paga !");
+            return;
+        }
+
+        if (servicosCompras.cancelada) {
+            status.setText("A referencia que está a tentar pagar está cancelada !");
             return;
         }
 
@@ -285,11 +290,22 @@ public class PayServices extends javax.swing.JInternalFrame {
             return;
         }
 
+        if (servicosCompras.cliente_cria == LocalClient.numCliente) {
+            status.setText("Não pode pagar a propria referencia !");
+            return;
+        }
+
         int reply = JOptionPane.showConfirmDialog(null, "Confirma a pagamento ?", title, JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION) {
-            PaymentsDAO.payService(valor, LocalClient.numCliente, Integer.parseInt(entidadeValida), Integer.parseInt(referenciaValida));
-            status.setForeground(Color.GREEN);
-            status.setText("PAGO!");
+            int payReply = PaymentsDAO.payService(valor, LocalClient.numCliente, servicosCompras.cliente_cria, Integer.parseInt(entidadeValida), Integer.parseInt(referenciaValida));
+
+            if (payReply == PaymentsDAO.codigoSucesso) {
+                status.setForeground(green);
+                status.setText("PAGO!");
+            } else {
+                status.setForeground(red);
+                status.setText("Algo de errado aconteceu !");
+            }
         }
     }//GEN-LAST:event_payActionPerformed
 

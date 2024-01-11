@@ -7,6 +7,7 @@ import java.beans.PropertyVetoException;
 import static pt.ua.ibank.DTO.Cliente.LocalClient;
 import pt.ua.ibank.interfaces.internalFrames.CardManager;
 import pt.ua.ibank.interfaces.internalFrames.DepositMoney;
+import pt.ua.ibank.interfaces.internalFrames.ManageReferences;
 import pt.ua.ibank.interfaces.internalFrames.PayServices;
 import pt.ua.ibank.interfaces.internalFrames.ProfilePage;
 import pt.ua.ibank.interfaces.internalFrames.TransferPage;
@@ -81,6 +82,7 @@ public class clientInterface extends javax.swing.JFrame {
         logout = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         depo = new javax.swing.JButton();
+        ent_ref = new javax.swing.JButton();
         desktop = new MDIDesktopPane();
         logo = new javax.swing.JLabel();
         small_side_bar = new RoundedShadowPanel(5);
@@ -91,6 +93,7 @@ public class clientInterface extends javax.swing.JFrame {
         saccount = new javax.swing.JButton();
         slogout = new javax.swing.JButton();
         sdepo = new javax.swing.JButton();
+        sent_ref = new javax.swing.JButton();
         menu_bar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         hide = new javax.swing.JMenuItem();
@@ -169,6 +172,15 @@ public class clientInterface extends javax.swing.JFrame {
             }
         });
 
+        ent_ref.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/sell.png"))); // NOI18N
+        ent_ref.setText("Entidades Referências");
+        ent_ref.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ent_ref.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ent_refActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout side_barLayout = new javax.swing.GroupLayout(side_bar);
         side_bar.setLayout(side_barLayout);
         side_barLayout.setHorizontalGroup(
@@ -184,7 +196,8 @@ public class clientInterface extends javax.swing.JFrame {
                             .addComponent(transfers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(services, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
                             .addComponent(card, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(depo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(depo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ent_ref, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(side_barLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -212,7 +225,9 @@ public class clientInterface extends javax.swing.JFrame {
                 .addComponent(card)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(depo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 505, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ent_ref)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 462, Short.MAX_VALUE)
                 .addComponent(logout)
                 .addContainerGap())
         );
@@ -294,6 +309,14 @@ public class clientInterface extends javax.swing.JFrame {
             }
         });
 
+        sent_ref.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/sell.png"))); // NOI18N
+        sent_ref.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        sent_ref.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sent_refActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout small_side_barLayout = new javax.swing.GroupLayout(small_side_bar);
         small_side_bar.setLayout(small_side_barLayout);
         small_side_barLayout.setHorizontalGroup(
@@ -306,7 +329,8 @@ public class clientInterface extends javax.swing.JFrame {
                     .addComponent(sservices, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(scard, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(saccount, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(sdepo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(sdepo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sent_ref, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, small_side_barLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -328,6 +352,8 @@ public class clientInterface extends javax.swing.JFrame {
                 .addComponent(scard)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(sdepo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(sent_ref)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(slogout)
                 .addContainerGap())
@@ -445,6 +471,14 @@ public class clientInterface extends javax.swing.JFrame {
         addWindow(new CardManager());
     }//GEN-LAST:event_cardActionPerformed
 
+    private void ent_refActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ent_refActionPerformed
+        addWindow(new ManageReferences());
+    }//GEN-LAST:event_ent_refActionPerformed
+
+    private void sent_refActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sent_refActionPerformed
+        addWindow(new ManageReferences());
+    }//GEN-LAST:event_sent_refActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -505,6 +539,7 @@ public class clientInterface extends javax.swing.JFrame {
     private javax.swing.JButton depo;
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel display_user;
+    private javax.swing.JButton ent_ref;
     private javax.swing.JMenuItem hide;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
@@ -516,6 +551,7 @@ public class clientInterface extends javax.swing.JFrame {
     private javax.swing.JButton scard;
     private javax.swing.JButton sdashboard;
     private javax.swing.JButton sdepo;
+    private javax.swing.JButton sent_ref;
     private javax.swing.JButton services;
     private javax.swing.JPanel side_bar;
     private javax.swing.JButton slogout;

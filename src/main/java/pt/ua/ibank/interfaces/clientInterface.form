@@ -97,6 +97,7 @@
                               <Component id="services" alignment="0" pref="204" max="32767" attributes="0"/>
                               <Component id="card" alignment="0" max="32767" attributes="0"/>
                               <Component id="depo" alignment="0" max="32767" attributes="0"/>
+                              <Component id="ent_ref" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
@@ -131,7 +132,9 @@
                   <Component id="card" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="depo" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="505" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="ent_ref" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="462" max="32767" attributes="0"/>
                   <Component id="logout" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -234,6 +237,18 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="depoActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JButton" name="ent_ref">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/resources/images/icons_24/sell.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Entidades Refer&#xea;ncias"/>
+            <Property name="horizontalAlignment" type="int" value="2"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ent_refActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JDesktopPane" name="desktop">
@@ -291,6 +306,7 @@
                       <Component id="scard" alignment="0" max="32767" attributes="0"/>
                       <Component id="saccount" alignment="0" max="32767" attributes="0"/>
                       <Component id="sdepo" alignment="0" max="32767" attributes="0"/>
+                      <Component id="sent_ref" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -316,6 +332,8 @@
                   <Component id="scard" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="sdepo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="sent_ref" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="slogout" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -399,6 +417,17 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sdepoActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="sent_ref">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/resources/images/icons_24/sell.png"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="2"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sent_refActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
