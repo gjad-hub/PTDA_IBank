@@ -9,7 +9,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.SwingUtilities;
-import pt.ua.ibank.DAO.ClientDAO;
+import pt.ua.ibank.DAO.FuncionarioDAO;
 import pt.ua.ibank.utilities.Hash;
 
 /**
@@ -262,10 +262,9 @@ public class formCreateAccountFuncionario extends javax.swing.JPanel {
             FPass.setText("");
             FRPass.setText("");
         } else {
-            //CRIAR CONTA FUNCIONÁRIO
             try {
                 String hashedPassword = Hash.generateStorngPasswordHash(new String(FPass.getPassword()));
-                int verify = ClientDAO.CreateClient(Fnome.getText(), FMorada.getText(), Femail.getText(), Ftelemovel.getText(), FNif.getText(), hashedPassword);
+                int verify = FuncionarioDAO.CreateFuncionario(Fnome.getText(), FMorada.getText(), Femail.getText(), Ftelemovel.getText(), FNif.getText(), hashedPassword);
 
                 switch (verify) {
                     case 3 ->
@@ -273,7 +272,7 @@ public class formCreateAccountFuncionario extends javax.swing.JPanel {
                     case 2 ->
                         erro_create.setText("Algo inesperado aconteceu tente novamente mais tarde !");
                     case 1 -> {
-                        erro_create.setText("Sucesso ao criar cliente !");
+                        erro_create.setText("Sucesso ao criar funcionário !");
                         SwingUtilities.invokeLater(() -> {
                             try {
                                 Thread.sleep(1500);

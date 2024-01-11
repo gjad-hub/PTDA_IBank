@@ -1,12 +1,19 @@
 package pt.ua.ibank.DTO;
 
-public class Funcionario extends Pessoa{
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import pt.ua.ibank.DAO.FuncionarioDAO;
+import pt.ua.ibank.utilities.Hash;
+
+public class Funcionario extends Pessoa {
 
     private int numFun;
     private int gerente;
-    
+
+    public static Funcionario LocalFuncionario;
+
     public Funcionario(Integer numFun, String nome, String morada, String email,
-            String telemovel, String nif, String password,Integer numGerente) {
+            String telemovel, String nif, String password, Integer numGerente) {
         this.numFun = numFun;
         this.nome = nome;
         this.morada = morada;
@@ -15,6 +22,14 @@ public class Funcionario extends Pessoa{
         this.nif = nif;
         this.password = password;
         this.gerente = numGerente;
+    }
+
+    /*
+     * Construtor para fazer login
+     */
+    public Funcionario(String email, String password) {
+        this.email = email;
+        this.password = password;
     }
 
     public int getNumFun() {
@@ -79,5 +94,31 @@ public class Funcionario extends Pessoa{
 
     public void setGerente(int gerente) {
         this.gerente = gerente;
+    }
+
+    public int alterarInformacoes(String old_email) {
+        int status = FuncionarioDAO.UpdateFuncionario(nome, morada, email, telemovel, nif, old_email);
+        return status;
+    }
+
+    public boolean autenticar() {
+        Funcionario tmp = FuncionarioDAO.getFuncionarioByEmail(email);
+
+        if (tmp != null) {
+            try {
+                if (Hash.validatePassword(password, tmp.password)) {
+                    LocalFuncionario = tmp;
+                    return true;
+                }
+            } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Funcionario{" + "numFun=" + numFun + ", gerente=" + gerente + '}';
     }
 }
