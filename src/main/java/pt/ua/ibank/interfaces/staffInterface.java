@@ -1,4 +1,4 @@
-package pt.ua.ibank.interfaces;
+-package pt.ua.ibank.interfaces;
 
 import pt.ua.ibank.interfaces.internalFrames.DashBoard;
 import java.awt.Component;
@@ -25,23 +25,21 @@ public class staffInterface extends javax.swing.JFrame {
     public static staffInterface localStaffInterface;
     public static Thread updateThread = null;
 
+    public staffInterface() {
+        try {
+            initComponents();
+            small_side_bar.setVisible(false);
+            start_up();
+        } catch (java.lang.NullPointerException e) {
+            System.out.println("Moderador sem login efetuado");
+            System.exit(1);
+        }
+    }
+
     @Override
     public void dispose() {
         DBConnection.closeConnection(conn);
         updateThread = null;
-    }
-
-    public staffInterface() {
-
-        initComponents();
-        small_side_bar.setVisible(false);
-        //start_up();
-        numContasCriadas.setText(FuncionarioDAO.getNumContasCriadasMes().toString());
-        numDepositosAprovar.setText(FuncionarioDAO.getNumDepositosPorAprovar().toString());
-        nomeFuncionarioMes.setText(FuncionarioDAO.getFuncionarioComMaisDepositosAprovados());
-        nomeUltimaContaCriada.setText(FuncionarioDAO.getNomeUltimaContaCriada());
-        dataUltimoPedidoAprovacaoDeposito.setText(FuncionarioDAO.getDataUltimoPedidoDeposito());
-        numAprovacoesFeitas.setText(FuncionarioDAO.getNumAprovacoesFuncionarioTop().toString());
     }
 
     public void addWindow(Component comp) {
@@ -54,19 +52,11 @@ public class staffInterface extends javax.swing.JFrame {
     private void start_up() {
         small_side_bar.setVisible(false);
         menu_bar.add(new WindowMenu((MDIDesktopPane) desktop));
-        UpdateInfo();
-
-        try {
-            DashBoard ds = new DashBoard();
-            ds.setMaximum(true);
-            addWindow(ds);
-        } catch (PropertyVetoException ex) {
-        }
     }
 
     public void UpdateInfo() {
         //display_user.setText(LocalClient.nome);
-        logout.setText("Fechar (" + LocalClient.email + ")");
+        logout.setText("Fechar (" + Funcionario.LocalFuncionario.email + ")");
     }
 
     private void center(Component comp) {
@@ -125,9 +115,9 @@ public class staffInterface extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         numAprovacoesFeitas = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        nomeFuncionarioMes = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        lblWelcome = new javax.swing.JLabel();
+        lblEmployeeNameValue = new javax.swing.JLabel();
         small_side_bar = new RoundedShadowPanel(5);
         btntransfers = new javax.swing.JButton();
         btnAccountlList = new javax.swing.JButton();
@@ -209,11 +199,11 @@ public class staffInterface extends javax.swing.JFrame {
         });
 
         lblPosition.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        lblPosition.setText("cargo");
+        lblPosition.setText(Funcionario.LocalFuncionario.getGerente() == 0 ? "Gerente" : "Funcionario");
 
         lblsaccount.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblsaccount.setForeground(new java.awt.Color(62, 171, 191));
-        lblsaccount.setText("Funcionario");
+        lblsaccount.setText(Funcionario.LocalFuncionario.nome);
         lblsaccount.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblsaccountMouseClicked(evt);
@@ -530,18 +520,18 @@ public class staffInterface extends javax.swing.JFrame {
                 .addGap(0, 2, Short.MAX_VALUE))
         );
 
-        jLabel24.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel24.setText("Bem vindo de volta,");
+        lblWelcome.setBackground(new java.awt.Color(0, 0, 0));
+        lblWelcome.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblWelcome.setText("Bem vindo de volta,");
 
-        jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel25.setText("Nome");
+        lblEmployeeNameValue.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblEmployeeNameValue.setText(Funcionario.LocalFuncionario.nome);
 
         desktop.setLayer(jPanelAccounts, javax.swing.JLayeredPane.DEFAULT_LAYER);
         desktop.setLayer(JPanelWidget3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         desktop.setLayer(jPanelEmployeeOfMonth, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        desktop.setLayer(jLabel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        desktop.setLayer(jLabel25, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktop.setLayer(lblWelcome, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktop.setLayer(lblEmployeeNameValue, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout desktopLayout = new javax.swing.GroupLayout(desktop);
         desktop.setLayout(desktopLayout);
@@ -551,22 +541,22 @@ public class staffInterface extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(desktopLayout.createSequentialGroup()
-                        .addComponent(jLabel24)
+                        .addComponent(lblWelcome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel25))
+                        .addComponent(lblEmployeeNameValue))
                     .addGroup(desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jPanelAccounts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(JPanelWidget3, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
                         .addComponent(jPanelEmployeeOfMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(658, Short.MAX_VALUE))
+                .addContainerGap(649, Short.MAX_VALUE))
         );
         desktopLayout.setVerticalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(desktopLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel25)
-                    .addComponent(jLabel24))
+                    .addComponent(lblEmployeeNameValue)
+                    .addComponent(lblWelcome))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(jPanelAccounts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
@@ -867,8 +857,7 @@ public class staffInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -885,7 +874,9 @@ public class staffInterface extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JLabel lblEmployeeNameValue;
     private javax.swing.JLabel lblPosition;
+    private javax.swing.JLabel lblWelcome;
     private javax.swing.JLabel lblsaccount;
     private javax.swing.JButton logout;
     private javax.swing.JMenuBar menu_bar;

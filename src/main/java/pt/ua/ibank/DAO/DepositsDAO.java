@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import pt.ua.ibank.DTO.Deposito;
+import pt.ua.ibank.DTO.Funcionario;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 
@@ -70,7 +71,7 @@ public class DepositsDAO {
         return ldeposito;
     }
 
-    public static boolean aproveDeposit(int num_deposito, int num_cliente) {
+    public static boolean aproveDeposit(int num_deposito, int num_funcionario) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
@@ -78,7 +79,13 @@ public class DepositsDAO {
             stmt = conn.prepareStatement(
                     "call aprovar_deposito(?,?)");
             stmt.setInt(1, num_deposito);
-            stmt.setInt(2, num_cliente);
+            stmt.setInt(2, Funcionario.LocalFuncionario.getNumFun());
+            rs = stmt.executeQuery();
+
+            stmt = conn.prepareStatement(
+                    "UPDATE deposito SET pendente_aprovacao = '0' WHERE id_deposito = ?;");
+            stmt.setInt(1, num_deposito);
+
             rs = stmt.executeQuery();
             return true;
         } catch (SQLException e) {
@@ -114,7 +121,7 @@ public class DepositsDAO {
 
         try {
             stmt = conn.prepareStatement(
-                    "SELECT count(*) AS qtd FROM deposito WHERE num_cli = ?");
+                    "SELECT count(*) AS qtd FROM deposito WHERE num_cli = ? and pendente_aprovacao = 1");
             stmt.setInt(1, num_cliente);
             rs = stmt.executeQuery();
 
