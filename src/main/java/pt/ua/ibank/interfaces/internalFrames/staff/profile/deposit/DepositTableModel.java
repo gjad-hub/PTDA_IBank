@@ -34,7 +34,11 @@ public class DepositTableModel extends AbstractTableModel {
             data.get(row).pendenteAprovacao = false;
             data.get(row).aprovado = true;
 
-            this.client.saldo_cativo -= data.get(row).valor;
+            client.saldo_cativo
+                    = (client.saldo_cativo - data.get(row).valor) == 0
+                    ? 0
+                    : (client.saldo_cativo - data.get(row).valor);
+
             this.client.saldo += data.get(row).valor;
             fireTableRowsInserted(data.size() - 1, data.size() - 1);
         }
@@ -49,7 +53,10 @@ public class DepositTableModel extends AbstractTableModel {
 
         data.get(row).pendenteAprovacao = false;
         data.get(row).aprovado = false;
-        this.client.saldo_cativo -= data.get(row).valor;
+        client.saldo_cativo
+                = (client.saldo_cativo - data.get(row).valor) == 0
+                ? 0
+                : (client.saldo_cativo - data.get(row).valor);
         fireTableRowsInserted(data.size() - 1, data.size() - 1);
     }
 

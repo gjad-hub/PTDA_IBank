@@ -1,21 +1,20 @@
 package pt.ua.ibank.interfaces.internalFrames;
 
-
 import javax.swing.SwingUtilities;
-
 
 public class StaffManagercreateAccount extends javax.swing.JInternalFrame {
 
     public StaffManagercreateAccount() {
         initComponents();
-        
+
         SwingUtilities.invokeLater(() -> {
             this.pack();
         });
     }
 
     private String maskString(String string, int char_visible) {
-        return string.substring(0, char_visible) + "*".repeat(string.length() - char_visible);
+        return string.substring(0, char_visible) + "*".repeat(
+                string.length() - char_visible);
     }
 
     /**
@@ -32,21 +31,21 @@ public class StaffManagercreateAccount extends javax.swing.JInternalFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
         setIconifiable(true);
+        setMaximizable(true);
         setTitle("Criar Conta Funcionário");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/account_circle.png"))); // NOI18N
+
+        seila1.setBackground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(seila1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(seila1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(seila1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(seila1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

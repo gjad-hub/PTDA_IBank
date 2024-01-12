@@ -50,23 +50,41 @@ public class PerfilPersonalTableModel extends AbstractTableModel {
         return 2;
     }
 
-    @Override
-    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        try {
-            data.set(rowIndex, (Pair<String, String>) aValue);
+    public String getLabel(int row) {
+        return data.get(row).left;
+    }
 
-            System.out.println(
-                    "value: " + data.get(rowIndex).left
-                    + "on row " + rowIndex + " on column " + columnIndex
-                    + "changed! to " + data.get(rowIndex).right);
+    public void setValue(Object aValue, int row, int col) {
+        switch (row) {
+            case 0 -> {
+                client.numCliente = (int) aValue;
+            }
+            case 1 -> {
+                client.nome = (String) aValue;
+            }
+            case 2 -> {
+                client.morada = (String) aValue;
+            }
+            case 3 -> {
+                client.email = (String) aValue;
+            }
+            case 4 -> {
+                client.telemovel = (String) aValue;
+            }
+            case 5 -> {
+                client.nif = (String) aValue;
+            }
 
-            ClientDAO.UpdateClient(client.numCliente, client.nome, client.morada,
-                    client.email, client.telemovel,
-                    client.nif);
-            fireTableRowsUpdated(data.size() - 1, data.size() - 1);
-        } catch (java.lang.ClassCastException e) {
-            //nothing
         }
+        fireTableCellUpdated(row, col);
+        updateClient();
+    }
+
+    public void updateClient() {
+        ClientDAO.UpdateClient(client.numCliente, client.nome,
+                client.morada,
+                client.email, client.telemovel,
+                client.nif);
     }
 
     @Override

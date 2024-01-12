@@ -19,9 +19,7 @@ public class PerfilActionPanelElement extends javax.swing.JPanel {
     String data;
 
     public PerfilActionPanelElement(boolean isVisible) {
-        //initComponents();
         this.setEnabled(false);
-
     }
 
     public PerfilActionPanelElement() {
@@ -39,7 +37,6 @@ public class PerfilActionPanelElement extends javax.swing.JPanel {
         jTextFieldNewValue.setVisible(false);
         cmdCancel.setVisible(false);
         cmdSave.setVisible(false);
-        cmdEdit.setLocation(cmdCancel.getLocation());
     }
 
     public void InitEvent(PerfilTableActionEvent event, int row) {
@@ -52,11 +49,20 @@ public class PerfilActionPanelElement extends javax.swing.JPanel {
 
         });
         cmdSave.addActionListener((ActionEvent e) -> {
+            cmdCancel.setVisible(false);
+            cmdSave.setVisible(false);
+            cmdEdit.setVisible(true);
+            jTextFieldNewValue.setVisible(false);
+
             String newValue = jTextFieldNewValue.getText();
             data = newValue;
             event.onSave(row, newValue);
         });
         cmdCancel.addActionListener((ActionEvent e) -> {
+            cmdCancel.setVisible(false);
+            cmdSave.setVisible(false);
+            cmdEdit.setVisible(true);
+            jTextFieldNewValue.setVisible(false);
             event.onCancel(row);
         });
     }
@@ -85,25 +91,10 @@ public class PerfilActionPanelElement extends javax.swing.JPanel {
         });
 
         cmdEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_20/edit.png"))); // NOI18N
-        cmdEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmdEditActionPerformed(evt);
-            }
-        });
 
         cmdSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_20/tick.png"))); // NOI18N
-        cmdSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmdSaveActionPerformed(evt);
-            }
-        });
 
         cmdCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_20/cancel.jpg"))); // NOI18N
-        cmdCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmdCancelActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -121,31 +112,12 @@ public class PerfilActionPanelElement extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextFieldNewValue, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(cmdEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(cmdCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(cmdSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(cmdSave, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTextFieldNewValue, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(cmdCancel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cmdEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdEditActionPerformed
-
-    }//GEN-LAST:event_cmdEditActionPerformed
-
-    private void cmdCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCancelActionPerformed
-        cmdCancel.setVisible(false);
-        cmdSave.setVisible(false);
-        cmdEdit.setVisible(true);
-        jTextFieldNewValue.setVisible(false);
-    }//GEN-LAST:event_cmdCancelActionPerformed
-
-    private void cmdSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSaveActionPerformed
-        cmdCancel.setVisible(false);
-        cmdSave.setVisible(false);
-        cmdEdit.setVisible(true);
-        jTextFieldNewValue.setVisible(false);
-    }//GEN-LAST:event_cmdSaveActionPerformed
 
     private void jTextFieldNewValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNewValueActionPerformed
         // TODO add your handling code here:

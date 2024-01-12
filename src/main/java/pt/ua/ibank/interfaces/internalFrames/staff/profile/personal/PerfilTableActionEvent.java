@@ -14,5 +14,5 @@ public interface PerfilTableActionEvent {
 
     public void onCancel(int row);
 
-    public void onSave(int row, String value);
+    public void onSave(int row, Object newValue);
 }

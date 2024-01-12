@@ -71,12 +71,14 @@ public class ClientDAO {
 
             stmt = conn.prepareStatement(
                     "INSERT INTO cartao (num_cartao, data_validade, estado) "
-                    + "VALUES (?, (SELECT DATE_ADD(CURDATE(), INTERVAL +5 YEAR )), \"activo\");");
+                    + "VALUES (?, (SELECT DATE_ADD(CURDATE(), INTERVAL +5 YEAR )),"
+                    + " \"activo\");");
             stmt.setString(1, num_cartao);
             stmt.execute();
 
             stmt = conn.prepareStatement(
-                    "INSERT INTO cliente (nome, morada, email, telemovel, nif, num_conta, password, cartao_default, entidade) "
+                    "INSERT INTO cliente (nome, morada, email, telemovel, nif,"
+                    + " num_conta, password, cartao_default, entidade) "
                     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
             stmt.setString(1, nome);
             stmt.setString(2, morada);
@@ -187,7 +189,9 @@ public class ClientDAO {
         ArrayList list = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(
-                    "SELECT num_cliente,nome,morada,email,telemovel,nif,num_conta FROM cliente");
+                    "SELECT num_cliente,nome,morada,email,"
+                    + "telemovel,nif,num_conta "
+                    + "FROM cliente");
             rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -265,38 +269,30 @@ public class ClientDAO {
         return null;
     }
 
-    public static int UpdateClient(int id, String nome, String morada,
-            String email,
+    public static boolean UpdateClient(
+            int num_cliente, String nome,
+            String morada, String email,
             String telefone, String nif) {
         PreparedStatement stmt = null;
-        ResultSet rs = null;
 
         try {
-
-            // Verifica se já existe alguma conta com aquele e-mail
             stmt = conn.prepareStatement(
-                    "SELECT count(num_cliente) AS valor FROM cliente where email like ?;");
-            stmt.setString(1, email);
-            rs = stmt.executeQuery();
-            rs.next();
-
-            if (rs.getInt("valor") > 0) {
-                return codigoErroEmail;
-            }
-
-            stmt = conn.prepareStatement(
-                    "UPDATE cliente SET nome = ? , morada = ?, email = ?, telemovel = ? WHERE id = ?");
+                    "UPDATE cliente "
+                    + "SET nome = ? , morada = ?, email = ?, telemovel = ? "
+                    + "WHERE num_cliente = ?");
             stmt.setString(1, nome);
             stmt.setString(2, morada);
             stmt.setString(3, email);
-            stmt.setInt(5, id);
-            stmt.execute();
-            return codigoSucesso;
+            stmt.setString(4, telefone);
+            stmt.setInt(5, num_cliente);
+            stmt.executeUpdate();
+            return true;
 
         } catch (SQLException e) {
-            return codigoErro;
+            e.printStackTrace(System.out);
+            return false;
         } finally {
-            DBConnection.closeConnection(stmt, rs);
+            DBConnection.closeConnection(stmt);
         }
     }
 
