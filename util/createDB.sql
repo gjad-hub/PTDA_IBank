@@ -199,16 +199,23 @@ END;
 -- Procedure aprovar deposito
 CREATE PROCEDURE aprovar_deposito(IN depostio INTEGER, IN funcionario INTEGER)
 BEGIN
-    UPDATE cliente SET saldo_cativo = saldo_cativo - (select valor from deposito where id_deposito = depostio)
-                   WHERE num_cliente = (SELECT num_cli from deposito where id_deposito = depostio);
+        DECLARE EXIT HANDLER FOR SQLEXCEPTION
+            BEGIN
+                ROLLBACK;
+                RESIGNAL;
+            END;
+        START TRANSACTION;
+            UPDATE cliente SET saldo_cativo = saldo_cativo - (select valor from deposito where id_deposito = depostio)
+                           WHERE num_cliente = (SELECT num_cli from deposito where id_deposito = depostio);
 
-    UPDATE deposito SET aprovado = true, num_fun  = funcionario WHERE id_deposito = depostio;
+            UPDATE deposito SET aprovado = true, num_fun = funcionario, pendente_aprovacao = false WHERE id_deposito = depostio;
 
-    INSERT INTO funcionario_cliente (num_fun, num_cli)
-    VALUES (funcionario, (SELECT num_cli from deposito where id_deposito = depostio));
+            INSERT INTO funcionario_cliente (num_fun, num_cli)
+            VALUES (funcionario, (SELECT num_cli from deposito where id_deposito = depostio));
 
-    INSERT INTO transacoes (num_cli, descricao, valor)
-    VALUES ((SELECT num_cli from deposito where id_deposito = depostio), "Depostio", (select valor from deposito where id_deposito = depostio));
+            INSERT INTO transacoes (num_cli, descricao, valor)
+            VALUES ((SELECT num_cli from deposito where id_deposito = depostio), "Depostio", (select valor from deposito where id_deposito = depostio));
+        COMMIT;
 END;
 
 CREATE PROCEDURE reprovar_deposito(IN depostio INTEGER, IN funcionario INTEGER)

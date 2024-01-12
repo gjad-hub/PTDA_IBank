@@ -1,17 +1,13 @@
 package pt.ua.ibank.interfaces;
 
-import pt.ua.ibank.interfaces.internalFrames.DashBoard;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Image;
-import java.beans.PropertyVetoException;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import pt.ua.ibank.DAO.FuncionarioDAO;
 import pt.ua.ibank.DTO.Funcionario;
-import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.interfaces.internalFrames.ProfilePage;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
@@ -25,7 +21,6 @@ public class staffInterface extends javax.swing.JFrame {
 
     public static staffInterface localStaffInterface;
     public static Thread updateThread = null;
-    private JLabel jLabel21;
 
     public staffInterface() {
         try {

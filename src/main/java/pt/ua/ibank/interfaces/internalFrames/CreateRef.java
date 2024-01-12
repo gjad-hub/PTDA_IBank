@@ -83,7 +83,7 @@ public class CreateRef extends javax.swing.JInternalFrame {
         referencia.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         referencia.setEnabled(false);
 
-        entidade.setToolTipText("ola");
+        entidade.setToolTipText("");
         entidade.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         entidade.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         entidade.setEnabled(false);
