@@ -106,20 +106,21 @@ INSERT INTO pagamento_servicos_compras (entidade, referencia, valor, pago, clien
 VALUES (567, 123, 25.00, false, 5, 1, false);
 
 -- Inserir dados de teste na tabela Deposito
-INSERT INTO deposito (valor, aprovado, num_fun, num_cli)
-VALUES (500.00, true, null, 1);
 
-INSERT INTO deposito (valor, aprovado, num_fun, num_cli)
-VALUES (300.00, true, null, 2);
+INSERT INTO deposito (valor, aprovado, num_fun, num_cli, pendente_aprovacao)
+VALUES (500.00, true, 1, 1, 0);
 
-INSERT INTO deposito (valor, aprovado, num_fun, num_cli)
-VALUES (700.00, false, null, 3);
+INSERT INTO deposito (valor, aprovado, num_fun, num_cli, pendente_aprovacao)
+VALUES (300.00, true, 1, 2, 0);
 
-INSERT INTO deposito (valor, aprovado, num_fun, num_cli)
-VALUES (250.00, true, null, 4);
+INSERT INTO deposito (valor, aprovado, num_fun, num_cli, pendente_aprovacao)
+VALUES (700.00, false, null, 3, 1);
 
-INSERT INTO deposito (valor, aprovado, num_fun, num_cli)
-VALUES (145.00, true, null, 4);
+INSERT INTO deposito (valor, aprovado, num_fun, num_cli, pendente_aprovacao)
+VALUES (250.00, true, 1, 4, 0);
+
+INSERT INTO deposito (valor, aprovado, num_fun, num_cli, pendente_aprovacao)
+VALUES (145.00, false, null, 4, 1);
 
 call aprovar_deposito(1,1);
 call aprovar_deposito(2,1);
