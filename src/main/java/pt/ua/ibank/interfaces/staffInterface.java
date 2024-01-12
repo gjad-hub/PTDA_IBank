@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.beans.PropertyVetoException;
 
 import javax.swing.ImageIcon;
+import pt.ua.ibank.DAO.FuncionarioDAO;
 import pt.ua.ibank.DTO.Funcionario;
 import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.interfaces.internalFrames.ProfilePage;
@@ -35,6 +36,12 @@ public class staffInterface extends javax.swing.JFrame {
         initComponents();
         small_side_bar.setVisible(false);
         //start_up();
+        numContasCriadas.setText(FuncionarioDAO.getNumContasCriadasMes().toString());
+        numDepositosAprovar.setText(FuncionarioDAO.getNumDepositosPorAprovar().toString());
+        nomeFuncionarioMes.setText(FuncionarioDAO.getFuncionarioComMaisDepositosAprovados());
+        nomeUltimaContaCriada.setText(FuncionarioDAO.getNomeUltimaContaCriada());
+        dataUltimoPedidoAprovacaoDeposito.setText(FuncionarioDAO.getDataUltimoPedidoDeposito());
+        numAprovacoesFeitas.setText(FuncionarioDAO.getNumAprovacoesFuncionarioTop().toString());
     }
 
     public void addWindow(Component comp) {
@@ -99,26 +106,26 @@ public class staffInterface extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        numContasCriadas = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        nomeUltimaContaCriada = new javax.swing.JLabel();
         JPanelWidget3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         jLabel11 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        dataUltimoPedidoAprovacaoDeposito = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        numDepositosAprovar = new javax.swing.JLabel();
         jPanelEmployeeOfMonth = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
+        numAprovacoesFeitas = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
+        nomeFuncionarioMes = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         small_side_bar = new RoundedShadowPanel(5);
@@ -286,10 +293,10 @@ public class staffInterface extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Contas criadas:");
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(62, 171, 191));
-        jLabel2.setText("2500");
+        numContasCriadas.setBackground(new java.awt.Color(255, 255, 255));
+        numContasCriadas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        numContasCriadas.setForeground(new java.awt.Color(62, 171, 191));
+        numContasCriadas.setText("2500");
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -297,9 +304,9 @@ public class staffInterface extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("Ultima conta criada:");
 
-        jLabel16.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel16.setText("Nome");
+        nomeUltimaContaCriada.setBackground(new java.awt.Color(255, 255, 255));
+        nomeUltimaContaCriada.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        nomeUltimaContaCriada.setText("Nome");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -309,7 +316,7 @@ public class staffInterface extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(12, 12, 12)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
+                    .addComponent(numContasCriadas)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -317,7 +324,7 @@ public class staffInterface extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel16))
+                        .addComponent(nomeUltimaContaCriada))
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -329,7 +336,7 @@ public class staffInterface extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)
+                        .addComponent(numContasCriadas)
                         .addGap(20, 20, 20))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
@@ -339,7 +346,7 @@ public class staffInterface extends javax.swing.JFrame {
                 .addGap(5, 5, 5)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel16))
+                    .addComponent(nomeUltimaContaCriada))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -373,18 +380,18 @@ public class staffInterface extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel11.setText("Ultimo pedido: ");
 
-        jLabel17.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel17.setText("Data");
+        dataUltimoPedidoAprovacaoDeposito.setBackground(new java.awt.Color(255, 255, 255));
+        dataUltimoPedidoAprovacaoDeposito.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        dataUltimoPedidoAprovacaoDeposito.setText("Data");
 
         jLabel10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setText("Depositos Por Aprovar:");
 
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(62, 171, 191));
-        jLabel4.setText("2500");
+        numDepositosAprovar.setBackground(new java.awt.Color(255, 255, 255));
+        numDepositosAprovar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        numDepositosAprovar.setForeground(new java.awt.Color(62, 171, 191));
+        numDepositosAprovar.setText("2500");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -395,12 +402,12 @@ public class staffInterface extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
+                    .addComponent(numDepositosAprovar)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel17))
+                .addComponent(dataUltimoPedidoAprovacaoDeposito))
             .addComponent(jSeparator4)
         );
         jPanel5Layout.setVerticalGroup(
@@ -411,7 +418,7 @@ public class staffInterface extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
+                        .addComponent(numDepositosAprovar)
                         .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addContainerGap()
@@ -421,7 +428,7 @@ public class staffInterface extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(dataUltimoPedidoAprovacaoDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout JPanelWidget3Layout = new javax.swing.GroupLayout(JPanelWidget3);
@@ -454,18 +461,18 @@ public class staffInterface extends javax.swing.JFrame {
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel22.setText("Operações feitas:");
 
-        jLabel23.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel23.setText("Quantidade");
+        numAprovacoesFeitas.setBackground(new java.awt.Color(255, 255, 255));
+        numAprovacoesFeitas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        numAprovacoesFeitas.setText("Quantidade");
 
         jLabel20.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
         jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel20.setText("Moderador do mês:");
 
-        jLabel21.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(62, 171, 191));
-        jLabel21.setText("Nome");
+        nomeFuncionarioMes.setBackground(new java.awt.Color(255, 255, 255));
+        nomeFuncionarioMes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        nomeFuncionarioMes.setForeground(new java.awt.Color(62, 171, 191));
+        nomeFuncionarioMes.setText("Nome");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -477,34 +484,34 @@ public class staffInterface extends javax.swing.JFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel23))
+                        .addComponent(numAprovacoesFeitas))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(12, 12, 12)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(jLabel21)
+                                .addComponent(nomeFuncionarioMes)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))))
+                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))))
                 .addGap(0, 0, 0))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel20)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel21))
+                        .addComponent(nomeFuncionarioMes))
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
-                    .addComponent(jLabel23))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(numAprovacoesFeitas))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelEmployeeOfMonthLayout = new javax.swing.GroupLayout(jPanelEmployeeOfMonth);
@@ -513,8 +520,8 @@ public class staffInterface extends javax.swing.JFrame {
             jPanelEmployeeOfMonthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEmployeeOfMonthLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanelEmployeeOfMonthLayout.setVerticalGroup(
             jPanelEmployeeOfMonthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -847,6 +854,7 @@ public class staffInterface extends javax.swing.JFrame {
     private javax.swing.JButton btnAccountlList;
     private javax.swing.JButton btnaccount;
     private javax.swing.JButton btntransfers;
+    private javax.swing.JLabel dataUltimoPedidoAprovacaoDeposito;
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel display_user;
     private javax.swing.JMenuItem hide;
@@ -855,19 +863,13 @@ public class staffInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -887,6 +889,11 @@ public class staffInterface extends javax.swing.JFrame {
     private javax.swing.JLabel lblsaccount;
     private javax.swing.JButton logout;
     private javax.swing.JMenuBar menu_bar;
+    private javax.swing.JLabel nomeFuncionarioMes;
+    private javax.swing.JLabel nomeUltimaContaCriada;
+    private javax.swing.JLabel numAprovacoesFeitas;
+    private javax.swing.JLabel numContasCriadas;
+    private javax.swing.JLabel numDepositosAprovar;
     private javax.swing.JPanel side_bar;
     private javax.swing.JButton slogout;
     private javax.swing.JPanel small_side_bar;
