@@ -10,6 +10,7 @@ import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.DAO.DepositsDAO;
 import pt.ua.ibank.DTO.Cliente;
 import pt.ua.ibank.DTO.Deposito;
+import pt.ua.ibank.DTO.Funcionario;
 
 /**
  *
@@ -26,15 +27,17 @@ public class DepositTableModel extends AbstractTableModel {
     }
 
     public void aprovarDeposito(int row) {
-        DepositsDAO.aproveDeposit(
+        if (DepositsDAO.aproveDeposit(
                 data.get(row).idDeposito,
-                data.get(row).numCli
-        );
-        data.get(row).pendenteAprovacao = false;
-        data.get(row).aprovado = true;
+                Funcionario.LocalFuncionario.getNumFun()
+        )) {
+            data.get(row).pendenteAprovacao = false;
+            data.get(row).aprovado = true;
 
-        this.client.saldo_cativo -= data.get(row).valor;
-        this.client.saldo += data.get(row).valor;
+            this.client.saldo_cativo -= data.get(row).valor;
+            this.client.saldo += data.get(row).valor;
+            fireTableRowsInserted(data.size() - 1, data.size() - 1);
+        }
 
     }
 
@@ -43,10 +46,9 @@ public class DepositTableModel extends AbstractTableModel {
                 data.get(row).idDeposito,
                 data.get(row).numCli
         );
-        data.get(row).pendenteAprovacao = false;
-        data.get(row).aprovado = false;
 
         this.client.saldo_cativo -= data.get(row).valor;
+        fireTableRowsInserted(data.size() - 1, data.size() - 1);
     }
 
     @Override
