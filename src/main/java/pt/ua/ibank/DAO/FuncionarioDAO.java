@@ -3,6 +3,7 @@ package pt.ua.ibank.DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import pt.ua.ibank.DTO.Funcionario;
 import pt.ua.ibank.utilities.DBConnection;
@@ -204,5 +205,156 @@ public class FuncionarioDAO {
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
+    }
+
+    public static Integer getNumContasCriadasMes() {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Integer numContasCriadas = null;
+
+        try {
+            stmt = conn.prepareStatement("SELECT COUNT(*) AS total_contas FROM cliente;");
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                numContasCriadas = rs.getInt("total_contas");
+            }
+            return numContasCriadas;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+        return null;
+    }
+
+    public static Integer getNumDepositosPorAprovar() {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Integer numDepositosPorAprovar = null;
+
+        try {
+            stmt = conn.prepareStatement("SELECT COUNT(*) AS depositos_pendentes FROM deposito WHERE pendente_aprovacao = 1;");
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                numDepositosPorAprovar = rs.getInt("depositos_pendentes");
+            }
+            return numDepositosPorAprovar;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+        return null;
+    }
+
+    public static String getFuncionarioComMaisDepositosAprovados() {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String nomeFuncionarioMaisDepositos = null;
+
+        try {
+            stmt = conn.prepareStatement("SELECT num_fun, COUNT(*) AS total_aprovados FROM deposito WHERE aprovado = 1 GROUP BY num_fun ORDER BY total_aprovados DESC LIMIT 1;");
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                int numFun = rs.getInt("num_fun");
+                nomeFuncionarioMaisDepositos = getNomeFuncionarioByNumber(numFun);
+            }
+            return nomeFuncionarioMaisDepositos;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+        return null;
+    }
+
+    private static String getNomeFuncionarioByNumber(int numFun) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            stmt = conn.prepareStatement("SELECT nome FROM funcionario WHERE num_fun = ?");
+            stmt.setInt(1, numFun);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getString("nome");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+
+        return null;
+    }
+
+    public static String getNomeUltimaContaCriada() {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String nomeUltimaConta = null;
+
+        try {
+            stmt = conn.prepareStatement("SELECT nome FROM cliente ORDER BY num_cliente DESC LIMIT 1;");
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                nomeUltimaConta = rs.getString("nome");
+            }
+
+            return nomeUltimaConta;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+
+        return null;
+    }
+
+    public static String getDataUltimoPedidoDeposito() {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Timestamp dataUltimoPedido = null;
+
+        try {
+            stmt = conn.prepareStatement("SELECT data FROM deposito ORDER BY data DESC LIMIT 1;");
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                dataUltimoPedido = rs.getTimestamp("data");
+            }
+
+            return dataUltimoPedido.toString();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+
+        return null;
+    }
+
+    public static Integer getNumAprovacoesFuncionarioTop() {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        int totalAprovacoes = 0;
+
+        try {
+            stmt = conn.prepareStatement("SELECT num_fun, COUNT(*) AS total_aprovacoes FROM deposito WHERE aprovado = 1 GROUP BY num_fun ORDER BY total_aprovacoes DESC LIMIT 1;");
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                totalAprovacoes = rs.getInt("total_aprovacoes");
+            }
+
+            return totalAprovacoes;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+
+        return totalAprovacoes;
     }
 }
