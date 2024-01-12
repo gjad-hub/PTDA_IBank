@@ -233,14 +233,16 @@ public class formCreateAccountFuncionario extends javax.swing.JPanel {
         Matcher matcherEmail = patternEmail.matcher(Femail.getText());
 
         Pattern patternPhoneNumberNif = Pattern.compile(regexTelefoneNif);
-        Matcher matcherPhoneNumber = patternPhoneNumberNif.matcher(Ftelemovel.getText());
+        Matcher matcherPhoneNumber = patternPhoneNumberNif.matcher(
+                Ftelemovel.getText());
         Matcher matcherNIF = patternPhoneNumberNif.matcher(FNif.getText());
 
         Pattern patternPassword = Pattern.compile(regexPassword);
         Matcher matcherPassword = patternPassword.matcher(password);
 
         if (Fnome.getText().isEmpty() || Femail.getText().isEmpty() || Ftelemovel.getText().isEmpty() || FNif.getText().isEmpty() || password.isEmpty() || repeatPassword.isEmpty()) {
-            erro_create.setText("Um ou mais campos vazios! Por favor preencha-os!");
+            erro_create.setText(
+                    "Um ou mais campos vazios! Por favor preencha-os!");
         } else if (!matcherNome.find()) {
             erro_create.setText("Nome inválido!");
             Fnome.setText("");
@@ -254,7 +256,8 @@ public class formCreateAccountFuncionario extends javax.swing.JPanel {
             erro_create.setText("NIF inválido!");
             FNif.setText("");
         } else if (!matcherPassword.find()) {
-            erro_create.setText("Password inválida! Tem de conter pelo menos 8 caracteres!");
+            erro_create.setText(
+                    "Password inválida! Tem de conter pelo menos 8 caracteres!");
             FPass.setText("");
             FRPass.setText("");
         } else if (!password.equals(repeatPassword)) {
@@ -263,22 +266,24 @@ public class formCreateAccountFuncionario extends javax.swing.JPanel {
             FRPass.setText("");
         } else {
             try {
-                String hashedPassword = Hash.generateStorngPasswordHash(new String(FPass.getPassword()));
-                int verify = FuncionarioDAO.CreateFuncionario(Fnome.getText(), FMorada.getText(), Femail.getText(), Ftelemovel.getText(), FNif.getText(), hashedPassword);
+                String hashedPassword = Hash.generateStorngPasswordHash(
+                        new String(FPass.getPassword()));
+                int verify = FuncionarioDAO.CreateFuncionario(Fnome.getText(),
+                        FMorada.getText(), Femail.getText(),
+                        Ftelemovel.getText(), FNif.getText(), hashedPassword);
 
                 switch (verify) {
                     case FuncionarioDAO.codigoErroEmail ->
                         erro_create.setText("Endereço de email já existente !");
                     case FuncionarioDAO.codigoErro ->
-                        erro_create.setText("Algo inesperado aconteceu tente novamente mais tarde !");
+                        erro_create.setText(
+                                "Algo inesperado aconteceu tente novamente mais tarde !");
                     case FuncionarioDAO.codigoSucesso -> {
-                        erro_create.setText("Sucesso ao criar funcionário !");
+                        erro_create.setText("Sucesso ao criar funcionário!");
                         SwingUtilities.invokeLater(() -> {
                             try {
                                 Thread.sleep(1500);
-//                                panel.setSelectedIndex(0);
-//                                email_input.requestFocus();
-//                                email_input.setText(Femail.getText());
+
                             } catch (InterruptedException ex) {
                                 System.out.println(ex);
                             }
@@ -292,7 +297,6 @@ public class formCreateAccountFuncionario extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_btnCreateAccountActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField FMorada;

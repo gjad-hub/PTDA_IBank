@@ -77,7 +77,7 @@ public class FuncionarioDAO {
 
             return fun;
         } catch (SQLException e) {
-            e.printStackTrace();
+            //caladinho
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
@@ -103,7 +103,8 @@ public class FuncionarioDAO {
                 String nif = rs.getString("nif");
                 Integer numGerente = rs.getInt("gerente");
 
-                list.add(new Funcionario(numero, nome, morada, email, telemovel, nif, morada, numGerente));
+                list.add(new Funcionario(numero, nome, morada, email, telemovel,
+                        nif, morada, numGerente));
             }
             return list;
         } catch (SQLException e) {
@@ -214,7 +215,8 @@ public class FuncionarioDAO {
         Integer numContasCriadas = null;
 
         try {
-            stmt = conn.prepareStatement("SELECT COUNT(*) AS total_contas FROM cliente;");
+            stmt = conn.prepareStatement(
+                    "SELECT COUNT(*) AS total_contas FROM cliente;");
             rs = stmt.executeQuery();
             if (rs.next()) {
                 numContasCriadas = rs.getInt("total_contas");
@@ -234,7 +236,8 @@ public class FuncionarioDAO {
         Integer numDepositosPorAprovar = null;
 
         try {
-            stmt = conn.prepareStatement("SELECT COUNT(*) AS depositos_pendentes FROM deposito WHERE pendente_aprovacao = 1;");
+            stmt = conn.prepareStatement(
+                    "SELECT COUNT(*) AS depositos_pendentes FROM deposito WHERE pendente_aprovacao = 1;");
             rs = stmt.executeQuery();
             if (rs.next()) {
                 numDepositosPorAprovar = rs.getInt("depositos_pendentes");
@@ -254,7 +257,8 @@ public class FuncionarioDAO {
         String nomeFuncionarioMaisDepositos = null;
 
         try {
-            stmt = conn.prepareStatement("SELECT num_fun, COUNT(*) AS total_aprovados FROM deposito WHERE aprovado = 1 GROUP BY num_fun ORDER BY total_aprovados DESC LIMIT 1;");
+            stmt = conn.prepareStatement(
+                    "SELECT num_fun, COUNT(*) AS total_aprovados FROM deposito WHERE aprovado = 1 GROUP BY num_fun ORDER BY total_aprovados DESC LIMIT 1;");
             rs = stmt.executeQuery();
             if (rs.next()) {
                 int numFun = rs.getInt("num_fun");
@@ -274,7 +278,8 @@ public class FuncionarioDAO {
         ResultSet rs = null;
 
         try {
-            stmt = conn.prepareStatement("SELECT nome FROM funcionario WHERE num_fun = ?");
+            stmt = conn.prepareStatement(
+                    "SELECT nome FROM funcionario WHERE num_fun = ?");
             stmt.setInt(1, numFun);
             rs = stmt.executeQuery();
 
@@ -296,7 +301,8 @@ public class FuncionarioDAO {
         String nomeUltimaConta = null;
 
         try {
-            stmt = conn.prepareStatement("SELECT nome FROM cliente ORDER BY num_cliente DESC LIMIT 1;");
+            stmt = conn.prepareStatement(
+                    "SELECT nome FROM cliente ORDER BY num_cliente DESC LIMIT 1;");
             rs = stmt.executeQuery();
 
             if (rs.next()) {
@@ -319,16 +325,16 @@ public class FuncionarioDAO {
         Timestamp dataUltimoPedido = null;
 
         try {
-            stmt = conn.prepareStatement("SELECT data FROM deposito ORDER BY data DESC LIMIT 1;");
+            stmt = conn.prepareStatement(
+                    "SELECT data FROM deposito ORDER BY data DESC LIMIT 1;");
             rs = stmt.executeQuery();
 
             if (rs.next()) {
                 dataUltimoPedido = rs.getTimestamp("data");
             }
 
-            
             SimpleDateFormat dataFormat = new SimpleDateFormat("dd/MM/yy HH:mm");
-            
+
             return dataFormat.format(dataUltimoPedido);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -345,7 +351,8 @@ public class FuncionarioDAO {
         int totalAprovacoes = 0;
 
         try {
-            stmt = conn.prepareStatement("SELECT num_fun, COUNT(*) AS total_aprovacoes FROM deposito WHERE aprovado = 1 GROUP BY num_fun ORDER BY total_aprovacoes DESC LIMIT 1;");
+            stmt = conn.prepareStatement(
+                    "SELECT num_fun, COUNT(*) AS total_aprovacoes FROM deposito WHERE aprovado = 1 GROUP BY num_fun ORDER BY total_aprovacoes DESC LIMIT 1;");
             rs = stmt.executeQuery();
 
             if (rs.next()) {

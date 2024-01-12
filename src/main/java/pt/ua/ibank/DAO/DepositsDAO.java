@@ -75,17 +75,11 @@ public class DepositsDAO {
         PreparedStatement stmt = null;
 
         try {
-            stmt = conn.prepareStatement(
-                    "call aprovar_deposito(?,?)");
+            stmt = conn.prepareCall(
+                    "{call aprovar_deposito(?,?)}");
             stmt.setInt(1, num_deposito);
             stmt.setInt(2, Funcionario.LocalFuncionario.getNumFun());
             stmt.execute();
-
-            stmt = conn.prepareStatement(
-                    "UPDATE deposito SET pendente_aprovacao = '0' WHERE id_deposito = ?;");
-            stmt.setInt(1, num_deposito);
-
-            stmt.executeUpdate();
             return true;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
@@ -95,16 +89,16 @@ public class DepositsDAO {
         }
     }
 
-    public static boolean denyDeposit(int num_deposito, int num_cliente) {
+    public static boolean denyDeposit(int num_deposito, int num_funcionario) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
         try {
-            stmt = conn.prepareStatement(
-                    "call aprovar_deposito(?,?)");
+            stmt = conn.prepareCall(
+                    "{call reprovar_deposito(?,?)}");
             stmt.setInt(1, num_deposito);
-            stmt.setInt(2, num_cliente);
-            rs = stmt.executeQuery();
+            stmt.setInt(2, num_funcionario);
+            stmt.execute();
             return true;
         } catch (SQLException e) {
             e.printStackTrace(System.out);

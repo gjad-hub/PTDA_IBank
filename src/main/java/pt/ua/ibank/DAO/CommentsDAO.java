@@ -27,8 +27,8 @@ public class CommentsDAO {
         try {
 
             stmt = conn.prepareStatement(
-                    "select funcionario.nome,id_cliente,descricao,data"
-                    + " from comentario_perfil inner join funcionario"
+                    "select id,funcionario.nome as nome,descricao,data"
+                    + " from comentario_perfil inner join funcionario on funcionario.num_fun = comentario_perfil.id_empregado"
                     + " where id_cliente = ?;");
             stmt.setInt(1, clientID);
             rs = stmt.executeQuery();
@@ -38,7 +38,7 @@ public class CommentsDAO {
                         rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getString("descricao"),
-                        rs.getTimestamp("data_feita")));
+                        rs.getTimestamp("data")));
             }
 
             return list;
@@ -57,16 +57,17 @@ public class CommentsDAO {
 
             stmt = conn.prepareStatement(
                     "INSERT INTO comentario_perfil"
-                    + "(id_Empregado,id_cliente,descricao) VALUES"
+                    + "(id_empregado,id_cliente,descricao) VALUES"
                     + "(?,?,?);"
             );
 
             stmt.setInt(1, employee_id);
             stmt.setInt(2, client_id);
             stmt.setString(3, comment);
-
-            return stmt.execute();
+            stmt.execute();
+            return true;
         } catch (SQLException e) {
+            e.printStackTrace(System.out);
             return false;
         } finally {
             DBConnection.closeConnection(stmt);

@@ -44,7 +44,7 @@ public class DepositTableModel extends AbstractTableModel {
     public void reprovarDeposito(int row) {
         DepositsDAO.denyDeposit(
                 data.get(row).idDeposito,
-                data.get(row).numCli
+                Funcionario.LocalFuncionario.getNumFun()
         );
 
         this.client.saldo_cativo -= data.get(row).valor;

@@ -12,6 +12,7 @@ import pt.ua.ibank.interfaces.internalFrames.ProfilePage;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 import pt.ua.ibank.interfaces.internalFrames.StaffAccountList;
+import pt.ua.ibank.interfaces.internalFrames.StaffManagercreateAccount;
 import pt.ua.ibank.interfaces.internalFrames.StaffTransferList;
 import pt.ua.ibank.utilities.MDIDesktopPane;
 import pt.ua.ibank.utilities.WindowMenu;
@@ -21,17 +22,29 @@ public class staffInterface extends javax.swing.JFrame {
 
     public static staffInterface localStaffInterface;
     public static Thread updateThread = null;
+    private final String MANAGER_NAME = "Gerente";
+    private final String EMPLOYEE_NAME = "Funcionario";
 
     public staffInterface() {
         try {
             initComponents();
-            small_side_bar.setVisible(false);
             start_up();
-            
         } catch (java.lang.NullPointerException e) {
             System.out.println("Moderador sem login efetuado");
             System.exit(1);
         }
+    }
+
+    private void start_up() {
+        small_side_bar.setVisible(false);
+        menu_bar.add(new WindowMenu((MDIDesktopPane) desktop));
+    }
+
+    private void managerComponentsSetVisible(boolean aFlag) {
+        btnCreateEmployeeAccount.setVisible(aFlag);
+        createEmployeeAccount.setVisible(aFlag);
+        btnManageEmployees.setVisible(aFlag);
+        manageEmployees.setVisible(aFlag);
     }
 
     @Override
@@ -45,11 +58,6 @@ public class staffInterface extends javax.swing.JFrame {
         center(comp);
         comp.setVisible(true);
         this.desktop.setComponentZOrder(comp, 0);
-    }
-
-    private void start_up() {
-        small_side_bar.setVisible(false);
-        menu_bar.add(new WindowMenu((MDIDesktopPane) desktop));
     }
 
     public void UpdateInfo() {
@@ -85,8 +93,10 @@ public class staffInterface extends javax.swing.JFrame {
         accountlList = new javax.swing.JButton();
         logout = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        lblPosition = new javax.swing.JLabel();
+        lblPositionInCompany = new javax.swing.JLabel();
         lblsaccount = new javax.swing.JLabel();
+        createEmployeeAccount = new javax.swing.JButton();
+        manageEmployees = new javax.swing.JButton();
         ImageIcon backgroundImage = new ImageIcon(getClass().getResource("/resources/images/icons_20/background-otter-staff.png"));
         Image img = backgroundImage.getImage();
         desktop = new MDIDesktopPane(img);
@@ -121,6 +131,8 @@ public class staffInterface extends javax.swing.JFrame {
         btnAccountlList = new javax.swing.JButton();
         btnaccount = new javax.swing.JButton();
         slogout = new javax.swing.JButton();
+        btnCreateEmployeeAccount = new javax.swing.JButton();
+        btnManageEmployees = new javax.swing.JButton();
         menu_bar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         hide = new javax.swing.JMenuItem();
@@ -196,8 +208,8 @@ public class staffInterface extends javax.swing.JFrame {
             }
         });
 
-        lblPosition.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        lblPosition.setText(Funcionario.LocalFuncionario.getGerente() == 0 ? "Gerente" : "Funcionario");
+        lblPositionInCompany.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        lblPositionInCompany.setText(Funcionario.LocalFuncionario.getGerente() == 0 ? MANAGER_NAME : EMPLOYEE_NAME);
 
         lblsaccount.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblsaccount.setForeground(new java.awt.Color(62, 171, 191));
@@ -211,6 +223,28 @@ public class staffInterface extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 lblsaccountMouseExited(evt);
+            }
+        });
+
+        createEmployeeAccount.setBackground(new java.awt.Color(62, 92, 118));
+        createEmployeeAccount.setForeground(new java.awt.Color(240, 235, 216));
+        createEmployeeAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_20/addEmployee.png"))); // NOI18N
+        createEmployeeAccount.setText("Criar conta de Funcionario");
+        createEmployeeAccount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        createEmployeeAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createEmployeeAccountActionPerformed(evt);
+            }
+        });
+
+        manageEmployees.setBackground(new java.awt.Color(62, 92, 118));
+        manageEmployees.setForeground(new java.awt.Color(240, 235, 216));
+        manageEmployees.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_20/manage-users.png"))); // NOI18N
+        manageEmployees.setText("Gerir funcionarios");
+        manageEmployees.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        manageEmployees.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageEmployeesActionPerformed(evt);
             }
         });
 
@@ -230,7 +264,7 @@ public class staffInterface extends javax.swing.JFrame {
                                 .addGap(14, 14, 14)
                                 .addGroup(side_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblsaccount)
-                                    .addComponent(lblPosition))
+                                    .addComponent(lblPositionInCompany))
                                 .addGap(94, 94, 94))
                             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(side_barLayout.createSequentialGroup()
@@ -240,7 +274,9 @@ public class staffInterface extends javax.swing.JFrame {
                         .addGap(5, 5, 5)
                         .addGroup(side_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(accountlList, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(transferList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(transferList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(createEmployeeAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(manageEmployees, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         side_barLayout.setVerticalGroup(
@@ -256,14 +292,18 @@ public class staffInterface extends javax.swing.JFrame {
                             .addGroup(side_barLayout.createSequentialGroup()
                                 .addComponent(lblsaccount, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, 0)
-                                .addComponent(lblPosition))
+                                .addComponent(lblPositionInCompany))
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(accountlList)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(transferList)
+                .addComponent(transferList, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(createEmployeeAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(manageEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logout)
                 .addContainerGap())
@@ -480,26 +520,26 @@ public class staffInterface extends javax.swing.JFrame {
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addComponent(nomeFuncionarioMes)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))))
+                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))))
                 .addGap(0, 0, 0))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(13, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel20)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(nomeFuncionarioMes))
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
                     .addComponent(numAprovacoesFeitas))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelEmployeeOfMonthLayout = new javax.swing.GroupLayout(jPanelEmployeeOfMonth);
@@ -508,8 +548,8 @@ public class staffInterface extends javax.swing.JFrame {
             jPanelEmployeeOfMonthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEmployeeOfMonthLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelEmployeeOfMonthLayout.setVerticalGroup(
             jPanelEmployeeOfMonthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -565,6 +605,7 @@ public class staffInterface extends javax.swing.JFrame {
         );
 
         small_side_bar.setBackground(new java.awt.Color(252, 252, 255));
+        small_side_bar.setVisible(false);
 
         btntransfers.setBackground(new java.awt.Color(62, 92, 118));
         btntransfers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_20/transacoes.png"))); // NOI18N
@@ -601,6 +642,24 @@ public class staffInterface extends javax.swing.JFrame {
             }
         });
 
+        btnCreateEmployeeAccount.setBackground(new java.awt.Color(62, 92, 118));
+        btnCreateEmployeeAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_20/addEmployee.png"))); // NOI18N
+        btnCreateEmployeeAccount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnCreateEmployeeAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateEmployeeAccountActionPerformed(evt);
+            }
+        });
+
+        btnManageEmployees.setBackground(new java.awt.Color(62, 92, 118));
+        btnManageEmployees.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_20/manage-users.png"))); // NOI18N
+        btnManageEmployees.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnManageEmployees.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageEmployeesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout small_side_barLayout = new javax.swing.GroupLayout(small_side_bar);
         small_side_bar.setLayout(small_side_barLayout);
         small_side_barLayout.setHorizontalGroup(
@@ -608,15 +667,12 @@ public class staffInterface extends javax.swing.JFrame {
             .addGroup(small_side_barLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(small_side_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(small_side_barLayout.createSequentialGroup()
-                        .addGroup(small_side_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btntransfers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAccountlList, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnaccount, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, small_side_barLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(slogout)))
+                    .addComponent(btntransfers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAccountlList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnaccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCreateEmployeeAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(slogout, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnManageEmployees, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         small_side_barLayout.setVerticalGroup(
@@ -628,6 +684,10 @@ public class staffInterface extends javax.swing.JFrame {
                 .addComponent(btnAccountlList)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btntransfers)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCreateEmployeeAccount)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnManageEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(slogout)
                 .addContainerGap())
@@ -670,6 +730,15 @@ public class staffInterface extends javax.swing.JFrame {
                     .addComponent(small_side_bar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        switch (lblPositionInCompany.getText()) {
+            case (MANAGER_NAME) -> {
+                managerComponentsSetVisible(true);
+            }
+            default -> {
+                managerComponentsSetVisible(false);
+            }
+        }
 
         pack();
         setLocationRelativeTo(null);
@@ -733,6 +802,22 @@ public class staffInterface extends javax.swing.JFrame {
     private void lblsaccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblsaccountMouseClicked
         addWindow(new ProfilePage());
     }//GEN-LAST:event_lblsaccountMouseClicked
+
+    private void createEmployeeAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEmployeeAccountActionPerformed
+        addWindow(new StaffManagercreateAccount());
+    }//GEN-LAST:event_createEmployeeAccountActionPerformed
+
+    private void btnCreateEmployeeAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateEmployeeAccountActionPerformed
+        createEmployeeAccountActionPerformed(evt);
+    }//GEN-LAST:event_btnCreateEmployeeAccountActionPerformed
+
+    private void manageEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEmployeesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_manageEmployeesActionPerformed
+
+    private void btnManageEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEmployeesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnManageEmployeesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -840,8 +925,11 @@ public class staffInterface extends javax.swing.JFrame {
     private javax.swing.JPanel JPanelWidget3;
     private javax.swing.JButton accountlList;
     private javax.swing.JButton btnAccountlList;
+    private javax.swing.JButton btnCreateEmployeeAccount;
+    private javax.swing.JButton btnManageEmployees;
     private javax.swing.JButton btnaccount;
     private javax.swing.JButton btntransfers;
+    private javax.swing.JButton createEmployeeAccount;
     private javax.swing.JLabel dataUltimoPedidoAprovacaoDeposito;
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel display_user;
@@ -872,10 +960,11 @@ public class staffInterface extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JLabel lblEmployeeNameValue;
-    private javax.swing.JLabel lblPosition;
+    private javax.swing.JLabel lblPositionInCompany;
     private javax.swing.JLabel lblWelcome;
     private javax.swing.JLabel lblsaccount;
     private javax.swing.JButton logout;
+    private javax.swing.JButton manageEmployees;
     private javax.swing.JMenuBar menu_bar;
     private javax.swing.JLabel nomeFuncionarioMes;
     private javax.swing.JLabel nomeUltimaContaCriada;

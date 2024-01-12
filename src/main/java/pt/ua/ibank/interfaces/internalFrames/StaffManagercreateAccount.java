@@ -1,12 +1,12 @@
-package pt.ua.ibank.interfaces.internalFrames.staff.createaccount;
+package pt.ua.ibank.interfaces.internalFrames;
 
 
 import javax.swing.SwingUtilities;
 
 
-public class createAccountFuncionario extends javax.swing.JInternalFrame {
+public class StaffManagercreateAccount extends javax.swing.JInternalFrame {
 
-    public createAccountFuncionario() {
+    public StaffManagercreateAccount() {
         initComponents();
         
         SwingUtilities.invokeLater(() -> {

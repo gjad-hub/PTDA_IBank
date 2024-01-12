@@ -37,8 +37,8 @@ public class PerfilCommentTableModel extends javax.swing.table.AbstractTableMode
     public boolean adicionarComentario(String comment) {
 
         if (CommentsDAO.addNewComment(
-                clientID,
                 Funcionario.LocalFuncionario.getNumFun(),
+                clientID,
                 comment)) {
             data.add(
                     new ModeratorComment(data.size(),
