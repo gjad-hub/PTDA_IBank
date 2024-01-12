@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import pt.ua.ibank.DTO.Funcionario;
 import pt.ua.ibank.utilities.DBConnection;
@@ -325,7 +326,10 @@ public class FuncionarioDAO {
                 dataUltimoPedido = rs.getTimestamp("data");
             }
 
-            return dataUltimoPedido.toString();
+            
+            SimpleDateFormat dataFormat = new SimpleDateFormat("dd/MM/yy HH:mm");
+            
+            return dataFormat.format(dataUltimoPedido);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

@@ -73,26 +73,25 @@ public class DepositsDAO {
 
     public static boolean aproveDeposit(int num_deposito, int num_funcionario) {
         PreparedStatement stmt = null;
-        ResultSet rs = null;
 
         try {
             stmt = conn.prepareStatement(
                     "call aprovar_deposito(?,?)");
             stmt.setInt(1, num_deposito);
             stmt.setInt(2, Funcionario.LocalFuncionario.getNumFun());
-            rs = stmt.executeQuery();
+            stmt.execute();
 
             stmt = conn.prepareStatement(
                     "UPDATE deposito SET pendente_aprovacao = '0' WHERE id_deposito = ?;");
             stmt.setInt(1, num_deposito);
 
-            rs = stmt.executeQuery();
+            stmt.executeUpdate();
             return true;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
             return false;
         } finally {
-            DBConnection.closeConnection(stmt, rs);
+            DBConnection.closeConnection(stmt);
         }
     }
 
