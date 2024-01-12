@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.beans.PropertyVetoException;
 
 import javax.swing.ImageIcon;
+import pt.ua.ibank.DTO.Funcionario;
 import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.interfaces.internalFrames.ProfilePage;
 import pt.ua.ibank.utilities.DBConnection;
@@ -66,7 +67,6 @@ public class staffInterface extends javax.swing.JFrame {
         Dimension jInternalFrameSize = comp.getSize();
         comp.setLocation((desktopSize.width - jInternalFrameSize.width) / 2,
                 (desktopSize.height - jInternalFrameSize.height) / 2);
-        System.out.println("");
     }
 
     /**
@@ -140,7 +140,6 @@ public class staffInterface extends javax.swing.JFrame {
 
         jLabel15.setBackground(new java.awt.Color(0, 0, 0));
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Bem vindo de volta,");
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -203,7 +202,6 @@ public class staffInterface extends javax.swing.JFrame {
         });
 
         lblPosition.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        lblPosition.setForeground(new java.awt.Color(0, 0, 0));
         lblPosition.setText("cargo");
 
         lblsaccount.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -286,7 +284,6 @@ public class staffInterface extends javax.swing.JFrame {
 
         jLabel6.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Contas criadas:");
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -298,12 +295,10 @@ public class staffInterface extends javax.swing.JFrame {
 
         jLabel8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Ultima conta criada:");
 
         jLabel16.setBackground(new java.awt.Color(255, 255, 255));
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Nome");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -376,17 +371,14 @@ public class staffInterface extends javax.swing.JFrame {
 
         jLabel11.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Ultimo pedido: ");
 
         jLabel17.setBackground(new java.awt.Color(255, 255, 255));
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Data");
 
         jLabel10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Depositos Por Aprovar:");
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -460,17 +452,14 @@ public class staffInterface extends javax.swing.JFrame {
 
         jLabel22.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("Operações feitas:");
 
         jLabel23.setBackground(new java.awt.Color(255, 255, 255));
         jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
         jLabel23.setText("Quantidade");
 
         jLabel20.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
         jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Moderador do mês:");
 
         jLabel21.setBackground(new java.awt.Color(255, 255, 255));
@@ -509,13 +498,13 @@ public class staffInterface extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel21))
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
                     .addComponent(jLabel23))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelEmployeeOfMonthLayout = new javax.swing.GroupLayout(jPanelEmployeeOfMonth);
@@ -536,7 +525,6 @@ public class staffInterface extends javax.swing.JFrame {
 
         jLabel24.setBackground(new java.awt.Color(0, 0, 0));
         jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
         jLabel24.setText("Bem vindo de volta,");
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -731,7 +719,7 @@ public class staffInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_accountlListActionPerformed
 
     private void transferListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferListActionPerformed
-        addWindow(new StaffTransferList());
+        addWindow(new StaffTransferList(this));
     }//GEN-LAST:event_transferListActionPerformed
 
     private void display_userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_display_userMouseClicked

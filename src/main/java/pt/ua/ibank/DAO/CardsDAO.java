@@ -13,7 +13,6 @@ public class CardsDAO {
 
     public final static int codigoSucesso = 1;
     public final static int codigoErro = 2;
-    
 
     public static Cartao getCardByNumber(String number) {
         PreparedStatement stmt = null;
@@ -30,7 +29,7 @@ public class CardsDAO {
             while (rs.next()) {
                 cartao = new Cartao(
                         rs.getString("num_cartao"),
-                        rs.getDate("data_validade"),
+                        rs.getTimestamp("data_validade"),
                         rs.getInt("cliente"));
             }
 
@@ -43,7 +42,7 @@ public class CardsDAO {
         return null;
     }
 
-    public static ArrayList<Cartao> getCards(int num_cliente) {
+    public static ArrayList<Cartao> getCardListFromUserID(int num_cliente) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
@@ -51,13 +50,13 @@ public class CardsDAO {
 
         try {
             stmt = conn.prepareStatement(
-                    "SELECT num_cartao, data_validade, estado, credito FROM  cartao WHERE cliente = ?;");
+                    "SELECT num_cartao, data_validade, estado FROM cartao WHERE cliente = ?;");
             stmt.setInt(1, num_cliente);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
                 Cartao tr = new Cartao(rs.getString("num_cartao"),
-                        rs.getDate("data_validade"), rs.getString("estado"));
+                        rs.getTimestamp("data_validade"), rs.getString("estado"));
                 lcartao.add(tr);
             }
         } catch (SQLException e) {
@@ -75,7 +74,7 @@ public class CardsDAO {
 
         try {
             stmt = conn.prepareStatement(
-                    "SELECT count(*) as qtd FROM  cartao WHERE cliente = ?;");
+                    "SELECT count(*) as qtd FROM cartao WHERE cliente = ?;");
             stmt.setInt(1, num_cliente);
             rs = stmt.executeQuery();
 
@@ -138,7 +137,8 @@ public class CardsDAO {
             // Gera um novo cartao até não existir nenhum cartao com este numero
             do {
                 num_cartao = generateCardNumber();
-                stmt = conn.prepareStatement("SELECT count(num_cartao) AS valor FROM cartao where num_cartao like ?;");
+                stmt = conn.prepareStatement(
+                        "SELECT count(num_cartao) AS valor FROM cartao where num_cartao like ?;");
                 stmt.setString(1, num_cartao);
                 rs = stmt.executeQuery();
                 rs.next();

@@ -1,15 +1,15 @@
 package pt.ua.ibank.DTO;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Cartao {
 
     public String numCartao;
-    public Date dataValidade;
+    public Timestamp dataValidade;
     public String estado;
     public int cliente;
 
-    public Cartao(String numCartao, Date dataValidade, String estado,
+    public Cartao(String numCartao, Timestamp dataValidade, String estado,
             int cliente) {
         this.numCartao = numCartao;
         this.dataValidade = dataValidade;
@@ -17,14 +17,14 @@ public class Cartao {
         this.cliente = cliente;
     }
 
-    public Cartao(String numCartao, Date dataValidade,
+    public Cartao(String numCartao, Timestamp dataValidade,
             int cliente) {
         this.numCartao = numCartao;
         this.dataValidade = dataValidade;
         this.cliente = cliente;
     }
 
-    public Cartao(String numCartao, Date dataValidade, String estado) {
+    public Cartao(String numCartao, Timestamp dataValidade, String estado) {
         this.numCartao = numCartao;
         this.dataValidade = dataValidade;
         this.estado = estado;

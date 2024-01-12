@@ -5,7 +5,8 @@
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
+import pt.ua.ibank.DAO.CommentsDAO;
+import pt.ua.ibank.DTO.Funcionario;
 
 import pt.ua.ibank.DTO.ModeratorComment;
 
@@ -16,17 +17,11 @@ import pt.ua.ibank.DTO.ModeratorComment;
 public class PerfilCommentTableModel extends javax.swing.table.AbstractTableModel {
 
     private final java.util.List<ModeratorComment> data;
-    String clientEmail;
+    private final int clientID;
 
-    public PerfilCommentTableModel(String clientEmail) {
-        this.clientEmail = clientEmail;
-        data = null;
-        // data = CommentsDAO.getProfileCommentListFromUserID(clientID);
-    }
-
-    public PerfilCommentTableModel() {
-        data = new java.util.ArrayList<>();
-
+    public PerfilCommentTableModel(int clientID) {
+        this.clientID = clientID;
+        data = CommentsDAO.getCommentListByID(clientID);
     }
 
     @Override
@@ -40,19 +35,21 @@ public class PerfilCommentTableModel extends javax.swing.table.AbstractTableMode
     }
 
     public boolean adicionarComentario(String comment) {
-        data.add(new ModeratorComment(data.size(), "admin", comment,
-                new Timestamp(2)));
-        //return CommentsDAO.addNewComment(this.clientEmail, c);
-        fireTableRowsInserted(data.size() - 1, data.size() - 1);
-        return true;
-    }
 
-    public boolean removerComentario(int row) {
-        data.remove(row);
-        //int id = data.get(row).getId();
-        //return CommentsDAO.deleteComment(id);
-        fireTableRowsDeleted(row, row);
-        return true;
+        if (CommentsDAO.addNewComment(
+                clientID,
+                Funcionario.LocalFuncionario.getNumFun(),
+                comment)) {
+            data.add(
+                    new ModeratorComment(data.size(),
+                            Funcionario.LocalFuncionario.nome,
+                            comment,
+                            new Timestamp(System.currentTimeMillis())));
+
+            fireTableRowsInserted(data.size() - 1, data.size() - 1);
+            return true;
+        }
+        return false;
     }
 
     @Override

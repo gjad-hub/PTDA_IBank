@@ -32,14 +32,13 @@ public class PerfilCardTableCellRenderer extends DefaultTableCellRenderer {
                 currClientObject.numCartao.length() - 4,
                 currClientObject.numCartao.length());
 
-//        var profileChildElement = new PerfilCardTableElementPanel(
-//                cardNumber,
-//                expireDate,
-//                currClientObject.saldo_credito,
-//                currClientObject.estado
-//        );
+        var profileChildElement = new PerfilCardTableElementPanel(
+                cardNumber,
+                expireDate,
+                currClientObject.estado
+        );
 
-        return comm;
+        return profileChildElement;
     }
 
 }

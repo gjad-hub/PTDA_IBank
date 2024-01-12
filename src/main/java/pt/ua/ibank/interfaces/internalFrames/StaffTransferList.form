@@ -25,17 +25,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="transfersMainInterface1" alignment="0" max="32767" attributes="0"/>
+          <Component id="transfersMainInterfaceContainer" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="transfersMainInterface1" alignment="0" pref="586" max="32767" attributes="0"/>
+          <Component id="transfersMainInterfaceContainer" alignment="0" pref="586" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="pt.ua.ibank.interfaces.internalFrames.staff.transferlist.TransfersMainInterface" name="transfersMainInterface1">
+    <Component class="pt.ua.ibank.interfaces.internalFrames.staff.transferlist.TransfersMainInterface" name="transfersMainInterfaceContainer">
     </Component>
   </SubComponents>
 </Form>

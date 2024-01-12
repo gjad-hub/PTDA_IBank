@@ -18,20 +18,11 @@ import pt.ua.ibank.DTO.Cliente;
 public class PerfilPersonalTableModel extends AbstractTableModel {
 
     private final List<Pair<String, String>> data;
-    public Cliente client = null;
+    public final Cliente client;
 
-    public PerfilPersonalTableModel(String clientEmail) {
+    public PerfilPersonalTableModel(int clientID) {
+        client = ClientDAO.getClientByID(clientID);
         data = new ArrayList<>();
-        client = ClientDAO.getClientByEmail(clientEmail);
-        setupData();
-    }
-
-    public PerfilPersonalTableModel() {
-        data = new ArrayList<>();
-        client = new Cliente(1, "jose",
-                "Avenida das coves", "asd",
-                "123123", "2131", "3",
-                "39", 20.4);
         setupData();
     }
 
@@ -45,6 +36,8 @@ public class PerfilPersonalTableModel extends AbstractTableModel {
                 "Cartao default: ", client.cartaoDefault));
         data.add(new Pair<>(
                 "Saldo: ", Double.toString(client.saldo)));
+        data.add(new Pair<>(
+                "Saldo Cativo: ", Double.toString(client.saldo_cativo)));
     }
 
     public void aprovarDepositoLocalmente(int saldoCativoAprovado) {
@@ -65,7 +58,6 @@ public class PerfilPersonalTableModel extends AbstractTableModel {
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         try {
-            String oldEmail = client.email;
             data.set(rowIndex, (Pair<String, String>) aValue);
 
             System.out.println(
@@ -73,9 +65,9 @@ public class PerfilPersonalTableModel extends AbstractTableModel {
                     + "on row " + rowIndex + " on column " + columnIndex
                     + "changed! to " + data.get(rowIndex).right);
 
-            //ClientDAO.UpdateClient(client.nome, client.morada,
-            //      client.email, client.telemovel,
-            //    client.nif, oldEmail);
+            ClientDAO.UpdateClient(client.numCliente, client.nome, client.morada,
+                    client.email, client.telemovel,
+                    client.nif);
         } catch (java.lang.ClassCastException e) {
             //nothing
         }

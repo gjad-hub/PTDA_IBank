@@ -26,7 +26,7 @@ public class CardManager extends javax.swing.JInternalFrame {
     private void updateInfo() {
         updateClientCardInfo(LocalClient);
         f_card.setText(printDividedString(LocalClient.cartaoDefault, 4));
-        popular(CardsDAO.getCards(LocalClient.numCliente));
+        popular(CardsDAO.getCardListFromUserID(LocalClient.numCliente));
     }
 
     private void popular(ArrayList<Cartao> lcartao) {
@@ -223,7 +223,8 @@ public class CardManager extends javax.swing.JInternalFrame {
         selectedRowIndex = card_table.convertRowIndexToModel(selectedRowIndex);
 
         if (selectedRowIndex >= 0) {
-            selected_card = (String) card_table.getValueAt(selectedRowIndex, selectedColumnIndex);
+            selected_card = (String) card_table.getValueAt(selectedRowIndex,
+                    selectedColumnIndex);
             card_status = (String) card_table.getValueAt(selectedRowIndex, 2);
         }
 
@@ -237,7 +238,9 @@ public class CardManager extends javax.swing.JInternalFrame {
         }
 
         if (!Objects.isNull(selected_card) && !selected_card.isEmpty()) {
-            int reply = JOptionPane.showConfirmDialog(null, "Deseja tornar o cartão no padrão ?", title, JOptionPane.YES_NO_OPTION);
+            int reply = JOptionPane.showConfirmDialog(null,
+                    "Deseja tornar o cartão no padrão ?", title,
+                    JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
                 if (CardsDAO.makeDefault(selected_card, LocalClient.numCliente) == CardsDAO.codigoSucesso) {
                     status.setForeground(green);
@@ -260,7 +263,8 @@ public class CardManager extends javax.swing.JInternalFrame {
         selectedRowIndex = card_table.convertRowIndexToModel(selectedRowIndex);
 
         if (selectedRowIndex >= 0) {
-            selected_card = (String) card_table.getValueAt(selectedRowIndex, selectedColumnIndex);
+            selected_card = (String) card_table.getValueAt(selectedRowIndex,
+                    selectedColumnIndex);
             card_status = (String) card_table.getValueAt(selectedRowIndex, 2);
         }
 
@@ -275,7 +279,9 @@ public class CardManager extends javax.swing.JInternalFrame {
         }
 
         if (!Objects.isNull(selected_card) && !selected_card.isEmpty()) {
-            int reply = JOptionPane.showConfirmDialog(null, "Deseja cancelar o cartão ? Não caminho de volta !", title, JOptionPane.YES_NO_OPTION);
+            int reply = JOptionPane.showConfirmDialog(null,
+                    "Deseja cancelar o cartão ? Não caminho de volta !", title,
+                    JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
                 if (CardsDAO.cancelCard(selected_card) == CardsDAO.codigoSucesso) {
                     status.setForeground(green);
@@ -289,18 +295,19 @@ public class CardManager extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cancel_cardActionPerformed
 
     private void create_cardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_create_cardActionPerformed
-            int reply = JOptionPane.showConfirmDialog(null, "Deseja criar um novo cartão ? Todos os cartões têm uma validade de 5 anos !", title, JOptionPane.YES_NO_OPTION);
-            if (reply == JOptionPane.YES_OPTION) {
-                if (CardsDAO.createCard(LocalClient.numCliente) == CardsDAO.codigoSucesso) {
-                    status.setForeground(green);
-                    status.setText("Novo cartão criado!");
-                    updateInfo();
-                } else {
-                    status.setText("Algo de inesperado aconteceu !");
-                }
+        int reply = JOptionPane.showConfirmDialog(null,
+                "Deseja criar um novo cartão ? Todos os cartões têm uma validade de 5 anos !",
+                title, JOptionPane.YES_NO_OPTION);
+        if (reply == JOptionPane.YES_OPTION) {
+            if (CardsDAO.createCard(LocalClient.numCliente) == CardsDAO.codigoSucesso) {
+                status.setForeground(green);
+                status.setText("Novo cartão criado!");
+                updateInfo();
+            } else {
+                status.setText("Algo de inesperado aconteceu !");
             }
+        }
     }//GEN-LAST:event_create_cardActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backdrop;

@@ -77,7 +77,7 @@ public class ContasTableModel extends AbstractTableModel {
                 return data.get(rowIndex).nif;
             }
             case 5 -> {
-                Integer id = Integer.valueOf(data.get(rowIndex).numConta);
+                var id = data.get(rowIndex).numCliente;
                 return getDepositAmountNumberFromID(id);
             }
         }

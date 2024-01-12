@@ -5,6 +5,9 @@
  */
 package pt.ua.ibank.interfaces.internalFrames;
 
+import java.awt.event.ActionEvent;
+import pt.ua.ibank.interfaces.staffInterface;
+
 /**
  *
  * @author ricar
@@ -13,9 +16,25 @@ public class StaffTransferList extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form StaffTransferList
+     *
+     * @param parent
      */
-    public StaffTransferList() {
+    public StaffTransferList(staffInterface parent) {
         initComponents();
+
+        javax.swing.JButton openAuthorProfileButton = transfersMainInterfaceContainer.getOpenAuthorProfileButton();
+        javax.swing.JButton openRecieverProfileButton = transfersMainInterfaceContainer.getOpenRecieverProfileButton();
+
+        openAuthorProfileButton.addActionListener((ActionEvent e) -> {
+            int clientID = transfersMainInterfaceContainer.getCurrAuthorClient().numCliente;
+            parent.addWindow(new StaffProfilePanel(clientID));
+        });
+
+        openRecieverProfileButton.addActionListener((ActionEvent e) -> {
+            int clientID = transfersMainInterfaceContainer.getCurrRecieverClient().numCliente;
+            parent.addWindow(new StaffProfilePanel(clientID));
+        });
+
     }
 
     /**
@@ -27,7 +46,7 @@ public class StaffTransferList extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        transfersMainInterface1 = new pt.ua.ibank.interfaces.internalFrames.staff.transferlist.TransfersMainInterface();
+        transfersMainInterfaceContainer = new pt.ua.ibank.interfaces.internalFrames.staff.transferlist.TransfersMainInterface();
 
         setClosable(true);
         setIconifiable(true);
@@ -38,17 +57,17 @@ public class StaffTransferList extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(transfersMainInterface1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(transfersMainInterfaceContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(transfersMainInterface1, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
+            .addComponent(transfersMainInterfaceContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private pt.ua.ibank.interfaces.internalFrames.staff.transferlist.TransfersMainInterface transfersMainInterface1;
+    private pt.ua.ibank.interfaces.internalFrames.staff.transferlist.TransfersMainInterface transfersMainInterfaceContainer;
     // End of variables declaration//GEN-END:variables
 }

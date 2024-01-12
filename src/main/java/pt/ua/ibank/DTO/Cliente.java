@@ -22,7 +22,8 @@ public class Cliente extends Pessoa {
      */
     public Cliente(Integer numCliente, String nome, String morada, String email,
             String telemovel, String nif, String password, String numConta,
-            Double saldo, Double saldo_cativo, String cardaoDefault, Integer entidade) {
+            Double saldo, Double saldo_cativo, String cardaoDefault,
+            Integer entidade) {
         this.numCliente = numCliente;
         this.nome = nome;
         this.morada = morada;
@@ -38,7 +39,7 @@ public class Cliente extends Pessoa {
     }
 
     /*
-     * Construtor para saldos, "atualizar" saldos 
+     * Construtor para saldos, "atualizar" saldos
      */
     public Cliente(Double saldo, Double saldo_cativo) {
         this.saldo = saldo;
@@ -86,7 +87,8 @@ public class Cliente extends Pessoa {
     }
 
     public int alterarInformacoes(String old_email) {
-        int status = ClientDAO.UpdateClient(nome, morada, email, telemovel, nif, password, old_email);
+        int status = ClientDAO.UpdateClient(nome, morada, email, telemovel, nif,
+                password, old_email);
         return status;
     }
 

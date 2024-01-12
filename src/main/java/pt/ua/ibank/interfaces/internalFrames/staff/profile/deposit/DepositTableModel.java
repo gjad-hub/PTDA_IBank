@@ -4,12 +4,10 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.deposit;
 
-import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.*;
-import com.mysql.cj.conf.ConnectionUrlParser.Pair;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import pt.ua.ibank.DAO.ClientDAO;
+import pt.ua.ibank.DAO.DepositsDAO;
 import pt.ua.ibank.DTO.Cliente;
 import pt.ua.ibank.DTO.Deposito;
 
@@ -22,31 +20,33 @@ public class DepositTableModel extends AbstractTableModel {
     private final List<Deposito> data;
     public Cliente client = null;
 
-    public DepositTableModel(String clientEmail) {
-        data = new ArrayList<>();
-        client = ClientDAO.getClientByEmail(clientEmail);
-    }
-
-    public DepositTableModel() {
-        data = new ArrayList<>();
-        data.add(new Deposito(1, 2.0));
-        data.add(new Deposito(2, 2.0, false));
-        data.add(new Deposito(3, 2.0, true));
+    public DepositTableModel(int clientID) {
+        data = DepositsDAO.getDeposits(clientID);
+        client = ClientDAO.getClientByID(clientID);
     }
 
     public void aprovarDeposito(int row) {
+        DepositsDAO.aproveDeposit(
+                data.get(row).idDeposito,
+                data.get(row).numCli
+        );
         data.get(row).pendenteAprovacao = false;
         data.get(row).aprovado = true;
 
-        //this.client.saldo_cativo -= data.get(row).valor;
+        this.client.saldo_cativo -= data.get(row).valor;
         this.client.saldo += data.get(row).valor;
+
     }
 
     public void reprovarDeposito(int row) {
+        DepositsDAO.denyDeposit(
+                data.get(row).idDeposito,
+                data.get(row).numCli
+        );
         data.get(row).pendenteAprovacao = false;
         data.get(row).aprovado = false;
 
-        //this.client.saldo_cativo -= data.get(row).valor;
+        this.client.saldo_cativo -= data.get(row).valor;
     }
 
     @Override

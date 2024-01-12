@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
+import pt.ua.ibank.DAO.TransfersDAO;
 import pt.ua.ibank.DTO.Transferencias;
 
 /**
@@ -17,9 +18,7 @@ public class TransfersTableModel extends AbstractTableModel {
     private List<Transferencias> data = null;
 
     public TransfersTableModel() {
-        //data = new TransferenciaDAO.getTransferList();
-        data = new ArrayList<>();
-        data.add(new Transferencias(1, 2.0, 1, 3, "razao"));
+        data = TransfersDAO.getTransfersList();
         header = new ArrayList<>(Arrays.asList(
                 "ID", "Valor", "Autor", "Receptor", "motivo", ""));
     }
@@ -42,6 +41,10 @@ public class TransfersTableModel extends AbstractTableModel {
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return true;
+    }
+
+    public Transferencias getTransfer(int row) {
+        return data.get(row);
     }
 
     @Override

@@ -4,6 +4,7 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.card;
 
+import pt.ua.ibank.DAO.CardsDAO;
 import pt.ua.ibank.DTO.Cartao;
 
 /**
@@ -14,15 +15,8 @@ public class PerfilCardTableModel extends javax.swing.table.AbstractTableModel {
 
     private final java.util.List<Cartao> data;
 
-    public PerfilCardTableModel(String clientEmail) {
-        data = null;
-        // data = CartaoDAO.getCardListFromUserID(clientID);
-    }
-
-    public PerfilCardTableModel() {
-        data = new java.util.ArrayList<>();
-        java.sql.Date ea = new java.sql.Date(1, 2, 2002);
-//        data.add(new Cartao("213123211231", ea, 2.2, "estado"));
+    public PerfilCardTableModel(int clientID) {
+        data = CardsDAO.getCardListFromUserID(clientID);
     }
 
     @Override

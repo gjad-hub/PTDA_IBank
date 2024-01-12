@@ -291,7 +291,9 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Nome completo"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="personalDataTable.client.nome" type="code"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Container class="javax.swing.JPanel" name="jPanelFotoPerfil">
@@ -464,7 +466,7 @@
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                           <Connection code="personalDataTable" type="code"/>
                         </Property>
-                        <Property name="rowHeight" type="int" value="35"/>
+                        <Property name="rowHeight" type="int" value="20"/>
                         <Property name="rowSelectionAllowed" type="boolean" value="false"/>
                         <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -476,9 +478,9 @@
                         </Property>
                       </Properties>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="//collumn 1&#xa;jTablePersonalData.getColumnModel().getColumn(0)&#xa;        .setCellRenderer(new PerfilTableCellRenderer());&#xa;&#xa;jTablePersonalData.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setCellRenderer(new PerfilActionRenderer());&#xa;jTablePersonalData.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setMaxWidth(100);&#xa;&#xa;&#xa;jTablePersonalData.getColumnModel()&#xa;        .getColumn(0)&#xa;        .setMaxWidth(150);&#xa;&#xa;// MAX WIDTH&#xa;&#xa;&#xa;&#xa;// EDIT BUTTON STUFF&#xa;    PerfilTableActionEvent eventPersonal = new PerfilTableActionEvent() {&#xa;        String oldLeft;&#xa;&#xa;        @Override&#xa;        public void onEdit(int row) {&#xa;            oldLeft = ((Pair&lt;String, String&gt;) personalDataTable.getValueAt(&#xa;                    row, 0)).left;&#xa;        }&#xa;&#xa;        @Override&#xa;        public void onCancel(int row) {&#xa;            // do nothing&#xa;        }&#xa;&#xa;        @Override&#xa;        public void onSave(int row, String newValue) {&#xa;        System.out.println(newValue);&#xa;        if(newValue.length() &gt; 2)&#xa;        {&#xa;            personalDataTable.getValueAt(row, 0);&#xa;            Pair&lt;String, String&gt; newRecord = new Pair(oldLeft, newValue);&#xa;            personalDataTable.setValueAt(newRecord, row, 0);&#xa;            jTablePersonalData.repaint();&#xa;if(oldLeft == &quot;Nome:&quot;){&#xa;lblNomeCompleto.setText(newValue);&#xa;}&#xa;        }&#xa;}&#xa;    };&#xa;&#xa;jTablePersonalData.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setCellEditor(new PerfilCellEditor(eventPersonal));&#xa;jTablePersonalData.setRowHeight(40);&#xa;&#xa;jTablePersonalData.setRowSelectionAllowed(false);&#xa;&#xa;jTablePersonalData.setSelectionBackground(new java.awt.Color(255, 255, 255));"/>
+                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="//collumn 1&#xa;jTablePersonalData.getColumnModel().getColumn(0)&#xa;        .setCellRenderer(new PerfilTableCellRenderer());&#xa;&#xa;jTablePersonalData.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setCellRenderer(new PerfilActionRenderer());&#xa;jTablePersonalData.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setMaxWidth(100);&#xa;&#xa;&#xa;jTablePersonalData.getColumnModel()&#xa;        .getColumn(0)&#xa;        .setMaxWidth(150);&#xa;&#xa;// MAX WIDTH&#xa;&#xa;&#xa;&#xa;// EDIT BUTTON STUFF&#xa;    PerfilTableActionEvent eventPersonal = new PerfilTableActionEvent() {&#xa;        String oldLeft;&#xa;&#xa;        @Override&#xa;        public void onEdit(int row) {&#xa;            oldLeft = ((Pair&lt;String, String&gt;) personalDataTable.getValueAt(&#xa;                    row, 0)).left;&#xa;        }&#xa;&#xa;        @Override&#xa;        public void onCancel(int row) {&#xa;            // do nothing&#xa;        }&#xa;&#xa;        @Override&#xa;        public void onSave(int row, String newValue) {&#xa;        if(newValue.length() &gt; 2)&#xa;        {&#xa;            personalDataTable.getValueAt(row, 0);&#xa;            Pair&lt;String, String&gt; newRecord = new Pair(oldLeft, newValue);&#xa;            personalDataTable.setValueAt(newRecord, row, 0);&#xa;            jTablePersonalData.repaint();&#xa;if(oldLeft == &quot;Nome:&quot;){&#xa;lblNomeCompleto.setText(newValue);&#xa;}&#xa;        }&#xa;}&#xa;    };&#xa;&#xa;jTablePersonalData.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setCellEditor(new PerfilCellEditor(eventPersonal));&#xa;jTablePersonalData.setRowHeight(40);&#xa;&#xa;jTablePersonalData.setRowSelectionAllowed(false);&#xa;&#xa;jTablePersonalData.setSelectionBackground(new java.awt.Color(255, 255, 255));"/>
                         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable()"/>
-                        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="//PerfilPersonalTableModel personalDataTable = new PerfilPersonalTableModel(clientEmail);&#xa;PerfilPersonalTableModel personalDataTable = new PerfilPersonalTableModel();"/>
+                        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="personalDataTable = new PerfilPersonalTableModel(&#xa;                clientID);"/>
                         <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jTablePersonalData.setTableHeader(null);"/>
                       </AuxValues>
                     </Component>
@@ -600,6 +602,7 @@
                       </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTableCardData.setTableHeader(null);&#xa;&#xa;jTableCardData.getColumnModel().getColumn(0)&#xa;    .setCellRenderer(new PerfilCardTableCellRenderer());"/>
+                        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="cardDataTable = new PerfilCardTableModel(clientID);"/>
                       </AuxValues>
                     </Component>
                   </SubComponents>
@@ -698,11 +701,12 @@
                     <Component class="org.jdesktop.swingx.JXTable" name="jXTable1">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="pctm&#xa;    " type="code"/>
+                          <Connection code="pctm" type="code"/>
                         </Property>
                       </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jXTable1.setRowHeight(90);&#xa;jXTable1.setTableHeader(null);&#xa;&#xa;jXTable1.getColumnModel().getColumn(0)&#xa;    .setCellRenderer(new PerfilCommentTableCellRenderer());"/>
+                        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="pctm = new PerfilCommentTableModel(clientID);"/>
                       </AuxValues>
                     </Component>
                   </SubComponents>
@@ -805,6 +809,7 @@
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="//collumn 1&#xa;jTableDepositDatatr.getColumnModel().getColumn(0)&#xa;        .setCellRenderer(new DepositTableCellRenderer());&#xa;&#xa;jTableDepositDatatr.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setCellRenderer(new DepositActionRenderer());&#xa;&#xa;&#xa;jTableDepositDatatr.getColumnModel()&#xa;        .getColumn(1).setMaxWidth(90);&#xa;jTableDepositDatatr.getColumnModel()&#xa;        .getColumn(1).setMinWidth(50);&#xa;&#xa;&#xa;&#xa;// EDIT BUTTON STUFF&#xa;    DepositTableActionEvent eventDeposit = new DepositTableActionEvent() {&#xa;        String oldLeft;&#xa;&#xa;        @Override&#xa;        public void onAcceptTransaction(int row){&#xa;            dtm.aprovarDeposito(row);&#xa;        }&#xa;&#xa;        @Override&#xa;        public void onRejectTransaction(int row){&#xa;Deposito d = (Deposito)dtm.getValueAt(row,0);&#xa;&#xa;             AdicionarComentarioPerfil(pctm,&quot;[deposito n&quot;+d.idDeposito+&quot;] &quot;);&#xa;            dtm.reprovarDeposito(row);&#xa;        }    &#xa;    };&#xa;&#xa;jTableDepositDatatr.getColumnModel()&#xa;        .getColumn(1)&#xa;        .setCellEditor(new DepositCellEditor(eventDeposit));&#xa;&#xa;jTableDepositDatatr.setRowSelectionAllowed(true);"/>
+                    <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="dtm = new DepositTableModel(clientID);"/>
                   </AuxValues>
                 </Component>
               </SubComponents>

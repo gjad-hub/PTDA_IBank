@@ -41,13 +41,24 @@ public class DepositsDAO {
 
         try {
             stmt = conn.prepareStatement(
-                    "SELECT valor, aprovado FROM deposito WHERE num_cli = ? ORDER BY data desc;");
+                    "SELECT id_deposito,valor,aprovado,pendente_aprovacao FROM deposito WHERE num_cli = ? ORDER BY data desc;");
             stmt.setInt(1, num_cliente);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Deposito tr = new Deposito(rs.getDouble("valor"), rs.getBoolean(
-                        "aprovado"));
+                Deposito tr;
+
+                boolean isPending = rs.getBoolean("pendente_aprovacao");
+                if (isPending) {
+                    tr = new Deposito(rs.getInt("id_deposito"),
+                            rs.getDouble("valor"));
+                } else {
+                    tr = new Deposito(rs.getInt("id_deposito"),
+                            rs.getDouble("valor"),
+                            rs.getBoolean("aprovado")
+                    );
+                }
+
                 ldeposito.add(tr);
             }
         } catch (SQLException e) {

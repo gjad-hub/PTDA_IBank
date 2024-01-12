@@ -19,12 +19,11 @@ public class PerfilCardTableElementPanel extends javax.swing.JPanel {
      * @param saldo
      */
     public PerfilCardTableElementPanel(String numCartao, String dataValidade,
-            double saldo, String estado) {
+            String estado) {
         initComponents();
         this.lblNumeroCartao.setText(numCartao);
         this.lblEstadoValue.setText(estado);
         this.lblValidadeValue.setText(dataValidade);
-        this.lblSaldoValue.setText(Double.toString(saldo));
     }
 
     /**
@@ -40,8 +39,6 @@ public class PerfilCardTableElementPanel extends javax.swing.JPanel {
         lblNumeroCartao = new javax.swing.JLabel();
         lblValidade = new javax.swing.JLabel();
         lblValidadeValue = new javax.swing.JLabel();
-        lblSaldo = new javax.swing.JLabel();
-        lblSaldoValue = new javax.swing.JLabel();
         lblEstadoValue = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(254, 254, 254));
@@ -58,12 +55,6 @@ public class PerfilCardTableElementPanel extends javax.swing.JPanel {
         lblValidadeValue.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         lblValidadeValue.setText("01/24");
 
-        lblSaldo.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        lblSaldo.setText("Saldo(€):");
-
-        lblSaldoValue.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        lblSaldoValue.setText("2000");
-
         lblEstadoValue.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         lblEstadoValue.setText("Ativo");
 
@@ -72,22 +63,17 @@ public class PerfilCardTableElementPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblTtitle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblNumeroCartao)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblValidade)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblValidadeValue))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblSaldo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblSaldoValue)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblEstadoValue)))
+                        .addComponent(lblNumeroCartao))
+                    .addComponent(lblValidade))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblValidadeValue)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(lblEstadoValue)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -95,24 +81,21 @@ public class PerfilCardTableElementPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTtitle, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblNumeroCartao)
-                        .addComponent(lblValidade)
-                        .addComponent(lblValidadeValue)))
+                    .addComponent(lblNumeroCartao))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblSaldo)
-                        .addComponent(lblSaldoValue))
-                    .addComponent(lblEstadoValue)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblValidade)
+                    .addComponent(lblValidadeValue)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblEstadoValue)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblEstadoValue;
     private javax.swing.JLabel lblNumeroCartao;
-    private javax.swing.JLabel lblSaldo;
-    private javax.swing.JLabel lblSaldoValue;
     private javax.swing.JLabel lblTtitle;
     private javax.swing.JLabel lblValidade;
     private javax.swing.JLabel lblValidadeValue;

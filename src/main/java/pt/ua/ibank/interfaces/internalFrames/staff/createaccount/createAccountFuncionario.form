@@ -44,7 +44,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="pt.ua.ibank.interfaces.internalFrames.staff.login.formCreateAccountFuncionario" name="seila1">
+    <Component class="pt.ua.ibank.interfaces.internalFrames.staff.createaccount.formCreateAccountFuncionario" name="seila1">
     </Component>
   </SubComponents>
 </Form>

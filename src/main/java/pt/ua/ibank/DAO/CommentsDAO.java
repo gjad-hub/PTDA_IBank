@@ -18,8 +18,8 @@ import static pt.ua.ibank.utilities.DBConnection.conn;
  */
 public class CommentsDAO {
 
-    public static ArrayList<ModeratorComment> getCommentListByNumber(
-            String clientNumber) {
+    public static ArrayList<ModeratorComment> getCommentListByID(
+            int clientID) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         ArrayList<ModeratorComment> list = new ArrayList<>();
@@ -27,10 +27,10 @@ public class CommentsDAO {
         try {
 
             stmt = conn.prepareStatement(
-                    "select funcionario.nome,id_cliente,descricao,data_feita"
+                    "select funcionario.nome,id_cliente,descricao,data"
                     + " from comentario_perfil inner join funcionario"
                     + " where id_cliente = ?;");
-            stmt.setString(1, clientNumber);
+            stmt.setInt(1, clientID);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -50,7 +50,8 @@ public class CommentsDAO {
         return null;
     }
 
-    public static boolean addNewComment(String client_id, String comment) {
+    public static boolean addNewComment(int employee_id, int client_id,
+            String comment) {
         PreparedStatement stmt = null;
         try {
 
@@ -60,8 +61,8 @@ public class CommentsDAO {
                     + "(?,?,?);"
             );
 
-            //stmt.setInt(1, 1);
-            //stmt.setInt(2, client_id);
+            stmt.setInt(1, employee_id);
+            stmt.setInt(2, client_id);
             stmt.setString(3, comment);
 
             return stmt.execute();
@@ -69,21 +70,6 @@ public class CommentsDAO {
             return false;
         } finally {
             DBConnection.closeConnection(stmt);
-        }
-    }
-
-    public static boolean deleteComment(int id) {
-        PreparedStatement stmt = null;
-
-        try {
-            stmt = conn.prepareStatement(
-                    "delete from comentario_perfil where id = ?");
-            stmt.setInt(1, id);
-            stmt.executeUpdate();
-            return true;
-
-        } catch (SQLException e) {
-            return false;
         }
     }
 }

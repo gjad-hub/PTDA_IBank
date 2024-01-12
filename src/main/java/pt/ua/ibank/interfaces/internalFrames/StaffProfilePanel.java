@@ -15,11 +15,10 @@ public class StaffProfilePanel extends javax.swing.JInternalFrame {
      *
      * @param userEmail
      */
-    public StaffProfilePanel(String userEmail) {
-        initComponents();
-    }
+    private final int userID;
 
-    public StaffProfilePanel() {
+    public StaffProfilePanel(int userID) {
+        this.userID = userID;
         initComponents();
     }
 
@@ -32,7 +31,7 @@ public class StaffProfilePanel extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        perfilMainInterface1 = new pt.ua.ibank.interfaces.internalFrames.staff.profile.PerfilMainInterface();
+        perfilMainInterface1 = new pt.ua.ibank.interfaces.internalFrames.staff.profile.PerfilMainInterface(userID);
 
         setClosable(true);
         setIconifiable(true);

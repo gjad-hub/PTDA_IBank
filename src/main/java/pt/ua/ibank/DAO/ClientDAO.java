@@ -17,7 +17,8 @@ public class ClientDAO {
     public final static int codigoErro = 2;
     public final static int codigoErroEmail = 3;
 
-    public static int CreateClient(String nome, String morada, String email, String telefone, String nif, String password) {
+    public static int CreateClient(String nome, String morada, String email,
+            String telefone, String nif, String password) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         String num_conta;
@@ -27,7 +28,8 @@ public class ClientDAO {
         try {
 
             // Verifica se já existe alguma conta com aquele e-mail
-            stmt = conn.prepareStatement("SELECT count(num_cliente) AS valor FROM cliente where email like ?;");
+            stmt = conn.prepareStatement(
+                    "SELECT count(num_cliente) AS valor FROM cliente where email like ?;");
             stmt.setString(1, email);
             rs = stmt.executeQuery();
             rs.next();
@@ -39,7 +41,8 @@ public class ClientDAO {
             // Gera um novo iban até não existir um cliente com o iban
             do {
                 num_conta = generateRandomIban();
-                stmt = conn.prepareStatement("SELECT count(num_cliente) AS valor FROM cliente where num_conta like ?;");
+                stmt = conn.prepareStatement(
+                        "SELECT count(num_cliente) AS valor FROM cliente where num_conta like ?;");
                 stmt.setString(1, num_conta);
                 rs = stmt.executeQuery();
                 rs.next();
@@ -48,7 +51,8 @@ public class ClientDAO {
             // Gera um novo cartao até não existir nenhum cartao com este numero
             do {
                 num_cartao = generateCardNumber();
-                stmt = conn.prepareStatement("SELECT count(num_cartao) AS valor FROM cartao where num_cartao like ?;");
+                stmt = conn.prepareStatement(
+                        "SELECT count(num_cartao) AS valor FROM cartao where num_cartao like ?;");
                 stmt.setString(1, num_cartao);
                 rs = stmt.executeQuery();
                 rs.next();
@@ -57,7 +61,8 @@ public class ClientDAO {
             // Gera uma nova referencia até não existir nenhuma com este numero
             do {
                 ent = generateEnt();
-                stmt = conn.prepareStatement("SELECT count(num_cliente) AS valor FROM cliente where entidade = ?;");
+                stmt = conn.prepareStatement(
+                        "SELECT count(num_cliente) AS valor FROM cliente where entidade = ?;");
                 stmt.setInt(1, ent);
                 rs = stmt.executeQuery();
                 rs.next();
@@ -102,7 +107,42 @@ public class ClientDAO {
         }
     }
 
-    public static Cliente getClientByEmail(String email) {
+    public static Cliente getClientByID(int id) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+
+            stmt = conn.prepareStatement(
+                    "SELECT * FROM cliente where num_cliente= ?;");
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                return new Cliente(
+                        rs.getInt("num_cliente"),
+                        rs.getString("nome"),
+                        rs.getString("morada"),
+                        rs.getString("email"),
+                        rs.getString("telemovel"),
+                        rs.getString("nif"),
+                        rs.getString("password"),
+                        rs.getString("num_conta"),
+                        rs.getDouble("saldo"),
+                        rs.getDouble("saldo_cativo"),
+                        rs.getString("cartao_default"),
+                        rs.getInt("entidade"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+        return null;
+    }
+
+    public static Cliente getClientByEmail(String id) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         Cliente cl = null;
@@ -111,7 +151,7 @@ public class ClientDAO {
 
             stmt = conn.prepareStatement(
                     "SELECT * FROM cliente where email like ?;");
-            stmt.setString(1, email);
+            stmt.setString(1, id);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -225,9 +265,9 @@ public class ClientDAO {
         return null;
     }
 
-    public static int UpdateClient(String nome, String morada, String email,
-            String telefone, String nif,
-            String old_email) {
+    public static int UpdateClient(int id, String nome, String morada,
+            String email,
+            String telefone, String nif) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
@@ -240,17 +280,16 @@ public class ClientDAO {
             rs = stmt.executeQuery();
             rs.next();
 
-            if (rs.getInt("valor") > 0 && !email.equals(old_email)) {
+            if (rs.getInt("valor") > 0) {
                 return codigoErroEmail;
             }
 
             stmt = conn.prepareStatement(
-                    "UPDATE cliente SET nome = ? , morada = ?, email = ?, telemovel = ? WHERE email = ?");
+                    "UPDATE cliente SET nome = ? , morada = ?, email = ?, telemovel = ? WHERE id = ?");
             stmt.setString(1, nome);
             stmt.setString(2, morada);
             stmt.setString(3, email);
-            stmt.setString(4, telefone);
-            stmt.setString(5, old_email);
+            stmt.setInt(5, id);
             stmt.execute();
             return codigoSucesso;
 

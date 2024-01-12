@@ -39,34 +39,26 @@ import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilAction
  */
 public class PerfilMainInterface extends javax.swing.JPanel {
 
-    private String clientEmail;
-
-    //PerfilPersonalTableModel personalDataTable = new PerfilPersonalTableModel(clientEmail);
-    //PerfilCardTableModel cardDataTable = new PerfilCardTableModel(clientEmail);
-    //PerfilCommentTableModel pctm = new PerfilCommentTableModel(clientEmail);
-    PerfilPersonalTableModel personalDataTable = new PerfilPersonalTableModel();
-    PerfilCardTableModel cardDataTable = new PerfilCardTableModel();
-    PerfilCommentTableModel pctm = new PerfilCommentTableModel();
-    DepositTableModel dtm = new DepositTableModel();
+    int clientID;
 
     /**
      * Creates new form NewJPanel
+     *
+     * @param clientEmail
      */
-    public PerfilMainInterface() {
-        initComponents();
-        lblNomeCompleto.setText(personalDataTable.client.nome);
-        lblDataValue.setText("01/2024");
-    }
+    PerfilPersonalTableModel personalDataTable;
+    PerfilCardTableModel cardDataTable;
+    PerfilCommentTableModel pctm;
+    DepositTableModel dtm;
 
-    public PerfilMainInterface(String clientEmail) {
+    public PerfilMainInterface(int clientID) {
+        this.clientID = clientID;
         initComponents();
-        this.clientEmail = clientEmail;
-        lblNomeCompleto.setText(personalDataTable.client.nome);
     }
 
     private static void AdicionarComentarioPerfil(
             PerfilCommentTableModel commentModel, String message) {
-        JFrame frame = new JFrame("Comment Input");
+        JFrame frame = new JFrame("Adicionar Comentario");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // Create a panel to hold components
@@ -74,7 +66,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
         frame.getContentPane().add(panel);
 
         // Create a label
-        JLabel label = new JLabel("Enter your comment:");
+        JLabel label = new JLabel("Coloque o seu comentario:");
         panel.add(label);
 
         // Create a text field for user input
@@ -150,25 +142,28 @@ public class PerfilMainInterface extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        //PerfilPersonalTableModel personalDataTable = new PerfilPersonalTableModel(clientEmail);
-        PerfilPersonalTableModel personalDataTable = new PerfilPersonalTableModel();
+        personalDataTable = new PerfilPersonalTableModel(
+            clientID);
         jTablePersonalData = new javax.swing.JTable();
         jPanelDadosCartao = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
+        cardDataTable = new PerfilCardTableModel(clientID);
         jTableCardData = new javax.swing.JTable();
         jPanelDadosComentarios = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
+        pctm = new PerfilCommentTableModel(clientID);
         jXTable1 = new org.jdesktop.swingx.JXTable();
         jPanelDepositosPorAprovar = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        dtm = new DepositTableModel(clientID);
         jTableDepositDatatr = new org.jdesktop.swingx.JXTable();
 
         setBackground(new java.awt.Color(51, 51, 51));
@@ -244,7 +239,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
         lblNomeCompleto.setBackground(new java.awt.Color(255, 255, 255));
         lblNomeCompleto.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblNomeCompleto.setForeground(new java.awt.Color(0, 0, 0));
-        lblNomeCompleto.setText("Nome completo");
+        lblNomeCompleto.setText(personalDataTable.client.nome);
 
         jPanelFotoPerfil.setBackground(new java.awt.Color(255, 255, 255));
         jPanelFotoPerfil.setMaximumSize(new java.awt.Dimension(262, 262));
@@ -353,7 +348,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
 
         jTablePersonalData.setTableHeader(null);
         jTablePersonalData.setModel(personalDataTable);
-        jTablePersonalData.setRowHeight(35);
+        jTablePersonalData.setRowHeight(20);
         jTablePersonalData.setRowSelectionAllowed(false);
         jTablePersonalData.setSelectionBackground(new java.awt.Color(255, 255, 255));
         jTablePersonalData.setShowHorizontalLines(false);
@@ -393,7 +388,6 @@ public class PerfilMainInterface extends javax.swing.JPanel {
 
         @Override
         public void onSave(int row, String newValue) {
-            System.out.println(newValue);
             if(newValue.length() > 2)
             {
                 personalDataTable.getValueAt(row, 0);
@@ -528,8 +522,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
-    jXTable1.setModel(pctm
-    );
+    jXTable1.setModel(pctm);
     jScrollPane2.setViewportView(jXTable1);
     jXTable1.setRowHeight(90);
     jXTable1.setTableHeader(null);

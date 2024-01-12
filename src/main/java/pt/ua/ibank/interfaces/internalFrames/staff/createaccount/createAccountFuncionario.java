@@ -1,4 +1,4 @@
-package pt.ua.ibank.interfaces.internalFrames.staff.login;
+package pt.ua.ibank.interfaces.internalFrames.staff.createaccount;
 
 
 import javax.swing.SwingUtilities;
@@ -27,7 +27,7 @@ public class createAccountFuncionario extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        seila1 = new pt.ua.ibank.interfaces.internalFrames.staff.login.formCreateAccountFuncionario();
+        seila1 = new pt.ua.ibank.interfaces.internalFrames.staff.createaccount.formCreateAccountFuncionario();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
@@ -53,6 +53,6 @@ public class createAccountFuncionario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private pt.ua.ibank.interfaces.internalFrames.staff.login.formCreateAccountFuncionario seila1;
+    private pt.ua.ibank.interfaces.internalFrames.staff.createaccount.formCreateAccountFuncionario seila1;
     // End of variables declaration//GEN-END:variables
 }
