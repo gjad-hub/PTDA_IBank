@@ -40,11 +40,6 @@ public class PerfilPersonalTableModel extends AbstractTableModel {
                 "Saldo Cativo: ", Double.toString(client.saldo_cativo)));
     }
 
-    public void aprovarDepositoLocalmente(int saldoCativoAprovado) {
-        this.client.saldo += saldoCativoAprovado;
-        this.client.saldo_cativo -= saldoCativoAprovado;
-    }
-
     @Override
     public int getRowCount() {
         return data.size();
@@ -68,6 +63,7 @@ public class PerfilPersonalTableModel extends AbstractTableModel {
             ClientDAO.UpdateClient(client.numCliente, client.nome, client.morada,
                     client.email, client.telemovel,
                     client.nif);
+            fireTableRowsUpdated(data.size() - 1, data.size() - 1);
         } catch (java.lang.ClassCastException e) {
             //nothing
         }

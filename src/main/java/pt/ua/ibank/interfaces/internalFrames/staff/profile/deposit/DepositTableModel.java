@@ -47,6 +47,8 @@ public class DepositTableModel extends AbstractTableModel {
                 Funcionario.LocalFuncionario.getNumFun()
         );
 
+        data.get(row).pendenteAprovacao = false;
+        data.get(row).aprovado = false;
         this.client.saldo_cativo -= data.get(row).valor;
         fireTableRowsInserted(data.size() - 1, data.size() - 1);
     }

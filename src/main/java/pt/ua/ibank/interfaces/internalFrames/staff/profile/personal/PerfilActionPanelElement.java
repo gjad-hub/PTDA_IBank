@@ -44,7 +44,10 @@ public class PerfilActionPanelElement extends javax.swing.JPanel {
 
     public void InitEvent(PerfilTableActionEvent event, int row) {
         cmdEdit.addActionListener((ActionEvent e) -> {
-            jTextFieldNewValue.setText(data);
+            cmdCancel.setVisible(true);
+            cmdSave.setVisible(true);
+            cmdEdit.setVisible(false);
+            jTextFieldNewValue.setVisible(true);
             event.onEdit(row);
 
         });
@@ -127,10 +130,7 @@ public class PerfilActionPanelElement extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdEditActionPerformed
-        cmdCancel.setVisible(true);
-        cmdSave.setVisible(true);
-        cmdEdit.setVisible(false);
-        jTextFieldNewValue.setVisible(true);
+
     }//GEN-LAST:event_cmdEditActionPerformed
 
     private void cmdCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCancelActionPerformed
