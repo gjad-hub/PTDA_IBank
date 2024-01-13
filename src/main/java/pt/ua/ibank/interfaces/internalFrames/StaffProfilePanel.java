@@ -4,6 +4,7 @@
  */
 package pt.ua.ibank.interfaces.internalFrames;
 
+import java.awt.event.ActionEvent;
 import pt.ua.ibank.interfaces.staffInterface;
 
 /**
@@ -19,30 +20,15 @@ public class StaffProfilePanel extends javax.swing.JInternalFrame {
      */
     private final int userID;
 
-    public StaffProfilePanel(int userID) {
-        this.userID = userID;
-        initComponents();
-
-        //javax.swing.JButton openRecieverProfileButton =
-        //                  transfersMainInterfaceContainer.getOpenRecieverProfileButton();
-        //openAuthorProfileButton.addActionListener((ActionEvent e) -> {
-        //  int clientID =
-        //    transfersMainInterfaceContainer.getCurrAuthorClient().numCliente;
-        //parent.addWindow(new StaffProfilePanel(clientID));
-        //});
-    }
-
     public StaffProfilePanel(staffInterface parent, int userID) {
         this.userID = userID;
         initComponents();
 
-        //javax.swing.JButton openRecieverProfileButton =
-        //                  transfersMainInterfaceContainer.getOpenRecieverProfileButton();
-        //openAuthorProfileButton.addActionListener((ActionEvent e) -> {
-        //  int clientID =
-        //    transfersMainInterfaceContainer.getCurrAuthorClient().numCliente;
-        //parent.addWindow(new StaffProfilePanel(clientID));
-        //});
+        javax.swing.JButton openTransactionButton =
+                            perfilMainInterface1.getTransactionButton();
+        openTransactionButton.addActionListener((ActionEvent e) -> {
+            parent.addWindow(new StaffTransferList(parent, userID));
+        });
     }
 
     /**

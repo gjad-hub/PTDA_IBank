@@ -18,7 +18,30 @@ public class StaffTransferList extends javax.swing.JInternalFrame {
      * Creates new form StaffTransferList
      *
      * @param parent
+     * @param id
      */
+    public StaffTransferList(staffInterface parent, int id) {
+        initComponents(id);
+
+        javax.swing.JButton openAuthorProfileButton =
+                            transfersMainInterfaceContainer.getOpenAuthorProfileButton();
+        javax.swing.JButton openRecieverProfileButton =
+                            transfersMainInterfaceContainer.getOpenRecieverProfileButton();
+
+        openAuthorProfileButton.addActionListener((ActionEvent e) -> {
+            int clientID =
+                transfersMainInterfaceContainer.getCurrAuthorClient().numCliente;
+            parent.addWindow(new StaffProfilePanel(parent, clientID));
+        });
+
+        openRecieverProfileButton.addActionListener((ActionEvent e) -> {
+            int clientID =
+                transfersMainInterfaceContainer.getCurrRecieverClient().numCliente;
+            parent.addWindow(new StaffProfilePanel(parent, clientID));
+        });
+
+    }
+
     public StaffTransferList(staffInterface parent) {
         initComponents();
 
@@ -30,13 +53,13 @@ public class StaffTransferList extends javax.swing.JInternalFrame {
         openAuthorProfileButton.addActionListener((ActionEvent e) -> {
             int clientID =
                 transfersMainInterfaceContainer.getCurrAuthorClient().numCliente;
-            parent.addWindow(new StaffProfilePanel(clientID));
+            parent.addWindow(new StaffProfilePanel(parent, clientID));
         });
 
         openRecieverProfileButton.addActionListener((ActionEvent e) -> {
             int clientID =
                 transfersMainInterfaceContainer.getCurrRecieverClient().numCliente;
-            parent.addWindow(new StaffProfilePanel(clientID));
+            parent.addWindow(new StaffProfilePanel(parent, clientID));
         });
 
     }
@@ -70,6 +93,39 @@ public class StaffTransferList extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void initComponents(int id) {
+
+        transfersMainInterfaceContainer =
+        new pt.ua.ibank.interfaces.internalFrames.staff.transferlist.TransfersMainInterface(
+                id);
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
+                                getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(
+                        javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(transfersMainInterfaceContainer,
+                                      javax.swing.GroupLayout.DEFAULT_SIZE,
+                                      javax.swing.GroupLayout.DEFAULT_SIZE,
+                                      Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(
+                        javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(transfersMainInterfaceContainer,
+                                      javax.swing.GroupLayout.DEFAULT_SIZE, 586,
+                                      Short.MAX_VALUE)
+        );
+
+        pack();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private pt.ua.ibank.interfaces.internalFrames.staff.transferlist.TransfersMainInterface transfersMainInterfaceContainer;

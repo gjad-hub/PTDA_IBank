@@ -5,9 +5,6 @@
 package pt.ua.ibank.interfaces.internalFrames;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import pt.ua.ibank.interfaces.staffInterface;
 
 /**
@@ -24,11 +21,12 @@ public class StaffAccountList extends javax.swing.JInternalFrame {
     public StaffAccountList(staffInterface parent) {
         initComponents();
 
-        javax.swing.JButton openProfileButton = contasInterfaceContainer.getOpenProfileButton();
+        javax.swing.JButton openProfileButton =
+                            contasInterfaceContainer.getOpenProfileButton();
 
         openProfileButton.addActionListener((ActionEvent e) -> {
             int clientID = contasInterfaceContainer.getCurrCliente().numCliente;
-            parent.addWindow(new StaffProfilePanel(clientID));
+            parent.addWindow(new StaffProfilePanel(parent, clientID));
         });
 
     }

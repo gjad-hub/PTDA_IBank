@@ -27,7 +27,7 @@ public class TransfersMainInterface extends javax.swing.JPanel {
     public TransfersMainInterface(int id) {
         initComponents();
         jPanelTransactionDetails.setVisible(false);
-        ttm.searchForClient(Integer.toString(id), "Account");
+        ttm.searchForClient(Integer.toString(id), "Cliente");
     }
 
     public TransfersMainInterface() {
