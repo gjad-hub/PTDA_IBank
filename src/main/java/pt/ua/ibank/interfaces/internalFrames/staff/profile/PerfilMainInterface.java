@@ -358,7 +358,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
         .setCellRenderer(new PerfilActionRenderer());
         jTablePersonalData.getColumnModel()
         .getColumn(1)
-        .setMaxWidth(130);
+        .setMaxWidth(150);
 
         jTablePersonalData.getColumnModel()
         .getColumn(0)
@@ -440,7 +440,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
             .addGap(5, 5, 5)
             .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+            .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
             .addGap(37, 37, 37))
     );
     jPanel7Layout.setVerticalGroup(
@@ -471,7 +471,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
     jPanelDadosCartao.setLayout(jPanelDadosCartaoLayout);
     jPanelDadosCartaoLayout.setHorizontalGroup(
         jPanelDadosCartaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
     );
     jPanelDadosCartaoLayout.setVerticalGroup(
@@ -504,7 +504,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel12)
-            .addContainerGap(137, Short.MAX_VALUE))
+            .addContainerGap(138, Short.MAX_VALUE))
     );
     jPanel5Layout.setVerticalGroup(
         jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -531,7 +531,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
     jPanelDadosComentarios.setLayout(jPanelDadosComentariosLayout);
     jPanelDadosComentariosLayout.setHorizontalGroup(
         jPanelDadosComentariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
         .addComponent(jScrollPane2)
     );
     jPanelDadosComentariosLayout.setVerticalGroup(
@@ -591,7 +591,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
         .addGroup(jPanelDepositosPorAprovarLayout.createSequentialGroup()
             .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(0, 0, 0)
-            .addComponent(jTableDepositDatatr, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
+            .addComponent(jTableDepositDatatr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
     //collumn 1
@@ -690,7 +690,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
         .addGroup(LayeredPaneEditarContaLayout.createSequentialGroup()
             .addGap(5, 5, 5)
             .addComponent(jPanelDadosContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addContainerGap(63, Short.MAX_VALUE))
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
     add(LayeredPaneEditarConta, java.awt.BorderLayout.CENTER);

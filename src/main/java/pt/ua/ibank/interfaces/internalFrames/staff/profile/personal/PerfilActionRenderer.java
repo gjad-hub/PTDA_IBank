@@ -19,7 +19,7 @@ public class PerfilActionRenderer extends DefaultTableCellRenderer {
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value,
             boolean isSelected, boolean hasFocus, int row, int column) {
-        Component comm = super.getTableCellRendererComponent(table, value,
+        Component comm = super.getTableCellRendererComponent(table, "",
                 isSelected,
                 hasFocus, row, column);
 

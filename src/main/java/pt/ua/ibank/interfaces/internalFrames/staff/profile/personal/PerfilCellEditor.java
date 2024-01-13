@@ -35,7 +35,7 @@ public class PerfilCellEditor extends DefaultCellEditor {
                 row, 0);
 
         if (componentValue.left.contains(": ")) {
-            return new PerfilActionPanelElement(false);
+            return new Component(){};
         }
 
         PerfilActionPanelElement action = new PerfilActionPanelElement();
