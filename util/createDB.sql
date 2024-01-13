@@ -72,9 +72,9 @@ CREATE TABLE funcionario
 -- Tabela Funcionario_Cliente
 CREATE TABLE funcionario_cliente
 (
+    id      Integer PRIMARY KEY AUTO_INCREMENT,
     num_fun INT,
     num_cli INT,
-    PRIMARY KEY (num_fun, num_cli),
     FOREIGN KEY (num_fun) REFERENCES funcionario (num_fun),
     FOREIGN KEY (num_cli) REFERENCES cliente (num_cliente)
 );
@@ -196,6 +196,8 @@ BEGIN
     END IF;
 END;
 
+DELIMITER \\
+
 -- Procedure aprovar deposito
 CREATE PROCEDURE aprovar_deposito(IN depostio INTEGER, IN funcionario INTEGER)
 BEGIN
@@ -222,7 +224,7 @@ CREATE PROCEDURE reprovar_deposito(IN depostio INTEGER, IN funcionario INTEGER)
 BEGIN
     UPDATE cliente SET saldo_cativo = saldo_cativo - (select valor from deposito where id_deposito = depostio) WHERE num_cliente = (SELECT num_cli from deposito where id_deposito = depostio);
 
-    UPDATE deposito SET aprovado = false, num_fun = funcionario WHERE id_deposito = depostio;
+    UPDATE deposito SET aprovado = false, num_fun = funcionario, pendente_aprovacao = false WHERE id_deposito = depostio;
 
     INSERT INTO funcionario_cliente (num_fun, num_cli) VALUES (funcionario, (SELECT num_cli from deposito where id_deposito = depostio));
 END;
