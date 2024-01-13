@@ -72,12 +72,13 @@ public class FuncionarioDAO {
                         rs.getString("email"),
                         rs.getString("telemovel"),
                         rs.getString("nif"),
-                        rs.getString("password")); // falta adicionar um número de gerente ao funcionário
+                        rs.getString("password"),
+                rs.getInt("gerente")); // falta adicionar um número de gerente ao funcionário
             }
 
             return fun;
         } catch (SQLException e) {
-            //caladinho
+            e.printStackTrace(System.out);
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
