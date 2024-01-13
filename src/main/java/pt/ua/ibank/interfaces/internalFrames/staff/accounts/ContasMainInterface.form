@@ -152,7 +152,7 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="43" max="32767" attributes="0"/>
                           <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                           <Component id="jButton2" min="-2" max="-2" attributes="0"/>
@@ -458,7 +458,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable1">
+            <Component class="javax.swing.JTable" name="jTableAccountsContent">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="ctm" type="code"/>
@@ -468,8 +468,8 @@
                 </Property>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTable1.getColumnModel().getColumn(6).setCellRenderer(&#xa;                new ContasActionRenderer());&#xa;&#xa;        ContasActionEvent event = (int row) -&gt; {&#xa;            currCliente = ctm.getAccount(row);&#xa;&#xa;            currClienteDisplayPanel.setVisible(true);&#xa;&#xa;            lblNumeroClienteValue.setText(Integer.toString(currCliente.numCliente));&#xa;            lblNumContaValue.setText(currCliente.numConta);&#xa;            lblNomeValue.setText(currCliente.nome);&#xa;            lblEmailValue.setText(currCliente.email);&#xa;            lblTelemovelValue.setText(currCliente.telemovel);&#xa;            lblNIFValue.setText(currCliente.nif);&#xa;            lblMoradaValue.setText(currCliente.morada);&#xa;            &#xa;            //lblNoCartoesValue.setText(&#xa;            //Integer.toString(&#xa;            //   ctm.getCardAmountNumberFromID(&#xa;            //   currCliente.numCliente&#xa;            //    )));&#xa;&#xa;            lblNoDepositosValue.setText(&#xa;            Integer.toString(&#xa;            ctm.getDepositAmountNumberFromID(&#xa;                    currCliente.numCliente&#xa;            )));&#xa;&#xa;        };&#xa;&#xa;        jTable1.getColumnModel().getColumn(6).setCellEditor(&#xa;                new ContasCellEditor(event));&#xa;jTable1.getColumnModel().getColumn(6).setMaxWidth(30);"/>
-                <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ContasTableModel ctm = new ContasTableModel();"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTableAccountsContent.getColumnModel().getColumn(6).setCellRenderer(&#xa;                new ContasActionRenderer());&#xa;&#xa;        ContasActionEvent event = (int row) -&gt; {&#xa;            currCliente = ctm.getAccount(row);&#xa;&#xa;            currClienteDisplayPanel.setVisible(true);&#xa;&#xa;            lblNumeroClienteValue.setText(Integer.toString(currCliente.numCliente));&#xa;            lblNumContaValue.setText(currCliente.numConta);&#xa;            lblNomeValue.setText(currCliente.nome);&#xa;            lblEmailValue.setText(currCliente.email);&#xa;            lblTelemovelValue.setText(currCliente.telemovel);&#xa;            lblNIFValue.setText(currCliente.nif);&#xa;            lblMoradaValue.setText(currCliente.morada);&#xa;            &#xa;            //lblNoCartoesValue.setText(&#xa;            //Integer.toString(&#xa;            //   ctm.getCardAmountNumberFromID(&#xa;            //   currCliente.numCliente&#xa;            //    )));&#xa;&#xa;            lblNoDepositosValue.setText(&#xa;            Integer.toString(&#xa;            ctm.getDepositAmountNumberFromID(&#xa;                    currCliente.numCliente&#xa;            )));&#xa;&#xa;        };&#xa;&#xa;        jTableAccountsContent.getColumnModel().getColumn(6).setCellEditor(&#xa;                new ContasCellEditor(event));&#xa;jTableAccountsContent.getColumnModel().getColumn(6).setMaxWidth(30);"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ctm = new ContasTableModel();"/>
               </AuxValues>
             </Component>
           </SubComponents>
@@ -485,9 +485,9 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="197" max="32767" attributes="0"/>
+                      <EmptySpace pref="203" max="32767" attributes="0"/>
                       <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="196" max="32767" attributes="0"/>
+                      <EmptySpace pref="202" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -535,9 +535,9 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btnProcurarConta" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="textFieldProcurarConta" min="-2" pref="135" max="-2" attributes="0"/>
+                              <Component id="textFieldProcurarConta" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="comboBoxProcurarConta" max="32767" attributes="0"/>
+                              <Component id="comboBoxType" min="-2" pref="94" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -551,7 +551,7 @@
                       <EmptySpace type="unrelated" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="textFieldProcurarConta" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="comboBoxProcurarConta" alignment="3" pref="21" max="32767" attributes="0"/>
+                          <Component id="comboBoxType" alignment="3" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="btnProcurarConta" min="-2" max="-2" attributes="0"/>
@@ -574,17 +574,22 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="41" max="32767" attributes="0"/>
                           <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="jButton3" min="-2" pref="134" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                          <Component id="jLabel17" min="-2" pref="12" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jButton3" min="-2" pref="16" max="-2" attributes="0"/>
+                              <Component id="jLabel17" max="32767" attributes="0"/>
+                          </Group>
                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -604,6 +609,17 @@
                     <Property name="verticalTextPosition" type="int" value="1"/>
                   </Properties>
                 </Component>
+                <Component class="javax.swing.JButton" name="jButton3">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Tirar filtros"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
             <Component class="javax.swing.JButton" name="btnProcurarConta">
@@ -620,14 +636,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProcurarContaActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JComboBox" name="comboBoxProcurarConta">
+            <Component class="javax.swing.JComboBox" name="comboBoxType">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">
                     <StringItem index="0" value="ID"/>
-                    <StringItem index="1" value="email"/>
-                    <StringItem index="2" value="nif"/>
-                    <StringItem index="3" value="morada"/>
+                    <StringItem index="1" value="Email"/>
+                    <StringItem index="2" value="NIF"/>
+                    <StringItem index="3" value="Morada"/>
                   </StringArray>
                 </Property>
               </Properties>

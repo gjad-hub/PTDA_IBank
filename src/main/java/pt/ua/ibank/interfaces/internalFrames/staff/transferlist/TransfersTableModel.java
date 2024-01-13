@@ -1,6 +1,5 @@
 package pt.ua.ibank.interfaces.internalFrames.staff.transferlist;
 
-import pt.ua.ibank.interfaces.internalFrames.staff.accounts.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +19,7 @@ public class TransfersTableModel extends AbstractTableModel {
     public TransfersTableModel() {
         data = TransfersDAO.getTransfersList();
         header = new ArrayList<>(Arrays.asList(
-                "ID", "Valor", "Autor", "Receptor", "motivo", ""));
+        "ID", "Valor", "Autor", "Receptor", "motivo", ""));
     }
 
     @Override
@@ -67,6 +66,57 @@ public class TransfersTableModel extends AbstractTableModel {
             }
         }
         return null;
+    }
+
+    public void resetSearchFilters() {
+        data.clear();
+        if ((data = TransfersDAO.getTransfersList()) != null) {
+            fireTableRowsDeleted(0, data.size() - 1);
+        }
+    }
+
+    public void searchForClient(String value, String searchType) {
+        switch (searchType) {
+            case "ID" -> {
+                data.clear();
+                Transferencias result;
+                if ((result = TransfersDAO.getTransferByID(
+                     Integer.parseInt(value))) != null) {
+                    data.add(result);
+                    fireTableRowsDeleted(0, data.size() - 1);
+                }
+            }
+            case "Autor" -> {
+                data.clear();
+                if ((data = TransfersDAO.getTransfersListByAutor(
+                     Integer.parseInt(value))) != null) {
+                    fireTableRowsDeleted(0, data.size() - 1);
+                }
+            }
+            case "Receptor" -> {
+                data.clear();
+                if ((data = TransfersDAO.getTransfersListByReceptor(
+                     Integer.parseInt(value))) != null) {
+                    fireTableRowsDeleted(0, data.size() - 1);
+                }
+            }
+            case "Descrição" -> {
+                data.clear();
+                if ((data = TransfersDAO.getTransfersListByDescricao(value)) != null) {
+                    fireTableRowsDeleted(0, data.size() - 1);
+                }
+            }
+            case "Cliente" -> {
+                data.clear();
+                if ((data = TransfersDAO.getClientTransfersList(
+                     Integer.parseInt(value))) != null) {
+                    fireTableRowsDeleted(0, data.size() - 1);
+                }
+            }
+            default -> {
+                System.out.println("Invalid search type.");
+            }
+        }
     }
 
 }

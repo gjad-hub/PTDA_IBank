@@ -16,6 +16,7 @@ public class ContasMainInterface extends javax.swing.JPanel {
      * Creates new form ContasMainInterface
      */
     private pt.ua.ibank.DTO.Cliente currCliente;
+    private ContasTableModel ctm;
 
     public ContasMainInterface() {
         initComponents();
@@ -58,16 +59,17 @@ public class ContasMainInterface extends javax.swing.JPanel {
         lblNoCartoesValue = new javax.swing.JLabel();
         lblNoDepositosValue = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        ContasTableModel ctm = new ContasTableModel();
-        jTable1 = new javax.swing.JTable();
+        ctm = new ContasTableModel();
+        jTableAccountsContent = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         textFieldProcurarConta = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
         btnProcurarConta = new javax.swing.JButton();
-        comboBoxProcurarConta = new javax.swing.JComboBox<>();
+        comboBoxType = new javax.swing.JComboBox<>();
 
         jLabel13.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel13.setText("Numero");
@@ -109,7 +111,7 @@ public class ContasMainInterface extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(43, Short.MAX_VALUE)
                 .addComponent(jLabel21)
                 .addGap(74, 74, 74)
                 .addComponent(jButton2)
@@ -279,10 +281,10 @@ public class ContasMainInterface extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(ctm);
-        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getColumn(6).setCellRenderer(
+        jTableAccountsContent.setModel(ctm);
+        jTableAccountsContent.setGridColor(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setViewportView(jTableAccountsContent);
+        jTableAccountsContent.getColumnModel().getColumn(6).setCellRenderer(
             new ContasActionRenderer());
 
         ContasActionEvent event = (int row) -> {
@@ -312,9 +314,9 @@ public class ContasMainInterface extends javax.swing.JPanel {
 
                 };
 
-                jTable1.getColumnModel().getColumn(6).setCellEditor(
+                jTableAccountsContent.getColumnModel().getColumn(6).setCellEditor(
                     new ContasCellEditor(event));
-                jTable1.getColumnModel().getColumn(6).setMaxWidth(30);
+                jTableAccountsContent.getColumnModel().getColumn(6).setMaxWidth(30);
 
                 jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -329,9 +331,9 @@ public class ContasMainInterface extends javax.swing.JPanel {
                 jPanel4Layout.setHorizontalGroup(
                     jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap(197, Short.MAX_VALUE)
+                        .addContainerGap(203, Short.MAX_VALUE)
                         .addComponent(jLabel15)
-                        .addContainerGap(196, Short.MAX_VALUE))
+                        .addContainerGap(202, Short.MAX_VALUE))
                 );
                 jPanel4Layout.setVerticalGroup(
                     jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -351,20 +353,32 @@ public class ContasMainInterface extends javax.swing.JPanel {
                 jLabel17.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
                 jLabel17.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
+                jButton3.setBackground(new java.awt.Color(204, 204, 204));
+                jButton3.setText("Tirar filtros");
+                jButton3.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        jButton3ActionPerformed(evt);
+                    }
+                });
+
                 javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
                 jPanel8.setLayout(jPanel8Layout);
                 jPanel8Layout.setHorizontalGroup(
                     jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(41, Short.MAX_VALUE)
                         .addComponent(jLabel17)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(42, 42, 42)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                 );
                 jPanel8Layout.setVerticalGroup(
                     jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(6, 6, 6))
                 );
 
@@ -377,7 +391,7 @@ public class ContasMainInterface extends javax.swing.JPanel {
                     }
                 });
 
-                comboBoxProcurarConta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "email", "nif", "morada" }));
+                comboBoxType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Email", "NIF", "Morada" }));
 
                 javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
                 jPanel6.setLayout(jPanel6Layout);
@@ -389,9 +403,9 @@ public class ContasMainInterface extends javax.swing.JPanel {
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnProcurarConta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(textFieldProcurarConta, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textFieldProcurarConta)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboBoxProcurarConta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(comboBoxType, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())
                 );
                 jPanel6Layout.setVerticalGroup(
@@ -401,7 +415,7 @@ public class ContasMainInterface extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(textFieldProcurarConta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboBoxProcurarConta, javax.swing.GroupLayout.PREFERRED_SIZE, 21, Short.MAX_VALUE))
+                            .addComponent(comboBoxType, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnProcurarConta)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -471,16 +485,27 @@ public class ContasMainInterface extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnProcurarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarContaActionPerformed
-        String selected = String.valueOf(comboBoxProcurarConta.getSelectedItem());
+        String selectedType =
+               String.valueOf(comboBoxType.getSelectedItem());
         String input = textFieldProcurarConta.getText();
+        ctm.searchForClient(input, selectedType);
+        jTableAccountsContent.repaint();
+        currClienteDisplayPanel.setVisible(false);
     }//GEN-LAST:event_btnProcurarContaActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        ctm.resetSearchFilters();
+        jTableAccountsContent.repaint();
+        jScrollPane1.repaint();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane LayeredPaneContas;
     private javax.swing.JButton btnProcurarConta;
-    private javax.swing.JComboBox<String> comboBoxProcurarConta;
+    private javax.swing.JComboBox<String> comboBoxType;
     private javax.swing.JPanel currClienteDisplayPanel;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
@@ -492,7 +517,7 @@ public class ContasMainInterface extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableAccountsContent;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblEmailValue;
     private javax.swing.JLabel lblMorada;

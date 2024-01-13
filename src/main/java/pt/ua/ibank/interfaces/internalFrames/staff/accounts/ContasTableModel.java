@@ -21,8 +21,8 @@ public class ContasTableModel extends AbstractTableModel {
     public ContasTableModel() {
         data = ClientDAO.getClientList();
         header = new ArrayList<>(Arrays.asList(
-                "N.Conta", "N.Cliente", "Nome",
-                "Email", "NIF", "Depositos pendente", ""));
+        "N.Conta", "N.Cliente", "Nome",
+        "Email", "NIF", "Depositos pendente", ""));
     }
 
     @Override
@@ -47,6 +47,53 @@ public class ContasTableModel extends AbstractTableModel {
 
     public Cliente getAccount(int rowIndex) {
         return data.get(rowIndex);
+
+    }
+
+    public void resetSearchFilters() {
+        data.clear();
+        if ((data = ClientDAO.getClientList()) != null) {
+            fireTableRowsDeleted(0, data.size() - 1);
+        }
+    }
+
+    public void searchForClient(String value, String searchType) {
+        switch (searchType) {
+            case "ID" -> {
+                data.clear();
+                Cliente result;
+                if ((result = ClientDAO.getClientByID(
+                     Integer.parseInt(value))) != null) {
+                    data.add(result);
+                    fireTableRowsDeleted(0, data.size() - 1);
+                }
+            }
+            case "Email" -> {
+                data.clear();
+                Cliente result;
+                if ((result = ClientDAO.getClientByEmail(value)) != null) {
+                    data.add(result);
+                    fireTableRowsDeleted(0, data.size() - 1);
+                }
+            }
+            case "NIF" -> {
+                data.clear();
+                Cliente result;
+                if ((result = ClientDAO.getClientByNIF(value)) != null) {
+                    data.add(result);
+                    fireTableRowsDeleted(0, data.size() - 1);
+                }
+            }
+            case "Morada" -> {
+                data.clear();
+                if ((data = ClientDAO.getClientListByAddress(value)) != null) {
+                    fireTableRowsDeleted(0, data.size() - 1);
+                }
+            }
+            default -> {
+                System.out.println("Invalid search type.");
+            }
+        }
     }
 
     public int getDepositAmountNumberFromID(int id) {
@@ -80,8 +127,10 @@ public class ContasTableModel extends AbstractTableModel {
                 var id = data.get(rowIndex).numCliente;
                 return getDepositAmountNumberFromID(id);
             }
+            default -> {
+                return -1;
+            }
         }
-        return null;
     }
 
 }

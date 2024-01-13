@@ -51,8 +51,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="LayeredPaneContas" pref="835" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="LayeredPaneContas" pref="402" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -60,7 +59,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="LayeredPaneContas" pref="550" max="32767" attributes="0"/>
+              <Component id="LayeredPaneContas" pref="483" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -82,11 +81,11 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" pref="529" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
                       <Component id="jPanel4" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jPanelTransactionDetails" alignment="1" max="32767" attributes="0"/>
                       <Component id="jPanel6" alignment="1" max="32767" attributes="0"/>
                       <Component id="jPanel5" max="32767" attributes="0"/>
@@ -103,17 +102,18 @@
                       <Group type="102" attributes="0">
                           <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="470" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jPanelTransactionDetails" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="44" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -133,9 +133,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanel2" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Component id="jPanel9" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -215,19 +215,22 @@
                                       <Component id="lblAuthorIDNameValue" alignment="0" max="32767" attributes="0"/>
                                       <Component id="lblIDValue" alignment="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="lblAuthorIDValue2" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblAuthorIDValue1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblReceptorIDValue" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblAuthorIDValue" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="lblAuthorIDValue1" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="lblAuthorIDValue" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="lblAuthorIDValue2" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="lblReceptorIDValue" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                          <EmptySpace min="6" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="btnReciever" min="-2" max="-2" attributes="0"/>
                               <Component id="btnAuthor" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -244,31 +247,20 @@
                               <Component id="lblIDValue" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="lblReceptorID" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblReceptorIDNameValue" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnReciever" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="lblAuthor" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblAuthorIDNameValue" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnAuthor" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="lblReceptorIDValue" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblAuthorIDValue2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="lblAuthorIDValue" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblAuthorIDValue1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblReceptorID" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblReceptorIDNameValue" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnReciever" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                              <Component id="lblAuthorIDValue2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblReceptorIDValue" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblAuthor" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblAuthorIDNameValue" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnAuthor" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                              <Component id="lblAuthorIDValue1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblAuthorIDValue" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -422,17 +414,18 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTableTransactions">
+            <Component class="javax.swing.JTable" name="jTableTransactionsContent">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new TransfersTableModel()" type="code"/>
+                  <Connection code="ttm" type="code"/>
                 </Property>
                 <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTableTransactions.getColumnModel().getColumn(5).setCellRenderer(&#xa;        new TransfersActionRenderer());&#xa;&#xa;jPanelTransactionDetails.setVisible(false);&#xa;&#xa;&#xa;        TransfersActionEvent event = (int row) -&gt; {&#xa;            selectedTransfer = ((TransfersTableModel)jTableTransactions.getModel()).getTransfer(row);&#xa;            currAuthorClient = ClientDAO.getClientByID(&#xa;                    selectedTransfer.getclienteRealizaID());&#xa;            currRecieverClient = ClientDAO.getClientByID(&#xa;                    selectedTransfer.getclienteRecebeID());&#xa;            lblIDValue.setText(Integer.toString(&#xa;                    selectedTransfer.getTransferenciaID()));&#xa;            lblReceptorIDNameValue.setText(currRecieverClient.nome);&#xa;            lblReceptorIDValue.setText(&#xa;                    Integer.toString(&#xa;                            currRecieverClient.numCliente));&#xa;            lblAuthorIDNameValue.setText(currAuthorClient.nome);&#xa;            lblAuthorIDValue.setText(&#xa;                    Integer.toString(&#xa;                            currAuthorClient.numCliente));&#xa;            lblTransactionValueValue.setText(&#xa;                    Double.toString(&#xa;                            selectedTransfer.getvalorEmEuros()));&#xa;            lblTransactionDescriptionValue.setText(&#xa;                    selectedTransfer.getDescricao());&#xa;jPanelTransactionDetails.setVisible(true);&#xa;        };&#xa;&#xa;        jTableTransactions.getColumnModel().getColumn(5).setCellEditor(&#xa;                new TransfersCellEditor(event));"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTableTransactionsContent.getColumnModel().getColumn(5).setCellRenderer(&#xa;        new TransfersActionRenderer());&#xa;&#xa;jPanelTransactionDetails.setVisible(false);&#xa;&#xa;&#xa;        TransfersActionEvent event = (int row) -&gt; {&#xa;            selectedTransfer = ((TransfersTableModel)jTableTransactionsContent.getModel()).getTransfer(row);&#xa;            currAuthorClient = ClientDAO.getClientByID(&#xa;                    selectedTransfer.getclienteRealizaID());&#xa;            currRecieverClient = ClientDAO.getClientByID(&#xa;                    selectedTransfer.getclienteRecebeID());&#xa;            lblIDValue.setText(Integer.toString(&#xa;                    selectedTransfer.getTransferenciaID()));&#xa;            lblReceptorIDNameValue.setText(currRecieverClient.nome);&#xa;            lblReceptorIDValue.setText(&#xa;                    Integer.toString(&#xa;                            currRecieverClient.numCliente));&#xa;            lblAuthorIDNameValue.setText(currAuthorClient.nome);&#xa;            lblAuthorIDValue.setText(&#xa;                    Integer.toString(&#xa;                            currAuthorClient.numCliente));&#xa;            lblTransactionValueValue.setText(&#xa;                    Double.toString(&#xa;                            selectedTransfer.getvalorEmEuros()));&#xa;            lblTransactionDescriptionValue.setText(&#xa;                    selectedTransfer.getDescricao());&#xa;jPanelTransactionDetails.setVisible(true);&#xa;        };&#xa;&#xa;        jTableTransactionsContent.getColumnModel().getColumn(5).setCellEditor(&#xa;                new TransfersCellEditor(event));"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ttm = new TransfersTableModel();"/>
               </AuxValues>
             </Component>
           </SubComponents>
@@ -659,9 +652,9 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btnSearch" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="jTextField5" min="-2" pref="123" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jComboBox1" min="-2" pref="109" max="-2" attributes="0"/>
+                              <Component id="jtextFieldProcurarConta" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="comboBoxSelectType" min="-2" pref="109" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -673,9 +666,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextField5" min="-2" max="-2" attributes="0"/>
-                          <Component id="jComboBox1" min="-2" pref="18" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jtextFieldProcurarConta" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboBoxSelectType" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnSearch" max="32767" attributes="0"/>
@@ -685,7 +678,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="jTextField5">
+            <Component class="javax.swing.JTextField" name="jtextFieldProcurarConta">
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel8">
               <Properties>
@@ -701,6 +694,8 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
+                          <Component id="btnRemoveFilters" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -708,8 +703,11 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                          <Component id="jLabel17" min="-2" pref="12" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnRemoveFilters" min="-2" pref="16" max="-2" attributes="0"/>
+                              <Component id="jLabel17" min="-2" pref="12" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -728,6 +726,17 @@
                     <Property name="verticalTextPosition" type="int" value="1"/>
                   </Properties>
                 </Component>
+                <Component class="javax.swing.JButton" name="btnRemoveFilters">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Tirar filtros"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRemoveFiltersActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
             <Component class="javax.swing.JButton" name="btnSearch">
@@ -744,14 +753,15 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox1">
+            <Component class="javax.swing.JComboBox" name="comboBoxSelectType">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
+                  <StringArray count="5">
                     <StringItem index="0" value="ID"/>
                     <StringItem index="1" value="Autor"/>
                     <StringItem index="2" value="Receptor"/>
                     <StringItem index="3" value="Descri&#xe7;&#xe3;o"/>
+                    <StringItem index="4" value="Cliente"/>
                   </StringArray>
                 </Property>
               </Properties>

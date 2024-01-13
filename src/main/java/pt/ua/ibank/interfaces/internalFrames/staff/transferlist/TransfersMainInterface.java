@@ -19,12 +19,20 @@ public class TransfersMainInterface extends javax.swing.JPanel {
     /**
      * Creates new form ContasMainInterface
      */
+    private TransfersTableModel ttm;
     private pt.ua.ibank.DTO.Cliente currAuthorClient;
     private pt.ua.ibank.DTO.Cliente currRecieverClient;
     private Transferencias selectedTransfer;
 
+    public TransfersMainInterface(int id) {
+        initComponents();
+        jPanelTransactionDetails.setVisible(false);
+        ttm.searchForClient(Integer.toString(id), "Account");
+    }
+
     public TransfersMainInterface() {
         initComponents();
+        jPanelTransactionDetails.setVisible(false);
     }
 
     public Cliente getCurrAuthorClient() {
@@ -76,7 +84,8 @@ public class TransfersMainInterface extends javax.swing.JPanel {
         lblAuthorIDValue1 = new javax.swing.JLabel();
         lblAuthorIDValue2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableTransactions = new javax.swing.JTable();
+        ttm = new TransfersTableModel();
+        jTableTransactionsContent = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -92,11 +101,12 @@ public class TransfersMainInterface extends javax.swing.JPanel {
         inputFieldAddTransactionDescription = new javax.swing.JTextField();
         lblAddTransactionDescription = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jTextField5 = new javax.swing.JTextField();
+        jtextFieldProcurarConta = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
+        btnRemoveFilters = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboBoxSelectType = new javax.swing.JComboBox<>();
 
         jLabel13.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel13.setText("Numero");
@@ -214,15 +224,17 @@ public class TransfersMainInterface extends javax.swing.JPanel {
                             .addComponent(lblReceptorIDNameValue, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblAuthorIDNameValue, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblIDValue, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(9, 9, 9)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblAuthorIDValue2)
-                            .addComponent(lblAuthorIDValue1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblReceptorIDValue)
-                            .addComponent(lblAuthorIDValue))))
-                .addGap(6, 6, 6)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(lblAuthorIDValue1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblAuthorIDValue))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(lblAuthorIDValue2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblReceptorIDValue)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnReciever)
                     .addComponent(btnAuthor, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -235,25 +247,19 @@ public class TransfersMainInterface extends javax.swing.JPanel {
                     .addComponent(lblID)
                     .addComponent(lblIDValue))
                 .addGap(5, 5, 5)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblReceptorID)
-                            .addComponent(lblReceptorIDNameValue)
-                            .addComponent(btnReciever, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblAuthor)
-                            .addComponent(lblAuthorIDNameValue)
-                            .addComponent(btnAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblReceptorIDValue)
-                            .addComponent(lblAuthorIDValue2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblAuthorIDValue)
-                            .addComponent(lblAuthorIDValue1))))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblReceptorID)
+                    .addComponent(lblReceptorIDNameValue)
+                    .addComponent(btnReciever, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAuthorIDValue2)
+                    .addComponent(lblReceptorIDValue))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblAuthor)
+                    .addComponent(lblAuthorIDNameValue)
+                    .addComponent(btnAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAuthorIDValue1)
+                    .addComponent(lblAuthorIDValue))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTransactionValueValue)
@@ -271,9 +277,9 @@ public class TransfersMainInterface extends javax.swing.JPanel {
             jPanelTransactionDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTransactionDetailsLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
         );
         jPanelTransactionDetailsLayout.setVerticalGroup(
             jPanelTransactionDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,16 +290,16 @@ public class TransfersMainInterface extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTableTransactions.setModel(new TransfersTableModel());
-        jTableTransactions.setGridColor(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setViewportView(jTableTransactions);
-        jTableTransactions.getColumnModel().getColumn(5).setCellRenderer(
+        jTableTransactionsContent.setModel(ttm);
+        jTableTransactionsContent.setGridColor(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setViewportView(jTableTransactionsContent);
+        jTableTransactionsContent.getColumnModel().getColumn(5).setCellRenderer(
             new TransfersActionRenderer());
 
         jPanelTransactionDetails.setVisible(false);
 
         TransfersActionEvent event = (int row) -> {
-            selectedTransfer = ((TransfersTableModel)jTableTransactions.getModel()).getTransfer(row);
+            selectedTransfer = ((TransfersTableModel)jTableTransactionsContent.getModel()).getTransfer(row);
             currAuthorClient = ClientDAO.getClientByID(
                 selectedTransfer.getclienteRealizaID());
             currRecieverClient = ClientDAO.getClientByID(
@@ -316,7 +322,7 @@ public class TransfersMainInterface extends javax.swing.JPanel {
         jPanelTransactionDetails.setVisible(true);
     };
 
-    jTableTransactions.getColumnModel().getColumn(5).setCellEditor(
+    jTableTransactionsContent.getColumnModel().getColumn(5).setCellEditor(
         new TransfersCellEditor(event));
 
     jPanel4.setBackground(new java.awt.Color(0, 0, 0));
@@ -449,6 +455,14 @@ public class TransfersMainInterface extends javax.swing.JPanel {
     jLabel17.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
     jLabel17.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
+    btnRemoveFilters.setBackground(new java.awt.Color(204, 204, 204));
+    btnRemoveFilters.setText("Tirar filtros");
+    btnRemoveFilters.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnRemoveFiltersActionPerformed(evt);
+        }
+    });
+
     javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
     jPanel8.setLayout(jPanel8Layout);
     jPanel8Layout.setHorizontalGroup(
@@ -456,14 +470,18 @@ public class TransfersMainInterface extends javax.swing.JPanel {
         .addGroup(jPanel8Layout.createSequentialGroup()
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel17)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnRemoveFilters)
+            .addContainerGap())
     );
     jPanel8Layout.setVerticalGroup(
         jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanel8Layout.createSequentialGroup()
             .addGap(6, 6, 6)
-            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(6, 6, 6))
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(btnRemoveFilters, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addContainerGap())
     );
 
     btnSearch.setBackground(new java.awt.Color(0, 0, 0));
@@ -475,7 +493,7 @@ public class TransfersMainInterface extends javax.swing.JPanel {
         }
     });
 
-    jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Autor", "Receptor", "Descrição" }));
+    comboBoxSelectType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Autor", "Receptor", "Descrição", "Cliente" }));
 
     javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
     jPanel6.setLayout(jPanel6Layout);
@@ -487,9 +505,9 @@ public class TransfersMainInterface extends javax.swing.JPanel {
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createSequentialGroup()
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jtextFieldProcurarConta)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(comboBoxSelectType, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addContainerGap())
     );
     jPanel6Layout.setVerticalGroup(
@@ -497,9 +515,9 @@ public class TransfersMainInterface extends javax.swing.JPanel {
         .addGroup(jPanel6Layout.createSequentialGroup()
             .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jtextFieldProcurarConta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboBoxSelectType))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addContainerGap())
@@ -518,10 +536,10 @@ public class TransfersMainInterface extends javax.swing.JPanel {
         .addGroup(LayeredPaneContasLayout.createSequentialGroup()
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(LayeredPaneContasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addGroup(LayeredPaneContasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+            .addGroup(LayeredPaneContasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanelTransactionDetails, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -535,14 +553,15 @@ public class TransfersMainInterface extends javax.swing.JPanel {
                 .addGroup(LayeredPaneContasLayout.createSequentialGroup()
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, 0)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
                 .addGroup(LayeredPaneContasLayout.createSequentialGroup()
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(jPanelTransactionDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addContainerGap(44, Short.MAX_VALUE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -551,14 +570,13 @@ public class TransfersMainInterface extends javax.swing.JPanel {
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(LayeredPaneContas, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE)
-            .addContainerGap())
+            .addComponent(LayeredPaneContas, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(layout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(LayeredPaneContas, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE))
+            .addComponent(LayeredPaneContas, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE))
     );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -568,30 +586,42 @@ public class TransfersMainInterface extends javax.swing.JPanel {
 
     private void btnAddTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTransactionActionPerformed
         int author = Integer.parseInt(
-                inputFieldAddTransactionAuthor.getText());
+            inputFieldAddTransactionAuthor.getText());
         int reciever = Integer.parseInt(
-                inputFieldAddTransactionReciever.getText());
+            inputFieldAddTransactionReciever.getText());
         Double value = Double.valueOf(
-                inputFieldAddTransactionValue.getText());
+               inputFieldAddTransactionValue.getText());
         String description = inputFieldAddTransactionDescription.getText();
         TransfersDAO.createTransfer(value, author, reciever, description);
+
     }//GEN-LAST:event_btnAddTransactionActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        // TODO add your handling code here:
+        String selectedType =
+               String.valueOf(comboBoxSelectType.getSelectedItem());
+        String input = jtextFieldProcurarConta.getText();
+        jPanelTransactionDetails.setVisible(false);
+        ttm.searchForClient(input, selectedType);
+        jTableTransactionsContent.repaint();
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnRemoveFiltersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveFiltersActionPerformed
+        ttm.resetSearchFilters();
+        jTableTransactionsContent.repaint();
+    }//GEN-LAST:event_btnRemoveFiltersActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane LayeredPaneContas;
     private javax.swing.JButton btnAddTransaction;
     private javax.swing.JButton btnAuthor;
     private javax.swing.JButton btnReciever;
+    private javax.swing.JButton btnRemoveFilters;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JComboBox<String> comboBoxSelectType;
     private javax.swing.JTextField inputFieldAddTransactionAuthor;
     private javax.swing.JTextField inputFieldAddTransactionDescription;
     private javax.swing.JTextField inputFieldAddTransactionReciever;
     private javax.swing.JTextField inputFieldAddTransactionValue;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -607,8 +637,8 @@ public class TransfersMainInterface extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel jPanelTransactionDetails;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableTransactions;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTable jTableTransactionsContent;
+    private javax.swing.JTextField jtextFieldProcurarConta;
     private javax.swing.JLabel lblAddTransactionAuthor;
     private javax.swing.JLabel lblAddTransactionDescription;
     private javax.swing.JLabel lblAddTransactionReciever;

@@ -35,9 +35,9 @@ public final class PerfilPersonalTableModel extends AbstractTableModel {
         data.add(new Pair<>(
                 "Cartao default: ", client.cartaoDefault));
         data.add(new Pair<>(
-                "Saldo: ", Double.toString(client.saldo)));
+                "Saldo(€): ", Double.toString(client.saldo)));
         data.add(new Pair<>(
-                "Saldo Cativo: ", Double.toString(client.saldo_cativo)));
+                "Saldo Cativo(€): ", Double.toString(client.saldo_cativo)));
     }
 
     @Override
