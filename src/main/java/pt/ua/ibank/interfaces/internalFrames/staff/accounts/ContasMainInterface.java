@@ -459,9 +459,9 @@ public class ContasMainInterface extends javax.swing.JPanel {
                 layout.setHorizontalGroup(
                     layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(20, Short.MAX_VALUE)
+                        .addGap(20, 20, 20)
                         .addComponent(LayeredPaneContas, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE)
-                        .addContainerGap(22, Short.MAX_VALUE))
+                        .addGap(22, 22, 22))
                 );
                 layout.setVerticalGroup(
                     layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
