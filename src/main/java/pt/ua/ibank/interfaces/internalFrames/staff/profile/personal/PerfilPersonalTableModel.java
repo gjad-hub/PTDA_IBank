@@ -15,7 +15,7 @@ import pt.ua.ibank.DTO.Cliente;
  *
  * @author ricar
  */
-public class PerfilPersonalTableModel extends AbstractTableModel {
+public final class PerfilPersonalTableModel extends AbstractTableModel {
 
     private final List<Pair<String, String>> data;
     public final Cliente client;
@@ -54,7 +54,17 @@ public class PerfilPersonalTableModel extends AbstractTableModel {
         return data.get(row).left;
     }
 
-    public void setValue(Object aValue, int row, int col) {
+    @Override
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+        try {
+            data.set(rowIndex, (Pair<String, String>) aValue);
+            fireTableRowsUpdated(data.size() - 1, data.size() - 1);
+        } catch (java.lang.ClassCastException e) {
+            //nothing
+        }
+    }
+    
+    public void setValue(Object aValue, int row) {
         switch (row) {
             case 0 -> {
                 client.numCliente = (int) aValue;
@@ -76,7 +86,7 @@ public class PerfilPersonalTableModel extends AbstractTableModel {
             }
 
         }
-        fireTableCellUpdated(row, col);
+        fireTableRowsUpdated(data.size() - 1, data.size() - 1);
         updateClient();
     }
 
@@ -87,14 +97,14 @@ public class PerfilPersonalTableModel extends AbstractTableModel {
                 client.nif);
     }
 
+    public void updateDepositDecision(double depositValue){
+        client.saldo_cativo -= depositValue;
+        fireTableRowsUpdated(data.size() - 1, data.size() - 1);
+    }
+    
     @Override
     public Object getValueAt(int linha, int coluna) {
-        switch (coluna) {
-            case 0 -> {
                 return data.get(linha);
-            }
-        }
-        return null;
     }
 
     @Override
