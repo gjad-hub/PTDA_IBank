@@ -119,7 +119,9 @@ public class StaffContasTableModel extends AbstractTableModel {
                 return data.get(rowIndex).numFun;
             }
             case 1 -> {
-                return data.get(rowIndex).gerente;
+                return data.get(rowIndex).gerente == 0 ?
+                       "Gerente" :
+                       "Funcionario";
             }
             case 2 -> {
                 return data.get(rowIndex).nome;

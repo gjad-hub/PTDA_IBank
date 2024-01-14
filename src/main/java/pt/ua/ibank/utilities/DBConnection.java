@@ -16,14 +16,14 @@ public class DBConnection {
 //    private static final String URL = "jdbc:mysql://localhost/ibank";
 //    private static final String USER = "richard";
 //    private static final String PASS = "qwerty";
-    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://10.10.1.100/ibank";
-    private static final String USER = "dias";
-    private static final String PASS = "qwerty";
 //    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-//    private static final String URL = "jdbc:mysql://estga-dev.ua.pt/PTDA_BD_001";
-//    private static final String USER = "PTDA_001";
-//    private static final String PASS = "Kiyt684h";
+//    private static final String URL = "jdbc:mysql://10.10.1.100/ibank";
+//    private static final String USER = "dias";
+//    private static final String PASS = "qwerty";
+    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String URL = "jdbc:mysql://estga-dev.ua.pt/PTDA_BD_001";
+    private static final String USER = "PTDA_001";
+    private static final String PASS = "Kiyt684h";
 
     public static final Connection conn = getConnection();
 

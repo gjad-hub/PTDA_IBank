@@ -42,10 +42,13 @@ public class StaffAccountList extends javax.swing.JInternalFrame {
 
         contasInterfaceContainer = new pt.ua.ibank.interfaces.internalFrames.staff.accounts.ContasMainInterface();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        setTitle("Lista de Funcionarios");
+        setFrameIcon(null);
         getContentPane().add(contasInterfaceContainer, java.awt.BorderLayout.CENTER);
 
         pack();
