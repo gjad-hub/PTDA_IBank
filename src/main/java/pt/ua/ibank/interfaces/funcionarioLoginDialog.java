@@ -4,6 +4,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import pt.ua.ibank.DAO.FuncionarioDAO;
 import static pt.ua.ibank.DTO.Funcionario.LocalFuncionario;
 import pt.ua.ibank.DTO.Funcionario;
 import pt.ua.ibank.utilities.Configs;
@@ -252,8 +253,13 @@ public class funcionarioLoginDialog extends javax.swing.JDialog {
             // é gerente
             //abrir página destinada ao gerente
             if (LocalFuncionario.autenticar()) {
-                Configs.loginOK = true;
-                this.dispose();
+                if (FuncionarioDAO.getFuncionarioDemitidoByID(
+                        LocalFuncionario.numFun)) {
+                    error.setText("Funcionário demitido! Não pode fazer login!");
+                } else {
+                    Configs.loginOK = true;
+                    this.dispose();
+                }
             } else {
                 error.setText("Erro ao autenticar! Credenciais incorretas!");
             }

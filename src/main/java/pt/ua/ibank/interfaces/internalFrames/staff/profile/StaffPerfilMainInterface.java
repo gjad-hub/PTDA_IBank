@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import pt.ua.ibank.DAO.FuncionarioDAO;
 import pt.ua.ibank.interfaces.internalFrames.staff.manager.profile.personal.PerfilEmployeePersonalTableModel;
 import pt.ua.ibank.interfaces.internalFrames.staff.manager.profile.personal.lastoperations.PerfilStaffLastOperationsTableCellRenderer;
 import pt.ua.ibank.interfaces.internalFrames.staff.manager.profile.personal.lastoperations.PerfilStaffLastOperationsTableModel;
@@ -526,10 +527,9 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
     }//GEN-LAST:event_btnPromocaoActionPerformed
 
     private void btnApagarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarContaActionPerformed
-
+        
         String resultado =
-               //FuncionarioDAO.apagarConta(clientID) ?
-               true ?
+               FuncionarioDAO.demitirFuncionario(clientID) == 1 ?
                "Operação feita com sucesso" :
                "Operação feita sem sucesso, tente novamente";
         JOptionPane.showMessageDialog(this, resultado);
