@@ -4,9 +4,6 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment;
 
-import java.time.LocalDateTime;
-import pt.ua.ibank.DTO.ModeratorComment;
-
 /**
  *
  * @author ricar
@@ -26,7 +23,7 @@ public class PerfilCommentTableElementPanel extends javax.swing.JPanel {
     }
 
     public PerfilCommentTableElementPanel(String funcionarioID, String descricao,
-            String timestamp) {
+                                          String timestamp) {
         initComponents();
 
         jXTextArea1.setLineWrap(true);
@@ -94,15 +91,15 @@ public class PerfilCommentTableElementPanel extends javax.swing.JPanel {
                 .addGap(6, 6, 6)
                 .addComponent(lblTtitle)
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane1))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addContainerGap()
                 .addComponent(lblmodName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblDateTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(8, 8, 8))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -25,6 +25,9 @@ import pt.ua.ibank.interfaces.internalFrames.staff.profile.deposit.DepositCellEd
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.deposit.DepositTableActionEvent;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.deposit.DepositTableCellRenderer;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.deposit.DepositTableModel;
+import pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment.DeleteCommentActionEvent;
+import pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment.DeleteCommentActionRenderer;
+import pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment.PerfilCommentCellEditor;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment.PerfilCommentTableCellRenderer;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment.PerfilCommentTableModel;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilActionRenderer;
@@ -454,7 +457,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel12)
-            .addContainerGap(138, Short.MAX_VALUE))
+            .addContainerGap(144, Short.MAX_VALUE))
     );
     jPanel5Layout.setVerticalGroup(
         jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -477,12 +480,25 @@ public class PerfilMainInterface extends javax.swing.JPanel {
     jXTable1.getColumnModel().getColumn(0)
     .setCellRenderer(new PerfilCommentTableCellRenderer());
 
+    DeleteCommentActionEvent event = (int row) -> {
+        pctm.apagarComentario(row);
+    };
+
+    jXTable1.getColumnModel().getColumn(1)
+    .setCellRenderer(new DeleteCommentActionRenderer());
+    jXTable1.getColumnModel().getColumn(1)
+    .setCellEditor(new PerfilCommentCellEditor(event));
+    jXTable1.getColumnModel().getColumn(1)
+    .setMaxWidth(25);
+
     javax.swing.GroupLayout jPanelDadosComentariosLayout = new javax.swing.GroupLayout(jPanelDadosComentarios);
     jPanelDadosComentarios.setLayout(jPanelDadosComentariosLayout);
     jPanelDadosComentariosLayout.setHorizontalGroup(
         jPanelDadosComentariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-        .addComponent(jScrollPane2)
+        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+        .addGroup(jPanelDadosComentariosLayout.createSequentialGroup()
+            .addComponent(jScrollPane2)
+            .addGap(0, 0, 0))
     );
     jPanelDadosComentariosLayout.setVerticalGroup(
         jPanelDadosComentariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -514,7 +530,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
             .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel18)
-            .addContainerGap(207, Short.MAX_VALUE))
+            .addContainerGap(201, Short.MAX_VALUE))
     );
     jPanel9Layout.setVerticalGroup(
         jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -533,8 +549,10 @@ public class PerfilMainInterface extends javax.swing.JPanel {
     jPanelDepositosPorAprovar.setLayout(jPanelDepositosPorAprovarLayout);
     jPanelDepositosPorAprovarLayout.setHorizontalGroup(
         jPanelDepositosPorAprovarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
-        .addComponent(jTableDepositDatatr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+        .addGroup(jPanelDepositosPorAprovarLayout.createSequentialGroup()
+            .addGap(6, 6, 6)
+            .addComponent(jTableDepositDatatr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     jPanelDepositosPorAprovarLayout.setVerticalGroup(
         jPanelDepositosPorAprovarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -600,7 +618,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
                 .addGroup(jPanelDadosContainerLayout.createSequentialGroup()
                     .addComponent(jPanelDadosComentarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jPanelDepositosPorAprovar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanelDepositosPorAprovar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addContainerGap())
     );
     jPanelDadosContainerLayout.setVerticalGroup(
@@ -633,7 +651,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
         .addGroup(LayeredPaneEditarContaLayout.createSequentialGroup()
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanelDadosContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addContainerGap(8, Short.MAX_VALUE))
     );
     LayeredPaneEditarContaLayout.setVerticalGroup(
         LayeredPaneEditarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

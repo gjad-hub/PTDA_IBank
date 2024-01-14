@@ -36,7 +36,6 @@ public final class PerfilEmployeePersonalTableModel extends AbstractTableModel {
         data.add(new Pair<>("Morada:", funcionario.morada));
         data.add(new Pair<>("Demitido: ", funcionario.foiDespedido ? "Sim" :
                                           "Não"));
-        System.out.println(data.size() + " e " + funcionario);
     }
 
     public String getNomeGerente() {

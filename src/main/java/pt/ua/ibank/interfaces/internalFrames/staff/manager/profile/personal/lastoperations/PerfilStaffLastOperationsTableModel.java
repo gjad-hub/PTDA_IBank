@@ -25,7 +25,7 @@ public class PerfilStaffLastOperationsTableModel extends javax.swing.table.Abstr
 
     @Override
     public int getColumnCount() {
-        return 1;
+        return 2;
     }
 
     @Override

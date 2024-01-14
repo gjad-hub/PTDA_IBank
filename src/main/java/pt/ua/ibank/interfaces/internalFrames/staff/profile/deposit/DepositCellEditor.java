@@ -1,18 +1,17 @@
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.deposit;
 
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt
+ * to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit
+ * this template
  */
-import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.*;
-import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilTableActionEvent;
-import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilActionPanelElement;
-import com.mysql.cj.conf.ConnectionUrlParser;
 import java.awt.Component;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
-import pt.ua.ibank.DTO.Deposito;
+import pt.ua.ibank.DTO.Funcionario;
+import pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment.DeleteCommentPanel;
 
 /**
  *
@@ -29,13 +28,11 @@ public class DepositCellEditor extends DefaultCellEditor {
 
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value,
-            boolean isSelected, int row, int column) {
+                                                 boolean isSelected, int row,
+                                                 int column) {
 
-        Deposito deposito = (Deposito) table.getModel().getValueAt(
-                row, 0);
-        if (!deposito.pendenteAprovacao) {
-            return new Component() {
-            };
+        if (Funcionario.LocalFuncionario.isManager()) {
+            return new DeleteCommentPanel();
         }
 
         DepositActionPanelElement action = new DepositActionPanelElement();

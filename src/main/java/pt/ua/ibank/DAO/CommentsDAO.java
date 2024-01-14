@@ -104,4 +104,22 @@ public class CommentsDAO {
             DBConnection.closeConnection(stmt);
         }
     }
+
+    public static boolean deleteComment(int id) {
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = conn.prepareStatement(
+            "DELETE FROM comentario_perfil WHERE id = ?");
+            stmt.setInt(1, id);
+            stmt.execute();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            return false;
+        } finally {
+            DBConnection.closeConnection(stmt);
+        }
+    }
 }

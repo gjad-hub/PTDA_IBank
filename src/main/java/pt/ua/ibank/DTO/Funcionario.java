@@ -67,6 +67,10 @@ public class Funcionario extends Pessoa {
         this.password = password;
     }
 
+    public boolean isManager() {
+        return gerente == 0;
+    }
+
     public int alterarInformacoes(String old_email) {
         int status = FuncionarioDAO.UpdateFuncionario(nome, morada, email,
                                                       telemovel, nif, old_email);
