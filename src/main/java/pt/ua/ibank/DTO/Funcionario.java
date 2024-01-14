@@ -42,6 +42,19 @@ public class Funcionario extends Pessoa {
         this.gerente = numGerente;
     }
 
+    public Funcionario(Integer numFun, String nome, String morada, String email,
+                       String telemovel, String nif,
+                       Integer numGerente) {
+        this.numFun = numFun;
+        this.nome = nome;
+        this.morada = morada;
+        this.email = email;
+        this.telemovel = telemovel;
+        this.nif = nif;
+        this.gerente = numGerente;
+    }
+
+
     /*
      * Construtor para fazer login
      */

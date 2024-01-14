@@ -6,8 +6,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.SwingUtilities;
 import pt.ua.ibank.DAO.ClientDAO;
-import static pt.ua.ibank.utilities.Configs.LocalClient;
 import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
+import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.utilities.Hash;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
 
@@ -36,7 +36,8 @@ public class ProfilePage extends javax.swing.JInternalFrame {
     }
 
     private String maskString(String string, int char_visible) {
-        return string.substring(0, char_visible) + "*".repeat(string.length() - char_visible);
+        return string.substring(0, char_visible) + "*".repeat(
+                string.length() - char_visible);
     }
 
     /**
@@ -289,7 +290,8 @@ public class ProfilePage extends javax.swing.JInternalFrame {
         String old_email = LocalClient.email;
 
         try {
-            if (!Hash.validatePassword(new String(old_password.getPassword()), LocalClient.password)) {
+            if (!Hash.validatePassword(new String(old_password.getPassword()),
+                                       LocalClient.password)) {
                 status.setText("Password antiga não corresponde !");
                 return;
             }
@@ -319,7 +321,8 @@ public class ProfilePage extends javax.swing.JInternalFrame {
             }
 
             String regexNome = "^[a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜãõÃÕñÑçÇ\\s'-]+$";
-            String regexEmail = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+            String regexEmail =
+                   "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
             String regexTelefoneNif = "^\\d{9}$";
             String regexPassword = "^.{8,}$";
 
@@ -330,8 +333,10 @@ public class ProfilePage extends javax.swing.JInternalFrame {
             Matcher matcherEmail = patternEmail.matcher(email_input.getText());
 
             Pattern patternPhoneNumberNif = Pattern.compile(regexTelefoneNif);
-            Matcher matcherPhoneNumber = patternPhoneNumberNif.matcher(phone_input.getText());
-            Matcher matcherNIF = patternPhoneNumberNif.matcher(nif_input.getText());
+            Matcher matcherPhoneNumber = patternPhoneNumberNif.matcher(
+                    phone_input.getText());
+            Matcher matcherNIF = patternPhoneNumberNif.matcher(
+                    nif_input.getText());
 
             String novaPassword = new String(new_password.getPassword());
             Pattern patternPassword = Pattern.compile(regexPassword);
@@ -360,13 +365,18 @@ public class ProfilePage extends javax.swing.JInternalFrame {
             }
 
             if (!new String(new_password.getPassword()).isEmpty()) {
-                LocalClient.password = Hash.generateStorngPasswordHash(new String(new_password.getPassword()));
+                LocalClient.password = Hash.generateStorngPasswordHash(
+                new String(new_password.getPassword()));
             }
 
-            LocalClient.nome = name.equals(LocalClient.nome) ? LocalClient.nome : name;
-            LocalClient.email = email.equals(LocalClient.email) ? LocalClient.email : email;
-            LocalClient.morada = address.equals(LocalClient.morada) ? LocalClient.morada : address;
-            LocalClient.telemovel = phone.equals(LocalClient.telemovel) ? LocalClient.telemovel : phone;
+            LocalClient.nome =
+            name.equals(LocalClient.nome) ? LocalClient.nome : name;
+            LocalClient.email = email.equals(LocalClient.email) ?
+                                LocalClient.email : email;
+            LocalClient.morada = address.equals(LocalClient.morada) ?
+                                 LocalClient.morada : address;
+            LocalClient.telemovel = phone.equals(LocalClient.telemovel) ?
+                                    LocalClient.telemovel : phone;
 
             int status_int = LocalClient.alterarInformacoes(old_email);
 
@@ -376,7 +386,8 @@ public class ProfilePage extends javax.swing.JInternalFrame {
                     LocalClient.email = old_email;
                 }
                 case ClientDAO.codigoErro -> {
-                    status.setText("Algo inesperado aconteceu tente novamente mais tarde !");
+                    status.setText(
+                            "Algo inesperado aconteceu tente novamente mais tarde !");
                     LocalClient.email = old_email;
                 }
                 case ClientDAO.codigoSucesso -> {

@@ -31,14 +31,20 @@ public class StaffManagerProfilePanel extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        perfilMainInterface1 = new pt.ua.ibank.interfaces.internalFrames.staff.profile.StaffPerfilMainInterface(userID);
+
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
 
+        perfilMainInterface1.setMinimumSize(new java.awt.Dimension(859, 562));
+        getContentPane().add(perfilMainInterface1, java.awt.BorderLayout.CENTER);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private pt.ua.ibank.interfaces.internalFrames.staff.profile.StaffPerfilMainInterface perfilMainInterface1;
     // End of variables declaration//GEN-END:variables
 }

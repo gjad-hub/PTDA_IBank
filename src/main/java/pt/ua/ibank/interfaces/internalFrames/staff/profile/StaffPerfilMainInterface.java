@@ -28,16 +28,14 @@ import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilTableC
  */
 public class StaffPerfilMainInterface extends javax.swing.JPanel {
 
-    int clientID;
-    PerfilStaffLastOperationsTableModel lastOperationModel;
-
     /**
      * Creates new form NewJPanel
      *
      * @param clientEmail
      */
+    int clientID;
+    private PerfilStaffLastOperationsTableModel lastOperationModel;
     private PerfilEmployeePersonalTableModel personalDataTable;
-    private PerfilCommentTableModel pctm;
 
     public StaffPerfilMainInterface(int clientID) {
         this.clientID = clientID;
@@ -87,7 +85,6 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
         jPanel8 = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
         jPanelDadosCartao = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
@@ -173,12 +170,12 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
                     .addGroup(jPanelDadosDescricaoLayout.createSequentialGroup()
                         .addComponent(jPanelFotoPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanelDadosDescricaoLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblNomeCompleto)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanelDadosDescricaoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblNomeCompleto)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelDadosDescricaoLayout.setVerticalGroup(
             jPanelDadosDescricaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -313,17 +310,15 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
     jPanelDadosPessoaisLayout.setHorizontalGroup(
         jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-        .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addGap(0, 0, 0))
+        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
     );
     jPanelDadosPessoaisLayout.setVerticalGroup(
         jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGap(0, 0, 0)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-            .addContainerGap())
+            .addGap(0, 0, 0))
     );
 
     jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -389,17 +384,6 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
-    jButton5.setBackground(new java.awt.Color(58, 58, 58));
-    jButton5.setForeground(new java.awt.Color(255, 255, 255));
-    jButton5.setText("Adicionar comentario");
-    jButton5.setToolTipText("");
-    jButton5.setBorder(null);
-    jButton5.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton5ActionPerformed(evt);
-        }
-    });
-
     javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
     jPanel4.setLayout(jPanel4Layout);
     jPanel4Layout.setHorizontalGroup(
@@ -412,8 +396,7 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addGap(0, 0, 0)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap())
     );
     jPanel4Layout.setVerticalGroup(
@@ -425,8 +408,6 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
             .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel1)
             .addGap(46, 46, 46))
@@ -561,10 +542,6 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        AdicionarComentarioPerfil(pctm, "");
-    }//GEN-LAST:event_jButton5ActionPerformed
-
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4MouseClicked
@@ -626,7 +603,6 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
     private javax.swing.JLayeredPane LayeredPaneEditarConta;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

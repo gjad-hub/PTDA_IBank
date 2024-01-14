@@ -27,7 +27,6 @@ public final class PerfilEmployeePersonalTableModel extends AbstractTableModel {
     }
 
     public void setupData() {
-
         data.add(new Pair<>("ID: ", Integer.toString(funcionario.numFun)));
         data.add(new Pair<>("Gerente:", getNomeGerente()));
         data.add(new Pair<>("Nome:", funcionario.nome));

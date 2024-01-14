@@ -90,9 +90,9 @@ public class FuncionarioDAO {
         ResultSet rs = null;
         Funcionario fun = null;
         try {
-
             stmt = conn.prepareStatement(
-            "SELECT * FROM funcionario where num_fun like ?;");
+            "SELECT num_fun,nome,morada,email,telemovel,nif,gerente "
+            + "FROM funcionario where num_fun like ?;");
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
 
@@ -103,8 +103,7 @@ public class FuncionarioDAO {
                                       rs.getString("email"),
                                       rs.getString("telemovel"),
                                       rs.getString("nif"),
-                                      rs.getString("password"),
-                                      rs.getInt("gerente")); // falta adicionar um número de gerente ao funcionário
+                                      rs.getInt("gerente"));
             }
 
             return fun;
