@@ -16,7 +16,6 @@ public class PerfilStaffLastOperationsTableModel extends javax.swing.table.Abstr
 
     public PerfilStaffLastOperationsTableModel(int clientID) {
         data = ClienteFuncionarioDAO.getClientsInteractedListByID(clientID);
-        System.out.println(data.toString());
     }
 
     @Override

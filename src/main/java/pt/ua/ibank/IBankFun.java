@@ -16,10 +16,10 @@ public class IBankFun {
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
-            FlatLightLaf.setGlobalExtraDefaults(Collections.singletonMap("@accentColor", "#79658C"));
+            FlatLightLaf.setGlobalExtraDefaults(Collections.singletonMap(
+                    "@accentColor", "#79658C"));
             FlatLightLaf.setup();
             UIDefaults defaults = UIManager.getLookAndFeelDefaults();
-
             if (defaults.get("Table.alternateRowColor") == null) {
                 defaults.put("Table.alternateRowColor", new Color(240, 240, 240));
             }

@@ -5,7 +5,6 @@
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.deposit;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 
 /**
  *
@@ -89,7 +88,6 @@ public class DepositActionPanelElement extends javax.swing.JPanel {
     private void cmdAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdAcceptActionPerformed
         cmdRefuse.setVisible(false);
         cmdAccept.setVisible(false);
-        System.out.println("Aceite!");
     }//GEN-LAST:event_cmdAcceptActionPerformed
 
     private void cmdRefuseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdRefuseActionPerformed

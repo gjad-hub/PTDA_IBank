@@ -28,14 +28,14 @@ public final class PerfilEmployeePersonalTableModel extends AbstractTableModel {
 
     public void setupData() {
         data.add(new Pair<>("ID: ", Integer.toString(funcionario.numFun)));
-        data.add(new Pair<>("Gerente: ", getNomeGerente()));
+        data.add(new Pair<>("Responsavel: ", getNomeGerente()));
         data.add(new Pair<>("Nome:", funcionario.nome));
         data.add(new Pair<>("Email:", funcionario.telemovel));
         data.add(new Pair<>("Telemovel:", funcionario.telemovel));
         data.add(new Pair<>("NIF: ", funcionario.nif));
         data.add(new Pair<>("Morada:", funcionario.morada));
-        data.add(new Pair<>("Demitido:", funcionario.foiDespedido ? "Sim" :
-                                         "Não"));
+        data.add(new Pair<>("Demitido: ", funcionario.foiDespedido ? "Sim" :
+                                          "Não"));
         System.out.println(data.size() + " e " + funcionario);
     }
 
@@ -115,7 +115,7 @@ public final class PerfilEmployeePersonalTableModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return true; // only the second column should be clickable
+        return columnIndex > 0; // only the second column should be clickable
     }
 
 }

@@ -135,7 +135,7 @@ public class StaffContasTableModel extends AbstractTableModel {
                 return FuncionarioDAO.getFuncionarioNumDepositosAprovados(id);
             }
             case 6 -> {
-                return data.get(rowIndex).foiDespedido;
+                return data.get(rowIndex).foiDespedido ? "Sim" : "";
             }
             default -> {
                 return -1;

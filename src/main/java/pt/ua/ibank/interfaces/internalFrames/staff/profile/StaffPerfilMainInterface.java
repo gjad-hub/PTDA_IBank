@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import pt.ua.ibank.DAO.FuncionarioDAO;
+import pt.ua.ibank.DTO.Funcionario;
 import pt.ua.ibank.interfaces.internalFrames.staff.manager.profile.personal.PerfilEmployeePersonalTableModel;
 import pt.ua.ibank.interfaces.internalFrames.staff.manager.profile.personal.lastoperations.PerfilStaffLastOperationsTableCellRenderer;
 import pt.ua.ibank.interfaces.internalFrames.staff.manager.profile.personal.lastoperations.PerfilStaffLastOperationsTableModel;
@@ -28,17 +29,14 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
      * @param clientEmail
      */
     int clientID;
+    boolean isManager;
     private PerfilStaffLastOperationsTableModel lastOperationModel;
     private PerfilEmployeePersonalTableModel personalDataTable;
 
     public StaffPerfilMainInterface(int clientID, boolean isManager) {
         this.clientID = clientID;
+        this.isManager = isManager;
         initComponents();
-
-        if (isManager) {
-            btnPromocao.setVisible(false);
-        }
-
     }
 
     /*
@@ -77,7 +75,7 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
         personalDataTable = new pt.ua.ibank.interfaces.internalFrames.staff.manager.profile.personal.PerfilEmployeePersonalTableModel(
             clientID);
         jTablePersonalData = new javax.swing.JTable();
-        jPanel4 = new javax.swing.JPanel();
+        jPanelOperacoesDisponiveis = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnApagarConta = new javax.swing.JButton();
         btnPromocao = new javax.swing.JButton();
@@ -319,7 +317,7 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
     );
 
-    jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+    jPanelOperacoesDisponiveis.setBackground(new java.awt.Color(255, 255, 255));
 
     btnApagarConta.setBackground(new java.awt.Color(58, 58, 58));
     btnApagarConta.setForeground(new java.awt.Color(255, 255, 255));
@@ -382,24 +380,24 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
-    javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-    jPanel4.setLayout(jPanel4Layout);
-    jPanel4Layout.setHorizontalGroup(
-        jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+    javax.swing.GroupLayout jPanelOperacoesDisponiveisLayout = new javax.swing.GroupLayout(jPanelOperacoesDisponiveis);
+    jPanelOperacoesDisponiveis.setLayout(jPanelOperacoesDisponiveisLayout);
+    jPanelOperacoesDisponiveisLayout.setHorizontalGroup(
+        jPanelOperacoesDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-        .addGroup(jPanel4Layout.createSequentialGroup()
+        .addGroup(jPanelOperacoesDisponiveisLayout.createSequentialGroup()
             .addContainerGap()
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
+            .addGroup(jPanelOperacoesDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelOperacoesDisponiveisLayout.createSequentialGroup()
                     .addComponent(jLabel1)
                     .addGap(0, 0, Short.MAX_VALUE))
                 .addComponent(btnPromocao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnApagarConta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap())
     );
-    jPanel4Layout.setVerticalGroup(
-        jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanel4Layout.createSequentialGroup()
+    jPanelOperacoesDisponiveisLayout.setVerticalGroup(
+        jPanelOperacoesDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanelOperacoesDisponiveisLayout.createSequentialGroup()
             .addGap(0, 0, 0)
             .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -484,7 +482,7 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanelDadosContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanelDadosCartao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanelOperacoesDisponiveis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap())
     );
     jPanelDadosContainerLayout.setVerticalGroup(
@@ -493,13 +491,22 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
             .addContainerGap()
             .addGroup(jPanelDadosContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelDadosContainerLayout.createSequentialGroup()
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelOperacoesDisponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jPanelDadosCartao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addComponent(jPanelDadosPessoais, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanelDadosDescricao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
+
+    if (clientID == Funcionario.LocalFuncionario.numFun
+        || FuncionarioDAO.getFuncionarioDemitidoByID(clientID)) {
+        jPanelOperacoesDisponiveis.setVisible(false);
+    }
+
+    if (isManager) {
+        btnPromocao.setVisible(false);
+    }
 
     LayeredPaneEditarConta.setLayer(jPanelDadosContainer, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -527,7 +534,7 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
     }//GEN-LAST:event_btnPromocaoActionPerformed
 
     private void btnApagarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarContaActionPerformed
-        
+
         String resultado =
                FuncionarioDAO.demitirFuncionario(clientID) == 1 ?
                "Operação feita com sucesso" :
@@ -559,7 +566,6 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanelDadosCartao;
@@ -567,6 +573,7 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelDadosDescricao;
     private javax.swing.JPanel jPanelDadosPessoais;
     private javax.swing.JPanel jPanelFotoPerfil;
+    private javax.swing.JPanel jPanelOperacoesDisponiveis;
     private javax.swing.JPopupMenu jPopupMenu;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;

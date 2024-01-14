@@ -160,7 +160,6 @@ public class FuncionarioDAO {
                 String nif = rs.getString("nif");
                 Integer numGerente = rs.getInt("gerente");
                 Boolean demitido = rs.getBoolean("demitido");
-                System.out.println(demitido);
 
                 list.add(new Funcionario(numero, nome, morada, email, telemovel,
                                          nif, morada, numGerente, demitido

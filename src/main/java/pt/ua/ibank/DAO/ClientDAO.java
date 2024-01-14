@@ -325,7 +325,7 @@ public class ClientDAO {
 
         try {
             stmt = conn.prepareStatement(
-            "SELECT nome FROM funcionario WHERE num_cliente = ?");
+            "SELECT nome FROM cliente WHERE num_cliente = ?");
             stmt.setInt(1, clientID);
             rs = stmt.executeQuery();
 

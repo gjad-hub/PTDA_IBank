@@ -113,9 +113,6 @@ public class TransfersTableModel extends AbstractTableModel {
                     fireTableRowsDeleted(0, data.size() - 1);
                 }
             }
-            default -> {
-                System.out.println("Invalid search type.");
-            }
         }
     }
 

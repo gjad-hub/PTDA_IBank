@@ -30,7 +30,6 @@ public class staffInterface extends javax.swing.JFrame {
             initComponents();
             start_up();
         } catch (java.lang.NullPointerException e) {
-            System.out.println("Moderador sem login efetuado");
             System.exit(1);
         }
     }

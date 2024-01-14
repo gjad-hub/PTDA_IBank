@@ -63,7 +63,7 @@ public final class PerfilPersonalTableModel extends AbstractTableModel {
             //nothing
         }
     }
-    
+
     public void setValue(Object aValue, int row) {
         switch (row) {
             case 0 -> {
@@ -92,24 +92,24 @@ public final class PerfilPersonalTableModel extends AbstractTableModel {
 
     public void updateClient() {
         ClientDAO.UpdateClient(client.numCliente, client.nome,
-                client.morada,
-                client.email, client.telemovel,
-                client.nif);
+                               client.morada,
+                               client.email, client.telemovel,
+                               client.nif);
     }
 
-    public void updateDepositDecision(double depositValue){
+    public void updateDepositDecision(double depositValue) {
         client.saldo_cativo -= depositValue;
         fireTableRowsUpdated(data.size() - 1, data.size() - 1);
     }
-    
+
     @Override
     public Object getValueAt(int linha, int coluna) {
-                return data.get(linha);
+        return data.get(linha);
     }
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return true; // only the second column should be clickable
+        return columnIndex > 0; // only the second column should be clickable
     }
 
 }

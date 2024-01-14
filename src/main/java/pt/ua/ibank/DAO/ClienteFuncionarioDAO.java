@@ -25,7 +25,7 @@ public class ClienteFuncionarioDAO {
 
         try {
             stmt = conn.prepareStatement(
-            "select num_cli from funcionario_cliente where num_fun = ~?;");
+            "select num_cli from funcionario_cliente where num_fun = ?;");
             stmt.setInt(1, funcionarioID);
             rs = stmt.executeQuery();
 
