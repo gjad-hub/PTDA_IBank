@@ -128,12 +128,13 @@ public class ClientDAO {
                         rs.getString("email"),
                         rs.getString("telemovel"),
                         rs.getString("nif"),
-                        rs.getString("password"),
                         rs.getString("num_conta"),
                         rs.getDouble("saldo"),
                         rs.getDouble("saldo_cativo"),
+                        rs.getDate("data_criacao"),
                         rs.getString("cartao_default"),
-                        rs.getInt("entidade"));
+                        rs.getInt("entidade")
+                );
             }
 
         } catch (SQLException e) {
@@ -221,13 +222,12 @@ public class ClientDAO {
     public static ArrayList<Cliente> getClientListByAddress(String address) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Integer num_cliente = null;
 
         ArrayList list = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(
             "SELECT num_cliente,nome,morada,email,"
-            + "telemovel,nif,num_conta "
+            + "telemovel,nif,num_conta,data_criacao,cartao_default"
             + "FROM cliente where morada like ?");
             rs = stmt.executeQuery();
 
@@ -239,12 +239,14 @@ public class ClientDAO {
                 String telemovel = rs.getString("telemovel");
                 String nif = rs.getString("nif");
                 String numConta = rs.getString("num_conta");
-                //balance will be null bc we dont need it
+                var dataCriacao = rs.getDate("data_criacao");
+                String cartaoDefault = rs.getString("cartao_default");
 
-                num_cliente = rs.getInt("num_cliente");
                 list.add(
                         new Cliente(numero, nome, morada, email,
-                                    telemovel, nif, numConta, 0.0));
+                                    telemovel, nif, numConta, 0.0, 0.0,
+                                    dataCriacao,
+                                    cartaoDefault, 0));
             }
 
             return list;
@@ -259,13 +261,12 @@ public class ClientDAO {
     public static ArrayList<Cliente> getClientList() {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Integer num_cliente = null;
 
         ArrayList list = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(
             "SELECT num_cliente,nome,morada,email,"
-            + "telemovel,nif,num_conta "
+            + "telemovel,nif,num_conta,cartao_default,data_criacao "
             + "FROM cliente");
             rs = stmt.executeQuery();
 
@@ -277,12 +278,13 @@ public class ClientDAO {
                 String telemovel = rs.getString("telemovel");
                 String nif = rs.getString("nif");
                 String numConta = rs.getString("num_conta");
-                //balance will be null bc we dont need it
-
-                num_cliente = rs.getInt("num_cliente");
+                var dataCriacao = rs.getDate("data_criacao");
+                String cartaoDefault = rs.getString("cartao_default");
                 list.add(
                         new Cliente(numero, nome, morada, email,
-                                    telemovel, nif, numConta, 0.0));
+                                    telemovel, nif, numConta, 0.0, 0.0,
+                                    dataCriacao,
+                                    cartaoDefault, 0));
             }
 
             return list;

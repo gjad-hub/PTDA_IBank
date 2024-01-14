@@ -2,10 +2,11 @@ package pt.ua.ibank.DTO;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.sql.Date;
 import static pt.ua.ibank.DAO.CardsDAO.getCardByNumber;
 import pt.ua.ibank.DAO.ClientDAO;
-import static pt.ua.ibank.utilities.Configs.LocalClientCard;
 import static pt.ua.ibank.utilities.Configs.LocalClient;
+import static pt.ua.ibank.utilities.Configs.LocalClientCard;
 import pt.ua.ibank.utilities.Hash;
 
 public class Cliente extends Pessoa {
@@ -16,14 +17,16 @@ public class Cliente extends Pessoa {
     public Double saldo_cativo;
     public String cartaoDefault;
     public Integer entidade;
+    public Date data_criada;
 
     /*
      * Construtor completo
      */
     public Cliente(Integer numCliente, String nome, String morada, String email,
-            String telemovel, String nif, String password, String numConta,
-            Double saldo, Double saldo_cativo, String cardaoDefault,
-            Integer entidade) {
+                   String telemovel, String nif, String password,
+                   String numConta,
+                   Double saldo, Double saldo_cativo, String cardaoDefault,
+                   Integer entidade) {
         this.numCliente = numCliente;
         this.nome = nome;
         this.morada = morada;
@@ -50,8 +53,9 @@ public class Cliente extends Pessoa {
      * Construtor de cliente com password e sem cartão
      */
     public Cliente(Integer numCliente, String nome, String morada, String email,
-            String telemovel, String nif, String password, String numConta,
-            Double saldo) {
+                   String telemovel, String nif, String password,
+                   String numConta,
+                   Double saldo) {
         this.numCliente = numCliente;
         this.nome = nome;
         this.morada = morada;
@@ -64,18 +68,24 @@ public class Cliente extends Pessoa {
     }
 
     /*
-     * Construtor de cliente sem password e sem cartão
+     * Construtor de cliente sem password
      */
     public Cliente(Integer numCliente, String nome, String morada, String email,
-            String telemovel, String nif, String numConta, Double saldo) {
+                   String telemovel, String nif, String numConta, Double saldo,
+                   Double saldo_cativo, Date data_criada, String cartao_default,
+                   Integer entidade) {
         this.numCliente = numCliente;
         this.nome = nome;
         this.morada = morada;
         this.email = email;
         this.telemovel = telemovel;
         this.nif = nif;
+        this.saldo_cativo = saldo_cativo;
         this.numConta = numConta;
         this.saldo = saldo;
+        this.data_criada = data_criada;
+        this.entidade = entidade;
+        this.cartaoDefault = cartao_default;
     }
 
     /*
@@ -88,7 +98,7 @@ public class Cliente extends Pessoa {
 
     public int alterarInformacoes(String old_email) {
         int status = ClientDAO.UpdateClient(nome, morada, email, telemovel, nif,
-                password, old_email);
+                                            password, old_email);
         return status;
     }
 

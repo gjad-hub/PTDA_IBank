@@ -22,7 +22,6 @@ public class ClienteFuncionarioDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         ArrayList<Integer> list = new ArrayList<>();
-
         try {
             stmt = conn.prepareStatement(
             "select num_cli from funcionario_cliente where num_fun = ?;");

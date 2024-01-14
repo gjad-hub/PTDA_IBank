@@ -1,5 +1,6 @@
 package pt.ua.ibank.DAO;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -75,8 +76,7 @@ public class FuncionarioDAO {
                                       rs.getString("password"),
                                       rs.getInt("gerente"),
                                       rs.getBoolean("demitido")
-        ); // falta adicionar um número de gerente ao funcionário
-
+        );
             }
 
             return fun;
@@ -94,20 +94,21 @@ public class FuncionarioDAO {
         Funcionario fun = null;
         try {
             stmt = conn.prepareStatement(
-            "SELECT num_fun,nome,morada,email,telemovel,nif,gerente,demitido "
+            "SELECT num_fun,nome,morada,email,telemovel,nif,gerente,demitido,data_criacao "
             + "FROM funcionario where num_fun like ?;");
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
                 fun = new Funcionario(rs.getInt("num_fun"),
+                                      rs.getInt("gerente"),
                                       rs.getString("nome"),
                                       rs.getString("morada"),
                                       rs.getString("email"),
                                       rs.getString("telemovel"),
                                       rs.getString("nif"),
-                                      rs.getInt("gerente"),
-                                      rs.getBoolean("demitido"));
+                                      rs.getBoolean("demitido"),
+                                      rs.getDate("data_criacao"));
             }
 
             return fun;
@@ -148,7 +149,7 @@ public class FuncionarioDAO {
         ArrayList list = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(
-            "SELECT num_fun, nome, morada, email, telemovel, nif, gerente,demitido FROM funcionario");
+            "SELECT num_fun, nome, morada, email, telemovel, nif, gerente,demitido,data_criacao FROM funcionario");
             rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -160,10 +161,14 @@ public class FuncionarioDAO {
                 String nif = rs.getString("nif");
                 Integer numGerente = rs.getInt("gerente");
                 Boolean demitido = rs.getBoolean("demitido");
+                Date dataCriada = rs.getDate("data_criacao");
 
-                list.add(new Funcionario(numero, nome, morada, email, telemovel,
-                                         nif, morada, numGerente, demitido
-                ));
+                list.add(
+                        new Funcionario(numero, numGerente, nome, morada, email,
+                                        telemovel,
+                                        nif, demitido,
+                                        dataCriada
+                        ));
 
             }
             return list;

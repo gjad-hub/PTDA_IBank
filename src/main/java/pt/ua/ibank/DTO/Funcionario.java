@@ -2,6 +2,7 @@ package pt.ua.ibank.DTO;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.sql.Date;
 import pt.ua.ibank.DAO.FuncionarioDAO;
 import pt.ua.ibank.utilities.Hash;
 
@@ -11,6 +12,7 @@ public class Funcionario extends Pessoa {
     public int gerente;
     public Boolean foiDespedido;
     public static Funcionario LocalFuncionario;
+    public Date dataCriada;
 
     /*
      * Construtor se for funcionário comum
@@ -45,9 +47,10 @@ public class Funcionario extends Pessoa {
         this.foiDespedido = foiDespedido;
     }
 
-    public Funcionario(Integer numFun, String nome, String morada, String email,
+    public Funcionario(Integer numFun, Integer numGerente, String nome,
+                       String morada, String email,
                        String telemovel, String nif,
-                       Integer numGerente, boolean foiDespedido) {
+                       boolean foiDespedido, Date dataCriada) {
         this.numFun = numFun;
         this.nome = nome;
         this.morada = morada;
@@ -56,6 +59,7 @@ public class Funcionario extends Pessoa {
         this.nif = nif;
         this.gerente = numGerente;
         this.foiDespedido = foiDespedido;
+        this.dataCriada = dataCriada;
     }
 
 

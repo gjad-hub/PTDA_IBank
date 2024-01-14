@@ -160,7 +160,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
         lblDataValue.setBackground(new java.awt.Color(255, 255, 255));
         lblDataValue.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         lblDataValue.setForeground(new java.awt.Color(255, 255, 255));
-        lblDataValue.setText("Data");
+        lblDataValue.setText(personalDataTable.client.data_criada.toString());
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -496,9 +496,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
     jPanelDadosComentariosLayout.setHorizontalGroup(
         jPanelDadosComentariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-        .addGroup(jPanelDadosComentariosLayout.createSequentialGroup()
-            .addComponent(jScrollPane2)
-            .addGap(0, 0, 0))
+        .addComponent(jScrollPane2)
     );
     jPanelDadosComentariosLayout.setVerticalGroup(
         jPanelDadosComentariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -530,7 +528,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
             .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel18)
-            .addContainerGap(201, Short.MAX_VALUE))
+            .addContainerGap(205, Short.MAX_VALUE))
     );
     jPanel9Layout.setVerticalGroup(
         jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
