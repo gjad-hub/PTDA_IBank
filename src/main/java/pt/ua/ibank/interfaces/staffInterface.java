@@ -37,6 +37,8 @@ public class staffInterface extends javax.swing.JFrame {
     private void start_up() {
         small_side_bar.setVisible(false);
         menu_bar.add(new WindowMenu((MDIDesktopPane) desktop));
+        logout.setText("Fechar (" + Funcionario.LocalFuncionario.email + ")");
+        updateInfo();
     }
 
     private void managerComponentsSetVisible(boolean aFlag) {
@@ -44,6 +46,12 @@ public class staffInterface extends javax.swing.JFrame {
         createEmployeeAccount.setVisible(aFlag);
         btnManageEmployees.setVisible(aFlag);
         manageEmployees.setVisible(aFlag);
+    }
+
+    public void updateInfo() {
+        lblEmployeeNameValue.setText(Funcionario.LocalFuncionario.nome);
+        logout.setText("Fechar (" + Funcionario.LocalFuncionario.email + ")");
+        lblsaccount.setText(Funcionario.LocalFuncionario.nome);
     }
 
     @Override
@@ -59,16 +67,11 @@ public class staffInterface extends javax.swing.JFrame {
         this.desktop.setComponentZOrder(comp, 0);
     }
 
-    public void UpdateInfo() {
-        //display_user.setText(LocalClient.nome);
-        logout.setText("Fechar (" + Funcionario.LocalFuncionario.email + ")");
-    }
-
     private void center(Component comp) {
         Dimension desktopSize = this.desktop.getSize();
         Dimension jInternalFrameSize = comp.getSize();
         comp.setLocation((desktopSize.width - jInternalFrameSize.width) / 2,
-                         (desktopSize.height - jInternalFrameSize.height) / 2);
+                (desktopSize.height - jInternalFrameSize.height) / 2);
     }
 
     /**
@@ -751,6 +754,7 @@ public class staffInterface extends javax.swing.JFrame {
             side_bar.setVisible(true);
             small_side_bar.setVisible(false);
         }
+        System.out.println(Funcionario.LocalFuncionario.nome);
     }//GEN-LAST:event_hideActionPerformed
 
     private void btntransfersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntransfersActionPerformed
@@ -766,11 +770,11 @@ public class staffInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_slogoutActionPerformed
 
     private void btnaccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaccountActionPerformed
-        addWindow(new ProfilePage());
+        addWindow(new ProfilePage(Funcionario.LocalFuncionario));
     }//GEN-LAST:event_btnaccountActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        addWindow(new ProfilePage());
+        addWindow(new ProfilePage(Funcionario.LocalFuncionario));
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
@@ -795,7 +799,7 @@ public class staffInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_lblsaccountMouseExited
 
     private void lblsaccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblsaccountMouseClicked
-        addWindow(new ProfilePage());
+        addWindow(new ProfilePage(Funcionario.LocalFuncionario));
     }//GEN-LAST:event_lblsaccountMouseClicked
 
     private void createEmployeeAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEmployeeAccountActionPerformed
@@ -830,7 +834,7 @@ public class staffInterface extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info
-                         : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                    : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;

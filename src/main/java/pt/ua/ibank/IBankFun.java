@@ -35,6 +35,5 @@ public class IBankFun {
             localStaffInterface = new staffInterface();
             localStaffInterface.setVisible(true);
         }
-
     }
 }

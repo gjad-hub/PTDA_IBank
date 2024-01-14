@@ -436,15 +436,15 @@ public class clientInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutActionPerformed
 
     private void saccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saccountActionPerformed
-        addWindow(new ProfilePage());
+        addWindow(new ProfilePage(LocalClient));
     }//GEN-LAST:event_saccountActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        addWindow(new ProfilePage());
+        addWindow(new ProfilePage(LocalClient));
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void display_userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_display_userMouseClicked
-        addWindow(new ProfilePage());
+        addWindow(new ProfilePage(LocalClient));
     }//GEN-LAST:event_display_userMouseClicked
 
     private void servicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_servicesActionPerformed

@@ -73,7 +73,7 @@ public class Funcionario extends Pessoa {
 
     public int alterarInformacoes(String old_email) {
         int status = FuncionarioDAO.UpdateFuncionario(nome, morada, email,
-                                                      telemovel, nif, old_email);
+                                                      telemovel, nif, password, old_email);
         return status;
     }
 

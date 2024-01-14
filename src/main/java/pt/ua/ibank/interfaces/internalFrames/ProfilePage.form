@@ -88,7 +88,7 @@
                       <Component id="l_old_pass" alignment="0" max="32767" attributes="0"/>
                       <Component id="new_password" alignment="1" max="32767" attributes="0"/>
                       <Component id="l_new_pass" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jLabel7" alignment="0" pref="456" max="32767" attributes="0"/>
+                      <Component id="num_conta" alignment="0" pref="456" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="jLabel1" min="-2" pref="147" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -131,7 +131,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="nif_input" min="-2" pref="30" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                  <Component id="num_conta" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="AC_input" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
@@ -287,7 +287,7 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel7">
+        <Component class="javax.swing.JLabel" name="num_conta">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>

@@ -6,16 +6,34 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.SwingUtilities;
 import pt.ua.ibank.DAO.ClientDAO;
+import pt.ua.ibank.DAO.FuncionarioDAO;
+import pt.ua.ibank.DTO.Cliente;
+import pt.ua.ibank.DTO.Funcionario;
 import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
-import static pt.ua.ibank.utilities.Configs.LocalClient;
+import static pt.ua.ibank.interfaces.staffInterface.localStaffInterface;
 import pt.ua.ibank.utilities.Hash;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
 
 public class ProfilePage extends javax.swing.JInternalFrame {
 
-    public ProfilePage() {
+    private Cliente cli;
+    private Funcionario fun;
+
+    public ProfilePage(Cliente cliente) {
         initComponents();
+        this.cli = cliente;
         starUp();
+
+        SwingUtilities.invokeLater(() -> {
+            this.pack();
+        });
+    }
+
+    public ProfilePage(Funcionario funcionario) {
+        initComponents();
+        this.fun = funcionario;
+        starUp();
+
         SwingUtilities.invokeLater(() -> {
             this.pack();
         });
@@ -27,12 +45,20 @@ public class ProfilePage extends javax.swing.JInternalFrame {
     }
 
     private void populate() {
-        name_input.setText(LocalClient.nome);
-        email_input.setText(LocalClient.email);
-        address_input.setText(LocalClient.morada);
-        phone_input.setText(LocalClient.telemovel);
-        nif_input.setText(LocalClient.nif);
-        AC_input.setText(maskString(LocalClient.numConta, 10));
+        if (this.cli != null && this.fun == null) {
+            name_input.setText(this.cli.nome);
+            email_input.setText(this.cli.email);
+            address_input.setText(this.cli.morada);
+            phone_input.setText(this.cli.telemovel);
+            nif_input.setText(this.cli.nif);
+            AC_input.setText(maskString(this.cli.numConta, 10));
+        } else if (this.cli == null && this.fun != null) {
+            name_input.setText(this.fun.nome);
+            email_input.setText(this.fun.email);
+            address_input.setText(this.fun.morada);
+            phone_input.setText(this.fun.telemovel);
+            nif_input.setText(this.fun.nif);
+        }
     }
 
     private String maskString(String string, int char_visible) {
@@ -71,7 +97,7 @@ public class ProfilePage extends javax.swing.JInternalFrame {
         new_password = new javax.swing.JPasswordField();
         l_new_pass = new javax.swing.JLabel();
         AC_input = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        num_conta = new javax.swing.JLabel();
         see = new javax.swing.JCheckBox();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -140,8 +166,8 @@ public class ProfilePage extends javax.swing.JInternalFrame {
 
         AC_input.setEnabled(false);
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel7.setText("Número de conta");
+        num_conta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        num_conta.setText("Número de conta");
 
         see.setText("Ver");
         see.addActionListener(new java.awt.event.ActionListener() {
@@ -180,7 +206,7 @@ public class ProfilePage extends javax.swing.JInternalFrame {
                     .addComponent(l_old_pass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(new_password, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(l_new_pass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+                    .addComponent(num_conta, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -218,7 +244,7 @@ public class ProfilePage extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nif_input, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8)
-                .addComponent(jLabel7)
+                .addComponent(num_conta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AC_input, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -287,13 +313,21 @@ public class ProfilePage extends javax.swing.JInternalFrame {
         String email = email_input.getText();
         String address = address_input.getText();
         String phone = phone_input.getText();
-        String old_email = LocalClient.email;
+        String old_email = this.cli != null ? this.cli.email : this.fun.email;
 
         try {
-            if (!Hash.validatePassword(new String(old_password.getPassword()),
-                                       LocalClient.password)) {
-                status.setText("Password antiga não corresponde !");
-                return;
+            if (this.cli != null && this.fun == null) {
+                if (!Hash.validatePassword(new String(old_password.getPassword()),
+                        this.cli.password)) {
+                    status.setText("Password antiga não corresponde !");
+                    return;
+                }
+            } else if (this.cli == null && this.fun != null) {
+                if (!Hash.validatePassword(new String(old_password.getPassword()),
+                        this.fun.password)) {
+                    status.setText("Password antiga não corresponde !");
+                    return;
+                }
             }
 
             if (name.isEmpty()) {
@@ -321,8 +355,8 @@ public class ProfilePage extends javax.swing.JInternalFrame {
             }
 
             String regexNome = "^[a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜãõÃÕñÑçÇ\\s'-]+$";
-            String regexEmail =
-                   "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+            String regexEmail
+                    = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
             String regexTelefoneNif = "^\\d{9}$";
             String regexPassword = "^.{8,}$";
 
@@ -364,43 +398,84 @@ public class ProfilePage extends javax.swing.JInternalFrame {
                 return;
             }
 
+            //Pós-Verificação
             if (!new String(new_password.getPassword()).isEmpty()) {
-                LocalClient.password = Hash.generateStorngPasswordHash(
-                new String(new_password.getPassword()));
+                if (this.cli != null && this.fun == null) {
+                    this.cli.password = Hash.generateStorngPasswordHash(new String(new_password.getPassword()));
+                } else if (this.cli == null && this.fun != null) {
+                    this.fun.password = Hash.generateStorngPasswordHash(new String(new_password.getPassword()));
+                }
             }
 
-            LocalClient.nome =
-            name.equals(LocalClient.nome) ? LocalClient.nome : name;
-            LocalClient.email = email.equals(LocalClient.email) ?
-                                LocalClient.email : email;
-            LocalClient.morada = address.equals(LocalClient.morada) ?
-                                 LocalClient.morada : address;
-            LocalClient.telemovel = phone.equals(LocalClient.telemovel) ?
-                                    LocalClient.telemovel : phone;
+            if (this.cli != null && this.fun == null) {
+                this.cli.nome
+                        = name.equals(this.cli.nome) ? this.cli.nome : name;
+                this.cli.email = email.equals(this.cli.email)
+                        ? this.cli.email : email;
+                this.cli.morada = address.equals(this.cli.morada)
+                        ? this.cli.morada : address;
+                this.cli.telemovel = phone.equals(this.cli.telemovel)
+                        ? this.cli.telemovel : phone;
 
-            int status_int = LocalClient.alterarInformacoes(old_email);
+                int status_int = this.cli.alterarInformacoes(old_email);
 
-            switch (status_int) {
-                case ClientDAO.codigoErroEmail -> {
-                    status.setText("Endereço de email já existente !");
-                    LocalClient.email = old_email;
+                switch (status_int) {
+                    case ClientDAO.codigoErroEmail -> {
+                        status.setText("Endereço de email já existente !");
+                        this.cli.email = old_email;
+                    }
+                    case ClientDAO.codigoErro -> {
+                        status.setText(
+                                "Algo inesperado aconteceu tente novamente mais tarde !");
+                        this.cli.email = old_email;
+                    }
+                    case ClientDAO.codigoSucesso -> {
+                        status.setText("Sucesso ao atualizar infromações!");
+                        SwingUtilities.invokeLater(() -> {
+                            try {
+                                Thread.sleep(1500);
+                                hideStuff();
+                                populate();
+                                localClientInterface.UpdateInfo();
+                            } catch (InterruptedException ex) {
+                            }
+                        });
+                    }
                 }
-                case ClientDAO.codigoErro -> {
-                    status.setText(
-                            "Algo inesperado aconteceu tente novamente mais tarde !");
-                    LocalClient.email = old_email;
-                }
-                case ClientDAO.codigoSucesso -> {
-                    status.setText("Sucesso ao atualizar infromações!");
-                    SwingUtilities.invokeLater(() -> {
-                        try {
-                            Thread.sleep(1500);
-                            hideStuff();
-                            populate();
-                            localClientInterface.UpdateInfo();
-                        } catch (InterruptedException ex) {
-                        }
-                    });
+            } else if (this.cli == null && this.fun != null) {
+                this.fun.nome
+                        = name.equals(this.fun.nome) ? this.fun.nome : name;
+                this.fun.email = email.equals(this.fun.email)
+                        ? this.fun.email : email;
+                this.fun.morada = address.equals(this.fun.morada)
+                        ? this.fun.morada : address;
+                this.fun.telemovel = phone.equals(this.fun.telemovel)
+                        ? this.fun.telemovel : phone;
+
+                int status_int = this.fun.alterarInformacoes(old_email);
+
+                switch (status_int) {
+                    case FuncionarioDAO.codigoErroEmail -> {
+                        status.setText("Endereço de email já existente !");
+                        this.fun.email = old_email;
+                    }
+                    case FuncionarioDAO.codigoErro -> {
+                        status.setText(
+                                "Algo inesperado aconteceu tente novamente mais tarde !");
+                        this.fun.email = old_email;
+                    }
+                    case FuncionarioDAO.codigoSucesso -> {
+                        status.setText("Sucesso ao atualizar infromações!");
+                        SwingUtilities.invokeLater(() -> {
+                            try {
+                                Thread.sleep(1500);
+                                hideStuff();
+                                populate();
+                                localStaffInterface.updateInfo();
+                            } catch (InterruptedException ex) {
+                            }
+                        });
+                    }
                 }
             }
         } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
@@ -411,9 +486,9 @@ public class ProfilePage extends javax.swing.JInternalFrame {
 
     private void seeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seeActionPerformed
         if (see.isSelected()) {
-            AC_input.setText(LocalClient.numConta);
+            AC_input.setText(this.cli.numConta);
         } else {
-            AC_input.setText(maskString(LocalClient.numConta, 10));
+            AC_input.setText(maskString(this.cli.numConta, 10));
         }
     }//GEN-LAST:event_seeActionPerformed
 
@@ -432,6 +507,13 @@ public class ProfilePage extends javax.swing.JInternalFrame {
         email_input.setEnabled(false);
         address_input.setEnabled(false);
         phone_input.setEnabled(false);
+
+        if (this.cli == null && this.fun != null) {
+            num_conta.setVisible(false);
+            AC_input.setVisible(false);
+            see.setVisible(false);
+        }
+
         clearCamps();
         this.pack();
     }
@@ -453,7 +535,6 @@ public class ProfilePage extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel l_new_pass;
@@ -461,6 +542,7 @@ public class ProfilePage extends javax.swing.JInternalFrame {
     private javax.swing.JTextField name_input;
     private javax.swing.JPasswordField new_password;
     private javax.swing.JTextField nif_input;
+    private javax.swing.JLabel num_conta;
     private javax.swing.JPasswordField old_password;
     private javax.swing.JTextField phone_input;
     private javax.swing.JButton save;
