@@ -25,6 +25,7 @@ public class Funcionario extends Pessoa {
         this.telemovel = telemovel;
         this.nif = nif;
         this.password = password;
+        this.foiDespedido = foiDespedido;
     }
 
     /*
@@ -41,6 +42,7 @@ public class Funcionario extends Pessoa {
         this.nif = nif;
         this.password = password;
         this.gerente = numGerente;
+        this.foiDespedido = foiDespedido;
     }
 
     public Funcionario(Integer numFun, String nome, String morada, String email,
@@ -53,6 +55,7 @@ public class Funcionario extends Pessoa {
         this.telemovel = telemovel;
         this.nif = nif;
         this.gerente = numGerente;
+        this.foiDespedido = foiDespedido;
     }
 
 

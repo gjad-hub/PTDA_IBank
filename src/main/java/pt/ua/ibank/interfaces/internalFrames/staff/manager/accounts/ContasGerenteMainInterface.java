@@ -447,6 +447,7 @@ public class ContasGerenteMainInterface extends javax.swing.JPanel {
     }
 
     public Funcionario getCurrFuncionario() {
+        System.out.println(currFuncionario.foiDespedido);
         return currFuncionario;
     }
 

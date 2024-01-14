@@ -94,7 +94,7 @@ public class FuncionarioDAO {
         Funcionario fun = null;
         try {
             stmt = conn.prepareStatement(
-            "SELECT num_fun,nome,morada,email,telemovel,nif,gerente "
+            "SELECT num_fun,nome,morada,email,telemovel,nif,gerente,demitido "
             + "FROM funcionario where num_fun like ?;");
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
@@ -148,7 +148,7 @@ public class FuncionarioDAO {
         ArrayList list = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(
-            "SELECT num_fun, nome, morada, email, telemovel, nif, gerente FROM funcionario");
+            "SELECT num_fun, nome, morada, email, telemovel, nif, gerente,demitido FROM funcionario");
             rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -160,6 +160,7 @@ public class FuncionarioDAO {
                 String nif = rs.getString("nif");
                 Integer numGerente = rs.getInt("gerente");
                 Boolean demitido = rs.getBoolean("demitido");
+                System.out.println(demitido);
 
                 list.add(new Funcionario(numero, nome, morada, email, telemovel,
                                          nif, morada, numGerente, demitido
@@ -183,7 +184,7 @@ public class FuncionarioDAO {
         ArrayList list = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(
-            "SELECT num_fun, nome, morada, email, telemovel, nif, gerente FROM funcionario where morada like ?");
+            "SELECT num_fun, nome, morada, email, telemovel, nif, gerente,demitido FROM funcionario where morada like ?");
             stmt.setString(1, address);
             rs = stmt.executeQuery();
 

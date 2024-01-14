@@ -13,11 +13,10 @@ import pt.ua.ibank.DAO.ClienteFuncionarioDAO;
 public class PerfilStaffLastOperationsTableModel extends javax.swing.table.AbstractTableModel {
 
     private final java.util.List<Integer> data;
-    private final int clientID;
 
     public PerfilStaffLastOperationsTableModel(int clientID) {
-        this.clientID = clientID;
         data = ClienteFuncionarioDAO.getClientsInteractedListByID(clientID);
+        System.out.println(data.toString());
     }
 
     @Override
