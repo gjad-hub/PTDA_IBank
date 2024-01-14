@@ -153,7 +153,7 @@
                           <EmptySpace pref="75" max="32767" attributes="0"/>
                           <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                          <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnOpenProfile" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -164,7 +164,7 @@
                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton2" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                              <Component id="btnOpenProfile" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       </Group>
@@ -183,7 +183,7 @@
                     <Property name="text" type="java.lang.String" value="Detalhes"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton2">
+                <Component class="javax.swing.JButton" name="btnOpenProfile">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -191,7 +191,7 @@
                     <Property name="text" type="java.lang.String" value="Ver perfil Completo"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOpenProfileActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -425,7 +425,7 @@
                 </Property>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTableAccountsContent.getColumnModel().getColumn(6).setCellRenderer(&#xa;                new ContasActionRenderer());&#xa;&#xa;        ContasActionEvent event = (int row) -&gt; {&#xa;            currFuncionario = ctm.getAccount(row);&#xa;&#xa;            currClienteDisplayPanel.setVisible(true);&#xa;&#xa;            lblNumeroFuncionarioValue.setText(Integer.toString(currFuncionario.numFun));&#xa;            lblGerenteResponsavelValue.setText(ctm.obterNomeGerente(currFuncionario.gerente));&#xa;            lblNomeValue.setText(currFuncionario.nome);&#xa;            lblEmailValue.setText(currFuncionario.email);&#xa;            lblTelemovelValue.setText(currFuncionario.telemovel);&#xa;            lblNIFValue.setText(currFuncionario.nif);&#xa;            lblMoradaValue.setText(currFuncionario.morada);&#xa;&#xa;            lblDepositosAprovadosValue.setText(&#xa;            Integer.toString(&#xa;            ctm.getDepositAmountNumberFromID(&#xa;                    currFuncionario.numFun&#xa;            )));&#xa;&#xa;        };&#xa;&#xa;        jTableAccountsContent.getColumnModel().getColumn(6).setCellEditor(&#xa;                new ContasCellEditor(event));&#xa;jTableAccountsContent.getColumnModel().getColumn(6).setMaxWidth(30);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTableAccountsContent.getColumnModel().getColumn(7).setCellRenderer(&#xa;                new ContasActionRenderer());&#xa;&#xa;        ContasActionEvent event = (int row) -&gt; {&#xa;            currFuncionario = ctm.getAccount(row);&#xa;&#xa;            currClienteDisplayPanel.setVisible(true);&#xa;&#xa;            lblNumeroFuncionarioValue.setText(Integer.toString(currFuncionario.numFun));&#xa;            lblGerenteResponsavelValue.setText(ctm.obterNomeGerente(currFuncionario.gerente));&#xa;            lblNomeValue.setText(currFuncionario.nome);&#xa;            lblEmailValue.setText(currFuncionario.email);&#xa;            lblTelemovelValue.setText(currFuncionario.telemovel);&#xa;            lblNIFValue.setText(currFuncionario.nif);&#xa;            lblMoradaValue.setText(currFuncionario.morada);&#xa;&#xa;            lblDepositosAprovadosValue.setText(&#xa;            Integer.toString(&#xa;            ctm.getDepositAmountNumberFromID(&#xa;                    currFuncionario.numFun&#xa;            )));&#xa;&#xa;        };&#xa;&#xa;        jTableAccountsContent.getColumnModel().getColumn(7).setCellEditor(&#xa;                new ContasCellEditor(event));&#xa;jTableAccountsContent.getColumnModel().getColumn(7).setMaxWidth(30);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ctm = new pt.ua.ibank.interfaces.internalFrames.staff.manager.accounts.StaffContasTableModel();"/>
               </AuxValues>
             </Component>

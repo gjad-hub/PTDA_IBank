@@ -73,7 +73,8 @@ public class FuncionarioDAO {
                                       rs.getString("telemovel"),
                                       rs.getString("nif"),
                                       rs.getString("password"),
-                                      rs.getInt("gerente")); // falta adicionar um número de gerente ao funcionário
+                                      rs.getInt("gerente"),
+                                      rs.getBoolean("demitido")); // falta adicionar um número de gerente ao funcionário
             }
 
             return fun;
@@ -103,7 +104,8 @@ public class FuncionarioDAO {
                                       rs.getString("email"),
                                       rs.getString("telemovel"),
                                       rs.getString("nif"),
-                                      rs.getInt("gerente"));
+                                      rs.getInt("gerente"),
+                                      rs.getBoolean("demitido"));
             }
 
             return fun;
@@ -155,9 +157,10 @@ public class FuncionarioDAO {
                 String telemovel = rs.getString("telemovel");
                 String nif = rs.getString("nif");
                 Integer numGerente = rs.getInt("gerente");
+                Boolean demitido = rs.getBoolean("demitido");
 
                 list.add(new Funcionario(numero, nome, morada, email, telemovel,
-                                         nif, morada, numGerente));
+                                         nif, morada, numGerente, demitido));
             }
             return list;
         } catch (SQLException e) {
@@ -188,9 +191,10 @@ public class FuncionarioDAO {
                 String telemovel = rs.getString("telemovel");
                 String nif = rs.getString("nif");
                 Integer numGerente = rs.getInt("gerente");
+                Boolean demitido = rs.getBoolean("demitido");
 
                 list.add(new Funcionario(numero, nome, morada, email, telemovel,
-                                         nif, morada, numGerente));
+                                         nif, morada, numGerente, demitido));
                 return list;
             }
         } catch (SQLException e) {
@@ -246,9 +250,10 @@ public class FuncionarioDAO {
                 String telemovel = rs.getString("telemovel");
                 String nif = rs.getString("nif");
                 Integer numGerente = rs.getInt("gerente");
+                Boolean demitido = rs.getBoolean("demitido");
 
                 return new Funcionario(numero, nome, morada, email, telemovel,
-                                       nif, morada, numGerente);
+                                       nif, morada, numGerente, demitido);
             }
 
             return cl;

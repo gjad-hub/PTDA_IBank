@@ -41,7 +41,7 @@ public class ContasGerenteMainInterface extends javax.swing.JPanel {
         currClienteDisplayPanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnOpenProfile = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         lblDepositosAprovados = new javax.swing.JLabel();
         lblMorada = new javax.swing.JLabel();
@@ -99,11 +99,11 @@ public class ContasGerenteMainInterface extends javax.swing.JPanel {
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Detalhes");
 
-        jButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jButton2.setText("Ver perfil Completo");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnOpenProfile.setBackground(new java.awt.Color(204, 204, 204));
+        btnOpenProfile.setText("Ver perfil Completo");
+        btnOpenProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnOpenProfileActionPerformed(evt);
             }
         });
 
@@ -115,7 +115,7 @@ public class ContasGerenteMainInterface extends javax.swing.JPanel {
                 .addContainerGap(75, Short.MAX_VALUE)
                 .addComponent(jLabel21)
                 .addGap(74, 74, 74)
-                .addComponent(jButton2)
+                .addComponent(btnOpenProfile)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -124,7 +124,7 @@ public class ContasGerenteMainInterface extends javax.swing.JPanel {
                 .addGap(6, 6, 6)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnOpenProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6))
         );
 
@@ -261,7 +261,7 @@ public class ContasGerenteMainInterface extends javax.swing.JPanel {
         jTableAccountsContent.setModel(ctm);
         jTableAccountsContent.setGridColor(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(jTableAccountsContent);
-        jTableAccountsContent.getColumnModel().getColumn(6).setCellRenderer(
+        jTableAccountsContent.getColumnModel().getColumn(7).setCellRenderer(
             new ContasActionRenderer());
 
         ContasActionEvent event = (int row) -> {
@@ -285,9 +285,9 @@ public class ContasGerenteMainInterface extends javax.swing.JPanel {
 
                 };
 
-                jTableAccountsContent.getColumnModel().getColumn(6).setCellEditor(
+                jTableAccountsContent.getColumnModel().getColumn(7).setCellEditor(
                     new ContasCellEditor(event));
-                jTableAccountsContent.getColumnModel().getColumn(6).setMaxWidth(30);
+                jTableAccountsContent.getColumnModel().getColumn(7).setMaxWidth(30);
 
                 jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -443,16 +443,16 @@ public class ContasGerenteMainInterface extends javax.swing.JPanel {
             }// </editor-fold>//GEN-END:initComponents
 
     public javax.swing.JButton getOpenProfileButton() {
-        return jButton2;
+        return btnOpenProfile;
     }
 
     public Funcionario getCurrFuncionario() {
         return currFuncionario;
     }
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnOpenProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenProfileActionPerformed
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnOpenProfileActionPerformed
 
     private void btnProcurarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarContaActionPerformed
         String selectedType =
@@ -471,10 +471,10 @@ public class ContasGerenteMainInterface extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane LayeredPaneContas;
+    private javax.swing.JButton btnOpenProfile;
     private javax.swing.JButton btnProcurarConta;
     private javax.swing.JComboBox<String> comboBoxType;
     private javax.swing.JPanel currClienteDisplayPanel;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;

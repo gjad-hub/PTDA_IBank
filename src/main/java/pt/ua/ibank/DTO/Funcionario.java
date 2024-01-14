@@ -9,14 +9,15 @@ public class Funcionario extends Pessoa {
 
     public int numFun;
     public int gerente;
-
+    public Boolean foiDespedido;
     public static Funcionario LocalFuncionario;
 
     /*
      * Construtor se for funcionário comum
      */
     public Funcionario(Integer numFun, String nome, String morada, String email,
-                       String telemovel, String nif, String password) {
+                       String telemovel, String nif, String password,
+                       boolean foiDespedido) {
         this.numFun = numFun;
         this.nome = nome;
         this.morada = morada;
@@ -31,7 +32,7 @@ public class Funcionario extends Pessoa {
      */
     public Funcionario(Integer numFun, String nome, String morada, String email,
                        String telemovel, String nif, String password,
-                       Integer numGerente) {
+                       Integer numGerente, boolean foiDespedido) {
         this.numFun = numFun;
         this.nome = nome;
         this.morada = morada;
@@ -44,7 +45,7 @@ public class Funcionario extends Pessoa {
 
     public Funcionario(Integer numFun, String nome, String morada, String email,
                        String telemovel, String nif,
-                       Integer numGerente) {
+                       Integer numGerente, boolean foiDespedido) {
         this.numFun = numFun;
         this.nome = nome;
         this.morada = morada;

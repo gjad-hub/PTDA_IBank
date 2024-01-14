@@ -22,7 +22,7 @@ public class StaffContasTableModel extends AbstractTableModel {
         data = FuncionarioDAO.getFuncionarioList();
         header = new ArrayList<>(Arrays.asList(
         "N.Funcionario", "N.Gerente", "Nome",
-        "Email", "NIF", "Operacoes Feitas", ""));
+        "Email", "NIF", "Operacoes Feitas", "demitido", ""));
     }
 
     @Override
@@ -133,6 +133,9 @@ public class StaffContasTableModel extends AbstractTableModel {
             case 5 -> {
                 var id = data.get(rowIndex).numFun;
                 return FuncionarioDAO.getFuncionarioNumDepositosAprovados(id);
+            }
+            case 6 -> {
+                return data.get(rowIndex).foiDespedido;
             }
             default -> {
                 return -1;
