@@ -1,22 +1,15 @@
 package pt.ua.ibank.interfaces.internalFrames.staff.profile;
 
 import com.mysql.cj.conf.ConnectionUrlParser.Pair;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import pt.ua.ibank.interfaces.internalFrames.staff.manager.profile.personal.PerfilEmployeePersonalTableModel;
 import pt.ua.ibank.interfaces.internalFrames.staff.manager.profile.personal.lastoperations.PerfilStaffLastOperationsTableCellRenderer;
 import pt.ua.ibank.interfaces.internalFrames.staff.manager.profile.personal.lastoperations.PerfilStaffLastOperationsTableModel;
-import pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment.PerfilCommentTableModel;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilActionRenderer;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilCellEditor;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilTableActionEvent;
@@ -37,9 +30,14 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
     private PerfilStaffLastOperationsTableModel lastOperationModel;
     private PerfilEmployeePersonalTableModel personalDataTable;
 
-    public StaffPerfilMainInterface(int clientID) {
+    public StaffPerfilMainInterface(int clientID, boolean isManager) {
         this.clientID = clientID;
         initComponents();
+
+        if (isManager) {
+            btnPromocao.setVisible(false);
+        }
+
     }
 
     /*
@@ -80,8 +78,8 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
         jTablePersonalData = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnApagarConta = new javax.swing.JButton();
+        btnPromocao = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
@@ -184,9 +182,9 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
                 .addComponent(jPanelFotoPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
@@ -309,7 +307,7 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
     jPanelDadosPessoais.setLayout(jPanelDadosPessoaisLayout);
     jPanelDadosPessoaisLayout.setHorizontalGroup(
         jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
     );
     jPanelDadosPessoaisLayout.setVerticalGroup(
@@ -317,36 +315,35 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
         .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(0, 0, 0)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-            .addGap(0, 0, 0))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
     );
 
     jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-    jButton4.setBackground(new java.awt.Color(58, 58, 58));
-    jButton4.setForeground(new java.awt.Color(255, 255, 255));
-    jButton4.setText("Despromover Cargo/ Apagar conta");
-    jButton4.setToolTipText("");
-    jButton4.setBorder(null);
-    jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+    btnApagarConta.setBackground(new java.awt.Color(58, 58, 58));
+    btnApagarConta.setForeground(new java.awt.Color(255, 255, 255));
+    btnApagarConta.setText("Despedir socio / Apagar conta");
+    btnApagarConta.setToolTipText("");
+    btnApagarConta.setBorder(null);
+    btnApagarConta.addMouseListener(new java.awt.event.MouseAdapter() {
         public void mouseClicked(java.awt.event.MouseEvent evt) {
-            jButton4MouseClicked(evt);
+            btnApagarContaMouseClicked(evt);
         }
     });
-    jButton4.addActionListener(new java.awt.event.ActionListener() {
+    btnApagarConta.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton4ActionPerformed(evt);
+            btnApagarContaActionPerformed(evt);
         }
     });
 
-    jButton3.setBackground(new java.awt.Color(58, 58, 58));
-    jButton3.setForeground(new java.awt.Color(255, 255, 255));
-    jButton3.setText("Promover para Gerente");
-    jButton3.setToolTipText("");
-    jButton3.setBorder(null);
-    jButton3.addActionListener(new java.awt.event.ActionListener() {
+    btnPromocao.setBackground(new java.awt.Color(58, 58, 58));
+    btnPromocao.setForeground(new java.awt.Color(255, 255, 255));
+    btnPromocao.setText("Promover para Gerente");
+    btnPromocao.setToolTipText("");
+    btnPromocao.setBorder(null);
+    btnPromocao.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton3ActionPerformed(evt);
+            btnPromocaoActionPerformed(evt);
         }
     });
 
@@ -371,7 +368,7 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
             .addGap(5, 5, 5)
             .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+            .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
             .addGap(37, 37, 37))
     );
     jPanel8Layout.setVerticalGroup(
@@ -388,15 +385,15 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
     jPanel4.setLayout(jPanel4Layout);
     jPanel4Layout.setHorizontalGroup(
         jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
         .addGroup(jPanel4Layout.createSequentialGroup()
             .addContainerGap()
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addComponent(jLabel1)
-                    .addGap(0, 0, 0)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(btnPromocao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnApagarConta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap())
     );
     jPanel4Layout.setVerticalGroup(
@@ -404,11 +401,11 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
         .addGroup(jPanel4Layout.createSequentialGroup()
             .addGap(0, 0, 0)
             .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnApagarConta, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnPromocao, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(jLabel1)
             .addGap(46, 46, 46))
     );
@@ -434,7 +431,7 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
             .addGap(5, 5, 5)
             .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+            .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
             .addGap(37, 37, 37))
     );
     jPanel7Layout.setVerticalGroup(
@@ -463,7 +460,7 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
     jPanelDadosCartao.setLayout(jPanelDadosCartaoLayout);
     jPanelDadosCartaoLayout.setHorizontalGroup(
         jPanelDadosCartaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
     );
     jPanelDadosCartaoLayout.setVerticalGroup(
@@ -479,39 +476,29 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
     jPanelDadosContainerLayout.setHorizontalGroup(
         jPanelDadosContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanelDadosContainerLayout.createSequentialGroup()
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addContainerGap()
             .addComponent(jPanelDadosDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(6, 6, 6)
+            .addComponent(jPanelDadosPessoais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanelDadosContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelDadosContainerLayout.createSequentialGroup()
-                    .addGap(10, 10, 10)
-                    .addComponent(jPanelDadosCartao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE))
-                .addGroup(jPanelDadosContainerLayout.createSequentialGroup()
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelDadosPessoais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(10, 10, 10)))
-            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelDadosCartao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap())
     );
     jPanelDadosContainerLayout.setVerticalGroup(
         jPanelDadosContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanelDadosContainerLayout.createSequentialGroup()
             .addContainerGap()
-            .addGroup(jPanelDadosContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelDadosContainerLayout.createSequentialGroup()
-                    .addComponent(jPanelDadosPessoais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanelDadosContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelDadosContainerLayout.createSequentialGroup()
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jPanelDadosCartao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(jPanelDadosContainerLayout.createSequentialGroup()
-                    .addComponent(jPanelDadosDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE))
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addContainerGap())
+                .addComponent(jPanelDadosPessoais, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelDadosDescricao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
-
-    int personalDataTableWidth = jTablePersonalData.getSize().width;
-    int personalDataTableHeight = ((jTablePersonalData.getModel().getRowCount()+1) * 40)-5;
-    jPanelDadosPessoais.setPreferredSize(new Dimension(personalDataTableWidth, personalDataTableHeight));
 
     LayeredPaneEditarConta.setLayer(jPanelDadosContainer, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -520,89 +507,46 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
     LayeredPaneEditarContaLayout.setHorizontalGroup(
         LayeredPaneEditarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(LayeredPaneEditarContaLayout.createSequentialGroup()
-            .addContainerGap(16, Short.MAX_VALUE)
-            .addComponent(jPanelDadosContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(16, Short.MAX_VALUE))
+            .addContainerGap(53, Short.MAX_VALUE)
+            .addComponent(jPanelDadosContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addContainerGap(77, Short.MAX_VALUE))
     );
     LayeredPaneEditarContaLayout.setVerticalGroup(
         LayeredPaneEditarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(LayeredPaneEditarContaLayout.createSequentialGroup()
             .addComponent(jPanelDadosContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(0, 156, Short.MAX_VALUE))
+            .addContainerGap(171, Short.MAX_VALUE))
     );
 
     add(LayeredPaneEditarConta, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnPromocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromocaoActionPerformed
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnPromocaoActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void btnApagarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarContaActionPerformed
 
-    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        String resultado =
+               //FuncionarioDAO.apagarConta(clientID) ?
+               true ?
+               "Operação feita com sucesso" :
+               "Operação feita sem sucesso, tente novamente";
+        JOptionPane.showMessageDialog(this, resultado);
+    }//GEN-LAST:event_btnApagarContaActionPerformed
+
+    private void btnApagarContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnApagarContaMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4MouseClicked
+    }//GEN-LAST:event_btnApagarContaMouseClicked
 
-    private static void AdicionarComentarioPerfil(
-            PerfilCommentTableModel commentModel, String message) {
-        JFrame frame = new JFrame("Adicionar Comentario");
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        // Create a panel to hold components
-        JPanel panel = new JPanel();
-        frame.getContentPane().add(panel);
-
-        // Create a label
-        JLabel label = new JLabel("Coloque o seu comentario:");
-        panel.add(label);
-
-        // Create a text field for user input
-        JTextField textField = new JTextField(20);
-        panel.add(textField);
-
-        // Create a button
-        JButton submitButton = new JButton("Submit");
-        submitButton.addActionListener(e -> {
-            String input = textField.getText();
-            String resultado =
-                   commentModel.adicionarComentario(message + input) ?
-                   "Operação feita com sucesso" :
-                   "Operação feita sem sucesso, tente novamente";
-            JOptionPane.showMessageDialog(frame, resultado);
-            frame.dispose();
-
-        });
-        panel.add(submitButton);
-
-        textField.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    submitButton.doClick(); // Simulate a click on the submitButton
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-            }
-        });
-
-        // Set up the frame
-        frame.pack();
-        frame.setLocationRelativeTo(null); // Center the frame on the screen
-        frame.setVisible(true);
+    public JButton getBtnApagarConta() {
+        return btnApagarConta;
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane LayeredPaneEditarConta;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnApagarConta;
+    private javax.swing.JButton btnPromocao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

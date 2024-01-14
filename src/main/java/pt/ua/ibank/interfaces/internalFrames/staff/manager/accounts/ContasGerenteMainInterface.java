@@ -446,7 +446,7 @@ public class ContasGerenteMainInterface extends javax.swing.JPanel {
         return jButton2;
     }
 
-    public Funcionario getCurrCliente() {
+    public Funcionario getCurrFuncionario() {
         return currFuncionario;
     }
 

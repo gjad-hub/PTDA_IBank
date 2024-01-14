@@ -28,11 +28,13 @@ public final class PerfilEmployeePersonalTableModel extends AbstractTableModel {
 
     public void setupData() {
         data.add(new Pair<>("ID: ", Integer.toString(funcionario.numFun)));
-        data.add(new Pair<>("Gerente:", getNomeGerente()));
+        data.add(new Pair<>("Gerente: ", getNomeGerente()));
         data.add(new Pair<>("Nome:", funcionario.nome));
         data.add(new Pair<>("Email:", funcionario.telemovel));
+        data.add(new Pair<>("Telemovel:", funcionario.telemovel));
         data.add(new Pair<>("NIF: ", funcionario.nif));
         data.add(new Pair<>("Morada:", funcionario.morada));
+        System.out.println(data.size() + " e " + funcionario);
     }
 
     public String getNomeGerente() {
@@ -40,7 +42,7 @@ public final class PerfilEmployeePersonalTableModel extends AbstractTableModel {
             return FuncionarioDAO.getFuncionarioNomeByID(
                     funcionario.gerente);
         }
-        return "responsabilidade propria";
+        return "N/A";
     }
 
     @Override
@@ -73,10 +75,10 @@ public final class PerfilEmployeePersonalTableModel extends AbstractTableModel {
                 funcionario.numFun = (int) aValue;
             }
             case 1 -> {
-                funcionario.nome = (String) aValue;
+                funcionario.gerente = (Integer) aValue;
             }
             case 2 -> {
-                funcionario.morada = (String) aValue;
+                funcionario.nome = (String) aValue;
             }
             case 3 -> {
                 funcionario.email = (String) aValue;
@@ -86,6 +88,9 @@ public final class PerfilEmployeePersonalTableModel extends AbstractTableModel {
             }
             case 5 -> {
                 funcionario.nif = (String) aValue;
+            }
+            case 6 -> {
+                funcionario.morada = (String) aValue;
             }
 
         }

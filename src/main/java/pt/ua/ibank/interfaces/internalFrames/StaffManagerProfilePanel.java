@@ -4,6 +4,9 @@
  */
 package pt.ua.ibank.interfaces.internalFrames;
 
+import java.awt.event.ActionEvent;
+import javax.swing.JButton;
+
 /**
  *
  * @author ricar
@@ -16,10 +19,17 @@ public class StaffManagerProfilePanel extends javax.swing.JInternalFrame {
      * @param userEmail
      */
     private final int userID;
+    private final boolean isManager;
 
-    public StaffManagerProfilePanel(int userID) {
+    public StaffManagerProfilePanel(int userID, boolean isManager) {
         this.userID = userID;
+        this.isManager = isManager;
         initComponents();
+
+        JButton deleteAccountBtn = perfilMainInterface1.getBtnApagarConta();
+        deleteAccountBtn.addActionListener((ActionEvent e) -> {
+            this.setVisible(false);
+        });
     }
 
     /**
@@ -31,7 +41,7 @@ public class StaffManagerProfilePanel extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        perfilMainInterface1 = new pt.ua.ibank.interfaces.internalFrames.staff.profile.StaffPerfilMainInterface(userID);
+        perfilMainInterface1 = new pt.ua.ibank.interfaces.internalFrames.staff.profile.StaffPerfilMainInterface(userID,isManager);
 
         setClosable(true);
         setIconifiable(true);
