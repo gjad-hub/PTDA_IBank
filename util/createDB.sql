@@ -69,7 +69,8 @@ CREATE TABLE funcionario
     nif       VARCHAR(9),
     password  VARCHAR(255),
     gerente   INT,
-    demitido BOOLEAN DEFAULT 0,
+    demitido        BOOLEAN DEFAULT 0,
+    data_criacao    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (gerente) REFERENCES funcionario (num_fun)
 );
 
