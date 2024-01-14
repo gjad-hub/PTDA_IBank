@@ -210,6 +210,24 @@ public class FuncionarioDAO {
         return null;
     }
 
+    public static boolean promoverFuncionario(int id) {
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = conn.prepareStatement(
+            "UPDATE funcionario SET gerente = 0 WHERE num_fun LIKE ? ");
+            stmt.setInt(1, id);
+            stmt.execute();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            return false;
+        } finally {
+            DBConnection.closeConnection(stmt);
+        }
+    }
+
     public static Integer getFuncionarioIdByEmail(String email) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -572,7 +590,7 @@ public class FuncionarioDAO {
         return totalAprovacoes;
     }
 
-    public static int demitirFuncionario(int numFuncionario) {
+    public static boolean demitirFuncionario(int numFuncionario) {
         PreparedStatement stmt = null;
 
         try {
@@ -580,13 +598,11 @@ public class FuncionarioDAO {
             "UPDATE funcionario SET demitido = TRUE WHERE num_fun = ?");
             stmt.setInt(1, numFuncionario);
             int affectedRows = stmt.executeUpdate();
-            if (affectedRows > 0) {
-                return codigoSucesso;
-            } else {
-                return codigoErro;
-            }
+            return affectedRows > 0;
+
         } catch (SQLException e) {
-            return codigoErro;
+            e.printStackTrace(System.out);
+            return false;
         } finally {
             DBConnection.closeConnection(stmt);
         }
