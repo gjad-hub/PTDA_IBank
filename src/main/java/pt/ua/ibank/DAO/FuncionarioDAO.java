@@ -17,8 +17,8 @@ public class FuncionarioDAO {
     public final static int codigoErroEmail = 3;
 
     public static int CreateFuncionario(String nome, String morada, String email,
-            String telefone, String nif,
-            String password) {
+                                        String telefone, String nif,
+                                        String password) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
@@ -26,7 +26,7 @@ public class FuncionarioDAO {
 
             // Verifica se já existe alguma conta com aquele e-mail
             stmt = conn.prepareStatement(
-                    "SELECT count(num_fun) AS valor FROM cliente where email like ?;");
+            "SELECT count(num_fun) AS valor FROM cliente where email like ?;");
             stmt.setString(1, email);
             rs = stmt.executeQuery();
             rs.next();
@@ -36,8 +36,8 @@ public class FuncionarioDAO {
             }
 
             stmt = conn.prepareStatement(
-                    "INSERT INTO funcionario (nome, morada, email, telemovel, nif, password) "
-                    + "VALUES (?, ?, ?, ?, ?, ?)");
+            "INSERT INTO funcionario (nome, morada, email, telemovel, nif, password) "
+            + "VALUES (?, ?, ?, ?, ?, ?)");
             stmt.setString(1, nome);
             stmt.setString(2, morada);
             stmt.setString(3, email);
@@ -61,22 +61,75 @@ public class FuncionarioDAO {
         try {
 
             stmt = conn.prepareStatement(
-                    "SELECT * FROM funcionario where email like ?;");
+            "SELECT * FROM funcionario where email like ?;");
             stmt.setString(1, email);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
                 fun = new Funcionario(rs.getInt("num_fun"),
-                        rs.getString("nome"),
-                        rs.getString("morada"),
-                        rs.getString("email"),
-                        rs.getString("telemovel"),
-                        rs.getString("nif"),
-                        rs.getString("password"),
-                rs.getInt("gerente")); // falta adicionar um número de gerente ao funcionário
+                                      rs.getString("nome"),
+                                      rs.getString("morada"),
+                                      rs.getString("email"),
+                                      rs.getString("telemovel"),
+                                      rs.getString("nif"),
+                                      rs.getString("password"),
+                                      rs.getInt("gerente")); // falta adicionar um número de gerente ao funcionário
             }
 
             return fun;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+        return null;
+    }
+
+    public static Funcionario getFuncionarioByID(int id) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Funcionario fun = null;
+        try {
+
+            stmt = conn.prepareStatement(
+            "SELECT * FROM funcionario where num_fun like ?;");
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                fun = new Funcionario(rs.getInt("num_fun"),
+                                      rs.getString("nome"),
+                                      rs.getString("morada"),
+                                      rs.getString("email"),
+                                      rs.getString("telemovel"),
+                                      rs.getString("nif"),
+                                      rs.getString("password"),
+                                      rs.getInt("gerente")); // falta adicionar um número de gerente ao funcionário
+            }
+
+            return fun;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+        return null;
+    }
+
+    public static String getFuncionarioNomeByID(int id) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Funcionario fun = null;
+        try {
+
+            stmt = conn.prepareStatement(
+            "SELECT nome FROM funcionario where num_fun like ?;");
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                return rs.getString("nome");
+            }
         } catch (SQLException e) {
             e.printStackTrace(System.out);
         } finally {
@@ -92,7 +145,7 @@ public class FuncionarioDAO {
         ArrayList list = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(
-                    "SELECT num_fun, nome, morada, email, telemovel, nif, gerente FROM funcionario");
+            "SELECT num_fun, nome, morada, email, telemovel, nif, gerente FROM funcionario");
             rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -105,9 +158,42 @@ public class FuncionarioDAO {
                 Integer numGerente = rs.getInt("gerente");
 
                 list.add(new Funcionario(numero, nome, morada, email, telemovel,
-                        nif, morada, numGerente));
+                                         nif, morada, numGerente));
             }
             return list;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+        return null;
+    }
+
+    public static ArrayList<Funcionario> getFuncionarioListByAddress(
+            String address) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        ArrayList list = new ArrayList<>();
+        try {
+            stmt = conn.prepareStatement(
+            "SELECT num_fun, nome, morada, email, telemovel, nif, gerente FROM funcionario where morada like ?");
+            stmt.setString(1, address);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Integer numero = rs.getInt("num_fun");
+                String nome = rs.getString("nome");
+                String morada = rs.getString("morada");
+                String email = rs.getString("email");
+                String telemovel = rs.getString("telemovel");
+                String nif = rs.getString("nif");
+                Integer numGerente = rs.getInt("gerente");
+
+                list.add(new Funcionario(numero, nome, morada, email, telemovel,
+                                         nif, morada, numGerente));
+                return list;
+            }
         } catch (SQLException e) {
             e.printStackTrace(System.out);
         } finally {
@@ -124,7 +210,7 @@ public class FuncionarioDAO {
         try {
 
             stmt = conn.prepareStatement(
-                    "SELECT num_fun FROM funcionario where email like ?;");
+            "SELECT num_fun FROM funcionario where email like ?;");
             stmt.setString(1, email);
             rs = stmt.executeQuery();
 
@@ -141,16 +227,101 @@ public class FuncionarioDAO {
         return null;
     }
 
+    public static Funcionario getFuncionarioByNIF(String id) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Funcionario cl = null;
+
+        try {
+
+            stmt = conn.prepareStatement(
+            "SELECT * FROM cliente where nif like ?;");
+            stmt.setString(1, id);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Integer numero = rs.getInt("num_fun");
+                String nome = rs.getString("nome");
+                String morada = rs.getString("morada");
+                String email = rs.getString("email");
+                String telemovel = rs.getString("telemovel");
+                String nif = rs.getString("nif");
+                Integer numGerente = rs.getInt("gerente");
+
+                return new Funcionario(numero, nome, morada, email, telemovel,
+                                       nif, morada, numGerente);
+            }
+
+            return cl;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+        return null;
+    }
+
+    public static boolean UpdateFuncionario(
+            int num_funcionario, String nome,
+            String morada, String email,
+            String telefone, String nif) {
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = conn.prepareStatement(
+            "UPDATE funcionario "
+            + "SET nome = ? , morada = ?, email = ?, telemovel = ?,nif = ? "
+            + "WHERE num_fun = ?");
+            stmt.setString(1, nome);
+            stmt.setString(2, morada);
+            stmt.setString(3, email);
+            stmt.setString(4, telefone);
+            stmt.setString(5, nif);
+            stmt.setInt(6, num_funcionario);
+            stmt.executeUpdate();
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            return false;
+        } finally {
+            DBConnection.closeConnection(stmt);
+        }
+    }
+
+    public static Integer getNomeFuncionarioById(int id) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Integer num_cliente = null;
+
+        try {
+
+            stmt = conn.prepareStatement(
+            "SELECT nome FROM funcionario where num_conta like ?;");
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                return rs.getInt("nome");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+        return null;
+    }
+
     public static int UpdateFuncionario(String nome, String morada, String email,
-            String telemovel, String nif,
-            String old_email) {
+                                        String telemovel, String nif,
+                                        String old_email) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
         try {
             // Verifica se já existe alguma conta com aquele e-mail
             stmt = conn.prepareStatement(
-                    "SELECT count(num_fun) AS valor FROM funcionario where email like ?;");
+            "SELECT count(num_fun) AS valor FROM funcionario where email like ?;");
             stmt.setString(1, email);
             rs = stmt.executeQuery();
             rs.next();
@@ -160,7 +331,7 @@ public class FuncionarioDAO {
             }
 
             stmt = conn.prepareStatement(
-                    "UPDATE funcionario SET nome = ? , morada = ?, email = ?, telemovel = ? WHERE email = ?");
+            "UPDATE funcionario SET nome = ? , morada = ?, email = ?, telemovel = ? WHERE email = ?");
             stmt.setString(1, nome);
             stmt.setString(2, morada);
             stmt.setString(3, email);
@@ -176,15 +347,15 @@ public class FuncionarioDAO {
     }
 
     public static int UpdateFuncionario(String nome, String morada, String email,
-            String telefone, String nif,
-            String password, String old_email) {
+                                        String telefone, String nif,
+                                        String password, String old_email) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
         try {
             // Verifica se já existe alguma conta com aquele e-mail
             stmt = conn.prepareStatement(
-                    "SELECT count(num_fun) AS valor FROM funcionario where email like ?;");
+            "SELECT count(num_fun) AS valor FROM funcionario where email like ?;");
             stmt.setString(1, email);
             rs = stmt.executeQuery();
             rs.next();
@@ -194,7 +365,7 @@ public class FuncionarioDAO {
             }
 
             stmt = conn.prepareStatement(
-                    "UPDATE funcionario SET nome = ? , morada = ?, email = ?, telemovel = ?, password = ? WHERE email = ?");
+            "UPDATE funcionario SET nome = ? , morada = ?, email = ?, telemovel = ?, password = ? WHERE email = ?");
             stmt.setString(1, nome);
             stmt.setString(2, morada);
             stmt.setString(3, email);
@@ -217,7 +388,7 @@ public class FuncionarioDAO {
 
         try {
             stmt = conn.prepareStatement(
-                    "SELECT COUNT(*) AS total_contas FROM cliente;");
+            "SELECT COUNT(*) AS total_contas FROM cliente;");
             rs = stmt.executeQuery();
             if (rs.next()) {
                 numContasCriadas = rs.getInt("total_contas");
@@ -238,7 +409,7 @@ public class FuncionarioDAO {
 
         try {
             stmt = conn.prepareStatement(
-                    "SELECT COUNT(*) AS depositos_pendentes FROM deposito WHERE pendente_aprovacao = 1;");
+            "SELECT COUNT(*) AS depositos_pendentes FROM deposito WHERE pendente_aprovacao = 1;");
             rs = stmt.executeQuery();
             if (rs.next()) {
                 numDepositosPorAprovar = rs.getInt("depositos_pendentes");
@@ -259,15 +430,36 @@ public class FuncionarioDAO {
 
         try {
             stmt = conn.prepareStatement(
-                    "SELECT num_fun, COUNT(*) AS total_aprovados FROM deposito WHERE aprovado = 1 GROUP BY num_fun ORDER BY total_aprovados DESC LIMIT 1;");
+            "SELECT num_fun, COUNT(*) AS total_aprovados FROM deposito WHERE aprovado = 1 GROUP BY num_fun ORDER BY total_aprovados DESC LIMIT 1;");
             rs = stmt.executeQuery();
             if (rs.next()) {
                 int numFun = rs.getInt("num_fun");
-                nomeFuncionarioMaisDepositos = getNomeFuncionarioByNumber(numFun);
+                nomeFuncionarioMaisDepositos =
+                getNomeFuncionarioByNumber(numFun);
             }
             return nomeFuncionarioMaisDepositos;
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+        return null;
+    }
+
+    public static String getFuncionarioNumDepositosAprovados(int id) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            stmt = conn.prepareStatement(
+            "SELECT count(*) as numero from deposito where num_fun = ?;");
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getString("numero");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
@@ -280,7 +472,7 @@ public class FuncionarioDAO {
 
         try {
             stmt = conn.prepareStatement(
-                    "SELECT nome FROM funcionario WHERE num_fun = ?");
+            "SELECT nome FROM funcionario WHERE num_fun = ?");
             stmt.setInt(1, numFun);
             rs = stmt.executeQuery();
 
@@ -303,7 +495,7 @@ public class FuncionarioDAO {
 
         try {
             stmt = conn.prepareStatement(
-                    "SELECT nome FROM cliente ORDER BY num_cliente DESC LIMIT 1;");
+            "SELECT nome FROM cliente ORDER BY num_cliente DESC LIMIT 1;");
             rs = stmt.executeQuery();
 
             if (rs.next()) {
@@ -327,7 +519,7 @@ public class FuncionarioDAO {
 
         try {
             stmt = conn.prepareStatement(
-                    "SELECT data FROM deposito ORDER BY data DESC LIMIT 1;");
+            "SELECT data FROM deposito ORDER BY data DESC LIMIT 1;");
             rs = stmt.executeQuery();
 
             if (rs.next()) {
@@ -353,7 +545,7 @@ public class FuncionarioDAO {
 
         try {
             stmt = conn.prepareStatement(
-                    "SELECT num_fun, COUNT(*) AS total_aprovacoes FROM deposito WHERE aprovado = 1 GROUP BY num_fun ORDER BY total_aprovacoes DESC LIMIT 1;");
+            "SELECT num_fun, COUNT(*) AS total_aprovacoes FROM deposito WHERE aprovado = 1 GROUP BY num_fun ORDER BY total_aprovacoes DESC LIMIT 1;");
             rs = stmt.executeQuery();
 
             if (rs.next()) {

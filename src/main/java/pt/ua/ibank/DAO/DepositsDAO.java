@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import pt.ua.ibank.DTO.Deposito;
-import pt.ua.ibank.DTO.Funcionario;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 
@@ -19,9 +18,9 @@ public class DepositsDAO {
         try {
 
             stmt = conn.prepareStatement(
-                    "INSERT INTO deposito (valor, num_cli) "
-                    + "VALUES (?,?)"
-            );
+            "INSERT INTO deposito (valor, num_cli) "
+            + "VALUES (?,?)"
+    );
 
             stmt.setDouble(1, valor);
             stmt.setInt(2, clienteRealiza);
@@ -42,7 +41,7 @@ public class DepositsDAO {
 
         try {
             stmt = conn.prepareStatement(
-                    "SELECT id_deposito,valor,aprovado,pendente_aprovacao FROM deposito WHERE num_cli = ? ORDER BY data desc;");
+            "SELECT id_deposito,valor,aprovado,pendente_aprovacao FROM deposito WHERE num_cli = ? ORDER BY data desc;");
             stmt.setInt(1, num_cliente);
             rs = stmt.executeQuery();
 
@@ -52,12 +51,12 @@ public class DepositsDAO {
                 boolean isPending = rs.getBoolean("pendente_aprovacao");
                 if (isPending) {
                     tr = new Deposito(rs.getInt("id_deposito"),
-                            rs.getDouble("valor"));
+                                      rs.getDouble("valor"));
                 } else {
                     tr = new Deposito(rs.getInt("id_deposito"),
-                            rs.getDouble("valor"),
-                            rs.getBoolean("aprovado")
-                    );
+                                      rs.getDouble("valor"),
+                                      rs.getBoolean("aprovado")
+            );
                 }
 
                 ldeposito.add(tr);
@@ -76,9 +75,9 @@ public class DepositsDAO {
 
         try {
             stmt = conn.prepareCall(
-                    "{call aprovar_deposito(?,?)}");
+            "{call aprovar_deposito(?,?)}");
             stmt.setInt(1, num_deposito);
-            stmt.setInt(2, Funcionario.LocalFuncionario.getNumFun());
+            stmt.setInt(2, num_funcionario);
             stmt.execute();
             return true;
         } catch (SQLException e) {
@@ -95,7 +94,7 @@ public class DepositsDAO {
 
         try {
             stmt = conn.prepareCall(
-                    "{call reprovar_deposito(?,?)}");
+            "{call reprovar_deposito(?,?)}");
             stmt.setInt(1, num_deposito);
             stmt.setInt(2, num_funcionario);
             stmt.execute();
@@ -114,7 +113,7 @@ public class DepositsDAO {
 
         try {
             stmt = conn.prepareStatement(
-                    "SELECT count(*) AS qtd FROM deposito WHERE num_cli = ? and pendente_aprovacao = 1");
+            "SELECT count(*) AS qtd FROM deposito WHERE num_cli = ? and pendente_aprovacao = 1");
             stmt.setInt(1, num_cliente);
             rs = stmt.executeQuery();
 

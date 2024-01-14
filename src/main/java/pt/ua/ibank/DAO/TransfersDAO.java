@@ -44,14 +44,14 @@ public class TransfersDAO {
             stmt = conn.prepareStatement(
             "INSERT INTO funcionario_cliente(num_fun,num_cli)"
             + "VALUES (?, ?, ?, ?");
-            stmt.setInt(1, Funcionario.LocalFuncionario.getNumFun());
+            stmt.setInt(1, Funcionario.LocalFuncionario.numFun);
             stmt.setInt(2, clienteRealiza);
             stmt.execute();
 
             stmt = conn.prepareStatement(
             "INSERT INTO funcionario_cliente(num_fun,num_cli)"
             + "VALUES (?, ?, ?, ?");
-            stmt.setInt(1, Funcionario.LocalFuncionario.getNumFun());
+            stmt.setInt(1, Funcionario.LocalFuncionario.numFun);
             stmt.setInt(2, clienteRecebe);
             stmt.execute();
 

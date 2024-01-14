@@ -7,7 +7,6 @@ package pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment;
 import java.sql.Timestamp;
 import pt.ua.ibank.DAO.CommentsDAO;
 import pt.ua.ibank.DTO.Funcionario;
-
 import pt.ua.ibank.DTO.ModeratorComment;
 
 /**
@@ -37,14 +36,15 @@ public class PerfilCommentTableModel extends javax.swing.table.AbstractTableMode
     public boolean adicionarComentario(String comment) {
 
         if (CommentsDAO.addNewComment(
-                Funcionario.LocalFuncionario.getNumFun(),
+                Funcionario.LocalFuncionario.numFun,
                 clientID,
                 comment)) {
             data.add(
                     new ModeratorComment(data.size(),
-                            Funcionario.LocalFuncionario.nome,
-                            comment,
-                            new Timestamp(System.currentTimeMillis())));
+                                         Funcionario.LocalFuncionario.nome,
+                                         comment,
+                                         new Timestamp(
+                                                 System.currentTimeMillis())));
 
             fireTableRowsInserted(data.size() - 1, data.size() - 1);
             return true;

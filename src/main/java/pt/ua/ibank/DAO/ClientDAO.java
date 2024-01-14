@@ -319,6 +319,28 @@ public class ClientDAO {
         return null;
     }
 
+    public static String getClienteNomeByID(int clientID) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            stmt = conn.prepareStatement(
+            "SELECT nome FROM funcionario WHERE num_cliente = ?");
+            stmt.setInt(1, clientID);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getString("nome");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+
+        return null;
+    }
+
     public static Integer getClientIdByEmail(String email) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -353,13 +375,14 @@ public class ClientDAO {
         try {
             stmt = conn.prepareStatement(
             "UPDATE cliente "
-            + "SET nome = ? , morada = ?, email = ?, telemovel = ? "
+            + "SET nome = ? , morada = ?, email = ?, telemovel = ?, nif = ? "
             + "WHERE num_cliente = ?");
             stmt.setString(1, nome);
             stmt.setString(2, morada);
             stmt.setString(3, email);
             stmt.setString(4, telefone);
-            stmt.setInt(5, num_cliente);
+            stmt.setString(5, nif);
+            stmt.setInt(6, num_cliente);
             stmt.executeUpdate();
             return true;
 

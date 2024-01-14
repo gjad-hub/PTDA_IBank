@@ -29,15 +29,15 @@ public class DepositTableModel extends AbstractTableModel {
     public void aprovarDeposito(int row) {
         if (DepositsDAO.aproveDeposit(
                 data.get(row).idDeposito,
-                Funcionario.LocalFuncionario.getNumFun()
+                Funcionario.LocalFuncionario.numFun
         )) {
             data.get(row).pendenteAprovacao = false;
             data.get(row).aprovado = true;
 
-            client.saldo_cativo
-                    = (client.saldo_cativo - data.get(row).valor) == 0
-                    ? 0
-                    : (client.saldo_cativo - data.get(row).valor);
+            client.saldo_cativo =
+            (client.saldo_cativo - data.get(row).valor) == 0 ?
+            0 :
+            (client.saldo_cativo - data.get(row).valor);
 
             this.client.saldo += data.get(row).valor;
             fireTableRowsInserted(data.size() - 1, data.size() - 1);
@@ -48,15 +48,15 @@ public class DepositTableModel extends AbstractTableModel {
     public void reprovarDeposito(int row) {
         DepositsDAO.denyDeposit(
                 data.get(row).idDeposito,
-                Funcionario.LocalFuncionario.getNumFun()
+                Funcionario.LocalFuncionario.numFun
         );
 
         data.get(row).pendenteAprovacao = false;
         data.get(row).aprovado = false;
-        client.saldo_cativo
-                = (client.saldo_cativo - data.get(row).valor) == 0
-                ? 0
-                : (client.saldo_cativo - data.get(row).valor);
+        client.saldo_cativo =
+        (client.saldo_cativo - data.get(row).valor) == 0 ?
+        0 :
+        (client.saldo_cativo - data.get(row).valor);
         fireTableRowsInserted(data.size() - 1, data.size() - 1);
     }
 
