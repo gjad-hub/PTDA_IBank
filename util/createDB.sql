@@ -12,6 +12,7 @@ CREATE TABLE cliente
     saldo          DECIMAL(10, 2) DEFAULT 0,
     saldo_cativo   DECIMAL(10, 2) DEFAULT 0,
     cartao_default VARCHAR(255),
+    eliminado        BOOLEAN DEFAULT 0,
     entidade       INT
 );
 
@@ -66,6 +67,7 @@ CREATE TABLE funcionario
     nif       VARCHAR(9),
     password  VARCHAR(255),
     gerente   INT,
+    demitido BOOLEAN DEFAULT 0,
     FOREIGN KEY (gerente) REFERENCES funcionario (num_fun)
 );
 
