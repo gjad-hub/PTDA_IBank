@@ -12,7 +12,8 @@ CREATE TABLE cliente
     saldo          DECIMAL(10, 2) DEFAULT 0,
     saldo_cativo   DECIMAL(10, 2) DEFAULT 0,
     cartao_default VARCHAR(255),
-    eliminado        BOOLEAN DEFAULT 0,
+    eliminado      BOOLEAN DEFAULT 0,
+    data_criacao   TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     entidade       INT
 );
 
@@ -41,7 +42,8 @@ CREATE TABLE pagamento_servicos_compras
     cancelada    BOOLEAN,
     data_cri     TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (entidade, referencia),
-    FOREIGN KEY (cliente) REFERENCES cliente (num_cliente)
+    FOREIGN KEY (cliente) REFERENCES cliente (num_cliente),
+    FOREIGN KEY (cliente_cria) REFERENCES cliente(num_cliente)
 );
 
 -- Tabela Tranferencia
