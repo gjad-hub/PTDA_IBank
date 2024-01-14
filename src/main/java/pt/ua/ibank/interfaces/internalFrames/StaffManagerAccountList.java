@@ -5,6 +5,7 @@
 package pt.ua.ibank.interfaces.internalFrames;
 
 import java.awt.event.ActionEvent;
+import pt.ua.ibank.interfaces.internalFrames.staff.manager.accounts.ContasGerenteMainInterface;
 import pt.ua.ibank.interfaces.staffInterface;
 
 /**
@@ -43,20 +44,18 @@ public class StaffManagerAccountList extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        contasInterfaceContainer = new pt.ua.ibank.interfaces.internalFrames.staff.accounts.ContasMainInterface();
+        contasInterfaceContainer = new ContasGerenteMainInterface();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Lista de Clientes");
-        setFrameIcon(null);
         getContentPane().add(contasInterfaceContainer, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private pt.ua.ibank.interfaces.internalFrames.staff.accounts.ContasMainInterface contasInterfaceContainer;
+    private ContasGerenteMainInterface contasInterfaceContainer;
     // End of variables declaration//GEN-END:variables
 }
