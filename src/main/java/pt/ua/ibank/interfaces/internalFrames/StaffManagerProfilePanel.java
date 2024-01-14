@@ -30,6 +30,11 @@ public class StaffManagerProfilePanel extends javax.swing.JInternalFrame {
         deleteAccountBtn.addActionListener((ActionEvent e) -> {
             this.setVisible(false);
         });
+
+        JButton promoteAccountBtn = perfilMainInterface1.getBtnPromoverConta();
+        promoteAccountBtn.addActionListener((ActionEvent e) -> {
+            this.setVisible(false);
+        });
     }
 
     /**

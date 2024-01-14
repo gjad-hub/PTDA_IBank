@@ -112,6 +112,14 @@ public final class PerfilEmployeePersonalTableModel extends AbstractTableModel {
         return data.get(linha);
     }
 
+    public boolean apagarFuncionario() {
+        return FuncionarioDAO.demitirFuncionario(funcionario.numFun);
+    }
+
+    public boolean promoverFuncionario() {
+        return FuncionarioDAO.promoverFuncionario(funcionario.numFun);
+    }
+
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return columnIndex > 0; // only the second column should be clickable

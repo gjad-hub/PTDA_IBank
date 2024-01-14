@@ -78,7 +78,7 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
         jPanelOperacoesDisponiveis = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnApagarConta = new javax.swing.JButton();
-        btnPromocao = new javax.swing.JButton();
+        BtnPromoverConta = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
@@ -335,14 +335,14 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
         }
     });
 
-    btnPromocao.setBackground(new java.awt.Color(58, 58, 58));
-    btnPromocao.setForeground(new java.awt.Color(255, 255, 255));
-    btnPromocao.setText("Promover para Gerente");
-    btnPromocao.setToolTipText("");
-    btnPromocao.setBorder(null);
-    btnPromocao.addActionListener(new java.awt.event.ActionListener() {
+    BtnPromoverConta.setBackground(new java.awt.Color(58, 58, 58));
+    BtnPromoverConta.setForeground(new java.awt.Color(255, 255, 255));
+    BtnPromoverConta.setText("Promover para Gerente");
+    BtnPromoverConta.setToolTipText("");
+    BtnPromoverConta.setBorder(null);
+    BtnPromoverConta.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            btnPromocaoActionPerformed(evt);
+            BtnPromoverContaActionPerformed(evt);
         }
     });
 
@@ -391,7 +391,7 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
                 .addGroup(jPanelOperacoesDisponiveisLayout.createSequentialGroup()
                     .addComponent(jLabel1)
                     .addGap(0, 0, Short.MAX_VALUE))
-                .addComponent(btnPromocao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BtnPromoverConta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnApagarConta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap())
     );
@@ -403,7 +403,7 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(btnApagarConta, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnPromocao, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(BtnPromoverConta, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(jLabel1)
             .addGap(46, 46, 46))
@@ -505,7 +505,7 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
     }
 
     if (isManager) {
-        btnPromocao.setVisible(false);
+        BtnPromoverConta.setVisible(false);
     }
 
     LayeredPaneEditarConta.setLayer(jPanelDadosContainer, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -529,31 +529,39 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
     add(LayeredPaneEditarConta, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPromocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromocaoActionPerformed
-
-    }//GEN-LAST:event_btnPromocaoActionPerformed
+    private void BtnPromoverContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPromoverContaActionPerformed
+        String resultado =
+               personalDataTable.promoverFuncionario() ?
+               "Operação feita com sucesso" :
+               "Operação feita sem sucesso, tente novamente";
+        JOptionPane.showMessageDialog(this, resultado);
+    }//GEN-LAST:event_BtnPromoverContaActionPerformed
 
     private void btnApagarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarContaActionPerformed
 
         String resultado =
-               FuncionarioDAO.demitirFuncionario(clientID) == 1 ?
+               personalDataTable.apagarFuncionario() ?
                "Operação feita com sucesso" :
                "Operação feita sem sucesso, tente novamente";
         JOptionPane.showMessageDialog(this, resultado);
     }//GEN-LAST:event_btnApagarContaActionPerformed
 
     private void btnApagarContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnApagarContaMouseClicked
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnApagarContaMouseClicked
 
     public JButton getBtnApagarConta() {
         return btnApagarConta;
     }
 
+    public JButton getBtnPromoverConta() {
+        return BtnPromoverConta;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnPromoverConta;
     private javax.swing.JLayeredPane LayeredPaneEditarConta;
     private javax.swing.JButton btnApagarConta;
-    private javax.swing.JButton btnPromocao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
