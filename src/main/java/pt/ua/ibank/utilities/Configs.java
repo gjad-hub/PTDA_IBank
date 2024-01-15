@@ -3,6 +3,7 @@ package pt.ua.ibank.utilities;
 import java.util.prefs.Preferences;
 import pt.ua.ibank.DTO.Cartao;
 import pt.ua.ibank.DTO.Cliente;
+import pt.ua.ibank.DTO.Funcionario;
 import pt.ua.ibank.IBank;
 
 public class Configs {
@@ -12,6 +13,7 @@ public class Configs {
     
     public static Cliente LocalClient;
     public static Cartao LocalClientCard;
+    public static Funcionario LocalFuncionario;
     
     public static String Uname;
     public static boolean Usave;

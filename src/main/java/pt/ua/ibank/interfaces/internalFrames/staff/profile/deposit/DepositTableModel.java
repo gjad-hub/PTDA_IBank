@@ -11,6 +11,7 @@ import pt.ua.ibank.DAO.DepositsDAO;
 import pt.ua.ibank.DTO.Cliente;
 import pt.ua.ibank.DTO.Deposito;
 import pt.ua.ibank.DTO.Funcionario;
+import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
 
 /**
  *
@@ -29,7 +30,7 @@ public class DepositTableModel extends AbstractTableModel {
     public void aprovarDeposito(int row) {
         if (DepositsDAO.aproveDeposit(
                 data.get(row).idDeposito,
-                Funcionario.LocalFuncionario.numFun
+                LocalFuncionario.numFun
         )) {
             data.get(row).pendenteAprovacao = false;
             data.get(row).aprovado = true;
@@ -48,7 +49,7 @@ public class DepositTableModel extends AbstractTableModel {
     public void reprovarDeposito(int row) {
         DepositsDAO.denyDeposit(
                 data.get(row).idDeposito,
-                Funcionario.LocalFuncionario.numFun
+                LocalFuncionario.numFun
         );
 
         data.get(row).pendenteAprovacao = false;

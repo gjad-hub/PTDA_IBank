@@ -5,15 +5,15 @@ import java.security.spec.InvalidKeySpecException;
 import java.sql.Date;
 import pt.ua.ibank.DAO.FuncionarioDAO;
 import pt.ua.ibank.utilities.Hash;
+import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
 
 public class Funcionario extends Pessoa {
 
     public int numFun;
     public int gerente;
     public Boolean foiDespedido;
-    public static Funcionario LocalFuncionario;
     public Date dataCriada;
-
+    
     /*
      * Construtor se for funcionário comum
      */

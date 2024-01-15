@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import pt.ua.ibank.DAO.FuncionarioDAO;
-import static pt.ua.ibank.DTO.Funcionario.LocalFuncionario;
+import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
 import pt.ua.ibank.DTO.Funcionario;
 import pt.ua.ibank.utilities.Configs;
 

@@ -6,7 +6,7 @@ import java.awt.Dimension;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import pt.ua.ibank.DAO.FuncionarioDAO;
-import pt.ua.ibank.DTO.Funcionario;
+import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
 import pt.ua.ibank.interfaces.internalFrames.ProfilePage;
 import pt.ua.ibank.interfaces.internalFrames.StaffAccountList;
 import pt.ua.ibank.interfaces.internalFrames.StaffManagerAccountList;
@@ -37,7 +37,7 @@ public class staffInterface extends javax.swing.JFrame {
     private void start_up() {
         small_side_bar.setVisible(false);
         menu_bar.add(new WindowMenu((MDIDesktopPane) desktop));
-        logout.setText("Fechar (" + Funcionario.LocalFuncionario.email + ")");
+        logout.setText("Fechar (" + LocalFuncionario.email + ")");
         updateInfo();
     }
 
@@ -49,9 +49,9 @@ public class staffInterface extends javax.swing.JFrame {
     }
 
     public void updateInfo() {
-        lblEmployeeNameValue.setText(Funcionario.LocalFuncionario.nome);
-        logout.setText("Fechar (" + Funcionario.LocalFuncionario.email + ")");
-        lblsaccount.setText(Funcionario.LocalFuncionario.nome);
+        lblEmployeeNameValue.setText(LocalFuncionario.nome);
+        logout.setText("Fechar (" + LocalFuncionario.email + ")");
+        lblsaccount.setText(LocalFuncionario.nome);
     }
 
     @Override
@@ -211,11 +211,11 @@ public class staffInterface extends javax.swing.JFrame {
         });
 
         lblPositionInCompany.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        lblPositionInCompany.setText(Funcionario.LocalFuncionario.gerente == 0 ? MANAGER_NAME : EMPLOYEE_NAME);
+        lblPositionInCompany.setText(LocalFuncionario.gerente == 0 ? MANAGER_NAME : EMPLOYEE_NAME);
 
         lblsaccount.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblsaccount.setForeground(new java.awt.Color(62, 171, 191));
-        lblsaccount.setText(Funcionario.LocalFuncionario.nome);
+        lblsaccount.setText(LocalFuncionario.nome);
         lblsaccount.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblsaccountMouseClicked(evt);
@@ -565,7 +565,7 @@ public class staffInterface extends javax.swing.JFrame {
         lblWelcome.setText("Bem vindo de volta,");
 
         lblEmployeeNameValue.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblEmployeeNameValue.setText(Funcionario.LocalFuncionario.nome);
+        lblEmployeeNameValue.setText(LocalFuncionario.nome);
 
         desktop.setLayer(jPanelAccounts, javax.swing.JLayeredPane.DEFAULT_LAYER);
         desktop.setLayer(JPanelWidget3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -754,7 +754,7 @@ public class staffInterface extends javax.swing.JFrame {
             side_bar.setVisible(true);
             small_side_bar.setVisible(false);
         }
-        System.out.println(Funcionario.LocalFuncionario.nome);
+        System.out.println(LocalFuncionario.nome);
     }//GEN-LAST:event_hideActionPerformed
 
     private void btntransfersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntransfersActionPerformed
@@ -770,11 +770,11 @@ public class staffInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_slogoutActionPerformed
 
     private void btnaccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaccountActionPerformed
-        addWindow(new ProfilePage(Funcionario.LocalFuncionario));
+        addWindow(new ProfilePage(LocalFuncionario));
     }//GEN-LAST:event_btnaccountActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        addWindow(new ProfilePage(Funcionario.LocalFuncionario));
+        addWindow(new ProfilePage(LocalFuncionario));
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
@@ -799,7 +799,7 @@ public class staffInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_lblsaccountMouseExited
 
     private void lblsaccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblsaccountMouseClicked
-        addWindow(new ProfilePage(Funcionario.LocalFuncionario));
+        addWindow(new ProfilePage(LocalFuncionario));
     }//GEN-LAST:event_lblsaccountMouseClicked
 
     private void createEmployeeAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEmployeeAccountActionPerformed
