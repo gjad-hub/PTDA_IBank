@@ -42,26 +42,26 @@ public class TransfersDAO {
         PreparedStatement stmt = null;
         try {
             stmt = conn.prepareStatement(
-            "INSERT INTO funcionario_cliente(num_fun,num_cli)"
-            + "VALUES (?, ?, ?, ?");
-            stmt.setInt(1, Funcionario.LocalFuncionario.numFun);
-            stmt.setInt(2, clienteRealiza);
-            stmt.execute();
-
-            stmt = conn.prepareStatement(
-            "INSERT INTO funcionario_cliente(num_fun,num_cli)"
-            + "VALUES (?, ?, ?, ?");
-            stmt.setInt(1, Funcionario.LocalFuncionario.numFun);
-            stmt.setInt(2, clienteRecebe);
-            stmt.execute();
-
-            stmt = conn.prepareStatement(
             "INSERT INTO transferencia (valor, cliente_realiza, cliente_recebe, motivo)"
-            + "VALUES (?, ?, ?, ?");
+            + "VALUES (?, ?, ?, ?);");
             stmt.setDouble(1, valor);
             stmt.setInt(2, clienteRealiza);
             stmt.setInt(3, clienteRecebe);
             stmt.setString(4, motivo);
+            stmt.execute();
+
+            stmt = conn.prepareStatement(
+            "INSERT INTO funcionario_cliente(num_fun,num_cli)"
+            + "VALUES (?, ?);");
+            stmt.setInt(1, Funcionario.LocalFuncionario.numFun);
+            stmt.setInt(2, clienteRealiza);
+            stmt.execute();
+
+            stmt = conn.prepareStatement(
+            "INSERT INTO funcionario_cliente(num_fun,num_cli)"
+            + "VALUES (?, ?);");
+            stmt.setInt(1, Funcionario.LocalFuncionario.numFun);
+            stmt.setInt(2, clienteRecebe);
             stmt.execute();
 
             return true;

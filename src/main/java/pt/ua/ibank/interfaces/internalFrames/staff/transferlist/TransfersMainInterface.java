@@ -591,7 +591,15 @@ public class TransfersMainInterface extends javax.swing.JPanel {
         Double value = Double.valueOf(
                inputFieldAddTransactionValue.getText());
         String description = inputFieldAddTransactionDescription.getText();
-        TransfersDAO.createTransfer(value, author, reciever, description);
+        if (value <= 0) {
+            System.out.println("Valor não pode ser 0 ou negativo");
+            return;
+        }
+
+        String result = TransfersDAO.createTransfer(value, author, reciever,
+                                                    description) ?
+                        "Bem sucedido" : "Mal sucedido";
+        System.out.println(result);
 
     }//GEN-LAST:event_btnAddTransactionActionPerformed
 
