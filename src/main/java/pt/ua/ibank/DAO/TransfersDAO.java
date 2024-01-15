@@ -20,17 +20,16 @@ public class TransfersDAO {
 
         try {
 
-            stmt = conn.prepareStatement(
-            "INSERT INTO transferencia (valor, cliente_realiza, cliente_recebe, motivo) "
-            + "VALUES (?,?,?,?)");
-            stmt.setDouble(1, valor);
-            stmt.setInt(2, clienteRealiza);
-            stmt.setInt(3, clienteRecebe);
+            stmt = conn.prepareCall("{call fazer_transferencia(?,?,?,?)}");
+            stmt.setInt(1, clienteRealiza);
+            stmt.setInt(2, clienteRecebe);
+            stmt.setDouble(3, valor);
             stmt.setString(4, motivo);
             stmt.execute();
 
             return codigoSucesso;
         } catch (SQLException e) {
+            e.printStackTrace();
             return codigoErro;
         } finally {
             DBConnection.closeConnection(stmt);
