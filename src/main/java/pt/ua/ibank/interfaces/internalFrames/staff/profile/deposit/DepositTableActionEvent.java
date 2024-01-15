@@ -4,8 +4,6 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.deposit;
 
-import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.*;
-
 /**
  *
  * @author ricar

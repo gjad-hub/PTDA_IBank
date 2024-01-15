@@ -10,8 +10,7 @@ import java.awt.Component;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
-import pt.ua.ibank.DTO.Funcionario;
-import pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment.DeleteCommentPanel;
+import pt.ua.ibank.DTO.Deposito;
 
 /**
  *
@@ -31,8 +30,12 @@ public class DepositCellEditor extends DefaultCellEditor {
                                                  boolean isSelected, int row,
                                                  int column) {
 
-        if (Funcionario.LocalFuncionario.isManager()) {
-            return new DeleteCommentPanel();
+        Deposito componentValue = (Deposito) table.getModel()
+                 .getValueAt(row, 0);
+
+        if (!componentValue.pendenteAprovacao) {
+            return new Component() {
+            };
         }
 
         DepositActionPanelElement action = new DepositActionPanelElement();

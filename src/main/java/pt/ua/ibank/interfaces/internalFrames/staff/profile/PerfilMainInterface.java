@@ -480,14 +480,14 @@ public class PerfilMainInterface extends javax.swing.JPanel {
     jXTable1.getColumnModel().getColumn(0)
     .setCellRenderer(new PerfilCommentTableCellRenderer());
 
-    DeleteCommentActionEvent event = (int row) -> {
+    DeleteCommentActionEvent DeleteEvent = (int row) -> {
         pctm.apagarComentario(row);
     };
 
     jXTable1.getColumnModel().getColumn(1)
     .setCellRenderer(new DeleteCommentActionRenderer());
     jXTable1.getColumnModel().getColumn(1)
-    .setCellEditor(new PerfilCommentCellEditor(event));
+    .setCellEditor(new PerfilCommentCellEditor(DeleteEvent));
     jXTable1.getColumnModel().getColumn(1)
     .setMaxWidth(25);
 
@@ -528,7 +528,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
             .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel18)
-            .addContainerGap(205, Short.MAX_VALUE))
+            .addContainerGap(201, Short.MAX_VALUE))
     );
     jPanel9Layout.setVerticalGroup(
         jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

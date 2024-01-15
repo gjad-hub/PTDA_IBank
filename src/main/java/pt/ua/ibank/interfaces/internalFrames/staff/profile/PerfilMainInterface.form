@@ -723,7 +723,7 @@
                         </Property>
                       </Properties>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jXTable1.setRowHeight(90);&#xa;jXTable1.setTableHeader(null);&#xa;&#xa;jXTable1.getColumnModel().getColumn(0)&#xa;    .setCellRenderer(new PerfilCommentTableCellRenderer());&#xa;&#xa;DeleteCommentActionEvent event = (int row) -&gt; {&#xa;    pctm.apagarComentario(row);&#xa; };&#xa;&#xa;jXTable1.getColumnModel().getColumn(1)&#xa;    .setCellRenderer(new DeleteCommentActionRenderer());&#xa;jXTable1.getColumnModel().getColumn(1)&#xa;.setCellEditor(new PerfilCommentCellEditor(event));&#xa;jXTable1.getColumnModel().getColumn(1)&#xa;.setMaxWidth(25);"/>
+                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jXTable1.setRowHeight(90);&#xa;jXTable1.setTableHeader(null);&#xa;&#xa;jXTable1.getColumnModel().getColumn(0)&#xa;    .setCellRenderer(new PerfilCommentTableCellRenderer());&#xa;&#xa;DeleteCommentActionEvent DeleteEvent = (int row) -&gt; {&#xa;    pctm.apagarComentario(row);&#xa; };&#xa;&#xa;jXTable1.getColumnModel().getColumn(1)&#xa;    .setCellRenderer(new DeleteCommentActionRenderer());&#xa;jXTable1.getColumnModel().getColumn(1)&#xa;.setCellEditor(new PerfilCommentCellEditor(DeleteEvent));&#xa;jXTable1.getColumnModel().getColumn(1)&#xa;.setMaxWidth(25);"/>
                         <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="pctm = new PerfilCommentTableModel(clientID);"/>
                       </AuxValues>
                     </Component>
@@ -772,7 +772,7 @@
                               <Component id="jLabel19" min="-2" pref="19" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="205" max="32767" attributes="0"/>
+                              <EmptySpace pref="201" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
