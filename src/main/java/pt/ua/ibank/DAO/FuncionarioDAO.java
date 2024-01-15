@@ -222,7 +222,7 @@ public class FuncionarioDAO {
 
         try {
             stmt = conn.prepareStatement(
-            "UPDATE funcionario SET gerente = 0 WHERE num_fun LIKE ? ");
+            "UPDATE funcionario SET gerente = NULL WHERE num_fun LIKE ? ");
             stmt.setInt(1, id);
             stmt.execute();
 
