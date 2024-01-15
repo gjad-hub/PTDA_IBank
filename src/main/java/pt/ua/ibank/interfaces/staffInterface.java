@@ -6,12 +6,12 @@ import java.awt.Dimension;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import pt.ua.ibank.DAO.FuncionarioDAO;
-import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
 import pt.ua.ibank.interfaces.internalFrames.ProfilePage;
 import pt.ua.ibank.interfaces.internalFrames.StaffAccountList;
 import pt.ua.ibank.interfaces.internalFrames.StaffManagerAccountList;
 import pt.ua.ibank.interfaces.internalFrames.StaffManagercreateAccount;
 import pt.ua.ibank.interfaces.internalFrames.StaffTransferList;
+import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 import pt.ua.ibank.utilities.MDIDesktopPane;
@@ -71,7 +71,7 @@ public class staffInterface extends javax.swing.JFrame {
         Dimension desktopSize = this.desktop.getSize();
         Dimension jInternalFrameSize = comp.getSize();
         comp.setLocation((desktopSize.width - jInternalFrameSize.width) / 2,
-                (desktopSize.height - jInternalFrameSize.height) / 2);
+                         (desktopSize.height - jInternalFrameSize.height) / 2);
     }
 
     /**
@@ -90,7 +90,6 @@ public class staffInterface extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         side_bar = new RoundedShadowPanel(5);
         jSeparator1 = new javax.swing.JSeparator();
-        display_user = new javax.swing.JLabel();
         transferList = new javax.swing.JButton();
         accountlList = new javax.swing.JButton();
         logout = new javax.swing.JButton();
@@ -164,14 +163,6 @@ public class staffInterface extends javax.swing.JFrame {
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
-        display_user.setFont(new java.awt.Font("SF Pro Display", 1, 14)); // NOI18N
-        display_user.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        display_user.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                //display_userMouseClicked(evt);
-            }
-        });
-
         transferList.setBackground(new java.awt.Color(62, 92, 118));
         transferList.setForeground(new java.awt.Color(240, 235, 216));
         transferList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_20/transacoes.png"))); // NOI18N
@@ -211,7 +202,7 @@ public class staffInterface extends javax.swing.JFrame {
         });
 
         lblPositionInCompany.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        lblPositionInCompany.setText(LocalFuncionario.gerente == 0 ? MANAGER_NAME : EMPLOYEE_NAME);
+        lblPositionInCompany.setText(LocalFuncionario.isManager() ? MANAGER_NAME : EMPLOYEE_NAME);
 
         lblsaccount.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblsaccount.setForeground(new java.awt.Color(62, 171, 191));
@@ -257,18 +248,13 @@ public class staffInterface extends javax.swing.JFrame {
             .addGroup(side_barLayout.createSequentialGroup()
                 .addGroup(side_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(side_barLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(display_user, javax.swing.GroupLayout.DEFAULT_SIZE, 11, Short.MAX_VALUE)
+                        .addContainerGap(23, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(14, 14, 14)
                         .addGroup(side_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(side_barLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1)
-                                .addGap(14, 14, 14)
-                                .addGroup(side_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblsaccount)
-                                    .addComponent(lblPositionInCompany))
-                                .addGap(94, 94, 94))
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblsaccount)
+                            .addComponent(lblPositionInCompany))
+                        .addGap(94, 94, 94))
                     .addGroup(side_barLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -278,27 +264,23 @@ public class staffInterface extends javax.swing.JFrame {
                             .addComponent(accountlList, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(transferList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(createEmployeeAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(manageEmployees, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(manageEmployees, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jSeparator1))
                 .addContainerGap())
         );
         side_barLayout.setVerticalGroup(
             side_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(side_barLayout.createSequentialGroup()
-                .addGroup(side_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(15, 15, 15)
+                .addGroup(side_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(side_barLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(display_user, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(side_barLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(side_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(side_barLayout.createSequentialGroup()
-                                .addComponent(lblsaccount, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(lblPositionInCompany))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblsaccount, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(lblPositionInCompany))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addComponent(accountlList)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(transferList, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -306,7 +288,7 @@ public class staffInterface extends javax.swing.JFrame {
                 .addComponent(createEmployeeAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(manageEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 557, Short.MAX_VALUE)
                 .addComponent(logout)
                 .addContainerGap())
         );
@@ -528,7 +510,7 @@ public class staffInterface extends javax.swing.JFrame {
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(13, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel20)
@@ -541,7 +523,7 @@ public class staffInterface extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
                     .addComponent(numAprovacoesFeitas))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelEmployeeOfMonthLayout = new javax.swing.GroupLayout(jPanelEmployeeOfMonth);
@@ -834,7 +816,7 @@ public class staffInterface extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info
-                    : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                         : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
@@ -939,7 +921,6 @@ public class staffInterface extends javax.swing.JFrame {
     private javax.swing.JButton createEmployeeAccount;
     private javax.swing.JLabel dataUltimoPedidoAprovacaoDeposito;
     private javax.swing.JDesktopPane desktop;
-    private javax.swing.JLabel display_user;
     private javax.swing.JMenuItem hide;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import pt.ua.ibank.DTO.Funcionario;
+import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 
@@ -27,7 +28,7 @@ public class FuncionarioDAO {
 
             // Verifica se já existe alguma conta com aquele e-mail
             stmt = conn.prepareStatement(
-            "SELECT count(num_fun) AS valor FROM cliente where email like ?;");
+            "SELECT count('num_fun') AS valor FROM cliente where email like ?;");
             stmt.setString(1, email);
             rs = stmt.executeQuery();
             rs.next();
@@ -37,18 +38,19 @@ public class FuncionarioDAO {
             }
 
             stmt = conn.prepareStatement(
-            "INSERT INTO funcionario (nome, morada, email, telemovel, nif, password) "
-            + "VALUES (?, ?, ?, ?, ?, ?)");
+            "INSERT INTO funcionario (nome, morada, email, telemovel, nif, password,gerente) "
+            + "VALUES (?, ?, ?, ?, ?, ?,?)");
             stmt.setString(1, nome);
             stmt.setString(2, morada);
             stmt.setString(3, email);
             stmt.setString(4, telefone);
             stmt.setString(5, nif);
             stmt.setString(6, password);
+            stmt.setInt(7, LocalFuncionario.numFun);
             stmt.execute();
-            int num_fun = getFuncionarioIdByEmail(email);
             return codigoSucesso;
         } catch (SQLException e) {
+            e.printStackTrace(System.out);
             return codigoErro;
         } finally {
             DBConnection.closeConnection(stmt);
