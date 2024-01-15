@@ -5,6 +5,7 @@
 package pt.ua.ibank.interfaces.internalFrames.staff.transferlist;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.DAO.TransfersDAO;
 import pt.ua.ibank.DTO.Cliente;
@@ -592,15 +593,17 @@ public class TransfersMainInterface extends javax.swing.JPanel {
                inputFieldAddTransactionValue.getText());
         String description = inputFieldAddTransactionDescription.getText();
         if (value <= 0) {
-            System.out.println("Valor não pode ser 0 ou negativo");
+            JOptionPane.showMessageDialog(this,
+                                          "Valor não pode ser 0 ou negativo");
             return;
         }
-
-        String result = TransfersDAO.createTransfer(value, author, reciever,
-                                                    description) ?
-                        "Bem sucedido" : "Mal sucedido";
-        System.out.println(result);
-
+        String resultado =
+               TransfersDAO.createTransfer(value, author, reciever,
+                                           description) ?
+               "Transferencia de " + value + "€ Feita com sucesso" :
+               "Operação feita sem sucesso, tente novamente";
+        JOptionPane.showMessageDialog(this, resultado);
+        ttm.resetSearchFilters();
     }//GEN-LAST:event_btnAddTransactionActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed

@@ -4,7 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import pt.ua.ibank.DTO.Funcionario;
 import pt.ua.ibank.DTO.Transferencias;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
@@ -39,30 +38,16 @@ public class TransfersDAO {
     public static boolean createTransfer(double valor, int clienteRealiza,
                                          int clienteRecebe, String motivo) {
         PreparedStatement stmt = null;
+
         try {
-            stmt = conn.prepareStatement(
-            "INSERT INTO transferencia (valor, cliente_realiza, cliente_recebe, motivo)"
-            + "VALUES (?, ?, ?, ?);");
-            stmt.setDouble(1, valor);
-            stmt.setInt(2, clienteRealiza);
-            stmt.setInt(3, clienteRecebe);
-            stmt.setString(4, motivo);
-            stmt.execute();
-
-            stmt = conn.prepareStatement(
-            "INSERT INTO funcionario_cliente(num_fun,num_cli)"
-            + "VALUES (?, ?);");
-            stmt.setInt(1, Funcionario.LocalFuncionario.numFun);
-            stmt.setInt(2, clienteRealiza);
-            stmt.execute();
-
-            stmt = conn.prepareStatement(
-            "INSERT INTO funcionario_cliente(num_fun,num_cli)"
-            + "VALUES (?, ?);");
-            stmt.setInt(1, Funcionario.LocalFuncionario.numFun);
+            stmt = conn.prepareCall(
+            "{call fazer_transferencia(?,?,?,?)}");
+            stmt.setInt(1, clienteRealiza);
             stmt.setInt(2, clienteRecebe);
-            stmt.execute();
+            stmt.setDouble(3, valor);
+            stmt.setString(4, motivo);
 
+            stmt.execute();
             return true;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
