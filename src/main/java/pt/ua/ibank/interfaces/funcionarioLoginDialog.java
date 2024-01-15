@@ -244,41 +244,18 @@ public class funcionarioLoginDialog extends javax.swing.JDialog {
             Configs.save();
         }
 
-        String regex = "^[a-zA-Z0-9._%+-]+@ibank\\.com$"; //se for @ibank.com então é gerente
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(email);
         LocalFuncionario = new Funcionario(email, password);
-
-        if (matcher.matches()) {
-            // é gerente
-            //abrir página destinada ao gerente
-            if (LocalFuncionario.autenticar()) {
-                if (!FuncionarioDAO.getFuncionarioDemitidoByID(
-                        LocalFuncionario.numFun)) {
-                    error.setText("Funcionário demitido! Não pode fazer login!");
-                } else {
-                    Configs.loginOK = true;
-                    this.dispose();
-                }
+        
+        if (LocalFuncionario.autenticar()) {
+            if (LocalFuncionario.foiDespedido) {
+                error.setText("Funcionário demitido! Não pode fazer login!");
             } else {
-                error.setText("Erro ao autenticar! Credenciais incorretas!");
-            }
-        } else {
-            // não é gerente
-            if (LocalFuncionario.autenticar()) {
                 Configs.loginOK = true;
                 this.dispose();
-            } else {
-                error.setText("Erro ao autenticar! Credenciais incorretas!");
             }
+        } else {
+            error.setText("Erro ao autenticar! Credenciais incorretas!");
         }
-
-//        if (LocalFuncionario.autenticar()) {
-//            Configs.loginOK = true;
-//            this.dispose();
-//        } else {
-//            error.setText("Erro ao autenticar! Credenciais incorretas!");
-//        }
     }//GEN-LAST:event_loginActionPerformed
 
     private void seeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seeActionPerformed
@@ -305,7 +282,7 @@ public class funcionarioLoginDialog extends javax.swing.JDialog {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info
-                 : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                    : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
@@ -343,7 +320,7 @@ public class funcionarioLoginDialog extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 funcionarioLoginDialog dialog = new funcionarioLoginDialog(
-                                       new javax.swing.JFrame(), true);
+                        new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
