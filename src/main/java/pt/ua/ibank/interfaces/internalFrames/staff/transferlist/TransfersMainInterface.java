@@ -494,7 +494,7 @@ public class TransfersMainInterface extends javax.swing.JPanel {
         }
     });
 
-    comboBoxSelectType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Autor", "Receptor", "Descrição", "Cliente" }));
+    comboBoxSelectType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Autor", "Receptor", "Cliente" }));
 
     javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
     jPanel6.setLayout(jPanel6Layout);
@@ -571,7 +571,7 @@ public class TransfersMainInterface extends javax.swing.JPanel {
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(LayeredPaneContas, javax.swing.GroupLayout.DEFAULT_SIZE, 1237, Short.MAX_VALUE)
+            .addComponent(LayeredPaneContas, javax.swing.GroupLayout.DEFAULT_SIZE, 847, Short.MAX_VALUE)
             .addContainerGap())
     );
     layout.setVerticalGroup(

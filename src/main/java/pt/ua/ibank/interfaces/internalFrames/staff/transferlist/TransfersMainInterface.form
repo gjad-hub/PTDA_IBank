@@ -754,12 +754,11 @@
             <Component class="javax.swing.JComboBox" name="comboBoxSelectType">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="5">
+                  <StringArray count="4">
                     <StringItem index="0" value="ID"/>
                     <StringItem index="1" value="Autor"/>
                     <StringItem index="2" value="Receptor"/>
-                    <StringItem index="3" value="Descri&#xe7;&#xe3;o"/>
-                    <StringItem index="4" value="Cliente"/>
+                    <StringItem index="3" value="Cliente"/>
                   </StringArray>
                 </Property>
               </Properties>
