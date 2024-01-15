@@ -5,9 +5,9 @@ import java.awt.event.KeyEvent;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import pt.ua.ibank.DAO.FuncionarioDAO;
-import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
 import pt.ua.ibank.DTO.Funcionario;
 import pt.ua.ibank.utilities.Configs;
+import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
 
 public class funcionarioLoginDialog extends javax.swing.JDialog {
 
@@ -253,7 +253,7 @@ public class funcionarioLoginDialog extends javax.swing.JDialog {
             // é gerente
             //abrir página destinada ao gerente
             if (LocalFuncionario.autenticar()) {
-                if (FuncionarioDAO.getFuncionarioDemitidoByID(
+                if (!FuncionarioDAO.getFuncionarioDemitidoByID(
                         LocalFuncionario.numFun)) {
                     error.setText("Funcionário demitido! Não pode fazer login!");
                 } else {
@@ -279,7 +279,6 @@ public class funcionarioLoginDialog extends javax.swing.JDialog {
 //        } else {
 //            error.setText("Erro ao autenticar! Credenciais incorretas!");
 //        }
-
     }//GEN-LAST:event_loginActionPerformed
 
     private void seeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seeActionPerformed
@@ -289,30 +288,45 @@ public class funcionarioLoginDialog extends javax.swing.JDialog {
             password_input.setEchoChar('*');
         }
     }//GEN-LAST:event_seeActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+        /*
+         * Set the Nimbus look and feel
+         */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the
+         * default look and feel.
+         * For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (javax.swing.UIManager.LookAndFeelInfo info
+                 : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(funcionarioLoginDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(
+                    funcionarioLoginDialog.class.getName()).log(
+                    java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(funcionarioLoginDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(
+                    funcionarioLoginDialog.class.getName()).log(
+                    java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(funcionarioLoginDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(
+                    funcionarioLoginDialog.class.getName()).log(
+                    java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(funcionarioLoginDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(
+                    funcionarioLoginDialog.class.getName()).log(
+                    java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -323,10 +337,13 @@ public class funcionarioLoginDialog extends javax.swing.JDialog {
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the dialog */
+        /*
+         * Create and display the dialog
+         */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                funcionarioLoginDialog dialog = new funcionarioLoginDialog(new javax.swing.JFrame(), true);
+                funcionarioLoginDialog dialog = new funcionarioLoginDialog(
+                                       new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

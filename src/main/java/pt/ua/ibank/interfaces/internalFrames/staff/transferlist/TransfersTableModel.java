@@ -99,7 +99,6 @@ public class TransfersTableModel extends AbstractTableModel {
                      Integer.parseInt(value))) != null) {
                     fireTableRowsDeleted(0, data.size() - 1);
                 }
-
             }
             case "Cliente" -> {
                 data.clear();
