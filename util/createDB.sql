@@ -163,7 +163,7 @@ BEGIN
     END IF;
 END;
 
--- Trigger transferencia
+/* Trigger transferencia
 CREATE TRIGGER do_transferencia
     AFTER INSERT
     ON transferencia
@@ -178,11 +178,26 @@ BEGIN
 
     IF existe > 0 THEN
         IF saldo >= NEW.valor THEN
-            INSERT INTO transacoes (num_cli, descricao, valor)
-            VALUES (NEW.cliente_realiza, "Transferencia", 0 - NEW.valor);
+            INSERT INTO transacoes (num_cli, descricao, valor) VALUES (NEW.cliente_realiza, "Transferencia", 0 - NEW.valor);
             INSERT INTO transacoes (num_cli, descricao, valor) VALUES (NEW.cliente_recebe, "Transferencia", NEW.valor);
         END IF;
     END IF;
+END;
+*/
+
+CREATE PROCEDURE fazer_transferencia(IN cliente_envia INTEGER, IN cliente_recetor INTEGER, IN valor_trans DECIMAL(10,2), IN descricao VARCHAR(255))
+BEGIN
+        DECLARE EXIT HANDLER FOR SQLEXCEPTION
+            BEGIN
+                ROLLBACK;
+                RESIGNAL;
+            END;
+        START TRANSACTION;
+            INSERT INTO transferencia (valor, cliente_realiza, cliente_recebe, motivo) VALUES (valor_trans, cliente_envia, cliente_recetor,descricao);
+
+            INSERT INTO transacoes (num_cli, descricao, valor) VALUES (cliente_envia, "Transferencia", 0 - valor_trans);
+            INSERT INTO transacoes (num_cli, descricao, valor) VALUES (cliente_recetor, "Transferencia", valor_trans);
+        COMMIT;
 END;
 
 -- Trigger para actualizar o saldo do cliente
