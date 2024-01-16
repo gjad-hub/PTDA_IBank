@@ -9,11 +9,27 @@ import static pt.ua.ibank.utilities.CardGenerator.generateCardNumber;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 
+/**
+ *
+ * @author ricar
+ */
 public class CardsDAO {
 
+    /**
+     *
+     */
     public final static int codigoSucesso = 1;
+
+    /**
+     *
+     */
     public final static int codigoErro = 2;
 
+    /**
+     *
+     * @param number numero do cartão a ser procurado
+     * @return
+     */
     public static Cartao getCardByNumber(String number) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -42,6 +58,11 @@ public class CardsDAO {
         return null;
     }
 
+    /**
+     *
+     * @param num_cliente
+     * @return
+     */
     public static ArrayList<Cartao> getCardListFromUserID(int num_cliente) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -69,6 +90,11 @@ public class CardsDAO {
         return lcartao;
     }
 
+    /**
+     *
+     * @param num_cliente
+     * @return
+     */
     public static int getCardAmountByID(int num_cliente) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -91,6 +117,11 @@ public class CardsDAO {
         return -1;
     }
 
+    /**
+     *
+     * @param card_number
+     * @return
+     */
     public static int cancelCard(String card_number) {
         PreparedStatement stmt = null;
 
@@ -109,6 +140,12 @@ public class CardsDAO {
         }
     }
 
+    /**
+     *
+     * @param card_number
+     * @param num_cliente
+     * @return
+     */
     public static int makeDefault(String card_number, int num_cliente) {
         PreparedStatement stmt = null;
 
@@ -129,6 +166,11 @@ public class CardsDAO {
 
     }
 
+    /**
+     *
+     * @param num_cliente
+     * @return
+     */
     public static int createCard(int num_cliente) {
         PreparedStatement stmt = null;
         ResultSet rs = null;

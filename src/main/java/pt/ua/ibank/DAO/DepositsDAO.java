@@ -8,11 +8,28 @@ import pt.ua.ibank.DTO.Deposito;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 
+/**
+ *
+ * @author ricar
+ */
 public class DepositsDAO {
 
+    /**
+     *
+     */
     public final static int codigoSucesso = 1;
+
+    /**
+     *
+     */
     public final static int codigoErro = 2;
 
+    /**
+     *
+     * @param valor
+     * @param clienteRealiza
+     * @return
+     */
     public static int requestDeposit(double valor, int clienteRealiza) {
         PreparedStatement stmt = null;
         try {
@@ -33,6 +50,11 @@ public class DepositsDAO {
         }
     }
 
+    /**
+     *
+     * @param num_cliente
+     * @return
+     */
     public static ArrayList<Deposito> getDeposits(int num_cliente) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -72,6 +94,12 @@ public class DepositsDAO {
         }
     }
 
+    /**
+     *
+     * @param num_deposito
+     * @param num_funcionario
+     * @return
+     */
     public static boolean aproveDeposit(int num_deposito, int num_funcionario) {
         PreparedStatement stmt = null;
 
@@ -90,6 +118,12 @@ public class DepositsDAO {
         }
     }
 
+    /**
+     *
+     * @param num_deposito
+     * @param num_funcionario
+     * @return
+     */
     public static boolean denyDeposit(int num_deposito, int num_funcionario) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -109,6 +143,11 @@ public class DepositsDAO {
         }
     }
 
+    /**
+     *
+     * @param num_cliente
+     * @return
+     */
     public static int getDepositCount(int num_cliente) {
         PreparedStatement stmt = null;
         ResultSet rs = null;

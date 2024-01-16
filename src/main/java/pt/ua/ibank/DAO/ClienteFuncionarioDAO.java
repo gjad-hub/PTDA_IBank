@@ -17,6 +17,11 @@ import static pt.ua.ibank.utilities.DBConnection.conn;
  */
 public class ClienteFuncionarioDAO {
 
+    /**
+     *
+     * @param funcionarioID
+     * @return
+     */
     public static ArrayList<Integer> getClientsInteractedListByID(
             int funcionarioID) {
         PreparedStatement stmt = null;

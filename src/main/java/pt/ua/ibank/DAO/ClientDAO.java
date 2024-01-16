@@ -11,12 +11,37 @@ import static pt.ua.ibank.utilities.DBConnection.conn;
 import static pt.ua.ibank.utilities.EntityRefGenerator.generateEnt;
 import static pt.ua.ibank.utilities.IbanGenerator.generateRandomIban;
 
+/**
+ *
+ * @author ricar
+ */
 public class ClientDAO {
 
+    /**
+     *
+     */
     public final static int codigoSucesso = 1;
+
+    /**
+     *
+     */
     public final static int codigoErro = 2;
+
+    /**
+     *
+     */
     public final static int codigoErroEmail = 3;
 
+    /**
+     *
+     * @param nome
+     * @param morada
+     * @param email
+     * @param telefone
+     * @param nif
+     * @param password
+     * @return
+     */
     public static int CreateClient(String nome, String morada, String email,
                                    String telefone, String nif, String password) {
         PreparedStatement stmt = null;
@@ -109,6 +134,11 @@ public class ClientDAO {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public static Cliente getClientByID(int id) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -145,6 +175,11 @@ public class ClientDAO {
         return null;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public static Cliente getClientByEmail(String id) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -182,6 +217,11 @@ public class ClientDAO {
         return null;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public static Cliente getClientByNIF(String id) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -219,6 +259,11 @@ public class ClientDAO {
         return null;
     }
 
+    /**
+     *
+     * @param address
+     * @return
+     */
     public static ArrayList<Cliente> getClientListByAddress(String address) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -258,6 +303,10 @@ public class ClientDAO {
         return null;
     }
 
+    /**
+     *
+     * @return
+     */
     public static ArrayList<Cliente> getClientList() {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -296,6 +345,11 @@ public class ClientDAO {
         return null;
     }
 
+    /**
+     *
+     * @param iban
+     * @return
+     */
     public static Integer getClientIdByIBAN(String iban) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -321,6 +375,11 @@ public class ClientDAO {
         return null;
     }
 
+    /**
+     *
+     * @param clientID
+     * @return
+     */
     public static String getClienteNomeByID(int clientID) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -343,6 +402,11 @@ public class ClientDAO {
         return null;
     }
 
+    /**
+     *
+     * @param email
+     * @return
+     */
     public static Integer getClientIdByEmail(String email) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -368,6 +432,16 @@ public class ClientDAO {
         return null;
     }
 
+    /**
+     *
+     * @param num_cliente
+     * @param nome
+     * @param morada
+     * @param email
+     * @param telefone
+     * @param nif
+     * @return
+     */
     public static boolean UpdateClient(
             int num_cliente, String nome,
             String morada, String email,
@@ -396,6 +470,17 @@ public class ClientDAO {
         }
     }
 
+    /**
+     *
+     * @param nome
+     * @param morada
+     * @param email
+     * @param telefone
+     * @param nif
+     * @param password
+     * @param old_email
+     * @return
+     */
     public static int UpdateClient(String nome, String morada, String email,
                                    String telefone, String nif,
                                    String password, String old_email) {
@@ -433,6 +518,11 @@ public class ClientDAO {
         }
     }
 
+    /**
+     *
+     * @param num_cliente
+     * @return
+     */
     public static Cliente getClientBalance(int num_cliente) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -459,6 +549,11 @@ public class ClientDAO {
         return null;
     }
 
+    /**
+     *
+     * @param num_cliente
+     * @return
+     */
     public static String getClientDefaultCard(int num_cliente) {
         PreparedStatement stmt = null;
         ResultSet rs = null;

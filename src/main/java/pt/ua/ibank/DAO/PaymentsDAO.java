@@ -8,11 +8,31 @@ import pt.ua.ibank.DTO.PagamentoServicosCompras;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 
+/**
+ *
+ * @author ricar
+ */
 public class PaymentsDAO {
 
+    /**
+     *
+     */
     public final static int codigoSucesso = 1;
+
+    /**
+     *
+     */
     public final static int codigoErro = 2;
 
+    /**
+     *
+     * @param valor
+     * @param clienteRealiza
+     * @param cliente_criador
+     * @param entidade
+     * @param referencia
+     * @return
+     */
     public static int payService(double valor, int clienteRealiza,
                                  int cliente_criador, int entidade,
                                  int referencia) {
@@ -37,6 +57,12 @@ public class PaymentsDAO {
         }
     }
 
+    /**
+     *
+     * @param ref
+     * @param ent
+     * @return
+     */
     public static PagamentoServicosCompras getServicosCompras(int ref, int ent) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -68,6 +94,14 @@ public class PaymentsDAO {
         return service;
     }
 
+    /**
+     *
+     * @param cliente
+     * @param ent
+     * @param ref
+     * @param valor
+     * @return
+     */
     public static int createPayment(int cliente, int ent, int ref, double valor) {
         PreparedStatement stmt = null;
         try {
@@ -92,6 +126,11 @@ public class PaymentsDAO {
         }
     }
 
+    /**
+     *
+     * @param num_cliente
+     * @return
+     */
     public static ArrayList<PagamentoServicosCompras> getAllServicos(
             int num_cliente) {
         PreparedStatement stmt = null;
@@ -126,6 +165,12 @@ public class PaymentsDAO {
         return lservices;
     }
 
+    /**
+     *
+     * @param ent
+     * @param ref
+     * @return
+     */
     public static int cancelPayment(int ent, int ref) {
         PreparedStatement stmt = null;
 

@@ -8,8 +8,17 @@ import pt.ua.ibank.DTO.Transacoes;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 
+/**
+ *
+ * @author ricar
+ */
 public class TransacoesDAO {
 
+    /**
+     *
+     * @param num_cliente
+     * @return
+     */
     public static ArrayList<Transacoes> getTransacoes(int num_cliente) {
         PreparedStatement stmt = null;
         ResultSet rs = null;

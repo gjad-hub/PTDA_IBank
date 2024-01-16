@@ -12,12 +12,37 @@ import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 
+/**
+ *
+ * @author ricar
+ */
 public class FuncionarioDAO {
 
+    /**
+     *
+     */
     public final static int codigoSucesso = 1;
+
+    /**
+     *
+     */
     public final static int codigoErro = 2;
+
+    /**
+     *
+     */
     public final static int codigoErroEmail = 3;
 
+    /**
+     *
+     * @param nome
+     * @param morada
+     * @param email
+     * @param telefone
+     * @param nif
+     * @param password
+     * @return
+     */
     public static int CreateFuncionario(String nome, String morada, String email,
                                         String telefone, String nif,
                                         String password) {
@@ -57,6 +82,11 @@ public class FuncionarioDAO {
         }
     }
 
+    /**
+     *
+     * @param email
+     * @return
+     */
     public static Funcionario getFuncionarioByEmail(String email) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -90,6 +120,11 @@ public class FuncionarioDAO {
         return null;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public static Funcionario getFuncionarioByID(int id) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -122,6 +157,11 @@ public class FuncionarioDAO {
         return null;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public static String getFuncionarioNomeByID(int id) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -143,6 +183,10 @@ public class FuncionarioDAO {
         return null;
     }
 
+    /**
+     *
+     * @return
+     */
     public static ArrayList<Funcionario> getFuncionarioList() {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -181,6 +225,11 @@ public class FuncionarioDAO {
         return null;
     }
 
+    /**
+     *
+     * @param address
+     * @return
+     */
     public static ArrayList<Funcionario> getFuncionarioListByAddress(
             String address) {
         PreparedStatement stmt = null;
@@ -216,6 +265,11 @@ public class FuncionarioDAO {
         return null;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public static boolean promoverFuncionario(int id) {
         PreparedStatement stmt = null;
 
@@ -234,6 +288,11 @@ public class FuncionarioDAO {
         }
     }
 
+    /**
+     *
+     * @param email
+     * @return
+     */
     public static Integer getFuncionarioIdByEmail(String email) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -259,6 +318,11 @@ public class FuncionarioDAO {
         return null;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public static Funcionario getFuncionarioByNIF(String id) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -294,6 +358,16 @@ public class FuncionarioDAO {
         return null;
     }
 
+    /**
+     *
+     * @param num_funcionario
+     * @param nome
+     * @param morada
+     * @param email
+     * @param telefone
+     * @param nif
+     * @return
+     */
     public static boolean UpdateFuncionario(
             int num_funcionario, String nome,
             String morada, String email,
@@ -322,6 +396,11 @@ public class FuncionarioDAO {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public static Integer getNomeFuncionarioById(int id) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -345,6 +424,16 @@ public class FuncionarioDAO {
         return null;
     }
 
+    /**
+     *
+     * @param nome
+     * @param morada
+     * @param email
+     * @param telemovel
+     * @param nif
+     * @param old_email
+     * @return
+     */
     public static int UpdateFuncionario(String nome, String morada, String email,
                                         String telemovel, String nif,
                                         String old_email) {
@@ -379,6 +468,17 @@ public class FuncionarioDAO {
         }
     }
 
+    /**
+     *
+     * @param nome
+     * @param morada
+     * @param email
+     * @param telefone
+     * @param nif
+     * @param password
+     * @param old_email
+     * @return
+     */
     public static int UpdateFuncionario(String nome, String morada, String email,
                                         String telefone, String nif,
                                         String password, String old_email) {
@@ -414,6 +514,10 @@ public class FuncionarioDAO {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public static Integer getNumContasCriadasMes() {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -435,6 +539,10 @@ public class FuncionarioDAO {
         return null;
     }
 
+    /**
+     *
+     * @return
+     */
     public static Integer getNumDepositosPorAprovar() {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -456,6 +564,10 @@ public class FuncionarioDAO {
         return null;
     }
 
+    /**
+     *
+     * @return
+     */
     public static String getFuncionarioComMaisDepositosAprovados() {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -479,6 +591,11 @@ public class FuncionarioDAO {
         return null;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public static String getFuncionarioNumDepositosAprovados(int id) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -521,6 +638,10 @@ public class FuncionarioDAO {
         return null;
     }
 
+    /**
+     *
+     * @return
+     */
     public static String getNomeUltimaContaCriada() {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -545,6 +666,10 @@ public class FuncionarioDAO {
         return null;
     }
 
+    /**
+     *
+     * @return
+     */
     public static String getDataUltimoPedidoDeposito() {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -571,6 +696,10 @@ public class FuncionarioDAO {
         return null;
     }
 
+    /**
+     *
+     * @return
+     */
     public static Integer getNumAprovacoesFuncionarioTop() {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -595,6 +724,11 @@ public class FuncionarioDAO {
         return totalAprovacoes;
     }
 
+    /**
+     *
+     * @param numFuncionario
+     * @return
+     */
     public static boolean demitirFuncionario(int numFuncionario) {
         PreparedStatement stmt = null;
 
@@ -613,6 +747,11 @@ public class FuncionarioDAO {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public static boolean getFuncionarioDemitidoByID(int id) {
         PreparedStatement stmt = null;
         ResultSet rs = null;

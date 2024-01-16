@@ -8,11 +8,30 @@ import pt.ua.ibank.DTO.Transferencias;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 
+/**
+ *
+ * @author ricar
+ */
 public class TransfersDAO {
 
+    /**
+     *
+     */
     public final static int codigoSucesso = 1;
+
+    /**
+     *
+     */
     public final static int codigoErro = 2;
 
+    /**
+     *
+     * @param valor
+     * @param clienteRealiza
+     * @param clienteRecebe
+     * @param motivo
+     * @return
+     */
     public static int doTransfer(double valor, int clienteRealiza,
                                  int clienteRecebe, String motivo) {
         PreparedStatement stmt = null;
@@ -35,6 +54,14 @@ public class TransfersDAO {
         }
     }
 
+    /**
+     *
+     * @param valor
+     * @param clienteRealiza
+     * @param clienteRecebe
+     * @param motivo
+     * @return
+     */
     public static boolean createTransfer(double valor, int clienteRealiza,
                                          int clienteRecebe, String motivo) {
         PreparedStatement stmt = null;
@@ -57,6 +84,10 @@ public class TransfersDAO {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public static ArrayList<Transferencias> getTransfersList() {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -88,6 +119,11 @@ public class TransfersDAO {
         return null;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public static Transferencias getTransferByID(int id) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -118,6 +154,11 @@ public class TransfersDAO {
         return null;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public static ArrayList<Transferencias> getClientTransfersList(
             int id) {
         PreparedStatement stmt = null;
@@ -152,6 +193,11 @@ public class TransfersDAO {
         return null;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public static ArrayList<Transferencias> getTransfersListByAutor(
             int id) {
         PreparedStatement stmt = null;
@@ -185,6 +231,11 @@ public class TransfersDAO {
         return null;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public static ArrayList<Transferencias> getTransfersListByReceptor(
             int id) {
         PreparedStatement stmt = null;
@@ -218,6 +269,11 @@ public class TransfersDAO {
         return null;
     }
 
+    /**
+     *
+     * @param descricao
+     * @return
+     */
     public static ArrayList<Transferencias> getTransfersListByDescricao(
             String descricao) {
         PreparedStatement stmt = null;

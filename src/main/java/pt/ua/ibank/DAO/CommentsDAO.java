@@ -18,6 +18,11 @@ import static pt.ua.ibank.utilities.DBConnection.conn;
  */
 public class CommentsDAO {
 
+    /**
+     *
+     * @param clientID
+     * @return
+     */
     public static ArrayList<ModeratorComment> getCommentListByID(
             int clientID) {
         PreparedStatement stmt = null;
@@ -41,7 +46,6 @@ public class CommentsDAO {
                         rs.getTimestamp("data")));
             }
 
-
         } catch (SQLException e) {
             e.printStackTrace(System.out);
         } finally {
@@ -50,6 +54,11 @@ public class CommentsDAO {
         return list.isEmpty() ? null : list;
     }
 
+    /**
+     *
+     * @param clientID
+     * @return
+     */
     public static ArrayList<ModeratorComment> getModeratorCommentListByID(
             int clientID) {
         PreparedStatement stmt = null;
@@ -72,7 +81,7 @@ public class CommentsDAO {
                         rs.getTimestamp("data")));
             }
 
-            return list.isEmpty() ? list: null;
+            return list.isEmpty() ? list : null;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
         } finally {
@@ -81,6 +90,13 @@ public class CommentsDAO {
         return null;
     }
 
+    /**
+     *
+     * @param employee_id
+     * @param client_id
+     * @param comment
+     * @return
+     */
     public static boolean addNewComment(int employee_id, int client_id,
                                         String comment) {
         PreparedStatement stmt = null;
@@ -105,6 +121,11 @@ public class CommentsDAO {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public static boolean deleteComment(int id) {
         PreparedStatement stmt = null;
 
