@@ -64,12 +64,12 @@ public final class PerfilPersonalTableModel extends AbstractTableModel {
         final String key = data.get(row).key;
         switch (key) {
             case "Nome:" -> {
-                p = Pattern.compile("^[a-zA-Z]+$");
+                p = Pattern.compile("^[a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜãõÃÕñÑçÇ\\s'-]+$");
                 m = p.matcher(input);
                 return m.matches();
             }
             case "Email:" -> {
-                p = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+                p = Pattern.compile("^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
                 m = p.matcher(input);
                 return m.matches();
             }
