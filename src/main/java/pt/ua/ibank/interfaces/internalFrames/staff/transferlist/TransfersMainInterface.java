@@ -598,8 +598,8 @@ public class TransfersMainInterface extends javax.swing.JPanel {
             return;
         }
         String resultado =
-               TransfersDAO.createTransfer(value, author, reciever,
-                                           description) ?
+               TransfersDAO.doTransfer(value, author, reciever,
+                                           description) == TransfersDAO.codigoSucesso?
                "Transferencia de " + value + "€ Feita com sucesso" :
                "Operação feita sem sucesso, tente novamente";
         JOptionPane.showMessageDialog(this, resultado);

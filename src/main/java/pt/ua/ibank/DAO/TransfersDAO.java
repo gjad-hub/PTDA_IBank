@@ -54,40 +54,6 @@ public class TransfersDAO {
         }
     }
 
-    /**
-     *
-     * @param valor
-     * @param clienteRealiza
-     * @param clienteRecebe
-     * @param motivo
-     * @return
-     */
-    public static boolean createTransfer(double valor, int clienteRealiza,
-                                         int clienteRecebe, String motivo) {
-        PreparedStatement stmt = null;
-
-        try {
-            stmt = conn.prepareCall(
-            "{call fazer_transferencia(?,?,?,?)}");
-            stmt.setInt(1, clienteRealiza);
-            stmt.setInt(2, clienteRecebe);
-            stmt.setDouble(3, valor);
-            stmt.setString(4, motivo);
-
-            stmt.execute();
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace(System.out);
-            return false;
-        } finally {
-            DBConnection.closeConnection(stmt);
-        }
-    }
-
-    /**
-     *
-     * @return
-     */
     public static ArrayList<Transferencias> getTransfersList() {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -110,7 +76,7 @@ public class TransfersDAO {
                 ));
             }
 
-            return list;
+            return list.isEmpty() ? null : list;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
         } finally {
@@ -184,13 +150,13 @@ public class TransfersDAO {
                 ));
             }
 
-            return list;
+            return list.isEmpty() ? null : list;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
+            return null;
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
-        return null;
     }
 
     /**
@@ -222,13 +188,13 @@ public class TransfersDAO {
                 ));
             }
 
-            return list;
+            return list.isEmpty() ? null : list;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
+            return null;
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
-        return null;
     }
 
     /**
@@ -260,51 +226,12 @@ public class TransfersDAO {
                 ));
             }
 
-            return list;
+            return list.isEmpty() ? null : list;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
+            return null;
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
-        return null;
     }
-
-    /**
-     *
-     * @param descricao
-     * @return
-     */
-    public static ArrayList<Transferencias> getTransfersListByDescricao(
-            String descricao) {
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        ArrayList<Transferencias> list = new ArrayList<>();
-
-        try {
-            stmt = conn.prepareStatement(
-            "select "
-            + "id_transferencia as id,valor,cliente_realiza,cliente_recebe,motivo"
-            + " from transferencia where motivo like ?;");
-            stmt.setString(1, descricao);
-            rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                list.add(new Transferencias(
-                        rs.getInt("id"),
-                        rs.getDouble("valor"),
-                        rs.getInt("cliente_realiza"),
-                        rs.getInt("cliente_recebe"),
-                        rs.getString("motivo")
-                ));
-            }
-
-            return list;
-        } catch (SQLException e) {
-            e.printStackTrace(System.out);
-        } finally {
-            DBConnection.closeConnection(stmt, rs);
-        }
-        return null;
-    }
-
 }

@@ -228,7 +228,7 @@ public class CardManager extends javax.swing.JInternalFrame {
             card_status = (String) card_table.getValueAt(selectedRowIndex, 2);
         }
 
-        if (!Objects.isNull(card_status) && card_status.equals("cancelado")) {
+        if (!Objects.isNull(card_status) && card_status.equals("Inativo")) {
             status.setText("Cartão está cancelado não o pode tornar padrão!");
             return;
         }
@@ -269,7 +269,7 @@ public class CardManager extends javax.swing.JInternalFrame {
             card_status = (String) card_table.getValueAt(selectedRowIndex, 2);
         }
 
-        if (!Objects.isNull(card_status) && card_status.equals("cancelado")) {
+        if (!Objects.isNull(card_status) && card_status.equals("Inativo")) {
             status.setText("Cartão já se encontra cancelado !");
             return;
         }

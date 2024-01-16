@@ -46,12 +46,13 @@ public class CommentsDAO {
                         rs.getTimestamp("data")));
             }
 
+            return list;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
+            return null;
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
-        return list.isEmpty() ? null : list;
     }
 
     /**
@@ -81,13 +82,13 @@ public class CommentsDAO {
                         rs.getTimestamp("data")));
             }
 
-            return list.isEmpty() ? list : null;
+            return list.isEmpty() ? null : list;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
+            return null;
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
-        return null;
     }
 
     /**

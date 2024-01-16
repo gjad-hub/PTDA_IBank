@@ -268,7 +268,7 @@ public class ClientDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        ArrayList list = new ArrayList<>();
+        ArrayList<Cliente> list = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(
             "SELECT num_cliente,nome,morada,email,"
@@ -294,13 +294,13 @@ public class ClientDAO {
                                     cartaoDefault, 0));
             }
 
-            return list;
+            return list.isEmpty() ? null : list;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
+            return null;
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
-        return null;
     }
 
     /**
@@ -311,7 +311,7 @@ public class ClientDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        ArrayList list = new ArrayList<>();
+        ArrayList<Cliente> list = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(
             "SELECT num_cliente,nome,morada,email,"
@@ -336,13 +336,13 @@ public class ClientDAO {
                                     cartaoDefault, 0));
             }
 
-            return list;
+            return list.isEmpty() ? null : list;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
+            return null;
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
-        return null;
     }
 
     /**

@@ -85,13 +85,13 @@ public class DepositsDAO {
 
                 ldeposito.add(tr);
             }
-            return ldeposito;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
-            return null;
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
+
+        return ldeposito.isEmpty() ? null : ldeposito;
     }
 
     /**

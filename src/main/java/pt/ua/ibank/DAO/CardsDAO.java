@@ -87,7 +87,7 @@ public class CardsDAO {
             DBConnection.closeConnection(stmt, rs);
         }
 
-        return lcartao;
+        return lcartao.isEmpty() ? null : lcartao;
     }
 
     /**
@@ -190,13 +190,14 @@ public class CardsDAO {
 
             stmt = conn.prepareStatement(
             "INSERT INTO cartao (num_cartao, data_validade, estado, cliente) "
-            + "VALUES (?, (SELECT DATE_ADD(CURDATE(), INTERVAL +5 YEAR )), \"activo\", ?);");
+            + "VALUES (?, (SELECT DATE_ADD(CURDATE(), INTERVAL +5 YEAR )), \"Ativo\", ?);");
             stmt.setString(1, num_cartao);
             stmt.setInt(2, num_cliente);
             stmt.execute();
 
             return codigoSucesso;
         } catch (SQLException e) {
+            e.printStackTrace(System.out);
             return codigoErro;
         } finally {
             DBConnection.closeConnection(stmt, rs);

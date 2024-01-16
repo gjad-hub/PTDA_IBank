@@ -26,26 +26,22 @@ public class PaymentsDAO {
 
     /**
      *
-     * @param valor
      * @param clienteRealiza
-     * @param cliente_criador
      * @param entidade
      * @param referencia
      * @return
      */
-    public static int payService(double valor, int clienteRealiza,
-                                 int cliente_criador, int entidade,
+    public static int payService(int clienteRealiza, int entidade,
                                  int referencia) {
         PreparedStatement stmt = null;
         try {
 
             stmt = conn.prepareStatement(
-            "UPDATE pagamento_servicos_compras SET pago = ?, cliente = ?, cliente_cria = ? WHERE entidade = ? and referencia = ?");
+            "UPDATE pagamento_servicos_compras SET pago = ?, cliente = ? WHERE entidade = ? and referencia = ?");
             stmt.setBoolean(1, true);
             stmt.setInt(2, clienteRealiza);
-            stmt.setInt(3, cliente_criador);
-            stmt.setInt(4, entidade);
-            stmt.setInt(5, referencia);
+            stmt.setInt(3, entidade);
+            stmt.setInt(4, referencia);
             stmt.execute();
 
             return codigoSucesso;
@@ -162,7 +158,7 @@ public class PaymentsDAO {
             DBConnection.closeConnection(stmt, rs);
         }
 
-        return lservices;
+        return lservices.isEmpty() ? null : lservices;
     }
 
     /**

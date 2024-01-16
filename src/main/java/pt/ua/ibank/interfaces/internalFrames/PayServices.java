@@ -296,7 +296,7 @@ public class PayServices extends javax.swing.JInternalFrame {
 
         int reply = JOptionPane.showConfirmDialog(null, "Confirma a pagamento ?", title, JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION) {
-            int payReply = PaymentsDAO.payService(valor, LocalClient.numCliente, servicosCompras.cliente_cria, Integer.parseInt(entidadeValida), Integer.parseInt(referenciaValida));
+            int payReply = PaymentsDAO.payService(LocalClient.numCliente, Integer.parseInt(entidadeValida), Integer.parseInt(referenciaValida));
 
             if (payReply == PaymentsDAO.codigoSucesso) {
                 status.setForeground(green);

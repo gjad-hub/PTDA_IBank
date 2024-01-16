@@ -13,12 +13,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CommentsDAOTest {
 
-    @BeforeEach
-    void setUp() {
-    }
-
-    @AfterEach
-    void tearDown() {
+    @Test
+    void testAddNewComment() {
+        assertTrue(CommentsDAO.addNewComment(1, 1,"Teste"));
     }
 
     @Test
@@ -28,12 +25,8 @@ class CommentsDAOTest {
     }
 
     @Test
-    void testAddNewComment() {
-        assertTrue(CommentsDAO.addNewComment(1, 1,"Teste"));
+    void testDeleteComment() {
+        assertTrue(CommentsDAO.deleteComment(CommentsDAO.getCommentListByID(1).size() + 1));
     }
 
-    @Test
-    void testDeleteComment() {
-        assertTrue(CommentsDAO.deleteComment(1));
-    }
 }

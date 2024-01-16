@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3e031737-4c12-4441-8033-4861b76b3657" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/fc8fb3e5-69b1-43b7-87d5-c04b652d2aa9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/fc8fb3e5-69b1-43b7-87d5-c04b652d2aa9/storage_v2/_src_/schema/PTDA_BD_001.Mtnkhw.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/fc8fb3e5-69b1-43b7-87d5-c04b652d2aa9/storage_v2/_src_/schema/PTDA_BD_001.Mtnkhw.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/fc8fb3e5-69b1-43b7-87d5-c04b652d2aa9/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/fc8fb3e5-69b1-43b7-87d5-c04b652d2aa9/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/pt/ua/ibank/DAO/CardsDAOTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/pt/ua/ibank/DAO/TransacoesDAOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/CardsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/CardsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/ClientDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/ClientDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/ClienteFuncionarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/ClienteFuncionarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/CommentsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/CommentsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/DepositsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/DepositsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/FuncionarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/FuncionarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/PaymentsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/PaymentsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/TransacoesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/TransacoesDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/TransfersDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/TransfersDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/CardManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/CardManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/PayServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/PayServices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/staff/manager/createaccount/formCreateAccountFuncionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/staff/manager/createaccount/formCreateAccountFuncionario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/staff/profile/modcomment/PerfilCommentTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/staff/profile/modcomment/PerfilCommentTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/staff/transferlist/TransfersMainInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/staff/transferlist/TransfersMainInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/utilities/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/utilities/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pt/ua/ibank/DAO/CartaoDAOTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pt/ua/ibank/DAO/CommentsDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pt/ua/ibank/DAO/CommentsDAOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pt/ua/ibank/DAO/FuncionarioDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pt/ua/ibank/DAO/FuncionarioDAOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pt/ua/ibank/DAO/PaymentsDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pt/ua/ibank/DAO/PaymentsDAOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pt/ua/ibank/DAO/TransfersDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pt/ua/ibank/DAO/TransfersDAOTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2b3Gnimf91hsF9B4R6tKlOvgIyu" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/data/Dev/GIT/PTDA_IBank&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="pt.ua.ibank.DAO" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.PaymentsDAOTest.testCreatePaymentWithInvalidData">
+    <configuration name="PaymentsDAOTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="IBank" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pt.ua.ibank.DAO.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pt.ua.ibank.DAO" />
+      <option name="MAIN_CLASS_NAME" value="pt.ua.ibank.DAO.PaymentsDAOTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PaymentsDAOTest.getServicosCompras" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="IBank" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pt.ua.ibank.DAO.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pt.ua.ibank.DAO" />
+      <option name="MAIN_CLASS_NAME" value="pt.ua.ibank.DAO.PaymentsDAOTest" />
+      <option name="METHOD_NAME" value="getServicosCompras" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PaymentsDAOTest.getServicosComprasFalse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="IBank" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pt.ua.ibank.DAO.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pt.ua.ibank.DAO" />
+      <option name="MAIN_CLASS_NAME" value="pt.ua.ibank.DAO.PaymentsDAOTest" />
+      <option name="METHOD_NAME" value="getServicosComprasFalse" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PaymentsDAOTest.testCreatePaymentWithInvalidData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="IBank" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pt.ua.ibank.DAO.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pt.ua.ibank.DAO" />
+      <option name="MAIN_CLASS_NAME" value="pt.ua.ibank.DAO.PaymentsDAOTest" />
+      <option name="METHOD_NAME" value="testCreatePaymentWithInvalidData" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PaymentsDAOTest.testPayService" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="IBank" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pt.ua.ibank.DAO.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pt.ua.ibank.DAO" />
+      <option name="MAIN_CLASS_NAME" value="pt.ua.ibank.DAO.PaymentsDAOTest" />
+      <option name="METHOD_NAME" value="testPayService" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="PTDA_IBank" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="PTDA_IBank" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.PaymentsDAOTest.testCreatePaymentWithInvalidData" />
+        <item itemvalue="JUnit.PaymentsDAOTest" />
+        <item itemvalue="JUnit.PaymentsDAOTest.getServicosComprasFalse" />
+        <item itemvalue="JUnit.PaymentsDAOTest.getServicosCompras" />
+        <item itemvalue="JUnit.PaymentsDAOTest.testPayService" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3e031737-4c12-4441-8033-4861b76b3657" name="Changes" comment="" />
+      <created>1705436519910</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1705436519910</updated>
+      <workItem from="1705436521122" duration="10510000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

@@ -21,6 +21,7 @@ public class PerfilCommentTableModel extends javax.swing.table.AbstractTableMode
     public PerfilCommentTableModel(int clientID) {
         this.clientID = clientID;
         data = CommentsDAO.getCommentListByID(clientID);
+        System.out.println(data);
     }
 
     @Override

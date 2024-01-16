@@ -36,12 +36,12 @@ public class ClienteFuncionarioDAO {
             while (rs.next()) {
                 list.add(rs.getInt("num_cli"));
             }
-            return list;
+            return list.isEmpty() ? null : list;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
+            return null;
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
-        return null;
     }
 }

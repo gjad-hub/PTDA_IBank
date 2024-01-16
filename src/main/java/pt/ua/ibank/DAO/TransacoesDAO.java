@@ -46,6 +46,6 @@ public class TransacoesDAO {
             DBConnection.closeConnection(stmt, rs);
         }
 
-        return ltransacoes;
+        return ltransacoes.isEmpty() ? null : ltransacoes;
     }
 }

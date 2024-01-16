@@ -12,6 +12,8 @@ import javax.swing.SwingUtilities;
 import pt.ua.ibank.DAO.FuncionarioDAO;
 import pt.ua.ibank.utilities.Hash;
 
+import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
+
 /**
  *
  * @author Asus
@@ -274,7 +276,7 @@ public class formCreateAccountFuncionario extends javax.swing.JPanel {
                                                               Femail.getText(),
                                                               Ftelemovel.getText(),
                                                               FNif.getText(),
-                                                              hashedPassword);
+                                                              hashedPassword, LocalFuncionario.numFun);
 
                 switch (verify) {
                     case FuncionarioDAO.codigoErroEmail ->

@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
+import pt.ua.ibank.DTO.Cliente;
 import pt.ua.ibank.DTO.Funcionario;
 import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
 import pt.ua.ibank.utilities.DBConnection;
@@ -45,7 +47,7 @@ public class FuncionarioDAO {
      */
     public static int CreateFuncionario(String nome, String morada, String email,
                                         String telefone, String nif,
-                                        String password) {
+                                        String password, Integer num_fun) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
@@ -71,7 +73,7 @@ public class FuncionarioDAO {
             stmt.setString(4, telefone);
             stmt.setString(5, nif);
             stmt.setString(6, password);
-            stmt.setInt(7, LocalFuncionario.numFun);
+            stmt.setInt(7, num_fun);
             stmt.execute();
             return codigoSucesso;
         } catch (SQLException e) {
@@ -216,13 +218,13 @@ public class FuncionarioDAO {
                         ));
 
             }
-            return list;
+            return list.isEmpty() ? null : list;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
+            return null;
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
-        return null;
     }
 
     /**
@@ -255,8 +257,9 @@ public class FuncionarioDAO {
                 list.add(new Funcionario(numero, nome, morada, email, telemovel,
                                          nif, morada, numGerente, demitido
                 ));
-                return list;
             }
+
+            return list.isEmpty() ? null : list;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
         } finally {
@@ -331,7 +334,7 @@ public class FuncionarioDAO {
         try {
 
             stmt = conn.prepareStatement(
-            "SELECT * FROM cliente where nif like ?;");
+            "SELECT * FROM funcionario where nif like ?;");
             stmt.setString(1, id);
             rs = stmt.executeQuery();
 
@@ -649,7 +652,7 @@ public class FuncionarioDAO {
 
         try {
             stmt = conn.prepareStatement(
-            "SELECT nome FROM cliente ORDER BY num_cliente DESC LIMIT 1;");
+            "SELECT nome FROM funcionario ORDER BY num_fun DESC LIMIT 1;");
             rs = stmt.executeQuery();
 
             if (rs.next()) {
