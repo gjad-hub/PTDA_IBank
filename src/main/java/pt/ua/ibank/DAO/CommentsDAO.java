@@ -41,13 +41,13 @@ public class CommentsDAO {
                         rs.getTimestamp("data")));
             }
 
-            return list;
+
         } catch (SQLException e) {
             e.printStackTrace(System.out);
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
-        return null;
+        return list.isEmpty() ? null : list;
     }
 
     public static ArrayList<ModeratorComment> getModeratorCommentListByID(
@@ -72,7 +72,7 @@ public class CommentsDAO {
                         rs.getTimestamp("data")));
             }
 
-            return list;
+            return list.isEmpty() ? list: null;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
         } finally {

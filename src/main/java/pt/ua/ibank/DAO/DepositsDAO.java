@@ -63,13 +63,13 @@ public class DepositsDAO {
 
                 ldeposito.add(tr);
             }
+            return ldeposito;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
+            return null;
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
-
-        return ldeposito;
     }
 
     public static boolean aproveDeposit(int num_deposito, int num_funcionario) {

@@ -1,8 +1,10 @@
 package pt.ua.ibank.DAO;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Test.*;
 import pt.ua.ibank.DTO.ModeratorComment;
 
 import java.util.ArrayList;
@@ -21,29 +23,17 @@ class CommentsDAOTest {
 
     @Test
     void getCommentListByNumber() {
+        ArrayList<ModeratorComment> list = CommentsDAO.getCommentListByID(1);
+        assertNotNull(list);
     }
 
     @Test
-    void addNewComment() {
+    void testAddNewComment() {
+        assertTrue(CommentsDAO.addNewComment(1, 1,"Teste"));
     }
 
     @Test
-    void deleteComment() {
+    void testDeleteComment() {
+        assertTrue(CommentsDAO.deleteComment(1));
     }
-
-//    @Test
-//    public void testGetCommentListByNumber() {
-//        // ArrayList<ModeratorComment> comments = CommentsDAO.getCommentListByNumber("3");
-//        assertNotNull(CommentsDAO.getCommentListByNumber("3"));
-//    }
-//
-//    @Test
-//    public void testAddNewComment() {
-//        assertTrue(CommentsDAO.addNewComment("3", "Comentário de teste"));
-//    }
-//
-//    @Test
-//    public void testDeleteComment() {
-//        assertTrue(CommentsDAO.deleteComment(1));
-//    }
 }
