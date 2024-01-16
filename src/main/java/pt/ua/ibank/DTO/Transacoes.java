@@ -1,12 +1,12 @@
+package pt.ua.ibank.DTO;
+
+import java.sql.Timestamp;
+
 /**
  * Objeto de uma class que representa uma transação feita
  * Author: PTDA_Staff.
  * Ultima data de modificação: 21 de Dezembro, 2023
  */
-package pt.ua.ibank.DTO;
-
-import java.sql.Timestamp;
-
 public class Transacoes {
 
     public int id;

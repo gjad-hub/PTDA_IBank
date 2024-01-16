@@ -1,10 +1,10 @@
+package pt.ua.ibank.DTO;
+
 /**
  * Objeto de uma class que representa uma Transferencia na base de dados
  * Author: PTDA_Staff.
  * Ultima data de modificação: 8 de Janeiro, 2024
  */
-package pt.ua.ibank.DTO;
-
 public class Transferencias {
 
     private final int transferenciaID;

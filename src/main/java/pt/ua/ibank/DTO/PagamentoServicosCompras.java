@@ -1,10 +1,10 @@
+package pt.ua.ibank.DTO;
+
 /**
  * Objeto de uma class que representa uma Referencia gerada por um Cliente
  * Author: PTDA_Staff.
  * Ultima data de modificação: 21 de Dezembro, 2024
  */
-package pt.ua.ibank.DTO;
-
 public class PagamentoServicosCompras {
 
     public int referencia;

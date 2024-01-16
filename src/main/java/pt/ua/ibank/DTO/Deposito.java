@@ -1,19 +1,39 @@
-/**
- * Objeto de uma class que representa um Deposito na Base de dados
- * Author: PTDA_Staff.
- * Ultima Data de Modificação: 21 de Dezembro, 2023
- */
 package pt.ua.ibank.DTO;
 
+/**
+ *
+ * @author ricar
+ */
 public class Deposito {
 
+    /**
+     * ID unico de deposito
+     */
     public int idDeposito;
+
+    /**
+     * Valor Em euros do deposito
+     */
     public double valor;
+
+    /**
+     * Estado de Aprovação do pedido
+     */
     public boolean aprovado;
+
+    /**
+     * Numero do Funcionario Encarregue de Aprovar o pedido
+     */
     public int numFun;
+
+    /**
+     * Numero de Cliente Associado ao Deposito
+     */
     public int numCli;
 
-    //verifica se um funcionário interagiu com ele
+    /**
+     * Valor que verifica se o pedido está pendente ou não
+     */
     public boolean pendenteAprovacao;
 
     /**

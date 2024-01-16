@@ -1,13 +1,13 @@
-/**
- * Objeto de uma Class Abstrata que representa uma Entidade Pessoa
- * Author: PTDA_Staff.
- * Ultima data de modificação: 16 de Janeiro, 2024
- */
 package pt.ua.ibank.DTO;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
+/**
+ * Objeto de uma Class Abstrata que representa uma Entidade Pessoa
+ * Author: PTDA_Staff.
+ * Ultima data de modificação: 16 de Janeiro, 2024
+ */
 public abstract class Pessoa {
 
     public String nome;

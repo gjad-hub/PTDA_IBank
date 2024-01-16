@@ -1,8 +1,3 @@
-/**
- * Objeto de uma class que representa um Funcionario na base de dados
- * Author: PTDA_Staff.
- * Ultima data de modificação: 16 de Janeiro, 2024
- */
 package pt.ua.ibank.DTO;
 
 import java.security.NoSuchAlgorithmException;
@@ -12,10 +7,26 @@ import pt.ua.ibank.DAO.FuncionarioDAO;
 import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
 import pt.ua.ibank.utilities.Hash;
 
+/**
+ * Objeto de uma class que representa um Funcionario na base de dados
+ * Author: PTDA_Staff.
+ * Ultima data de modificação: 16 de Janeiro, 2024
+ */
 public class Funcionario extends Pessoa {
 
+    /**
+     * Numero de Funcionario Externo
+     */
     public int numFun;
+
+    /**
+     * Numero de Gerente Responsavel pelo Funcionario Externo
+     */
     public int gerente;
+
+    /**
+     * Verifica se o cliente tem uma conta valida
+     */
     public Boolean foiDespedido;
 
     /**
@@ -84,6 +95,11 @@ public class Funcionario extends Pessoa {
         return gerente == 0;
     }
 
+    /**
+     *
+     * @param old_email
+     * @return
+     */
     @Override
     public int alterarInformacoes(String old_email) {
         int status = FuncionarioDAO.UpdateFuncionario(nome, morada, email,
@@ -109,6 +125,10 @@ public class Funcionario extends Pessoa {
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Funcionario{" + "numFun=" + numFun + ", gerente=" + gerente + '}';

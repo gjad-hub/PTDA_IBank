@@ -7,11 +7,30 @@ package pt.ua.ibank.DTO;
 
 import java.sql.Timestamp;
 
+/**
+ *
+ * @author ricar
+ */
 public class Cartao {
 
+    /**
+     * Numero de cartão externo
+     */
     public String numCartao;
+
+    /**
+     * Data de validade de cartão externo
+     */
     public Timestamp dataValidade;
+
+    /**
+     * Estado ( Ativo ou Inativo ) de cartão
+     */
     public String estado;
+
+    /**
+     * ID de cliente externo
+     */
     public int cliente;
 
     /**
@@ -57,6 +76,10 @@ public class Cartao {
         this.estado = estado;
     }
 
+    /**
+     *
+     * @return verifica se a validade do cartão é valida
+     */
     public boolean isValid() {
         return dataValidade.after(new Timestamp(System.currentTimeMillis()));
     }
