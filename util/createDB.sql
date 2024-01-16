@@ -163,28 +163,6 @@ BEGIN
     END IF;
 END;
 
-/* Trigger transferencia
-CREATE TRIGGER do_transferencia
-    AFTER INSERT
-    ON transferencia
-    FOR EACH ROW
-BEGIN
-    DECLARE existe INT;
-    DECLARE saldo DECIMAL(10, 2);
-
-    -- Cria mais alguma segurança no trigger
-    SELECT COUNT(*) INTO existe FROM cliente WHERE num_cliente = NEW.cliente_realiza;
-    SELECT cliente.saldo INTO saldo FROM cliente WHERE num_cliente = NEW.cliente_realiza;
-
-    IF existe > 0 THEN
-        IF saldo >= NEW.valor THEN
-            INSERT INTO transacoes (num_cli, descricao, valor) VALUES (NEW.cliente_realiza, "Transferencia", 0 - NEW.valor);
-            INSERT INTO transacoes (num_cli, descricao, valor) VALUES (NEW.cliente_recebe, "Transferencia", NEW.valor);
-        END IF;
-    END IF;
-END;
-*/
-
 CREATE PROCEDURE fazer_transferencia(IN cliente_envia INTEGER, IN cliente_recetor INTEGER, IN valor_trans DECIMAL(10,2), IN descricao VARCHAR(255))
 BEGIN
         DECLARE EXIT HANDLER FOR SQLEXCEPTION
