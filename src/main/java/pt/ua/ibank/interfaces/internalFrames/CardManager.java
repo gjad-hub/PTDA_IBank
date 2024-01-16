@@ -8,8 +8,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pt.ua.ibank.DAO.CardsDAO;
 import pt.ua.ibank.DTO.Cartao;
-import static pt.ua.ibank.utilities.Configs.LocalClient;
 import static pt.ua.ibank.utilities.ClientInfo.updateClientCardInfo;
+import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
 
 public class CardManager extends javax.swing.JInternalFrame {
@@ -38,7 +38,7 @@ public class CardManager extends javax.swing.JInternalFrame {
                 modelo.addRow(new Object[]{
                     cartao.numCartao,
                     dataFormat.format(cartao.dataValidade),
-                    cartao.estado
+                    cartao.isValid() ? "Ativo" : "Inativo"
                 });
             }
         }
@@ -224,7 +224,7 @@ public class CardManager extends javax.swing.JInternalFrame {
 
         if (selectedRowIndex >= 0) {
             selected_card = (String) card_table.getValueAt(selectedRowIndex,
-                    selectedColumnIndex);
+                                                           selectedColumnIndex);
             card_status = (String) card_table.getValueAt(selectedRowIndex, 2);
         }
 
@@ -239,8 +239,9 @@ public class CardManager extends javax.swing.JInternalFrame {
 
         if (!Objects.isNull(selected_card) && !selected_card.isEmpty()) {
             int reply = JOptionPane.showConfirmDialog(null,
-                    "Deseja tornar o cartão no padrão ?", title,
-                    JOptionPane.YES_NO_OPTION);
+                                                      "Deseja tornar o cartão no padrão ?",
+                                                      title,
+                                                      JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
                 if (CardsDAO.makeDefault(selected_card, LocalClient.numCliente) == CardsDAO.codigoSucesso) {
                     status.setForeground(green);
@@ -264,7 +265,7 @@ public class CardManager extends javax.swing.JInternalFrame {
 
         if (selectedRowIndex >= 0) {
             selected_card = (String) card_table.getValueAt(selectedRowIndex,
-                    selectedColumnIndex);
+                                                           selectedColumnIndex);
             card_status = (String) card_table.getValueAt(selectedRowIndex, 2);
         }
 
@@ -280,8 +281,9 @@ public class CardManager extends javax.swing.JInternalFrame {
 
         if (!Objects.isNull(selected_card) && !selected_card.isEmpty()) {
             int reply = JOptionPane.showConfirmDialog(null,
-                    "Deseja cancelar o cartão ? Não caminho de volta !", title,
-                    JOptionPane.YES_NO_OPTION);
+                                                      "Deseja cancelar o cartão ? Não caminho de volta !",
+                                                      title,
+                                                      JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
                 if (CardsDAO.cancelCard(selected_card) == CardsDAO.codigoSucesso) {
                     status.setForeground(green);
@@ -296,8 +298,9 @@ public class CardManager extends javax.swing.JInternalFrame {
 
     private void create_cardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_create_cardActionPerformed
         int reply = JOptionPane.showConfirmDialog(null,
-                "Deseja criar um novo cartão ? Todos os cartões têm uma validade de 5 anos !",
-                title, JOptionPane.YES_NO_OPTION);
+                                                  "Deseja criar um novo cartão ? Todos os cartões têm uma validade de 5 anos !",
+                                                  title,
+                                                  JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION) {
             if (CardsDAO.createCard(LocalClient.numCliente) == CardsDAO.codigoSucesso) {
                 status.setForeground(green);

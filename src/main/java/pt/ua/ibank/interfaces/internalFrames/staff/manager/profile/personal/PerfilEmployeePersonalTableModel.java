@@ -4,12 +4,14 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.manager.profile.personal;
 
-import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.table.AbstractTableModel;
 import pt.ua.ibank.DAO.FuncionarioDAO;
 import pt.ua.ibank.DTO.Funcionario;
+import pt.ua.ibank.utilities.TableElement;
 
 /**
  *
@@ -17,25 +19,27 @@ import pt.ua.ibank.DTO.Funcionario;
  */
 public final class PerfilEmployeePersonalTableModel extends AbstractTableModel {
 
-    private final List<Pair<String, String>> data;
+    private final List<TableElement> data;
     public final Funcionario funcionario;
 
     public PerfilEmployeePersonalTableModel(int funcionarioID) {
         funcionario = FuncionarioDAO.getFuncionarioByID(funcionarioID);
         data = new ArrayList<>();
+
         setupData();
     }
 
     public void setupData() {
-        data.add(new Pair<>("ID: ", Integer.toString(funcionario.numFun)));
-        data.add(new Pair<>("Responsavel: ", getNomeGerente()));
-        data.add(new Pair<>("Nome:", funcionario.nome));
-        data.add(new Pair<>("Email:", funcionario.telemovel));
-        data.add(new Pair<>("Telemovel:", funcionario.telemovel));
-        data.add(new Pair<>("NIF: ", funcionario.nif));
-        data.add(new Pair<>("Morada:", funcionario.morada));
-        data.add(new Pair<>("Demitido: ", funcionario.foiDespedido ? "Sim" :
-                                          "Não"));
+        data.add(new TableElement("ID: ", Integer.toString(funcionario.numFun)));
+        data.add(new TableElement("Responsavel: ", getNomeGerente()));
+        data.add(new TableElement("Nome:", funcionario.nome));
+        data.add(new TableElement("Email:", funcionario.email));
+        data.add(new TableElement("Telemovel:", funcionario.telemovel));
+        data.add(new TableElement("NIF: ", funcionario.nif));
+        data.add(new TableElement("Morada:", funcionario.morada));
+        data.add(new TableElement("Demitido: ", funcionario.foiDespedido ?
+                                                "Sim" :
+                                                "Não"));
     }
 
     public String getNomeGerente() {
@@ -57,17 +61,48 @@ public final class PerfilEmployeePersonalTableModel extends AbstractTableModel {
     }
 
     public String getLabel(int row) {
-        return data.get(row).left;
+        return data.get(row).key;
     }
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         try {
-            data.set(rowIndex, (Pair<String, String>) aValue);
-            fireTableRowsUpdated(data.size() - 1, data.size() - 1);
+            data.get(rowIndex).pair = (String) aValue;
+            fireTableRowsUpdated(0, data.size() - 1);
         } catch (java.lang.ClassCastException e) {
             //nothing
         }
+    }
+
+    public boolean verificarDados(String input, int row) {
+
+        Pattern p;
+        Matcher m;
+        final String key = data.get(row).key;
+        switch (key) {
+            case "Nome:" -> {
+                p = Pattern.compile("^[a-zA-Z]+$");
+                m = p.matcher(input);
+                return m.matches();
+            }
+            case "Email:" -> {
+                p = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+                m = p.matcher(input);
+                return m.matches();
+            }
+            case "NIF:" -> {
+                p = Pattern.compile("^\\d{9}$");
+                m = p.matcher(input);
+                return m.matches();
+            }
+            case "Telemovel:" -> {
+                p = Pattern.compile("^\\d{9}$");
+                m = p.matcher(input);
+                return m.matches();
+            }
+        }
+        System.out.println("Not Found!");
+        return false;
     }
 
     public void setValue(Object aValue, int row) {

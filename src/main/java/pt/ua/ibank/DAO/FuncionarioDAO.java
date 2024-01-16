@@ -125,7 +125,6 @@ public class FuncionarioDAO {
     public static String getFuncionarioNomeByID(int id) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Funcionario fun = null;
         try {
 
             stmt = conn.prepareStatement(
@@ -253,7 +252,7 @@ public class FuncionarioDAO {
 
             return num_fun;
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
@@ -286,7 +285,6 @@ public class FuncionarioDAO {
                                        nif, morada, numGerente, demitido
                 );
             }
-
             return cl;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
@@ -340,7 +338,7 @@ public class FuncionarioDAO {
                 return rs.getInt("nome");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
@@ -430,7 +428,7 @@ public class FuncionarioDAO {
             }
             return numContasCriadas;
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
@@ -451,7 +449,7 @@ public class FuncionarioDAO {
             }
             return numDepositosPorAprovar;
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
@@ -474,7 +472,7 @@ public class FuncionarioDAO {
             }
             return nomeFuncionarioMaisDepositos;
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
@@ -515,7 +513,7 @@ public class FuncionarioDAO {
                 return rs.getString("nome");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
@@ -539,7 +537,7 @@ public class FuncionarioDAO {
 
             return nomeUltimaConta;
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
@@ -565,7 +563,7 @@ public class FuncionarioDAO {
 
             return dataFormat.format(dataUltimoPedido);
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
@@ -589,7 +587,7 @@ public class FuncionarioDAO {
 
             return totalAprovacoes;
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }

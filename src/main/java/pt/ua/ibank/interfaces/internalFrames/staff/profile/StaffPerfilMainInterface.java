@@ -1,6 +1,5 @@
 package pt.ua.ibank.interfaces.internalFrames.staff.profile;
 
-import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -270,263 +269,269 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
 
             @Override
             public void onEdit(int row) {
-                oldLeft = ((Pair<String, String>) personalDataTable.getValueAt(
-                    row, 0)).left;
-        }
-
-        @Override
-        public void onCancel(int row) {
-        }
-
-        @Override
-        public void onSave(int row, Object newValue) {
-            personalDataTable.getValueAt(row,0);
-            Pair<String, String> newRecord = new Pair(oldLeft, newValue);
-            personalDataTable.setValue(newValue, row);
-            personalDataTable.setValueAt(newRecord, row, 0);
-            jTablePersonalData.repaint();
-
-            if(personalDataTable.getLabel(row).equals("Nome:")){
-                lblNomeCompleto.setText((String)newValue);
             }
-            personalDataTable.updateClient();
+
+            @Override
+            public void onCancel(int row) {
+            }
+
+            @Override
+            public void onSave(int row, Object newValue) {
+                personalDataTable.getValueAt(row,0);
+
+                String resultado = "Operação feita com sucesso";
+
+                if(!personalDataTable.verificarDados((String)newValue,row)){
+                    resultado = "Dados invalidos, tenta denovo";
+                    JOptionPane.showMessageDialog(LayeredPaneEditarConta, resultado);
+                    return;
+                }
+                personalDataTable.setValue(newValue, row);
+                personalDataTable.setValueAt(newValue, row, 0);
+                jTablePersonalData.repaint();
+
+                if(personalDataTable.getLabel(row).equals("Nome:")){
+                    lblNomeCompleto.setText((String)newValue);
+                }
+                personalDataTable.updateClient();
+                JOptionPane.showMessageDialog(LayeredPaneEditarConta, resultado);
+            }
+        };
+
+        jTablePersonalData.getColumnModel()
+        .getColumn(1)
+        .setCellEditor(new PerfilCellEditor(eventPersonal));
+        jTablePersonalData.setRowHeight(40);
+
+        jTablePersonalData.setRowSelectionAllowed(false);
+
+        jTablePersonalData.setSelectionBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanelDadosPessoaisLayout = new javax.swing.GroupLayout(jPanelDadosPessoais);
+        jPanelDadosPessoais.setLayout(jPanelDadosPessoaisLayout);
+        jPanelDadosPessoaisLayout.setHorizontalGroup(
+            jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        );
+        jPanelDadosPessoaisLayout.setVerticalGroup(
+            jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanelOperacoesDisponiveis.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnApagarConta.setBackground(new java.awt.Color(58, 58, 58));
+        btnApagarConta.setForeground(new java.awt.Color(255, 255, 255));
+        btnApagarConta.setText("Despedir socio / Apagar conta");
+        btnApagarConta.setToolTipText("");
+        btnApagarConta.setBorder(null);
+        btnApagarConta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnApagarContaMouseClicked(evt);
+            }
+        });
+        btnApagarConta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnApagarContaActionPerformed(evt);
+            }
+        });
+
+        BtnPromoverConta.setBackground(new java.awt.Color(58, 58, 58));
+        BtnPromoverConta.setForeground(new java.awt.Color(255, 255, 255));
+        BtnPromoverConta.setText("Promover para Gerente");
+        BtnPromoverConta.setToolTipText("");
+        BtnPromoverConta.setBorder(null);
+        BtnPromoverConta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPromoverContaActionPerformed(evt);
+            }
+        });
+
+        jPanel8.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel8.setPreferredSize(new java.awt.Dimension(319, 36));
+
+        jLabel28.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel28.setText("Operações disponiveis");
+
+        jLabel29.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel29.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_20/luggage.png"))); // NOI18N
+        jLabel29.setOpaque(true);
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                .addGap(37, 37, 37))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE)
+                    .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanelOperacoesDisponiveisLayout = new javax.swing.GroupLayout(jPanelOperacoesDisponiveis);
+        jPanelOperacoesDisponiveis.setLayout(jPanelOperacoesDisponiveisLayout);
+        jPanelOperacoesDisponiveisLayout.setHorizontalGroup(
+            jPanelOperacoesDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+            .addGroup(jPanelOperacoesDisponiveisLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelOperacoesDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelOperacoesDisponiveisLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(BtnPromoverConta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnApagarConta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanelOperacoesDisponiveisLayout.setVerticalGroup(
+            jPanelOperacoesDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelOperacoesDisponiveisLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnApagarConta, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BtnPromoverConta, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addGap(46, 46, 46))
+        );
+
+        jPanel7.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel7.setPreferredSize(new java.awt.Dimension(319, 36));
+
+        jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel26.setText("Ultimas operacoes");
+
+        jLabel27.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_20/luggage.png"))); // NOI18N
+        jLabel27.setOpaque(true);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                .addGap(37, 37, 37))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE)
+                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane3.setBorder(null);
+
+        jTableCardData.setModel(lastOperationModel);
+        jTableCardData.setRowHeight(40);
+        jTableCardData.getColumnModel().getColumn(0).setCellRenderer(new PerfilStaffLastOperationsTableCellRenderer());
+        jTableCardData.setRowSelectionAllowed(false);
+        jTableCardData.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        jTableCardData.setShowGrid(false);
+        jScrollPane3.setViewportView(jTableCardData);
+        jTableCardData.setTableHeader(null);
+
+        javax.swing.GroupLayout jPanelDadosCartaoLayout = new javax.swing.GroupLayout(jPanelDadosCartao);
+        jPanelDadosCartao.setLayout(jPanelDadosCartaoLayout);
+        jPanelDadosCartaoLayout.setHorizontalGroup(
+            jPanelDadosCartaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        );
+        jPanelDadosCartaoLayout.setVerticalGroup(
+            jPanelDadosCartaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDadosCartaoLayout.createSequentialGroup()
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanelDadosContainerLayout = new javax.swing.GroupLayout(jPanelDadosContainer);
+        jPanelDadosContainer.setLayout(jPanelDadosContainerLayout);
+        jPanelDadosContainerLayout.setHorizontalGroup(
+            jPanelDadosContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDadosContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanelDadosDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(jPanelDadosPessoais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelDadosContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelDadosCartao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelOperacoesDisponiveis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanelDadosContainerLayout.setVerticalGroup(
+            jPanelDadosContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDadosContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelDadosContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelDadosContainerLayout.createSequentialGroup()
+                        .addComponent(jPanelOperacoesDisponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelDadosCartao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanelDadosPessoais, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelDadosDescricao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        if (clientID == LocalFuncionario.numFun
+            || FuncionarioDAO.getFuncionarioDemitidoByID(clientID)) {
+            jPanelOperacoesDisponiveis.setVisible(false);
         }
-    };
 
-    jTablePersonalData.getColumnModel()
-    .getColumn(1)
-    .setCellEditor(new PerfilCellEditor(eventPersonal));
-    jTablePersonalData.setRowHeight(40);
-
-    jTablePersonalData.setRowSelectionAllowed(false);
-
-    jTablePersonalData.setSelectionBackground(new java.awt.Color(255, 255, 255));
-
-    javax.swing.GroupLayout jPanelDadosPessoaisLayout = new javax.swing.GroupLayout(jPanelDadosPessoais);
-    jPanelDadosPessoais.setLayout(jPanelDadosPessoaisLayout);
-    jPanelDadosPessoaisLayout.setHorizontalGroup(
-        jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-    );
-    jPanelDadosPessoaisLayout.setVerticalGroup(
-        jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(0, 0, 0)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
-    );
-
-    jPanelOperacoesDisponiveis.setBackground(new java.awt.Color(255, 255, 255));
-
-    btnApagarConta.setBackground(new java.awt.Color(58, 58, 58));
-    btnApagarConta.setForeground(new java.awt.Color(255, 255, 255));
-    btnApagarConta.setText("Despedir socio / Apagar conta");
-    btnApagarConta.setToolTipText("");
-    btnApagarConta.setBorder(null);
-    btnApagarConta.addMouseListener(new java.awt.event.MouseAdapter() {
-        public void mouseClicked(java.awt.event.MouseEvent evt) {
-            btnApagarContaMouseClicked(evt);
+        if (isManager) {
+            BtnPromoverConta.setVisible(false);
         }
-    });
-    btnApagarConta.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            btnApagarContaActionPerformed(evt);
-        }
-    });
 
-    BtnPromoverConta.setBackground(new java.awt.Color(58, 58, 58));
-    BtnPromoverConta.setForeground(new java.awt.Color(255, 255, 255));
-    BtnPromoverConta.setText("Promover para Gerente");
-    BtnPromoverConta.setToolTipText("");
-    BtnPromoverConta.setBorder(null);
-    BtnPromoverConta.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            BtnPromoverContaActionPerformed(evt);
-        }
-    });
+        LayeredPaneEditarConta.setLayer(jPanelDadosContainer, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-    jPanel8.setBackground(new java.awt.Color(0, 0, 0));
-    jPanel8.setPreferredSize(new java.awt.Dimension(319, 36));
+        javax.swing.GroupLayout LayeredPaneEditarContaLayout = new javax.swing.GroupLayout(LayeredPaneEditarConta);
+        LayeredPaneEditarConta.setLayout(LayeredPaneEditarContaLayout);
+        LayeredPaneEditarContaLayout.setHorizontalGroup(
+            LayeredPaneEditarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LayeredPaneEditarContaLayout.createSequentialGroup()
+                .addContainerGap(53, Short.MAX_VALUE)
+                .addComponent(jPanelDadosContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(77, Short.MAX_VALUE))
+        );
+        LayeredPaneEditarContaLayout.setVerticalGroup(
+            LayeredPaneEditarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LayeredPaneEditarContaLayout.createSequentialGroup()
+                .addComponent(jPanelDadosContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(171, Short.MAX_VALUE))
+        );
 
-    jLabel28.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-    jLabel28.setForeground(new java.awt.Color(255, 255, 255));
-    jLabel28.setText("Operações disponiveis");
-
-    jLabel29.setBackground(new java.awt.Color(51, 51, 51));
-    jLabel29.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-    jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_20/luggage.png"))); // NOI18N
-    jLabel29.setOpaque(true);
-
-    javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-    jPanel8.setLayout(jPanel8Layout);
-    jPanel8Layout.setHorizontalGroup(
-        jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanel8Layout.createSequentialGroup()
-            .addGap(5, 5, 5)
-            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-            .addGap(37, 37, 37))
-    );
-    jPanel8Layout.setVerticalGroup(
-        jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanel8Layout.createSequentialGroup()
-            .addGap(5, 5, 5)
-            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE)
-                .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    );
-
-    javax.swing.GroupLayout jPanelOperacoesDisponiveisLayout = new javax.swing.GroupLayout(jPanelOperacoesDisponiveis);
-    jPanelOperacoesDisponiveis.setLayout(jPanelOperacoesDisponiveisLayout);
-    jPanelOperacoesDisponiveisLayout.setHorizontalGroup(
-        jPanelOperacoesDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-        .addGroup(jPanelOperacoesDisponiveisLayout.createSequentialGroup()
-            .addContainerGap()
-            .addGroup(jPanelOperacoesDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelOperacoesDisponiveisLayout.createSequentialGroup()
-                    .addComponent(jLabel1)
-                    .addGap(0, 0, Short.MAX_VALUE))
-                .addComponent(BtnPromoverConta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnApagarConta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addContainerGap())
-    );
-    jPanelOperacoesDisponiveisLayout.setVerticalGroup(
-        jPanelOperacoesDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanelOperacoesDisponiveisLayout.createSequentialGroup()
-            .addGap(0, 0, 0)
-            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(btnApagarConta, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(BtnPromoverConta, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(jLabel1)
-            .addGap(46, 46, 46))
-    );
-
-    jPanel7.setBackground(new java.awt.Color(0, 0, 0));
-    jPanel7.setPreferredSize(new java.awt.Dimension(319, 36));
-
-    jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-    jLabel26.setForeground(new java.awt.Color(255, 255, 255));
-    jLabel26.setText("Ultimas operacoes");
-
-    jLabel27.setBackground(new java.awt.Color(51, 51, 51));
-    jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-    jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_20/luggage.png"))); // NOI18N
-    jLabel27.setOpaque(true);
-
-    javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-    jPanel7.setLayout(jPanel7Layout);
-    jPanel7Layout.setHorizontalGroup(
-        jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanel7Layout.createSequentialGroup()
-            .addGap(5, 5, 5)
-            .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-            .addGap(37, 37, 37))
-    );
-    jPanel7Layout.setVerticalGroup(
-        jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanel7Layout.createSequentialGroup()
-            .addGap(5, 5, 5)
-            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE)
-                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    );
-
-    jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
-    jScrollPane3.setBorder(null);
-
-    jTableCardData.setModel(lastOperationModel);
-    jTableCardData.setRowHeight(40);
-    jTableCardData.getColumnModel().getColumn(0).setCellRenderer(new PerfilStaffLastOperationsTableCellRenderer());
-    jTableCardData.setRowSelectionAllowed(false);
-    jTableCardData.setSelectionBackground(new java.awt.Color(255, 255, 255));
-    jTableCardData.setShowGrid(false);
-    jScrollPane3.setViewportView(jTableCardData);
-    jTableCardData.setTableHeader(null);
-
-    javax.swing.GroupLayout jPanelDadosCartaoLayout = new javax.swing.GroupLayout(jPanelDadosCartao);
-    jPanelDadosCartao.setLayout(jPanelDadosCartaoLayout);
-    jPanelDadosCartaoLayout.setHorizontalGroup(
-        jPanelDadosCartaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-    );
-    jPanelDadosCartaoLayout.setVerticalGroup(
-        jPanelDadosCartaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanelDadosCartaoLayout.createSequentialGroup()
-            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(0, 0, 0)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-    );
-
-    javax.swing.GroupLayout jPanelDadosContainerLayout = new javax.swing.GroupLayout(jPanelDadosContainer);
-    jPanelDadosContainer.setLayout(jPanelDadosContainerLayout);
-    jPanelDadosContainerLayout.setHorizontalGroup(
-        jPanelDadosContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanelDadosContainerLayout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jPanelDadosDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(6, 6, 6)
-            .addComponent(jPanelDadosPessoais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(jPanelDadosContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanelDadosCartao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelOperacoesDisponiveis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addContainerGap())
-    );
-    jPanelDadosContainerLayout.setVerticalGroup(
-        jPanelDadosContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanelDadosContainerLayout.createSequentialGroup()
-            .addContainerGap()
-            .addGroup(jPanelDadosContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelDadosContainerLayout.createSequentialGroup()
-                    .addComponent(jPanelOperacoesDisponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jPanelDadosCartao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addComponent(jPanelDadosPessoais, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelDadosDescricao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    );
-
-    if (clientID == LocalFuncionario.numFun
-        || FuncionarioDAO.getFuncionarioDemitidoByID(clientID)) {
-        jPanelOperacoesDisponiveis.setVisible(false);
-    }
-
-    if (isManager) {
-        BtnPromoverConta.setVisible(false);
-    }
-
-    LayeredPaneEditarConta.setLayer(jPanelDadosContainer, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-    javax.swing.GroupLayout LayeredPaneEditarContaLayout = new javax.swing.GroupLayout(LayeredPaneEditarConta);
-    LayeredPaneEditarConta.setLayout(LayeredPaneEditarContaLayout);
-    LayeredPaneEditarContaLayout.setHorizontalGroup(
-        LayeredPaneEditarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(LayeredPaneEditarContaLayout.createSequentialGroup()
-            .addContainerGap(53, Short.MAX_VALUE)
-            .addComponent(jPanelDadosContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addContainerGap(77, Short.MAX_VALUE))
-    );
-    LayeredPaneEditarContaLayout.setVerticalGroup(
-        LayeredPaneEditarContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(LayeredPaneEditarContaLayout.createSequentialGroup()
-            .addComponent(jPanelDadosContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(171, Short.MAX_VALUE))
-    );
-
-    add(LayeredPaneEditarConta, java.awt.BorderLayout.CENTER);
+        add(LayeredPaneEditarConta, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnPromoverContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPromoverContaActionPerformed

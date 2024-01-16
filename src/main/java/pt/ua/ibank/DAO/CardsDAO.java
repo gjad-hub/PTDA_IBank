@@ -22,20 +22,20 @@ public class CardsDAO {
         try {
 
             stmt = conn.prepareStatement(
-                    "SELECT * FROM cartao where num_cartao like ?;");
+            "SELECT * FROM cartao where num_cartao like ?;");
             stmt.setString(1, number);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
                 cartao = new Cartao(
-                        rs.getString("num_cartao"),
-                        rs.getTimestamp("data_validade"),
-                        rs.getInt("cliente"));
+                rs.getString("num_cartao"),
+                rs.getTimestamp("data_validade"),
+                rs.getInt("cliente"));
             }
 
             return cartao;
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
@@ -50,17 +50,18 @@ public class CardsDAO {
 
         try {
             stmt = conn.prepareStatement(
-                    "SELECT num_cartao, data_validade, estado FROM cartao WHERE cliente = ?;");
+            "SELECT num_cartao, data_validade, estado FROM cartao WHERE cliente = ?;");
             stmt.setInt(1, num_cliente);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
                 Cartao tr = new Cartao(rs.getString("num_cartao"),
-                        rs.getTimestamp("data_validade"), rs.getString("estado"));
+                                       rs.getTimestamp("data_validade"),
+                                       rs.getString("estado"));
                 lcartao.add(tr);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
@@ -74,7 +75,7 @@ public class CardsDAO {
 
         try {
             stmt = conn.prepareStatement(
-                    "SELECT count(*) as qtd FROM cartao WHERE cliente = ?;");
+            "SELECT count(*) as qtd FROM cartao WHERE cliente = ?;");
             stmt.setInt(1, num_cliente);
             rs = stmt.executeQuery();
 
@@ -82,7 +83,7 @@ public class CardsDAO {
                 return rs.getInt("qtd");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
@@ -95,13 +96,13 @@ public class CardsDAO {
 
         try {
             stmt = conn.prepareStatement(
-                    "UPDATE cartao SET estado = \"cancelado\" WHERE num_cartao LIKE ? ");
+            "UPDATE cartao SET estado = \"cancelado\" WHERE num_cartao LIKE ? ");
             stmt.setString(1, card_number);
             stmt.execute();
 
             return codigoSucesso;
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
             return codigoErro;
         } finally {
             DBConnection.closeConnection(stmt);
@@ -113,14 +114,14 @@ public class CardsDAO {
 
         try {
             stmt = conn.prepareStatement(
-                    "UPDATE cliente SET cartao_default = ? WHERE num_cliente = ?");
+            "UPDATE cliente SET cartao_default = ? WHERE num_cliente = ?");
             stmt.setString(1, card_number);
             stmt.setInt(2, num_cliente);
             stmt.execute();
 
             return codigoSucesso;
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
             return codigoErro;
         } finally {
             DBConnection.closeConnection(stmt);
@@ -138,7 +139,7 @@ public class CardsDAO {
             do {
                 num_cartao = generateCardNumber();
                 stmt = conn.prepareStatement(
-                        "SELECT count(num_cartao) AS valor FROM cartao where num_cartao like ?;");
+                "SELECT count(num_cartao) AS valor FROM cartao where num_cartao like ?;");
                 stmt.setString(1, num_cartao);
                 rs = stmt.executeQuery();
                 rs.next();
@@ -146,8 +147,8 @@ public class CardsDAO {
             stmt.close();
 
             stmt = conn.prepareStatement(
-                    "INSERT INTO cartao (num_cartao, data_validade, estado, cliente) "
-                    + "VALUES (?, (SELECT DATE_ADD(CURDATE(), INTERVAL +5 YEAR )), \"activo\", ?);");
+            "INSERT INTO cartao (num_cartao, data_validade, estado, cliente) "
+            + "VALUES (?, (SELECT DATE_ADD(CURDATE(), INTERVAL +5 YEAR )), \"activo\", ?);");
             stmt.setString(1, num_cartao);
             stmt.setInt(2, num_cliente);
             stmt.execute();

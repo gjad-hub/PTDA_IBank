@@ -102,7 +102,7 @@ public class ClientDAO {
             return codigoSucesso;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
             return codigoErro;
         } finally {
             DBConnection.closeConnection(stmt, rs);
@@ -175,7 +175,7 @@ public class ClientDAO {
 
             return cl;
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
@@ -212,7 +212,7 @@ public class ClientDAO {
 
             return cl;
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
@@ -314,7 +314,7 @@ public class ClientDAO {
 
             return num_cliente;
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
@@ -361,7 +361,7 @@ public class ClientDAO {
 
             return num_cliente;
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
@@ -452,7 +452,7 @@ public class ClientDAO {
 
             return cl;
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
@@ -477,7 +477,7 @@ public class ClientDAO {
 
             return card;
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }

@@ -1,3 +1,8 @@
+/**
+ * Objeto de uma class que representa uma transação feita
+ * Author: PTDA_Staff.
+ * Ultima Data de Modificação: 9 de Dezembro, 2023
+ */
 package pt.ua.ibank.DTO;
 
 import java.sql.Timestamp;
@@ -6,14 +11,22 @@ public class ModeratorComment {
 
     private final int id;
     private final String nomeFuncionario;
-    private final String descricao;
+    private final String conteudo;
     private final Timestamp dataFeita;
 
-    public ModeratorComment(int id, String nomeFuncionario, String descricao,
-            Timestamp dataFeita) {
+    /**
+     * Constructor: uma instancia com id, nomeFuncionario,conteudo,dataFeita
+     *
+     * @param id              ID de instancia de comentario
+     * @param nomeFuncionario Nome de Autor da mensagem
+     * @param conteudo        Conteudo da mensagem
+     * @param dataFeita       Data em que foi postado
+     */
+    public ModeratorComment(int id, String nomeFuncionario, String conteudo,
+                            Timestamp dataFeita) {
         this.id = id;
         this.nomeFuncionario = nomeFuncionario;
-        this.descricao = descricao;
+        this.conteudo = conteudo;
         this.dataFeita = dataFeita;
     }
 
@@ -22,7 +35,7 @@ public class ModeratorComment {
     }
 
     public String getDescricao() {
-        return descricao;
+        return conteudo;
     }
 
     public Timestamp getDataFeita() {

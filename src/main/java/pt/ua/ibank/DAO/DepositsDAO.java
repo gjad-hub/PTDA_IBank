@@ -41,7 +41,7 @@ public class DepositsDAO {
 
         try {
             stmt = conn.prepareStatement(
-            "SELECT id_deposito,valor,aprovado,pendente_aprovacao FROM deposito WHERE num_cli = ? ORDER BY data desc;");
+            "SELECT id_deposito,valor,aprovado,pendente_aprovacao,num_fun,num_cli FROM deposito WHERE num_cli = ? ORDER BY data desc;");
             stmt.setInt(1, num_cliente);
             rs = stmt.executeQuery();
 
@@ -55,14 +55,16 @@ public class DepositsDAO {
                 } else {
                     tr = new Deposito(rs.getInt("id_deposito"),
                                       rs.getDouble("valor"),
-                                      rs.getBoolean("aprovado")
+                                      rs.getBoolean("aprovado"),
+                                      rs.getInt("num_fun"),
+                                      rs.getInt("num_cli")
             );
                 }
 
                 ldeposito.add(tr);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }

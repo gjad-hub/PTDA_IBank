@@ -17,7 +17,6 @@ public class Cliente extends Pessoa {
     public Double saldo_cativo;
     public String cartaoDefault;
     public Integer entidade;
-    public Date data_criada;
 
     /*
      * Construtor completo
@@ -25,19 +24,14 @@ public class Cliente extends Pessoa {
     public Cliente(Integer numCliente, String nome, String morada, String email,
                    String telemovel, String nif, String password,
                    String numConta,
-                   Double saldo, Double saldo_cativo, String cardaoDefault,
+                   Double saldo, Double saldo_cativo, String cartaoDefault,
                    Integer entidade) {
+        super(nome, morada, email, telemovel, nif, password);
         this.numCliente = numCliente;
-        this.nome = nome;
-        this.morada = morada;
-        this.email = email;
-        this.telemovel = telemovel;
-        this.nif = nif;
-        this.password = password;
         this.numConta = numConta;
         this.saldo = saldo;
         this.saldo_cativo = saldo_cativo;
-        this.cartaoDefault = cardaoDefault;
+        this.cartaoDefault = cartaoDefault;
         this.entidade = entidade;
     }
 
@@ -56,13 +50,8 @@ public class Cliente extends Pessoa {
                    String telemovel, String nif, String password,
                    String numConta,
                    Double saldo) {
+        super(nome, morada, email, telemovel, nif, password);
         this.numCliente = numCliente;
-        this.nome = nome;
-        this.morada = morada;
-        this.email = email;
-        this.telemovel = telemovel;
-        this.nif = nif;
-        this.password = password;
         this.numConta = numConta;
         this.saldo = saldo;
     }
@@ -72,18 +61,13 @@ public class Cliente extends Pessoa {
      */
     public Cliente(Integer numCliente, String nome, String morada, String email,
                    String telemovel, String nif, String numConta, Double saldo,
-                   Double saldo_cativo, Date data_criada, String cartao_default,
+                   Double saldo_cativo, Date dataCriada, String cartao_default,
                    Integer entidade) {
+        super(nome, morada, email, telemovel, nif, dataCriada);
         this.numCliente = numCliente;
-        this.nome = nome;
-        this.morada = morada;
-        this.email = email;
-        this.telemovel = telemovel;
-        this.nif = nif;
-        this.saldo_cativo = saldo_cativo;
         this.numConta = numConta;
         this.saldo = saldo;
-        this.data_criada = data_criada;
+        this.saldo_cativo = saldo_cativo;
         this.entidade = entidade;
         this.cartaoDefault = cartao_default;
     }
@@ -92,16 +76,19 @@ public class Cliente extends Pessoa {
      * Construtor para fazer login
      */
     public Cliente(String email, String password) {
+        super(email, password);
         this.email = email;
         this.password = password;
     }
 
+    @Override
     public int alterarInformacoes(String old_email) {
         int status = ClientDAO.UpdateClient(nome, morada, email, telemovel, nif,
                                             password, old_email);
         return status;
     }
 
+    @Override
     public boolean autenticar() {
         Cliente tmp = ClientDAO.getClientByEmail(email);
 
@@ -113,7 +100,7 @@ public class Cliente extends Pessoa {
                     return true;
                 }
             } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
-                ex.printStackTrace();
+                ex.printStackTrace(System.out);
             }
         }
         return false;

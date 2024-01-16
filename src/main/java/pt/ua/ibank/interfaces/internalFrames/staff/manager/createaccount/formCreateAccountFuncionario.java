@@ -222,7 +222,8 @@ public class formCreateAccountFuncionario extends javax.swing.JPanel {
         String repeatPassword = new String(FRPass.getPassword());
 
         String regexNome = "^[a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜãõÃÕñÑçÇ\\s'-]+$";
-        String regexEmail = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        String regexEmail =
+               "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         String regexTelefoneNif = "^\\d{9}$";
         String regexPassword = "^.{8,}$";
 
@@ -267,10 +268,13 @@ public class formCreateAccountFuncionario extends javax.swing.JPanel {
         } else {
             try {
                 String hashedPassword = Hash.generateStorngPasswordHash(
-                        new String(FPass.getPassword()));
+                       new String(FPass.getPassword()));
                 int verify = FuncionarioDAO.CreateFuncionario(Fnome.getText(),
-                        FMorada.getText(), Femail.getText(),
-                        Ftelemovel.getText(), FNif.getText(), hashedPassword);
+                                                              FMorada.getText(),
+                                                              Femail.getText(),
+                                                              Ftelemovel.getText(),
+                                                              FNif.getText(),
+                                                              hashedPassword);
 
                 switch (verify) {
                     case FuncionarioDAO.codigoErroEmail ->
@@ -293,7 +297,7 @@ public class formCreateAccountFuncionario extends javax.swing.JPanel {
                 }
 
             } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
-                ex.printStackTrace();
+                ex.printStackTrace(System.out);
             }
         }
     }//GEN-LAST:event_btnCreateAccountActionPerformed

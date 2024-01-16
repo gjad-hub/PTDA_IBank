@@ -28,7 +28,7 @@ public class TransfersDAO {
 
             return codigoSucesso;
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
             return codigoErro;
         } finally {
             DBConnection.closeConnection(stmt);

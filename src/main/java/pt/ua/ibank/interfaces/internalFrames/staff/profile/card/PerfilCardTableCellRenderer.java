@@ -4,8 +4,6 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.card;
 
-import com.mysql.cj.conf.ConnectionUrlParser.Pair;
-import java.awt.Color;
 import java.awt.Component;
 import java.text.SimpleDateFormat;
 import javax.swing.JTable;
@@ -20,25 +18,27 @@ public class PerfilCardTableCellRenderer extends DefaultTableCellRenderer {
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value,
-            boolean isSelected, boolean hasFocus, int row, int column) {
+                                                   boolean isSelected,
+                                                   boolean hasFocus, int row,
+                                                   int column) {
         Component comm = super.getTableCellRendererComponent(table, value,
-                isSelected,
-                hasFocus, row, column);
-        var currClientObject = (Cartao) value;
+                                                             isSelected,
+                                                             hasFocus, row,
+                                                             column);
+        var currCardObject = (Cartao) value;
 
         SimpleDateFormat dateDisplay = new SimpleDateFormat("MM/yy");
-        String expireDate = dateDisplay.format(currClientObject.dataValidade);
-        String cardNumber = currClientObject.numCartao.substring(
-                currClientObject.numCartao.length() - 4,
-                currClientObject.numCartao.length());
+        String expireDate = dateDisplay.format(currCardObject.dataValidade);
+        String cardNumber = currCardObject.numCartao
+               .substring(currCardObject.numCartao.length() - 4);
 
-        var profileChildElement = new PerfilCardTableElementPanel(
-                cardNumber,
-                expireDate,
-                currClientObject.estado
-        );
+        var profileCardElement = new PerfilCardTableElementPanel(
+        cardNumber,
+        expireDate,
+        currCardObject.isValid() ? "Valido" : "Invalido"
+);
 
-        return profileChildElement;
+        return profileCardElement;
     }
 
 }

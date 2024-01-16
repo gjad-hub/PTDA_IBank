@@ -5,6 +5,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import pt.ua.ibank.DAO.FuncionarioDAO;
 import pt.ua.ibank.interfaces.internalFrames.ProfilePage;
 import pt.ua.ibank.interfaces.internalFrames.StaffAccountList;
@@ -29,12 +30,18 @@ public class staffInterface extends javax.swing.JFrame {
         try {
             initComponents();
             start_up();
+
         } catch (java.lang.NullPointerException e) {
             System.exit(1);
         }
     }
 
     private void start_up() {
+        if (LocalFuncionario.foiDespedido) {
+            JOptionPane.showMessageDialog(this, "Funcionario foi Demitido!");
+            System.exit(0);
+        }
+
         small_side_bar.setVisible(false);
         menu_bar.add(new WindowMenu((MDIDesktopPane) desktop));
         logout.setText("Fechar (" + LocalFuncionario.email + ")");

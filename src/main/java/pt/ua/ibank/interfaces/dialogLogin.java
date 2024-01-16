@@ -9,8 +9,8 @@ import java.util.regex.Pattern;
 import javax.swing.SwingUtilities;
 import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.DTO.Cliente;
-import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.utilities.Configs;
+import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.utilities.Hash;
 
 public class dialogLogin extends javax.swing.JDialog {
@@ -466,7 +466,8 @@ public class dialogLogin extends javax.swing.JDialog {
             Configs.save();
         }
 
-        LocalClient = new Cliente(email_input.getText(), new String(password_input.getPassword()));
+        LocalClient = new Cliente(email_input.getText(), new String(
+                                  password_input.getPassword()));
         if (LocalClient.autenticar()) {
             Configs.loginOK = true;
             this.dispose();
@@ -490,7 +491,8 @@ public class dialogLogin extends javax.swing.JDialog {
         String repeatPassword = new String(FRPass.getPassword());
 
         String regexNome = "^[a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜãõÃÕñÑçÇ\\s'-]+$";
-        String regexEmail = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        String regexEmail =
+               "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         String regexTelefoneNif = "^\\d{9}$";
         //String emailRegexSimples = "^(.+)@(.+)$";
         String regexPassword = "^.{8,}$";
@@ -502,14 +504,16 @@ public class dialogLogin extends javax.swing.JDialog {
         Matcher matcherEmail = patternEmail.matcher(Femail.getText());
 
         Pattern patternPhoneNumberNif = Pattern.compile(regexTelefoneNif);
-        Matcher matcherPhoneNumber = patternPhoneNumberNif.matcher(Ftelemovel.getText());
+        Matcher matcherPhoneNumber = patternPhoneNumberNif.matcher(
+                Ftelemovel.getText());
         Matcher matcherNIF = patternPhoneNumberNif.matcher(FNif.getText());
 
         Pattern patternPassword = Pattern.compile(regexPassword);
         Matcher matcherPassword = patternPassword.matcher(password);
 
         if (Fnome.getText().isEmpty() || Femail.getText().isEmpty() || Ftelemovel.getText().isEmpty() || FNif.getText().isEmpty() || password.isEmpty() || repeatPassword.isEmpty()) {
-            erro_create.setText("Um ou mais campos vazios! Por favor preencha-os!");
+            erro_create.setText(
+                    "Um ou mais campos vazios! Por favor preencha-os!");
         } else if (!matcherNome.find()) {
             erro_create.setText("Nome inválido!");
             Fnome.setText("");
@@ -523,7 +527,8 @@ public class dialogLogin extends javax.swing.JDialog {
             erro_create.setText("NIF inválido!");
             FNif.setText("");
         } else if (!matcherPassword.find()) {
-            erro_create.setText("Password inválida! Tem de conter pelo menos 8 caracteres!");
+            erro_create.setText(
+                    "Password inválida! Tem de conter pelo menos 8 caracteres!");
             FPass.setText("");
             FRPass.setText("");
         } else if (!password.equals(repeatPassword)) {
@@ -533,14 +538,21 @@ public class dialogLogin extends javax.swing.JDialog {
         } else {
 
             try {
-                String hashedPassword = Hash.generateStorngPasswordHash(new String(FPass.getPassword()));
-                int verify = ClientDAO.CreateClient(Fnome.getText(), FMorada.getText(), Femail.getText(), Ftelemovel.getText(), FNif.getText(), hashedPassword);
+                String hashedPassword = Hash.generateStorngPasswordHash(
+                       new String(FPass.getPassword()));
+                int verify = ClientDAO.CreateClient(Fnome.getText(),
+                                                    FMorada.getText(),
+                                                    Femail.getText(),
+                                                    Ftelemovel.getText(),
+                                                    FNif.getText(),
+                                                    hashedPassword);
 
                 switch (verify) {
                     case ClientDAO.codigoErroEmail ->
                         erro_create.setText("Endereço de email já existente !");
                     case ClientDAO.codigoErro ->
-                        erro_create.setText("Algo inesperado aconteceu tente novamente mais tarde !");
+                        erro_create.setText(
+                                "Algo inesperado aconteceu tente novamente mais tarde !");
                     case ClientDAO.codigoSucesso -> {
                         erro_create.setText("Sucesso ao criar cliente !");
                         SwingUtilities.invokeLater(() -> {
@@ -558,7 +570,7 @@ public class dialogLogin extends javax.swing.JDialog {
                 }
 
             } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
-                ex.printStackTrace();
+                ex.printStackTrace(System.out);
             }
         }
     }//GEN-LAST:event_btnCreateAccountActionPerformed
@@ -574,38 +586,52 @@ public class dialogLogin extends javax.swing.JDialog {
             password_input.setEchoChar('*');
         }
     }//GEN-LAST:event_seeActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+        /*
+         * Set the Nimbus look and feel
+         */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the
+         * default look and feel.
+         * For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (javax.swing.UIManager.LookAndFeelInfo info
+                 : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(dialogLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(dialogLogin.class.getName()).log(
+                    java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(dialogLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(dialogLogin.class.getName()).log(
+                    java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(dialogLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(dialogLogin.class.getName()).log(
+                    java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(dialogLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(dialogLogin.class.getName()).log(
+                    java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the dialog */
+        /*
+         * Create and display the dialog
+         */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                dialogLogin dialog = new dialogLogin(new javax.swing.JFrame(), true);
+                dialogLogin dialog = new dialogLogin(new javax.swing.JFrame(),
+                                                     true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

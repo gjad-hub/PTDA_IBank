@@ -18,21 +18,21 @@ public class TransacoesDAO {
 
         try {
             stmt = conn.prepareStatement(
-                    "SELECT * FROM  transacoes WHERE num_cli = ?;");
+            "SELECT * FROM  transacoes WHERE num_cli = ?;");
             stmt.setInt(1, num_cliente);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
                 Transacoes tr = new Transacoes(
-                        rs.getInt("id"),
-                        rs.getInt("num_cli"), 
-                        rs.getString("descricao"), 
-                        rs.getDouble("valor"), 
-                        rs.getTimestamp("data"));
+                           rs.getInt("id"),
+                           rs.getInt("num_cli"),
+                           rs.getString("descricao"),
+                           rs.getDouble("valor"),
+                           rs.getTimestamp("data"));
                 ltransacoes.add(tr);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }

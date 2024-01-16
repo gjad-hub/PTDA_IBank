@@ -71,8 +71,10 @@ public class WindowMenu extends JMenu {
             }
         });
     }
-    
-    /* Sets up the children menus depending on the current desktop state */
+
+    /*
+     * Sets up the children menus depending on the current desktop state
+     */
     private void buildChildMenus() {
         int i;
         ChildMenuItem menu;
@@ -94,7 +96,8 @@ public class WindowMenu extends JMenu {
             menu.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent ae) {
-                    JInternalFrame frame = ((ChildMenuItem) ae.getSource()).getFrame();
+                    JInternalFrame frame =
+                                   ((ChildMenuItem) ae.getSource()).getFrame();
                     //a janela de log não fecha, apenas esconde e assim funciona
                     try {
                         frame.setVisible(true);
@@ -104,7 +107,7 @@ public class WindowMenu extends JMenu {
                     try {
                         frame.setSelected(true);
                     } catch (PropertyVetoException e) {
-                        e.printStackTrace();
+                        e.printStackTrace(System.out);
                     }
                 }
             });
@@ -114,8 +117,8 @@ public class WindowMenu extends JMenu {
     }
 
     /*
-   * This JCheckBoxMenuItem descendant is used to track the child frame that
-   * corresponds to a give menu.
+     * This JCheckBoxMenuItem descendant is used to track the child frame that
+     * corresponds to a give menu.
      */
     class ChildMenuItem extends JCheckBoxMenuItem {
 

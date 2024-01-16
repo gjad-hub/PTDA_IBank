@@ -4,12 +4,14 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.personal;
 
-import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.table.AbstractTableModel;
 import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.DTO.Cliente;
+import pt.ua.ibank.utilities.TableElement;
 
 /**
  *
@@ -17,7 +19,7 @@ import pt.ua.ibank.DTO.Cliente;
  */
 public final class PerfilPersonalTableModel extends AbstractTableModel {
 
-    private final List<Pair<String, String>> data;
+    private final List<TableElement> data;
     public final Cliente client;
 
     public PerfilPersonalTableModel(int clientID) {
@@ -27,16 +29,17 @@ public final class PerfilPersonalTableModel extends AbstractTableModel {
     }
 
     public void setupData() {
-        data.add(new Pair<>("ID: ", Integer.toString(client.numCliente)));
-        data.add(new Pair<>("Nome:", client.nome));
-        data.add(new Pair<>("Email:", client.telemovel));
-        data.add(new Pair<>("NIF: ", client.nif));
-        data.add(new Pair<>("Morada:", client.morada));
-        data.add(new Pair<>(
+        data.add(new TableElement("ID: ", Integer.toString(client.numCliente)));
+        data.add(new TableElement("Nome:", client.nome));
+        data.add(new TableElement("Telemovel:", client.telemovel));
+        data.add(new TableElement("Email:", client.email));
+        data.add(new TableElement("NIF: ", client.nif));
+        data.add(new TableElement("Morada:", client.morada));
+        data.add(new TableElement(
                 "Cartao default: ", client.cartaoDefault));
-        data.add(new Pair<>(
+        data.add(new TableElement(
                 "Saldo(€): ", Double.toString(client.saldo)));
-        data.add(new Pair<>(
+        data.add(new TableElement(
                 "Saldo Cativo(€): ", Double.toString(client.saldo_cativo)));
     }
 
@@ -51,14 +54,45 @@ public final class PerfilPersonalTableModel extends AbstractTableModel {
     }
 
     public String getLabel(int row) {
-        return data.get(row).left;
+        return data.get(row).pair;
+    }
+
+    public boolean verificarDados(String input, int row) {
+
+        Pattern p;
+        Matcher m;
+        final String key = data.get(row).key;
+        switch (key) {
+            case "Nome:" -> {
+                p = Pattern.compile("^[a-zA-Z]+$");
+                m = p.matcher(input);
+                return m.matches();
+            }
+            case "Email:" -> {
+                p = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+                m = p.matcher(input);
+                return m.matches();
+            }
+            case "NIF:" -> {
+                p = Pattern.compile("^\\d{9}$");
+                m = p.matcher(input);
+                return m.matches();
+            }
+            case "Telemovel:" -> {
+                p = Pattern.compile("^\\d{9}$");
+                m = p.matcher(input);
+                return m.matches();
+            }
+        }
+        System.out.println("Not Found!");
+        return false;
     }
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         try {
-            data.set(rowIndex, (Pair<String, String>) aValue);
-            fireTableRowsUpdated(data.size() - 1, data.size() - 1);
+            data.get(rowIndex).pair = (String) aValue;
+            fireTableRowsUpdated(0, data.size() - 1);
         } catch (java.lang.ClassCastException e) {
             //nothing
         }

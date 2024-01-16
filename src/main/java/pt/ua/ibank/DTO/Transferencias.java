@@ -1,9 +1,10 @@
+/**
+ * Objeto de uma class que representa uma Transferencia na base de dados
+ * Author: PTDA_Staff.
+ * Ultima data de modificação: 8 de Janeiro, 2024
+ */
 package pt.ua.ibank.DTO;
 
-/**
- * Objeto de uma class que representa uma transação feita Author: PTDA_Staff.
- * Ultima data de modificação: 4 de Janeiro, 2024
- */
 public class Transferencias {
 
     private final int transferenciaID;
@@ -16,15 +17,15 @@ public class Transferencias {
      * Constructor: uma instancia com id,valor e atores presentes na transação
      * juntamente com uma mensagem
      *
-     * @param transferenciaID Id Unico da transferencia
-     * @param valorEmEuros valor flutuante em euros
+     * @param transferenciaID  Id Unico da transferencia
+     * @param valorEmEuros     valor flutuante em euros
      * @param clienteRealizaID Receptor da transferencia
-     * @param clienteRecebeID Autor da transferencia
-     * @param motivo Pequena descrição
+     * @param clienteRecebeID  Autor da transferencia
+     * @param motivo           Pequena descrição
      */
     public Transferencias(int transferenciaID, double valorEmEuros,
-            int clienteRealizaID,
-            int clienteRecebeID, String motivo) {
+                          int clienteRealizaID,
+                          int clienteRecebeID, String motivo) {
         this.transferenciaID = transferenciaID;
         this.valorEmEuros = valorEmEuros;
         this.clienteRealizaID = clienteRealizaID;
