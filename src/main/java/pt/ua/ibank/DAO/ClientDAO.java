@@ -266,7 +266,7 @@ public class ClientDAO {
         ArrayList<Cliente> list = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(
-            "SELECT 'num_cliente',nome,morada,email,telemovel,nif,num_conta,"
+            "SELECT num_cliente,nome,morada,email,telemovel,nif,num_conta,"
             + "data_criacao,cartao_default FROM cliente where morada like ?");
             stmt.setString(1, address);
             rs = stmt.executeQuery();

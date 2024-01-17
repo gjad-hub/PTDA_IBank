@@ -1,3 +1,18 @@
+-- Limpar todos os dados
+SET FOREIGN_KEY_CHECKS = 0;
+
+truncate table cartao;
+truncate table cliente;
+truncate table comentario_perfil;
+truncate table deposito;
+truncate table funcionario;
+truncate table funcionario_cliente;
+truncate table pagamento_servicos_compras;
+truncate table transacoes;
+truncate table transferencia;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
 -- Inserir dados de teste na tabela Cartao
 INSERT INTO cartao (num_cartao, data_validade, estado)
 VALUES ('4001330931275836', '2026-10-31', 'Ativo');

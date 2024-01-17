@@ -1,11 +1,11 @@
 package pt.ua.ibank.DAO;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 import pt.ua.ibank.DTO.Cliente;
+
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.*;
 import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO_EMAIL;
 import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 
@@ -59,14 +59,14 @@ class ClientDAOTest {
     }
 
     @Test
-    public void testGetClientIdByEmailFound() { // podemos juntar este teste com o testGetClientByEmailFound()
+    public void testGetClientIdByEmailFound() {
         String testEmail = "marta.rodrigues@email.com";
         Integer clientId = ClientDAO.getClientIdByEmail(testEmail);
         assertNotNull(clientId);
     }
 
     @Test
-    public void testGetClientIdByEmailNotFound() { // podemos juntar este teste com o testGetClientByEmailNotFoundN()
+    public void testGetClientIdByEmailNotFound() {
         String testEmail = "naoexistente@gmail.com";
         Integer clientId = ClientDAO.getClientIdByEmail(testEmail);
         assertNull(clientId);
@@ -76,9 +76,8 @@ class ClientDAOTest {
     public void testGetClientBalanceFound() {
         int testClientId = 3;
         Cliente cliente = ClientDAO.getClientBalance(testClientId);
-        assertNotNull(cliente.saldo);
-        assertTrue(cliente.saldo >= 0); // assumindo que o saldo não pode ser negativo, se poder aí tem que se remover
-        // esta linha
+        assertNotNull(cliente);
+        assertTrue(cliente.saldo >= 0);
     }
 
     @Test
@@ -90,12 +89,12 @@ class ClientDAOTest {
 
     @Test
     public void testUpdateClientSuccess() {
-        int result = ClientDAO.UpdateClient("João Tomás Silva",
+        int result = ClientDAO.UpdateClient("Hugo Tomás Silva",
                                             "Avenida Lourenço Peixinho, 123, Aveiro, Portugal",
-                                            "joaotomassilva@gmail.com",
+                                            "hugo.oliveira.new@email.com",
                                             "923344551", "119876543",
-                                            "joao2024silva",
-                                            "joaosilva@gmail.com");
+                                            "Hugo2024silva",
+                                            "hugo.oliveira@email.com");
         assertEquals(CODIGO_SUCESSO, result);
     }
 
@@ -110,13 +109,79 @@ class ClientDAOTest {
     }
 
     @Test
-    public void testUpdateClientNoChange() {
-        int result = ClientDAO.UpdateClient("João Tomás Silva",
-                                            "Avenida Lourenço Peixinho, 123, Aveiro, Portugal",
-                                            "joaotomassilva@gmail.com",
-                                            "923344551", "119876543",
-                                            "joao2024silva",
-                                            "joaotomassilva@gmail.com");
-        assertEquals(CODIGO_SUCESSO, result);
+    void getClientByID() {
+        int id = 1;
+        Cliente client = ClientDAO.getClientByID(id);
+        assertNotNull(client);
+    }
+
+    @Test
+    void getClientByIDFalse() {
+        int id = 999999;
+        Cliente client = ClientDAO.getClientByID(id);
+        assertNull(client);
+    }
+
+    @Test
+    void getClientByNIF() {
+        String nif = "111223344";
+        Cliente client = ClientDAO.getClientByNIF(nif);
+        assertNotNull(client);
+    }
+
+    @Test
+    void getClientByNIFFalse() {
+        String nif = "999999999";
+        Cliente client = ClientDAO.getClientByNIF(nif);
+        assertNull(client);
+    }
+
+    @Test
+    void getClientListByAddress() {
+        String address = "Avenida H, nº 222";
+        ArrayList<Cliente> lclient = ClientDAO.getClientListByAddress(address);
+        assertNotNull(lclient);
+    }
+
+    @Test
+    void getClientListByAddressFalse() {
+        String address = "Morada que não existe";
+        ArrayList<Cliente> lclient = ClientDAO.getClientListByAddress(address);
+        assertNotNull(lclient);
+        assertTrue(lclient.isEmpty());
+    }
+
+    @Test
+    void getClientList() {
+        ArrayList<Cliente> lclient = ClientDAO.getClientList();
+        assertNotNull(lclient);
+    }
+
+    @Test
+    void getClienteNomeByID() {
+        String name = "Sara Silva";
+        int id = 3;
+        String result = ClientDAO.getClienteNomeByID(id);
+        assertEquals(name, result);
+    }
+
+    @Test
+    void getClienteNomeByIDFalse() {
+        String result = ClientDAO.getClienteNomeByID(9999);
+        assertNull(result);
+    }
+
+    @Test
+    void getClientDefaultCard() {
+        String card = "4001733310706027";
+        int id = 5;
+        String result = ClientDAO.getClientDefaultCard(id);
+        assertEquals(card, result);
+    }
+
+    @Test
+    void getClientDefaultCardFalse() {
+        String result = ClientDAO.getClientDefaultCard(99999);
+        assertNull(result);
     }
 }
