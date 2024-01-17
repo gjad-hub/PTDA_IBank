@@ -5,9 +5,10 @@ import java.util.Objects;
 import javax.swing.JOptionPane;
 import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.DAO.TransfersDAO;
+import static pt.ua.ibank.utilities.ClientInfo.updateClientBalance;
+import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
-import static pt.ua.ibank.utilities.ClientInfo.updateClientBalance;
 
 public class TransferPage extends javax.swing.JInternalFrame {
 
@@ -211,12 +212,16 @@ public class TransferPage extends javax.swing.JInternalFrame {
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
         status.setForeground(red);
         status.setText("");
-        String montateString = !montante.getText().isEmpty() ? montante.getText() : "0";
-        String montateDecimalString = !montante_decimal.getText().isEmpty() ? montante_decimal.getText() : "0";
-        double valor = Double.parseDouble(montateString + "." + montateDecimalString);
+        String montateString = !montante.getText().isEmpty() ?
+                               montante.getText() : "0";
+        String montateDecimalString = !montante_decimal.getText().isEmpty() ?
+                                      montante_decimal.getText() : "0";
+        double valor = Double.parseDouble(
+               montateString + "." + montateDecimalString);
 
         if (iban.getText().isEmpty()) {
-            status.setText("Insira o IBAN do cliente para fazer a transferencia !");
+            status.setText(
+                    "Insira o IBAN do cliente para fazer a transferencia !");
             iban.requestFocus();
             return;
         }
@@ -233,13 +238,18 @@ public class TransferPage extends javax.swing.JInternalFrame {
             String descriString = desc.getText();
 
             if (LocalClient.saldo < valor) {
-                status.setText("Saldo insuficiente, saldo atual: " + LocalClient.saldo);
+                status.setText(
+                        "Saldo insuficiente, saldo atual: " + LocalClient.saldo);
                 return;
             }
 
-            int reply = JOptionPane.showConfirmDialog(null, "Confirma a transferencia ?", title, JOptionPane.YES_NO_OPTION);
+            int reply = JOptionPane.showConfirmDialog(null,
+                                                      "Confirma a transferencia ?",
+                                                      title,
+                                                      JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
-                if (TransfersDAO.doTransfer(valor, LocalClient.numCliente, sender_num, descriString) == TransfersDAO.codigoSucesso) {
+                if (TransfersDAO.doTransfer(valor, LocalClient.numCliente,
+                                            sender_num, descriString) == CODIGO_SUCESSO) {
                     updateClientBalance(LocalClient);
                     status.setForeground(green);
                     status.setText("Transferencia realizada com sucesso !");
@@ -252,7 +262,6 @@ public class TransferPage extends javax.swing.JInternalFrame {
             status.setText("Cliente que pretende enviar dinheiro não existe !");
         }
     }//GEN-LAST:event_sendActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea desc;

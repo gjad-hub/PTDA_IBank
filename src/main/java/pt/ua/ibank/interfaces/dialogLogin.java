@@ -10,6 +10,9 @@ import javax.swing.SwingUtilities;
 import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.DTO.Cliente;
 import pt.ua.ibank.utilities.Configs;
+import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO;
+import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO_EMAIL;
+import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.utilities.Hash;
 
@@ -548,12 +551,12 @@ public class dialogLogin extends javax.swing.JDialog {
                                                     hashedPassword);
 
                 switch (verify) {
-                    case ClientDAO.codigoErroEmail ->
+                    case CODIGO_ERRO_EMAIL ->
                         erro_create.setText("Endereço de email já existente !");
-                    case ClientDAO.codigoErro ->
+                    case CODIGO_ERRO ->
                         erro_create.setText(
                                 "Algo inesperado aconteceu tente novamente mais tarde !");
-                    case ClientDAO.codigoSucesso -> {
+                    case CODIGO_SUCESSO -> {
                         erro_create.setText("Sucesso ao criar cliente !");
                         SwingUtilities.invokeLater(() -> {
                             try {
@@ -603,7 +606,7 @@ public class dialogLogin extends javax.swing.JDialog {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info
-                 : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                         : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;

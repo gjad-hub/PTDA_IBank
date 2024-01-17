@@ -6,9 +6,10 @@ import java.util.Objects;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pt.ua.ibank.DAO.PaymentsDAO;
-import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.DTO.PagamentoServicosCompras;
 import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
+import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
+import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
 
 public class ManageReferences extends javax.swing.JInternalFrame {
@@ -199,10 +200,14 @@ public class ManageReferences extends javax.swing.JInternalFrame {
         Boolean paid = null;
 
         if (selectedRowIndex >= 0) {
-            selectedEnt = (Integer) ref_table.getValueAt(selectedRowIndex, selectedEntCl);
-            selectedRef = (Integer) ref_table.getValueAt(selectedRowIndex, selectedRefCl);
-            state = (String) ref_table.getValueAt(selectedRowIndex, selectedStateCl);
-            paid = (Boolean) ref_table.getValueAt(selectedRowIndex, selectedPaidCl);
+            selectedEnt = (Integer) ref_table.getValueAt(selectedRowIndex,
+                                                         selectedEntCl);
+            selectedRef = (Integer) ref_table.getValueAt(selectedRowIndex,
+                                                         selectedRefCl);
+            state = (String) ref_table.getValueAt(selectedRowIndex,
+                                                  selectedStateCl);
+            paid = (Boolean) ref_table.getValueAt(selectedRowIndex,
+                                                  selectedPaidCl);
         }
 
         if (!Objects.isNull(state) && state.equals("Cancelada")) {
@@ -216,9 +221,12 @@ public class ManageReferences extends javax.swing.JInternalFrame {
         }
 
         if (!Objects.isNull(selectedEnt) && !Objects.isNull(selectedRef)) {
-            int reply = JOptionPane.showConfirmDialog(null, "Deseja cancelar a referencia ? Não tem caminho de volta !", title, JOptionPane.YES_NO_OPTION);
+            int reply = JOptionPane.showConfirmDialog(null,
+                                                      "Deseja cancelar a referencia ? Não tem caminho de volta !",
+                                                      title,
+                                                      JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
-                if (PaymentsDAO.cancelPayment(selectedEnt, selectedRef)== PaymentsDAO.codigoSucesso) {
+                if (PaymentsDAO.cancelPayment(selectedEnt, selectedRef) == CODIGO_SUCESSO) {
                     status.setForeground(green);
                     status.setText("Referencia cancelada !");
                     updateInfo();
@@ -233,7 +241,6 @@ public class ManageReferences extends javax.swing.JInternalFrame {
         localClientInterface.addWindow(new CreateRef());
         this.dispose();
     }//GEN-LAST:event_create_refActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backdrop;

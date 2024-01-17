@@ -6,41 +6,32 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import pt.ua.ibank.DTO.Cliente;
 import static pt.ua.ibank.utilities.CardGenerator.generateCardNumber;
+import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO;
+import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO_EMAIL;
+import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 import static pt.ua.ibank.utilities.EntityRefGenerator.generateEnt;
 import static pt.ua.ibank.utilities.IbanGenerator.generateRandomIban;
 
 /**
- *
- * @author ricar
+ * Classe com metodos estáticos associados a operações feitas com Clientes
+ * guardados em uma base de dados MySQL
+ * Author: PTDA_Staff.
+ * Ultima Data de Modificação: 29 de Dezembro, 2023
  */
 public class ClientDAO {
 
     /**
+     * Função usada para Criar um cliente
      *
-     */
-    public final static int codigoSucesso = 1;
-
-    /**
-     *
-     */
-    public final static int codigoErro = 2;
-
-    /**
-     *
-     */
-    public final static int codigoErroEmail = 3;
-
-    /**
-     *
-     * @param nome
-     * @param morada
-     * @param email
-     * @param telefone
-     * @param nif
-     * @param password
-     * @return
+     * @param nome     Nome do Cliente
+     * @param morada   Morada de Cliente
+     * @param email    Email de Cliente
+     * @param telefone Telefone de Cliente
+     * @param nif      NIF ( Numero de Identificação fiscal ) do cliente
+     * @param password Password encriptada
+     * @return codigo de Sucesso -> 1 Sucesso, 2 Erro Email, 3 Erro SQL
      */
     public static int CreateClient(String nome, String morada, String email,
                                    String telefone, String nif, String password) {
@@ -60,7 +51,7 @@ public class ClientDAO {
             rs.next();
 
             if (rs.getInt("valor") > 0) {
-                return codigoErroEmail;
+                return CODIGO_ERRO_EMAIL;
             }
 
             // Gera um novo iban até não existir um cliente com o iban
@@ -124,20 +115,21 @@ public class ClientDAO {
             stmt.setString(2, num_cartao);
             stmt.execute();
 
-            return codigoSucesso;
+            return CODIGO_SUCESSO;
 
         } catch (SQLException e) {
             e.printStackTrace(System.out);
-            return codigoErro;
+            return CODIGO_ERRO;
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
     }
 
     /**
+     * Função usada para obter um cliente através de um ID
      *
-     * @param id
-     * @return
+     * @param id ID do Cliente usado como refencia para obter lista
+     * @return Objeto de cliente obtido
      */
     public static Cliente getClientByID(int id) {
         PreparedStatement stmt = null;
@@ -176,9 +168,10 @@ public class ClientDAO {
     }
 
     /**
+     * Função usada para obter um objeto cliente através de um email
      *
-     * @param id
-     * @return
+     * @param id Email de Cliente usado como referência
+     * @return Retorna cliente associado, ou null caso haja erro
      */
     public static Cliente getClientByEmail(String id) {
         PreparedStatement stmt = null;
@@ -218,9 +211,10 @@ public class ClientDAO {
     }
 
     /**
+     * Função usada para obter um Cliente externo associado a um ID
      *
-     * @param id
-     * @return
+     * @param id NIF do Cliente usado como refencia para obter lista
+     * @return Retorna cliente associado, ou null caso haja erro
      */
     public static Cliente getClientByNIF(String id) {
         PreparedStatement stmt = null;
@@ -260,9 +254,10 @@ public class ClientDAO {
     }
 
     /**
+     * Usado para procurar um frupo de Clientes por Morada
      *
-     * @param address
-     * @return
+     * @param address Morada de Clientes Externos
+     * @return Retorna de Clientes associados, ou null caso haja erro
      */
     public static ArrayList<Cliente> getClientListByAddress(String address) {
         PreparedStatement stmt = null;
@@ -271,9 +266,9 @@ public class ClientDAO {
         ArrayList<Cliente> list = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(
-            "SELECT num_cliente,nome,morada,email,"
-            + "telemovel,nif,num_conta,data_criacao,cartao_default"
-            + "FROM cliente where morada like ?");
+            "SELECT 'num_cliente',nome,morada,email,telemovel,nif,num_conta,"
+            + "data_criacao,cartao_default FROM cliente where morada like ?");
+            stmt.setString(1, address);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -294,7 +289,7 @@ public class ClientDAO {
                                     cartaoDefault, 0));
             }
 
-            return list.isEmpty() ? null : list;
+            return list;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
             return null;
@@ -304,8 +299,9 @@ public class ClientDAO {
     }
 
     /**
+     * Retorna uma lista de todos os clientes
      *
-     * @return
+     * @return Retorna de Clientes associados, ou null caso haja erro
      */
     public static ArrayList<Cliente> getClientList() {
         PreparedStatement stmt = null;
@@ -346,9 +342,10 @@ public class ClientDAO {
     }
 
     /**
+     * Função usada para retornar numero de cliente através de um IBAN
      *
-     * @param iban
-     * @return
+     * @param iban IBAN do Cliente usado como referencia
+     * @return retorna o ID do cliente associado ao IBAN
      */
     public static Integer getClientIdByIBAN(String iban) {
         PreparedStatement stmt = null;
@@ -376,9 +373,10 @@ public class ClientDAO {
     }
 
     /**
+     * Função usada para obter o nome de um Cliente através de um ID
      *
-     * @param clientID
-     * @return
+     * @param clientID ID de Cliente a ser usado como referencia
+     * @return Retorna o nome do Cliente associado ao ID
      */
     public static String getClienteNomeByID(int clientID) {
         PreparedStatement stmt = null;
@@ -403,9 +401,10 @@ public class ClientDAO {
     }
 
     /**
+     * Função usada para obter o ID de um cliente através do seu email
      *
-     * @param email
-     * @return
+     * @param email Email usado como referencia
+     * @return Retorna o ID do cliente associado ao Email
      */
     public static Integer getClientIdByEmail(String email) {
         PreparedStatement stmt = null;
@@ -433,13 +432,14 @@ public class ClientDAO {
     }
 
     /**
+     * Função usada para actualizar as informações externas de um Cliente
      *
      * @param num_cliente
-     * @param nome
-     * @param morada
-     * @param email
-     * @param telefone
-     * @param nif
+     * @param nome        Nome de cliente Externo
+     * @param morada      Morada de Cliente Externo
+     * @param email       Email de Cliente externo
+     * @param telefone    Telefone de Cliente externo
+     * @param nif         NIF ( Numero de Identificação fiscal ) Externo
      * @return
      */
     public static boolean UpdateClient(
@@ -471,15 +471,16 @@ public class ClientDAO {
     }
 
     /**
+     * Função usada para actualizar as Informações externas de um Funcionario"
      *
-     * @param nome
-     * @param morada
-     * @param email
-     * @param telefone
-     * @param nif
-     * @param password
-     * @param old_email
-     * @return
+     * @param nome      Nome de cliente Externo
+     * @param morada    Morada de Cliente Externo
+     * @param email     Email de Cliente externo
+     * @param telefone  Telefone de Cliente externo
+     * @param nif       NIF ( Numero de Identificação fiscal ) Externo
+     * @param password  Password encriptada do cliente
+     * @param old_email Email antigo caso pretenda mudar
+     * @return Codigo de Estado, 1 se Sucedido, 2 Erro de Emai, 3 Erro SQL
      */
     public static int UpdateClient(String nome, String morada, String email,
                                    String telefone, String nif,
@@ -497,7 +498,7 @@ public class ClientDAO {
             rs.next();
 
             if (rs.getInt("valor") > 0 && !email.equals(old_email)) {
-                return codigoErroEmail;
+                return CODIGO_ERRO_EMAIL;
             }
 
             stmt = conn.prepareStatement(
@@ -509,19 +510,20 @@ public class ClientDAO {
             stmt.setString(5, password);
             stmt.setString(6, old_email);
             stmt.execute();
-            return codigoSucesso;
+            return CODIGO_SUCESSO;
 
         } catch (SQLException e) {
-            return codigoErro;
+            return CODIGO_ERRO;
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
     }
 
     /**
+     * Função usada para obter o saldo de um Cliente
      *
-     * @param num_cliente
-     * @return
+     * @param num_cliente Numero de cliente usado cmom Referencia
+     * @return Retorna Objeto cliente com um Saldo
      */
     public static Cliente getClientBalance(int num_cliente) {
         PreparedStatement stmt = null;
@@ -550,9 +552,10 @@ public class ClientDAO {
     }
 
     /**
+     * Função usada para obter o cartão predefinido de um Cliente
      *
-     * @param num_cliente
-     * @return
+     * @param num_cliente ID de cliente usado como referencia
+     * @return retorna Cartão predefenido do cliente
      */
     public static String getClientDefaultCard(int num_cliente) {
         PreparedStatement stmt = null;

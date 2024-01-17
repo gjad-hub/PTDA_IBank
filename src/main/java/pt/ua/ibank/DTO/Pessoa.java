@@ -18,6 +18,9 @@ public abstract class Pessoa {
     public String password;
     public Date dataCriada;
 
+    /**
+     * Construtor com password, por favor encriptar a password primeiro
+     */
     public Pessoa(String pNome, String pMorada, String pEmail, String pTelemovel,
                   String pNif, String pPassword) {
         this.nome = pNome;
@@ -28,6 +31,9 @@ public abstract class Pessoa {
         this.password = pPassword;
     }
 
+    /**
+     * Construtor sem password
+     */
     public Pessoa(String pNome, String pMorada, String pEmail, String pTelemovel,
                   String pNif, Date dataCriada) {
         this.nome = pNome;
@@ -38,23 +44,29 @@ public abstract class Pessoa {
         this.dataCriada = dataCriada;
     }
 
+    /**
+     * Construtor Email Password para ser usado na autenticação
+     *
+     * @param email
+     * @param password
+     */
     public Pessoa(String email, String password) {
         this.email = email;
         this.password = password;
 
     }
 
+    /**
+     * Construtor vazio para possiveis casos de teste
+     */
     public Pessoa() {
     }
 
-    /**
-     * Função usada para autenticar o usuario com a base de dados
-     *
-     * @return retorna se bem sucedido
-     */
     public abstract boolean autenticar();
 
     /**
+     *
+     * Função usada para alterar informações de Cliente/Pessoa externa
      *
      * @param old_email Email antigo caso o usuario local pretenda trocar
      * @return 1 Sucesso, 2 Erro, 3 ErroEmail

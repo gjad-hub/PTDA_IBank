@@ -10,8 +10,9 @@ import static pt.ua.ibank.utilities.Configs.LocalClientCard;
 import pt.ua.ibank.utilities.Hash;
 
 /**
- *
- * @author ricar
+ * Objeto de uma class que representa um Cliente externo
+ * Author: PTDA_Staff.
+ * Ultima Data de Modificação: 21 de Dezembro, 2023
  */
 public class Cliente extends Pessoa {
 

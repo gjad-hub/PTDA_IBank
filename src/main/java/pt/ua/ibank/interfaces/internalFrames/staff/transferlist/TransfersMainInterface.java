@@ -10,6 +10,7 @@ import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.DAO.TransfersDAO;
 import pt.ua.ibank.DTO.Cliente;
 import pt.ua.ibank.DTO.Transferencias;
+import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 
 /**
  *
@@ -599,7 +600,7 @@ public class TransfersMainInterface extends javax.swing.JPanel {
         }
         String resultado =
                TransfersDAO.doTransfer(value, author, reciever,
-                                           description) == TransfersDAO.codigoSucesso?
+                                       description) == CODIGO_SUCESSO ?
                "Transferencia de " + value + "€ Feita com sucesso" :
                "Operação feita sem sucesso, tente novamente";
         JOptionPane.showMessageDialog(this, resultado);

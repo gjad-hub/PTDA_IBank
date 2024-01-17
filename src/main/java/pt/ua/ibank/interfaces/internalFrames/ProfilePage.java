@@ -5,12 +5,13 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.SwingUtilities;
-import pt.ua.ibank.DAO.ClientDAO;
-import pt.ua.ibank.DAO.FuncionarioDAO;
 import pt.ua.ibank.DTO.Cliente;
 import pt.ua.ibank.DTO.Funcionario;
 import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
 import static pt.ua.ibank.interfaces.staffInterface.localStaffInterface;
+import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO;
+import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO_EMAIL;
+import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 import pt.ua.ibank.utilities.Hash;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
 
@@ -317,13 +318,15 @@ public class ProfilePage extends javax.swing.JInternalFrame {
 
         try {
             if (this.cli != null && this.fun == null) {
-                if (!Hash.validatePassword(new String(old_password.getPassword()),
+                if (!Hash.validatePassword(
+                        new String(old_password.getPassword()),
                         this.cli.password)) {
                     status.setText("Password antiga não corresponde !");
                     return;
                 }
             } else if (this.cli == null && this.fun != null) {
-                if (!Hash.validatePassword(new String(old_password.getPassword()),
+                if (!Hash.validatePassword(
+                        new String(old_password.getPassword()),
                         this.fun.password)) {
                     status.setText("Password antiga não corresponde !");
                     return;
@@ -355,8 +358,8 @@ public class ProfilePage extends javax.swing.JInternalFrame {
             }
 
             String regexNome = "^[a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜãõÃÕñÑçÇ\\s'-]+$";
-            String regexEmail
-                    = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+            String regexEmail =
+                   "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
             String regexTelefoneNif = "^\\d{9}$";
             String regexPassword = "^.{8,}$";
 
@@ -401,35 +404,37 @@ public class ProfilePage extends javax.swing.JInternalFrame {
             //Pós-Verificação
             if (!new String(new_password.getPassword()).isEmpty()) {
                 if (this.cli != null && this.fun == null) {
-                    this.cli.password = Hash.generateStorngPasswordHash(new String(new_password.getPassword()));
+                    this.cli.password = Hash.generateStorngPasswordHash(
+                    new String(new_password.getPassword()));
                 } else if (this.cli == null && this.fun != null) {
-                    this.fun.password = Hash.generateStorngPasswordHash(new String(new_password.getPassword()));
+                    this.fun.password = Hash.generateStorngPasswordHash(
+                    new String(new_password.getPassword()));
                 }
             }
 
             if (this.cli != null && this.fun == null) {
-                this.cli.nome
-                        = name.equals(this.cli.nome) ? this.cli.nome : name;
-                this.cli.email = email.equals(this.cli.email)
-                        ? this.cli.email : email;
-                this.cli.morada = address.equals(this.cli.morada)
-                        ? this.cli.morada : address;
-                this.cli.telemovel = phone.equals(this.cli.telemovel)
-                        ? this.cli.telemovel : phone;
+                this.cli.nome =
+                name.equals(this.cli.nome) ? this.cli.nome : name;
+                this.cli.email = email.equals(this.cli.email) ?
+                                 this.cli.email : email;
+                this.cli.morada = address.equals(this.cli.morada) ?
+                                  this.cli.morada : address;
+                this.cli.telemovel = phone.equals(this.cli.telemovel) ?
+                                     this.cli.telemovel : phone;
 
                 int status_int = this.cli.alterarInformacoes(old_email);
 
                 switch (status_int) {
-                    case ClientDAO.codigoErroEmail -> {
+                    case CODIGO_ERRO_EMAIL -> {
                         status.setText("Endereço de email já existente !");
                         this.cli.email = old_email;
                     }
-                    case ClientDAO.codigoErro -> {
+                    case CODIGO_ERRO -> {
                         status.setText(
                                 "Algo inesperado aconteceu tente novamente mais tarde !");
                         this.cli.email = old_email;
                     }
-                    case ClientDAO.codigoSucesso -> {
+                    case CODIGO_SUCESSO -> {
                         status.setText("Sucesso ao atualizar infromações!");
                         SwingUtilities.invokeLater(() -> {
                             try {
@@ -443,28 +448,28 @@ public class ProfilePage extends javax.swing.JInternalFrame {
                     }
                 }
             } else if (this.cli == null && this.fun != null) {
-                this.fun.nome
-                        = name.equals(this.fun.nome) ? this.fun.nome : name;
-                this.fun.email = email.equals(this.fun.email)
-                        ? this.fun.email : email;
-                this.fun.morada = address.equals(this.fun.morada)
-                        ? this.fun.morada : address;
-                this.fun.telemovel = phone.equals(this.fun.telemovel)
-                        ? this.fun.telemovel : phone;
+                this.fun.nome =
+                name.equals(this.fun.nome) ? this.fun.nome : name;
+                this.fun.email = email.equals(this.fun.email) ?
+                                 this.fun.email : email;
+                this.fun.morada = address.equals(this.fun.morada) ?
+                                  this.fun.morada : address;
+                this.fun.telemovel = phone.equals(this.fun.telemovel) ?
+                                     this.fun.telemovel : phone;
 
                 int status_int = this.fun.alterarInformacoes(old_email);
 
                 switch (status_int) {
-                    case FuncionarioDAO.codigoErroEmail -> {
+                    case CODIGO_ERRO_EMAIL -> {
                         status.setText("Endereço de email já existente !");
                         this.fun.email = old_email;
                     }
-                    case FuncionarioDAO.codigoErro -> {
+                    case CODIGO_ERRO -> {
                         status.setText(
                                 "Algo inesperado aconteceu tente novamente mais tarde !");
                         this.fun.email = old_email;
                     }
-                    case FuncionarioDAO.codigoSucesso -> {
+                    case CODIGO_SUCESSO -> {
                         status.setText("Sucesso ao atualizar infromações!");
                         SwingUtilities.invokeLater(() -> {
                             try {

@@ -6,29 +6,24 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import pt.ua.ibank.DTO.Cartao;
 import static pt.ua.ibank.utilities.CardGenerator.generateCardNumber;
+import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO;
+import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 
 /**
- *
- * @author ricar
+ * Classe com metodos estáticos associados a operações feitas com Cartões
+ * guardados em uma base de dados MySQL
+ * Author: PTDA_Staff.
+ * Ultima Data de Modificação: 25 de Dezembro, 2023
  */
 public class CardsDAO {
 
     /**
-     *
-     */
-    public final static int codigoSucesso = 1;
-
-    /**
-     *
-     */
-    public final static int codigoErro = 2;
-
-    /**
+     * Função usada para obter um cartão através de um Numero de cartão
      *
      * @param number numero do cartão a ser procurado
-     * @return
+     * @return Objeto do Cartão associado, null se não encontrado.
      */
     public static Cartao getCardByNumber(String number) {
         PreparedStatement stmt = null;
@@ -59,9 +54,10 @@ public class CardsDAO {
     }
 
     /**
+     * Função usada para obter uma lista de cartões através de um ID
      *
-     * @param num_cliente
-     * @return
+     * @param num_cliente ID do Cliente usado como refencia para obter cartões
+     * @return Rertorna lista de Cartões associada ao Cliente
      */
     public static ArrayList<Cartao> getCardListFromUserID(int num_cliente) {
         PreparedStatement stmt = null;
@@ -91,9 +87,11 @@ public class CardsDAO {
     }
 
     /**
+     * Função usada para obter quantidade cartões de um cliente
      *
-     * @param num_cliente
-     * @return
+     * @param num_cliente ID do Cliente usado como refencia para obter lista
+     *                    de cartões.
+     * @return Retorna quantidade de cartões associados a esse cleinte
      */
     public static int getCardAmountByID(int num_cliente) {
         PreparedStatement stmt = null;
@@ -118,9 +116,10 @@ public class CardsDAO {
     }
 
     /**
+     * Função usada para cancelar um cartão
      *
      * @param card_number
-     * @return
+     * @return Codigo de sucesso, 1 se sucesso, 2 se erro
      */
     public static int cancelCard(String card_number) {
         PreparedStatement stmt = null;
@@ -131,19 +130,20 @@ public class CardsDAO {
             stmt.setString(1, card_number);
             stmt.execute();
 
-            return codigoSucesso;
+            return CODIGO_SUCESSO;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
-            return codigoErro;
+            return CODIGO_ERRO;
         } finally {
             DBConnection.closeConnection(stmt);
         }
     }
 
     /**
+     * Função usada para tornar um cartão de um cliente como predefinido
      *
-     * @param card_number
-     * @param num_cliente
+     * @param card_number numero do cartão a ser procurado
+     * @param num_cliente ID do Cliente usado como refencia para obter lista
      * @return
      */
     public static int makeDefault(String card_number, int num_cliente) {
@@ -156,10 +156,10 @@ public class CardsDAO {
             stmt.setInt(2, num_cliente);
             stmt.execute();
 
-            return codigoSucesso;
-        } catch (Exception e) {
+            return CODIGO_SUCESSO;
+        } catch (SQLException e) {
             e.printStackTrace(System.out);
-            return codigoErro;
+            return CODIGO_ERRO;
         } finally {
             DBConnection.closeConnection(stmt);
         }
@@ -167,9 +167,10 @@ public class CardsDAO {
     }
 
     /**
+     * Função usada para criar um cartão
      *
-     * @param num_cliente
-     * @return
+     * @param num_cliente ID do Cliente usado como refencia para obter lista
+     * @return retorna codigo de Sucesso
      */
     public static int createCard(int num_cliente) {
         PreparedStatement stmt = null;
@@ -195,10 +196,10 @@ public class CardsDAO {
             stmt.setInt(2, num_cliente);
             stmt.execute();
 
-            return codigoSucesso;
+            return CODIGO_SUCESSO;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
-            return codigoErro;
+            return CODIGO_ERRO;
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }

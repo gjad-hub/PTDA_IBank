@@ -7,12 +7,39 @@ package pt.ua.ibank.DTO;
  */
 public class PagamentoServicosCompras {
 
+    /**
+     * Referencia do serviço
+     */
     public int referencia;
+
+    /**
+     * Entidade unica para ser paga
+     */
     public int entidade;
+
+    /**
+     * Valor do serviço
+     */
     public double valor;
+
+    /**
+     * Valor booleano para marcar se o pagamento foi feito
+     */
     public boolean pago;
+
+    /**
+     * ID de Cliente que vai pagar / pagou a transação
+     */
     public int cliente;
+
+    /**
+     * ID de Cliente que criou a transação
+     */
     public int cliente_cria;
+
+    /**
+     * valor booleano que significa se a referencia foi cancelada
+     */
     public boolean cancelada;
 
     /**

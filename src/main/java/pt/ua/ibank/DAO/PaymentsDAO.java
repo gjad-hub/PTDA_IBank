@@ -5,31 +5,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import pt.ua.ibank.DTO.PagamentoServicosCompras;
+import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO;
+import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 
 /**
- *
- * @author ricar
+ * Classe com metodos estáticos associados a operações feitas com Pagamentos
+ * externos guardados em uma base de dados MySQL
+ * Author: PTDA_Staff.
+ * Ultima Data de Modificação: 12 de Janeiro, 2024
  */
 public class PaymentsDAO {
 
     /**
+     * Função usada para pagar um serviço ou compra
      *
-     */
-    public final static int codigoSucesso = 1;
-
-    /**
-     *
-     */
-    public final static int codigoErro = 2;
-
-    /**
-     *
-     * @param clienteRealiza
-     * @param entidade
-     * @param referencia
-     * @return
+     * @param clienteRealiza ID de Cliente Externo que realizou a transferencia
+     * @param entidade       Entidade de transferencia com ID Externo
+     * @param referencia     ID de Referencia Externa
+     * @return recorna codigo de erro, 1 = Sucesso, 2 = Erro
      */
     public static int payService(int clienteRealiza, int entidade,
                                  int referencia) {
@@ -44,20 +39,23 @@ public class PaymentsDAO {
             stmt.setInt(4, referencia);
             stmt.execute();
 
-            return codigoSucesso;
+            return CODIGO_SUCESSO;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
-            return codigoErro;
+            return CODIGO_ERRO;
         } finally {
             DBConnection.closeConnection(stmt);
         }
     }
 
     /**
+     * Função que retorna a lista de Serviços e compras através de entidade e
+     * referencia
      *
-     * @param ref
-     * @param ent
-     * @return
+     * @param ref referencia de serviço e compra usado como referencia
+     * @param ent entidade de serviço e compra usado como referencia
+     * @return retorna Objeto de ServicosCompras relacionado com refencia e
+     *         entidade
      */
     public static PagamentoServicosCompras getServicosCompras(int ref, int ent) {
         PreparedStatement stmt = null;
@@ -91,12 +89,14 @@ public class PaymentsDAO {
     }
 
     /**
+     * Função usada para criar um pagamento ligado a um cliente, entidade e
+     * referencia com valor a ser pago
      *
-     * @param cliente
-     * @param ent
-     * @param ref
-     * @param valor
-     * @return
+     * @param cliente Cliente que pagou a referencia
+     * @param ent     Entidade gerada para o pagamento
+     * @param ref     Referencia usada para o pagamento
+     * @param valor   valor a ser cobrado pelo cliente
+     * @return retorna o estado de sucesso, 1 se positivo, 2 se erro
      */
     public static int createPayment(int cliente, int ent, int ref, double valor) {
         PreparedStatement stmt = null;
@@ -113,19 +113,21 @@ public class PaymentsDAO {
             stmt.setBoolean(6, false);
             stmt.execute();
 
-            return codigoSucesso;
+            return CODIGO_SUCESSO;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
-            return codigoErro;
+            return CODIGO_ERRO;
         } finally {
             DBConnection.closeConnection(stmt);
         }
     }
 
     /**
+     * Função usada para obter todos os serviços externos relacionados a um ID
      *
-     * @param num_cliente
-     * @return
+     * @param num_cliente ID de Cliente associado a uma lista externa de
+     *                    serviços
+     * @return Retorna lista associada a um Cliente ID
      */
     public static ArrayList<PagamentoServicosCompras> getAllServicos(
             int num_cliente) {
@@ -162,10 +164,11 @@ public class PaymentsDAO {
     }
 
     /**
+     * Função usada para cancelar um pagamento externo
      *
-     * @param ent
-     * @param ref
-     * @return
+     * @param ent Entidade gerada para o pagamento
+     * @param ref Referencia usada para o pagamento
+     * @return retorna o estado de sucesso, 1 se positivo, 2 se erro
      */
     public static int cancelPayment(int ent, int ref) {
         PreparedStatement stmt = null;
@@ -179,10 +182,10 @@ public class PaymentsDAO {
 
             stmt.execute();
 
-            return codigoSucesso;
+            return CODIGO_SUCESSO;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
-            return codigoErro;
+            return CODIGO_ERRO;
         } finally {
             DBConnection.closeConnection(stmt);
         }

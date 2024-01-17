@@ -12,15 +12,19 @@ import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 
 /**
- *
- * @author ricar
+ * Classe com metodos estáticos associados a operações feitas com Clientes e
+ * Funcionarios externos guardados em uma base de dados MySQL
+ * Author: PTDA_Staff.
+ * Ultima Data de Modificação: 21 de Dezembro, 2023
  */
 public class ClienteFuncionarioDAO {
 
     /**
+     * Função usada para obter informações externas sobre interações de um
+     * Funcionario
      *
-     * @param funcionarioID
-     * @return
+     * @param funcionarioID ID de Funcionario usado como referencia
+     * @return Lista de clientes que interagiram com esse Funcionario
      */
     public static ArrayList<Integer> getClientsInteractedListByID(
             int funcionarioID) {
@@ -36,7 +40,7 @@ public class ClienteFuncionarioDAO {
             while (rs.next()) {
                 list.add(rs.getInt("num_cli"));
             }
-            return list.isEmpty() ? null : list;
+            return list;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
             return null;

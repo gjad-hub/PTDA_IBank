@@ -5,32 +5,27 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import pt.ua.ibank.DTO.Transferencias;
+import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO;
+import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 
 /**
- *
- * @author ricar
+ * Classe com metodos estáticos associados a operações feitas com Pagamentos
+ * externos guardados em uma base de dados MySQL
+ * Author: PTDA_Staff.
+ * Ultima Data de Modificação: 15 de Janeiro, 2024
  */
 public class TransfersDAO {
 
     /**
+     * Função para
      *
-     */
-    public final static int codigoSucesso = 1;
-
-    /**
-     *
-     */
-    public final static int codigoErro = 2;
-
-    /**
-     *
-     * @param valor
-     * @param clienteRealiza
-     * @param clienteRecebe
-     * @param motivo
-     * @return
+     * @param valor          valor da transferencia
+     * @param clienteRealiza ID de Cliente que realiza a Transferencia
+     * @param clienteRecebe  ID de Clience que recebe a Transferencia
+     * @param motivo         conteudo / Descrição de transferencia feita
+     * @return retorna codigo de sucesso, 1 se bem sucedido, 2 caso não
      */
     public static int doTransfer(double valor, int clienteRealiza,
                                  int clienteRecebe, String motivo) {
@@ -45,15 +40,20 @@ public class TransfersDAO {
             stmt.setString(4, motivo);
             stmt.execute();
 
-            return codigoSucesso;
+            return CODIGO_SUCESSO;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
-            return codigoErro;
+            return CODIGO_ERRO;
         } finally {
             DBConnection.closeConnection(stmt);
         }
     }
 
+    /**
+     * Função usada para obter lista de transferencias externa
+     *
+     * @return Lista de tranferencias
+     */
     public static ArrayList<Transferencias> getTransfersList() {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -86,8 +86,9 @@ public class TransfersDAO {
     }
 
     /**
+     * Função que retorna lista de tranferencias através de ID
      *
-     * @param id
+     * @param id ID de Cliente para ser usado como referencia
      * @return
      */
     public static Transferencias getTransferByID(int id) {
@@ -121,9 +122,10 @@ public class TransfersDAO {
     }
 
     /**
+     * Função que retorna lista de Transferencias através de um ID
      *
-     * @param id
-     * @return
+     * @param id ID de Cliente para ser usado como referencia
+     * @return retorna lista de transações feitas por um gerentes
      */
     public static ArrayList<Transferencias> getClientTransfersList(
             int id) {
@@ -160,9 +162,11 @@ public class TransfersDAO {
     }
 
     /**
+     * Função que retorna a lista de transferencias feitas por um Cliente través
+     * de ID
      *
-     * @param id
-     * @return
+     * @param id ID de Cliente para ser usado como referencia
+     * @return retorna lista de transferencias feitas por um Cliente
      */
     public static ArrayList<Transferencias> getTransfersListByAutor(
             int id) {
@@ -198,9 +202,11 @@ public class TransfersDAO {
     }
 
     /**
+     * Função que retorna a lista de transferencias recebidas por um Cliente
+     * através de ID
      *
-     * @param id
-     * @return
+     * @param id ID de Cliente para ser usado como referencia
+     * @return retorna lista de transferencias que um Cliente recebeu
      */
     public static ArrayList<Transferencias> getTransfersListByReceptor(
             int id) {

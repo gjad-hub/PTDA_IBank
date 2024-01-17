@@ -1,11 +1,11 @@
 package pt.ua.ibank.DAO;
 
+import java.util.ArrayList;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import pt.ua.ibank.DTO.Cartao;
-
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO;
+import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 
 class CardsDAOTest {
 
@@ -57,27 +57,27 @@ class CardsDAOTest {
     void cancelCard() {
         String card = "4001120953203520";
         int test_card = CardsDAO.cancelCard(card);
-        assertEquals(CardsDAO.codigoSucesso, test_card);
+        assertEquals(CODIGO_SUCESSO, test_card);
     }
 
     @Test
     void makeDefault() {
         String card = "4001120953203520";
         int test_card = CardsDAO.makeDefault(card, 1);
-        assertEquals(CardsDAO.codigoSucesso, test_card);
+        assertEquals(CODIGO_SUCESSO, test_card);
     }
 
     @Test
     public void testCreateCardSuccess() {
         int validClientID = 1;
         int resultado = CardsDAO.createCard(validClientID);
-        assertEquals(CardsDAO.codigoSucesso, resultado);
+        assertEquals(CODIGO_SUCESSO, resultado);
     }
 
     @Test
     public void testCreateCardInvalidClient() {
         int invalidClientId = 9999;
         int result = CardsDAO.createCard(invalidClientId);
-        assertEquals(CardsDAO.codigoErro, result);
+        assertEquals(CODIGO_ERRO, result);
     }
 }

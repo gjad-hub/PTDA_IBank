@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 import pt.ua.ibank.DAO.CardsDAO;
 import pt.ua.ibank.DTO.Cartao;
 import static pt.ua.ibank.utilities.ClientInfo.updateClientCardInfo;
+import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
 
@@ -243,7 +244,7 @@ public class CardManager extends javax.swing.JInternalFrame {
                                                       title,
                                                       JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
-                if (CardsDAO.makeDefault(selected_card, LocalClient.numCliente) == CardsDAO.codigoSucesso) {
+                if (CardsDAO.makeDefault(selected_card, LocalClient.numCliente) == CODIGO_SUCESSO) {
                     status.setForeground(green);
                     status.setText("Cartão principal alterado !");
                     updateInfo();
@@ -285,7 +286,7 @@ public class CardManager extends javax.swing.JInternalFrame {
                                                       title,
                                                       JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
-                if (CardsDAO.cancelCard(selected_card) == CardsDAO.codigoSucesso) {
+                if (CardsDAO.cancelCard(selected_card) == CODIGO_SUCESSO) {
                     status.setForeground(green);
                     status.setText("Cartão cancelado !");
                     updateInfo();
@@ -302,7 +303,7 @@ public class CardManager extends javax.swing.JInternalFrame {
                                                   title,
                                                   JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION) {
-            if (CardsDAO.createCard(LocalClient.numCliente) == CardsDAO.codigoSucesso) {
+            if (CardsDAO.createCard(LocalClient.numCliente) == CODIGO_SUCESSO) {
                 status.setForeground(green);
                 status.setText("Novo cartão criado!");
                 updateInfo();

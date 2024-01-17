@@ -1,8 +1,9 @@
 package pt.ua.ibank.DTO;
 
 /**
- *
- * @author ricar
+ * Objeto de uma class que representa um Deposito externo
+ * Author: PTDA_Staff.
+ * Ultima Data de Modificação: 5 de Janeiro, 2024
  */
 public class Deposito {
 

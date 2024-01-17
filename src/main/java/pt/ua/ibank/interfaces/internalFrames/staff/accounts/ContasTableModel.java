@@ -87,7 +87,7 @@ public class ContasTableModel extends AbstractTableModel {
             case "Morada" -> {
                 data.clear();
                 if ((data = ClientDAO.getClientListByAddress(value)) != null) {
-                    fireTableRowsDeleted(0, data.size() - 1);
+                    // fireTableRowsDeleted(data.size() - 1, data.size() - 1);
                 }
             }
             default -> {

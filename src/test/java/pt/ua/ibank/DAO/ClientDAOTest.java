@@ -6,21 +6,27 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 import pt.ua.ibank.DTO.Cliente;
+import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO_EMAIL;
+import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 
 class ClientDAOTest {
 
     @Test
     public void testCreateClientSuccess() {
-        int result = ClientDAO.CreateClient("João Tomás Silva", "Avenida Lourenço Peixinho, 123, Aveiro, Portugal",
-                "joaosilva@gmail.com", "923344551", "119876543", "joao2024silva");
-        assertEquals(ClientDAO.codigoSucesso, result);
+        int result = ClientDAO.CreateClient("João Tomás Silva",
+                                            "Avenida Lourenço Peixinho, 123, Aveiro, Portugal",
+                                            "joaosilva@gmail.com", "923344551",
+                                            "119876543", "joao2024silva");
+        assertEquals(CODIGO_SUCESSO, result);
     }
 
     @Test
     public void testCreateClientErrorEmail() {
-        int result = ClientDAO.CreateClient("João Tomás Silva", "Avenida Lourenço Peixinho, 123, Aveiro, Portugal",
-                "joaosilva@gmail.com", "923344551", "119876543", "joao2024silva");
-        assertEquals(ClientDAO.codigoErroEmail, result);
+        int result = ClientDAO.CreateClient("João Tomás Silva",
+                                            "Avenida Lourenço Peixinho, 123, Aveiro, Portugal",
+                                            "joaosilva@gmail.com", "923344551",
+                                            "119876543", "joao2024silva");
+        assertEquals(CODIGO_ERRO_EMAIL, result);
     }
 
     @Test
@@ -84,22 +90,33 @@ class ClientDAOTest {
 
     @Test
     public void testUpdateClientSuccess() {
-        int result = ClientDAO.UpdateClient("João Tomás Silva", "Avenida Lourenço Peixinho, 123, Aveiro, Portugal",
-                "joaotomassilva@gmail.com", "923344551", "119876543", "joao2024silva", "joaosilva@gmail.com");
-        assertEquals(ClientDAO.codigoSucesso, result);
+        int result = ClientDAO.UpdateClient("João Tomás Silva",
+                                            "Avenida Lourenço Peixinho, 123, Aveiro, Portugal",
+                                            "joaotomassilva@gmail.com",
+                                            "923344551", "119876543",
+                                            "joao2024silva",
+                                            "joaosilva@gmail.com");
+        assertEquals(CODIGO_SUCESSO, result);
     }
 
     @Test
     public void testUpdateClientErrorEmail() {
-        int result = ClientDAO.UpdateClient("João Tomás Silva", "Avenida Lourenço Peixinho, 123, Aveiro, Portugal",
-                "richard@ua.pt", "923344551", "119876543", "joao2024silva", "joaotomassilva@gmail.com");
-        assertEquals(ClientDAO.codigoErroEmail, result);
+        int result = ClientDAO.UpdateClient("João Tomás Silva",
+                                            "Avenida Lourenço Peixinho, 123, Aveiro, Portugal",
+                                            "richard@ua.pt", "923344551",
+                                            "119876543", "joao2024silva",
+                                            "joaotomassilva@gmail.com");
+        assertEquals(CODIGO_ERRO_EMAIL, result);
     }
 
     @Test
     public void testUpdateClientNoChange() {
-        int result = ClientDAO.UpdateClient("João Tomás Silva", "Avenida Lourenço Peixinho, 123, Aveiro, Portugal",
-                "joaotomassilva@gmail.com", "923344551", "119876543", "joao2024silva", "joaotomassilva@gmail.com");
-        assertEquals(ClientDAO.codigoSucesso, result);
+        int result = ClientDAO.UpdateClient("João Tomás Silva",
+                                            "Avenida Lourenço Peixinho, 123, Aveiro, Portugal",
+                                            "joaotomassilva@gmail.com",
+                                            "923344551", "119876543",
+                                            "joao2024silva",
+                                            "joaotomassilva@gmail.com");
+        assertEquals(CODIGO_SUCESSO, result);
     }
 }

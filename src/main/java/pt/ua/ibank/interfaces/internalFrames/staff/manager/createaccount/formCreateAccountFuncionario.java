@@ -10,9 +10,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.SwingUtilities;
 import pt.ua.ibank.DAO.FuncionarioDAO;
-import pt.ua.ibank.utilities.Hash;
-
+import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO;
+import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO_EMAIL;
+import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
+import pt.ua.ibank.utilities.Hash;
 
 /**
  *
@@ -276,15 +278,16 @@ public class formCreateAccountFuncionario extends javax.swing.JPanel {
                                                               Femail.getText(),
                                                               Ftelemovel.getText(),
                                                               FNif.getText(),
-                                                              hashedPassword, LocalFuncionario.numFun);
+                                                              hashedPassword,
+                                                              LocalFuncionario.numFun);
 
                 switch (verify) {
-                    case FuncionarioDAO.codigoErroEmail ->
+                    case CODIGO_ERRO_EMAIL ->
                         erro_create.setText("Endereço de email já existente !");
-                    case FuncionarioDAO.codigoErro ->
+                    case CODIGO_ERRO ->
                         erro_create.setText(
                                 "Algo inesperado aconteceu tente novamente mais tarde !");
-                    case FuncionarioDAO.codigoSucesso -> {
+                    case CODIGO_SUCESSO -> {
                         erro_create.setText("Sucesso ao criar funcionário!");
                         SwingUtilities.invokeLater(() -> {
                             try {

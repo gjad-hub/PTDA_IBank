@@ -9,15 +9,18 @@ import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 
 /**
- *
- * @author ricar
+ * Classe com metodos estáticos associados a operações feitas com Transações
+ * externas guardadas em uma base de dados MySQL
+ * Author: PTDA_Staff.
+ * Ultima Data de Modificação: 17 de Dezembro, 2024
  */
 public class TransacoesDAO {
 
     /**
+     * Função usada para obter transações de um cliente através de um ID
      *
-     * @param num_cliente
-     * @return
+     * @param num_cliente ID de Cliente externo associado a uma transação
+     * @return retorna lista de transações associadas a esse cliente
      */
     public static ArrayList<Transacoes> getTransacoes(int num_cliente) {
         PreparedStatement stmt = null;

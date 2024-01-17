@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package pt.ua.ibank.DAO;
 
 import java.sql.PreparedStatement;
@@ -13,15 +9,19 @@ import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 
 /**
- *
- * @author ricar
+ * Classe com metodos estáticos associados a operações feitas com Comentarios
+ * externos guardados em uma base de dados MySQL
+ * Author: PTDA_Staff.
+ * Ultima Data de Modificação: 14 de Janeiro, 2024
  */
 public class CommentsDAO {
 
     /**
+     * Função usada para Obter uma lista de comentários através de um ID de um
+     * cliente.
      *
-     * @param clientID
-     * @return
+     * @param clientID ID de Cliente usado como referencia
+     * @return retorna lista de comentarios relacionado a esse Cliente
      */
     public static ArrayList<ModeratorComment> getCommentListByID(
             int clientID) {
@@ -56,9 +56,11 @@ public class CommentsDAO {
     }
 
     /**
+     * Função usada para Obter a lista de comentários de um Cliente através de
+     * ID
      *
-     * @param clientID
-     * @return
+     * @param clientID ID de Cliente usado como referencia
+     * @return lista de Comentarios associado a esse perfil
      */
     public static ArrayList<ModeratorComment> getModeratorCommentListByID(
             int clientID) {
@@ -93,10 +95,12 @@ public class CommentsDAO {
 
     /**
      *
-     * @param employee_id
-     * @param client_id
-     * @param comment
-     * @return
+     * Função usada para adicionar um comentário a um Cliente externo
+     *
+     * @param employee_id ID de Funcionario usado como referencia
+     * @param client_id   ID de Cliente usado como referencia
+     * @param comment     Conteudo de Comentario
+     * @return codigo de sucesso booleano
      */
     public static boolean addNewComment(int employee_id, int client_id,
                                         String comment) {
@@ -123,9 +127,10 @@ public class CommentsDAO {
     }
 
     /**
+     * Função usada para apagar um comentário através de um ID
      *
-     * @param id
-     * @return
+     * @param id clientID ID de Cliente usado como referencia
+     * @return codigo de sucesso booleano
      */
     public static boolean deleteComment(int id) {
         PreparedStatement stmt = null;

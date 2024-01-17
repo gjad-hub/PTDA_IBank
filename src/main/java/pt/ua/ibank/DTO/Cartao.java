@@ -1,15 +1,11 @@
-/**
- * Objeto de uma class que representa um Cartao de um cliente na base de dados
- * Author: PTDA_Staff.
- * Ultima data de modificação: 11 de Janeiro, 2024
- */
 package pt.ua.ibank.DTO;
 
 import java.sql.Timestamp;
 
 /**
- *
- * @author ricar
+ * Objeto de uma class que representa um Cartao de um cliente na base de dados
+ * Author: PTDA_Staff.
+ * Ultima data de modificação: 11 de Janeiro, 2024
  */
 public class Cartao {
 

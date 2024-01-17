@@ -4,6 +4,7 @@ import java.awt.Color;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import pt.ua.ibank.DAO.DepositsDAO;
+import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
 
@@ -18,18 +19,18 @@ public class DepositMoney extends javax.swing.JInternalFrame {
         saldo_futuro.setText(LocalClient.saldo + " EUR");
 
         DocumentListener documentListener = new DocumentListener() {
-            public void changedUpdate(DocumentEvent e) {
-                atualizarSaldoFuturo();
-            }
+                     public void changedUpdate(DocumentEvent e) {
+                         atualizarSaldoFuturo();
+                     }
 
-            public void removeUpdate(DocumentEvent e) {
-                atualizarSaldoFuturo();
-            }
+                     public void removeUpdate(DocumentEvent e) {
+                         atualizarSaldoFuturo();
+                     }
 
-            public void insertUpdate(DocumentEvent e) {
-                atualizarSaldoFuturo();
-            }
-        };
+                     public void insertUpdate(DocumentEvent e) {
+                         atualizarSaldoFuturo();
+                     }
+                 };
 
         montante.getDocument().addDocumentListener(documentListener);
         montante_decimal.getDocument().addDocumentListener(documentListener);
@@ -43,7 +44,8 @@ public class DepositMoney extends javax.swing.JInternalFrame {
             }
             double quantiaDecimal = 0;
             if (!montante_decimal.getText().trim().isEmpty()) {
-                quantiaDecimal = Double.parseDouble("0." + montante_decimal.getText());
+                quantiaDecimal = Double.parseDouble(
+                "0." + montante_decimal.getText());
             }
 
             Double quantia = quantiaInteira + quantiaDecimal;
@@ -229,9 +231,12 @@ public class DepositMoney extends javax.swing.JInternalFrame {
         status.setForeground(red);
         status.setText("");
 
-        String montanteString = !montante.getText().isEmpty() ? montante.getText() : "0";
-        String montanteDecimalString = !montante_decimal.getText().isEmpty() ? montante_decimal.getText() : "0";
-        double valor = Double.parseDouble(montanteString + "." + montanteDecimalString);
+        String montanteString = !montante.getText().isEmpty() ?
+                                montante.getText() : "0";
+        String montanteDecimalString = !montante_decimal.getText().isEmpty() ?
+                                       montante_decimal.getText() : "0";
+        double valor = Double.parseDouble(
+               montanteString + "." + montanteDecimalString);
 
         if (montante.getText().isEmpty() && montante_decimal.getText().isEmpty()) {
             status.setText("Campos vazios! Insira algum valor.");
@@ -245,7 +250,7 @@ public class DepositMoney extends javax.swing.JInternalFrame {
             return;
         }
 
-        if (DepositsDAO.requestDeposit(valor, LocalClient.numCliente) == DepositsDAO.codigoSucesso) {
+        if (DepositsDAO.requestDeposit(valor, LocalClient.numCliente) == CODIGO_SUCESSO) {
             status.setForeground(green);
             status.setText("Pedido de depósito enviado, aguarde aprovação !");
         } else {
@@ -253,13 +258,11 @@ public class DepositMoney extends javax.swing.JInternalFrame {
             status.setText("Algo de errado aconteceu !");
         }
 
-
     }//GEN-LAST:event_depositActionPerformed
 
     private void jPanel1ComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel1ComponentResized
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel1ComponentResized
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deposit;

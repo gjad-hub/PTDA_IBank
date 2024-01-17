@@ -11,6 +11,9 @@ import java.util.regex.Pattern;
 import javax.swing.table.AbstractTableModel;
 import pt.ua.ibank.DAO.FuncionarioDAO;
 import pt.ua.ibank.DTO.Funcionario;
+import static pt.ua.ibank.utilities.Configs.EMAIL_REGEX;
+import static pt.ua.ibank.utilities.Configs.NINE_DIGIT_REGEX;
+import static pt.ua.ibank.utilities.Configs.NOME_REGEX;
 import pt.ua.ibank.utilities.TableElement;
 
 /**
@@ -81,22 +84,22 @@ public final class PerfilEmployeePersonalTableModel extends AbstractTableModel {
         final String key = data.get(row).key;
         switch (key) {
             case "Nome:" -> {
-                p = Pattern.compile("^[a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜãõÃÕñÑçÇ\\s'-]+$");
+                p = Pattern.compile(NOME_REGEX);
                 m = p.matcher(input);
                 return m.matches();
             }
             case "Email:" -> {
-                p = Pattern.compile("^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
+                p = Pattern.compile(EMAIL_REGEX);
                 m = p.matcher(input);
                 return m.matches();
             }
             case "NIF:" -> {
-                p = Pattern.compile("^\\d{9}$");
+                p = Pattern.compile(NINE_DIGIT_REGEX);
                 m = p.matcher(input);
                 return m.matches();
             }
             case "Telemovel:" -> {
-                p = Pattern.compile("^\\d{9}$");
+                p = Pattern.compile(NINE_DIGIT_REGEX);
                 m = p.matcher(input);
                 return m.matches();
             }

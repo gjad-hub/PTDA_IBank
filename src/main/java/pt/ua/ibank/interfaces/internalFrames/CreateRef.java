@@ -1,20 +1,21 @@
 package pt.ua.ibank.interfaces.internalFrames;
 
 import java.awt.Color;
-import pt.ua.ibank.DAO.PaymentsDAO;
-import static pt.ua.ibank.utilities.Configs.LocalClient;
-import static pt.ua.ibank.utilities.EntityRefGenerator.generateRef;
-import java.awt.datatransfer.StringSelection;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
-import pt.ua.ibank.interfaces.clientInterface;
+import java.awt.datatransfer.StringSelection;
+import pt.ua.ibank.DAO.PaymentsDAO;
 import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
+import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
+import static pt.ua.ibank.utilities.Configs.LocalClient;
+import static pt.ua.ibank.utilities.EntityRefGenerator.generateRef;
 
 public class CreateRef extends javax.swing.JInternalFrame {
 
     private final Color green = new Color(63, 153, 87);
     private final Color red = new Color(230, 45, 9);
-    private final Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+    private final Clipboard clipboard =
+                            Toolkit.getDefaultToolkit().getSystemClipboard();
     private Integer ref;
 
     @Override
@@ -185,9 +186,12 @@ public class CreateRef extends javax.swing.JInternalFrame {
         status.setForeground(red);
         status.setText("");
 
-        String montanteString = !montante.getText().isEmpty() ? montante.getText() : "0";
-        String montanteDecimalString = !montate_decimal.getText().isEmpty() ? montate_decimal.getText() : "0";
-        double valor = Double.parseDouble(montanteString + "." + montanteDecimalString);
+        String montanteString = !montante.getText().isEmpty() ?
+                                montante.getText() : "0";
+        String montanteDecimalString = !montate_decimal.getText().isEmpty() ?
+                                       montate_decimal.getText() : "0";
+        double valor = Double.parseDouble(
+               montanteString + "." + montanteDecimalString);
 
         if (valor <= 0) {
             montante.requestFocus();
@@ -195,8 +199,10 @@ public class CreateRef extends javax.swing.JInternalFrame {
             return;
         }
 
-        int reply = PaymentsDAO.createPayment(LocalClient.numCliente, LocalClient.entidade, this.ref, valor);
-        if (reply == PaymentsDAO.codigoSucesso) {
+        int reply = PaymentsDAO.createPayment(LocalClient.numCliente,
+                                              LocalClient.entidade, this.ref,
+                                              valor);
+        if (reply == CODIGO_SUCESSO) {
             status.setForeground(green);
             status.setText("Referencia criada com sucesso !");
             updateInfo();
@@ -209,10 +215,10 @@ public class CreateRef extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void copyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyActionPerformed
-        StringSelection stringSelection = new StringSelection(referencia.getText());
+        StringSelection stringSelection = new StringSelection(
+                        referencia.getText());
         clipboard.setContents(stringSelection, null);
     }//GEN-LAST:event_copyActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton copy;

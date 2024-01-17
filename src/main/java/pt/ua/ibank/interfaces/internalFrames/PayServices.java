@@ -7,8 +7,9 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import pt.ua.ibank.DAO.PaymentsDAO;
 import static pt.ua.ibank.DAO.PaymentsDAO.getServicosCompras;
-import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.DTO.PagamentoServicosCompras;
+import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
+import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
 
 public class PayServices extends javax.swing.JInternalFrame {
@@ -215,9 +216,12 @@ public class PayServices extends javax.swing.JInternalFrame {
         status.setForeground(red);
         status.setText("");
 
-        String montanteString = !montante.getText().isEmpty() ? montante.getText() : "0";
-        String montanteDecimalString = !montate_decimal.getText().isEmpty() ? montate_decimal.getText() : "0";
-        double valor = Double.parseDouble(montanteString + "." + montanteDecimalString);
+        String montanteString = !montante.getText().isEmpty() ?
+                                montante.getText() : "0";
+        String montanteDecimalString = !montate_decimal.getText().isEmpty() ?
+                                       montate_decimal.getText() : "0";
+        double valor = Double.parseDouble(
+               montanteString + "." + montanteDecimalString);
 
         if (entidade.getText().isEmpty() && referencia.getText().isEmpty()) {
             status.setText("Campos entidade e referência vazios!");
@@ -267,7 +271,9 @@ public class PayServices extends javax.swing.JInternalFrame {
             return;
         }
 
-        PagamentoServicosCompras servicosCompras = getServicosCompras(Integer.parseInt(referenciaValida), Integer.parseInt(entidadeValida));
+        PagamentoServicosCompras servicosCompras = getServicosCompras(
+                                 Integer.parseInt(referenciaValida),
+                                 Integer.parseInt(entidadeValida));
 
         if (Objects.isNull(servicosCompras)) {
             status.setText("O par entidade referencia não existe !");
@@ -280,7 +286,8 @@ public class PayServices extends javax.swing.JInternalFrame {
         }
 
         if (servicosCompras.cancelada) {
-            status.setText("A referencia que está a tentar pagar está cancelada !");
+            status.setText(
+                    "A referencia que está a tentar pagar está cancelada !");
             return;
         }
 
@@ -294,11 +301,17 @@ public class PayServices extends javax.swing.JInternalFrame {
             return;
         }
 
-        int reply = JOptionPane.showConfirmDialog(null, "Confirma a pagamento ?", title, JOptionPane.YES_NO_OPTION);
+        int reply =
+            JOptionPane.showConfirmDialog(null, "Confirma a pagamento ?", title,
+                                          JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION) {
-            int payReply = PaymentsDAO.payService(LocalClient.numCliente, Integer.parseInt(entidadeValida), Integer.parseInt(referenciaValida));
+            int payReply = PaymentsDAO.payService(LocalClient.numCliente,
+                                                  Integer.parseInt(
+                                                          entidadeValida),
+                                                  Integer.parseInt(
+                                                          referenciaValida));
 
-            if (payReply == PaymentsDAO.codigoSucesso) {
+            if (payReply == CODIGO_SUCESSO) {
                 status.setForeground(green);
                 status.setText("PAGO!");
             } else {
@@ -311,7 +324,6 @@ public class PayServices extends javax.swing.JInternalFrame {
     private void jPanel1ComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel1ComponentResized
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel1ComponentResized
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField entidade;

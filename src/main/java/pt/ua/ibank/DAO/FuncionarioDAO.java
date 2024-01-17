@@ -7,43 +7,32 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
-import pt.ua.ibank.DTO.Cliente;
 import pt.ua.ibank.DTO.Funcionario;
-import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
+import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO;
+import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO_EMAIL;
+import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 
 /**
- *
- * @author ricar
+ * Classe com metodos estáticos associados a operações feitas com Funcionários
+ * externos guardados em uma base de dados MySQL
+ * Author: PTDA_Staff.
+ * Ultima Data de Modificação: 15 de Dezembro, 2023
  */
 public class FuncionarioDAO {
 
     /**
+     * Função para registar um funcionario
      *
-     */
-    public final static int codigoSucesso = 1;
-
-    /**
-     *
-     */
-    public final static int codigoErro = 2;
-
-    /**
-     *
-     */
-    public final static int codigoErroEmail = 3;
-
-    /**
-     *
-     * @param nome
-     * @param morada
-     * @param email
-     * @param telefone
-     * @param nif
-     * @param password
-     * @return
+     * @param nome     Nome de cliente Externo
+     * @param morada   Morada de Cliente Externo
+     * @param email    Email de Cliente externo
+     * @param telefone Telemovel de Cliente Externo
+     * @param nif      NIF ( Numero de Identificação fiscal ) Externo
+     * @param password Password, guardada de forma encriptada
+     * @param num_fun  Numero de Funcionario Externo
+     * @return Codigo de Sucesso, 1 Sucesso, 2 Erro email, 3 Erro SQL
      */
     public static int CreateFuncionario(String nome, String morada, String email,
                                         String telefone, String nif,
@@ -61,7 +50,7 @@ public class FuncionarioDAO {
             rs.next();
 
             if (rs.getInt("valor") > 0) {
-                return codigoErroEmail;
+                return CODIGO_ERRO_EMAIL;
             }
 
             stmt = conn.prepareStatement(
@@ -75,19 +64,20 @@ public class FuncionarioDAO {
             stmt.setString(6, password);
             stmt.setInt(7, num_fun);
             stmt.execute();
-            return codigoSucesso;
+            return CODIGO_SUCESSO;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
-            return codigoErro;
+            return CODIGO_ERRO;
         } finally {
             DBConnection.closeConnection(stmt);
         }
     }
 
     /**
+     * Função para retornar objeto Funcioario através de Email
      *
-     * @param email
-     * @return
+     * @param email String Email usada como Referencia
+     * @return Retorna Funcionario relacionado a esse mail
      */
     public static Funcionario getFuncionarioByEmail(String email) {
         PreparedStatement stmt = null;
@@ -123,9 +113,10 @@ public class FuncionarioDAO {
     }
 
     /**
+     * Função para retornar Funcionario através de ID
      *
-     * @param id
-     * @return
+     * @param id ID usado como referencia
+     * @return Funcionario relacionado a esse ID
      */
     public static Funcionario getFuncionarioByID(int id) {
         PreparedStatement stmt = null;
@@ -160,9 +151,10 @@ public class FuncionarioDAO {
     }
 
     /**
+     * Função para retornar nome através de ID
      *
-     * @param id
-     * @return
+     * @param id ID de Cliente usado como referencia
+     * @return Nome de Funcionario relacionado com esse ID
      */
     public static String getFuncionarioNomeByID(int id) {
         PreparedStatement stmt = null;
@@ -186,8 +178,9 @@ public class FuncionarioDAO {
     }
 
     /**
+     * Função que retorna a lista de todos os Funcionarios
      *
-     * @return
+     * @return Lista de Todos os Funcionarios
      */
     public static ArrayList<Funcionario> getFuncionarioList() {
         PreparedStatement stmt = null;
@@ -218,7 +211,7 @@ public class FuncionarioDAO {
                         ));
 
             }
-            return list.isEmpty() ? null : list;
+            return list;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
             return null;
@@ -228,9 +221,10 @@ public class FuncionarioDAO {
     }
 
     /**
+     * Função que retorna funcionarios por morada
      *
-     * @param address
-     * @return
+     * @param address Morada usada como referencia
+     * @return Funcionaios relacionados com essa Morada
      */
     public static ArrayList<Funcionario> getFuncionarioListByAddress(
             String address) {
@@ -269,9 +263,10 @@ public class FuncionarioDAO {
     }
 
     /**
+     * Função usada para promover Funcionario
      *
-     * @param id
-     * @return
+     * @param id ID de Funcionario usado como Referencia
+     * @return retorna codigo de sucesso boleano
      */
     public static boolean promoverFuncionario(int id) {
         PreparedStatement stmt = null;
@@ -292,9 +287,10 @@ public class FuncionarioDAO {
     }
 
     /**
+     * Função usada para obter o ID de Funcionario através do Email
      *
-     * @param email
-     * @return
+     * @param email Email para ser usado como referencia
+     * @return retorna ID de Funcionario
      */
     public static Integer getFuncionarioIdByEmail(String email) {
         PreparedStatement stmt = null;
@@ -322,6 +318,7 @@ public class FuncionarioDAO {
     }
 
     /**
+     * Função usada para obter um objeto Funcionario através de NIF
      *
      * @param id
      * @return
@@ -362,13 +359,14 @@ public class FuncionarioDAO {
     }
 
     /**
+     * Função usada para Atualizar os dados externos de um cliente
      *
-     * @param num_funcionario
-     * @param nome
-     * @param morada
-     * @param email
-     * @param telefone
-     * @param nif
+     * @param num_funcionario Numero de Funcionario externo
+     * @param nome            Nome de cliente Externo
+     * @param morada          Morada de Cliente Externo
+     * @param email           Email de Cliente externo
+     * @param telefone        Telemovel de Cliente Externo
+     * @param nif             NIF ( Numero de Identificação fiscal ) Externo
      * @return
      */
     public static boolean UpdateFuncionario(
@@ -401,39 +399,13 @@ public class FuncionarioDAO {
 
     /**
      *
-     * @param id
-     * @return
-     */
-    public static Integer getNomeFuncionarioById(int id) {
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        Integer num_cliente = null;
-
-        try {
-
-            stmt = conn.prepareStatement(
-            "SELECT nome FROM funcionario where num_conta like ?;");
-            stmt.setInt(1, id);
-            rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                return rs.getInt("nome");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace(System.out);
-        } finally {
-            DBConnection.closeConnection(stmt, rs);
-        }
-        return null;
-    }
-
-    /**
+     * Função para actualizar dados externos de Funcionario
      *
-     * @param nome
-     * @param morada
-     * @param email
-     * @param telemovel
-     * @param nif
+     * @param nome      Nome de cliente Externo
+     * @param morada    Morada de Cliente Externo
+     * @param email     Email de Cliente externo
+     * @param telemovel Telemovel de Cliente Externo
+     * @param nif       NIF ( Numero de Identificação fiscal ) Externo
      * @param old_email
      * @return
      */
@@ -452,7 +424,7 @@ public class FuncionarioDAO {
             rs.next();
 
             if (rs.getInt("valor") > 0 && !email.equals(old_email)) {
-                return codigoErroEmail;
+                return CODIGO_ERRO_EMAIL;
             }
 
             stmt = conn.prepareStatement(
@@ -463,24 +435,25 @@ public class FuncionarioDAO {
             stmt.setString(4, telemovel);
             stmt.setString(5, old_email);
             stmt.execute();
-            return codigoSucesso;
+            return CODIGO_SUCESSO;
         } catch (SQLException e) {
-            return codigoErro;
+            return CODIGO_ERRO;
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
     }
 
     /**
+     * Função para actualizar informações externas de funcionario
      *
-     * @param nome
-     * @param morada
-     * @param email
-     * @param telefone
-     * @param nif
-     * @param password
-     * @param old_email
-     * @return
+     * @param nome      Nome de cliente Externo
+     * @param morada    Morada de Cliente Externo
+     * @param email     Email de Cliente externo
+     * @param telefone  Telemovel de Cliente Externo
+     * @param nif       NIF ( Numero de Identificação fiscal ) Externo
+     * @param password  Password, guardada de forma encriptada
+     * @param old_email Email antigo, caso queira mudar o email currente
+     * @return retorna Codigo de Sucesso, 1 Sucesso, 2 Erro Email, 3 Erro SQL
      */
     public static int UpdateFuncionario(String nome, String morada, String email,
                                         String telefone, String nif,
@@ -497,7 +470,7 @@ public class FuncionarioDAO {
             rs.next();
 
             if (rs.getInt("valor") > 0 && !email.equals(old_email)) {
-                return codigoErroEmail;
+                return CODIGO_ERRO_EMAIL;
             }
 
             stmt = conn.prepareStatement(
@@ -509,17 +482,18 @@ public class FuncionarioDAO {
             stmt.setString(5, password);
             stmt.setString(6, old_email);
             stmt.execute();
-            return codigoSucesso;
+            return CODIGO_SUCESSO;
         } catch (SQLException e) {
-            return codigoErro;
+            return CODIGO_ERRO;
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
     }
 
     /**
+     * Função que retorna o numero total de contas criadas
      *
-     * @return
+     * @return numero total de contas criadas
      */
     public static Integer getNumContasCriadasMes() {
         PreparedStatement stmt = null;
@@ -543,8 +517,9 @@ public class FuncionarioDAO {
     }
 
     /**
+     * Função que retorna numero de depositos externos por aprovar
      *
-     * @return
+     * @return numero de depositos por aprovar
      */
     public static Integer getNumDepositosPorAprovar() {
         PreparedStatement stmt = null;
@@ -568,8 +543,9 @@ public class FuncionarioDAO {
     }
 
     /**
+     * Retorna Funcionário externo com melhor performance
      *
-     * @return
+     * @return retorna Nome de funcionario com melhor performance
      */
     public static String getFuncionarioComMaisDepositosAprovados() {
         PreparedStatement stmt = null;
@@ -595,9 +571,10 @@ public class FuncionarioDAO {
     }
 
     /**
+     * Retorna os numeros de depositos aprovados de um Funcionario externo.
      *
-     * @param id
-     * @return
+     * @param id ID de Funcionario usado como referencuia
+     * @return retorna depositos autorizados do funcionario associado
      */
     public static String getFuncionarioNumDepositosAprovados(int id) {
         PreparedStatement stmt = null;
@@ -619,6 +596,12 @@ public class FuncionarioDAO {
         return null;
     }
 
+    /**
+     * Função que retorna o Nome de um Funcionario através do nome
+     *
+     * @param numFun ID de Funcionario usado como referencuia
+     * @return Retorna Nome de Funcionario associado
+     */
     private static String getNomeFuncionarioByNumber(int numFun) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -642,8 +625,9 @@ public class FuncionarioDAO {
     }
 
     /**
+     * Função que retorna o nome do ultimo cliente registado
      *
-     * @return
+     * @return retorna nome de ultimo cliente registado
      */
     public static String getNomeUltimaContaCriada() {
         PreparedStatement stmt = null;
@@ -670,8 +654,9 @@ public class FuncionarioDAO {
     }
 
     /**
+     * Função que retorna a data do ultimo pedido de deposito
      *
-     * @return
+     * @return retorna a data do ultimo pedido formatada como String
      */
     public static String getDataUltimoPedidoDeposito() {
         PreparedStatement stmt = null;
@@ -700,8 +685,9 @@ public class FuncionarioDAO {
     }
 
     /**
+     * Função que retorna o ID do funcionario com mais Aprovações
      *
-     * @return
+     * @return retorna ID de funcionário com melhor desempenho
      */
     public static Integer getNumAprovacoesFuncionarioTop() {
         PreparedStatement stmt = null;
@@ -728,9 +714,10 @@ public class FuncionarioDAO {
     }
 
     /**
+     * Função que demite um funcionário externo e proibe-o de entrar na conta
      *
-     * @param numFuncionario
-     * @return
+     * @param numFuncionario ID de Funcionario usado como referencuia
+     * @return retorna estado de sucesso booleano
      */
     public static boolean demitirFuncionario(int numFuncionario) {
         PreparedStatement stmt = null;
@@ -751,9 +738,10 @@ public class FuncionarioDAO {
     }
 
     /**
+     * Função que retorna se um Funcionario com ID externo foi demitido
      *
-     * @param id
-     * @return
+     * @param id ID de Funcionario usado como referencuia
+     * @return retorna estado de sucesso booleano
      */
     public static boolean getFuncionarioDemitidoByID(int id) {
         PreparedStatement stmt = null;
