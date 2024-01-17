@@ -29,19 +29,19 @@ VALUES ('4001120953203520', '2024-07-31', 'Ativo');
 
 -- Inserir dados de teste na tabela Cliente
 INSERT INTO cliente (nome, morada, email, telemovel, nif, password, num_conta, saldo, saldo_cativo, cartao_default, entidade)
-VALUES ('Marta Rodrigues', 'Rua G, nº 111', 'marta.rodrigues@email.com', '876543210', '111223344', '1000:244d4e1bc313fff0d490e95636af4ed2:56f93e4e89d4e884e85fded976a7853c076e861588137f05c38e18aaf211a97f0eee7113fe9e9f73927ea84006a67eb2312fb7361790721f3ccbfb1960b43d3f', 'PT50003966064989044052174', 0.00, 0.0, '4001330931275836', 789);
+VALUES ('Marta Rodrigues', 'Rua G, nº 111', 'marta.rodrigues@email.com', '876543210', '111223344', '1000:244d4e1bc313fff0d490e95636af4ed2:56f93e4e89d4e884e85fded976a7853c076e861588137f05c38e18aaf211a97f0eee7113fe9e9f73927ea84006a67eb2312fb7361790721f3ccbfb1960b43d3f', 'PT50003966064989044052174', 0.00, 0.0, '4001330931275836', 22389);
 
 INSERT INTO cliente (nome, morada, email, telemovel, nif, password, num_conta, saldo, saldo_cativo, cartao_default, entidade)
-VALUES ('Pedro Alves', 'Avenida H, nº 222', 'pedro.alves@email.com', '987654321', '222334455', '1000:244d4e1bc313fff0d490e95636af4ed2:56f93e4e89d4e884e85fded976a7853c076e861588137f05c38e18aaf211a97f0eee7113fe9e9f73927ea84006a67eb2312fb7361790721f3ccbfb1960b43d3f', 'PT50000265405973711583183', 0.00, 0.00, '4001333354114391', 456);
+VALUES ('Pedro Alves', 'Avenida H, nº 222', 'pedro.alves@email.com', '987654321', '222334455', '1000:244d4e1bc313fff0d490e95636af4ed2:56f93e4e89d4e884e85fded976a7853c076e861588137f05c38e18aaf211a97f0eee7113fe9e9f73927ea84006a67eb2312fb7361790721f3ccbfb1960b43d3f', 'PT50000265405973711583183', 0.00, 0.00, '4001333354114391', 22456);
 
 INSERT INTO cliente (nome, morada, email, telemovel, nif, password, num_conta, saldo, saldo_cativo, cartao_default, entidade)
-VALUES ('Sara Silva', 'Rua I, nº 333', 'sara.silva@email.com', '876543210', '333445566', '1000:244d4e1bc313fff0d490e95636af4ed2:56f93e4e89d4e884e85fded976a7853c076e861588137f05c38e18aaf211a97f0eee7113fe9e9f73927ea84006a67eb2312fb7361790721f3ccbfb1960b43d3f', 'PT50005620984363163946165', 0.00, 0.00, '4001351884567109', 123);
+VALUES ('Sara Silva', 'Rua I, nº 333', 'sara.silva@email.com', '876543210', '333445566', '1000:244d4e1bc313fff0d490e95636af4ed2:56f93e4e89d4e884e85fded976a7853c076e861588137f05c38e18aaf211a97f0eee7113fe9e9f73927ea84006a67eb2312fb7361790721f3ccbfb1960b43d3f', 'PT50005620984363163946165', 0.00, 0.00, '4001351884567109', 22123);
 
 INSERT INTO cliente (nome, morada, email, telemovel, nif, password, num_conta, saldo, saldo_cativo, cartao_default, entidade)
-VALUES ('Hugo Oliveira', 'Avenida J, nº 444', 'hugo.oliveira@email.com', '987654321', '444556677', '1000:244d4e1bc313fff0d490e95636af4ed2:56f93e4e89d4e884e85fded976a7853c076e861588137f05c38e18aaf211a97f0eee7113fe9e9f73927ea84006a67eb2312fb7361790721f3ccbfb1960b43d3f', 'PT50007884763541403081684', 0.00, 0.00, '4001491015472463', 789);
+VALUES ('Hugo Oliveira', 'Avenida J, nº 444', 'hugo.oliveira@email.com', '987654321', '444556677', '1000:244d4e1bc313fff0d490e95636af4ed2:56f93e4e89d4e884e85fded976a7853c076e861588137f05c38e18aaf211a97f0eee7113fe9e9f73927ea84006a67eb2312fb7361790721f3ccbfb1960b43d3f', 'PT50007884763541403081684', 0.00, 0.00, '4001491015472463', 22789);
 
 INSERT INTO cliente (nome, morada, email, telemovel, nif, password, num_conta, saldo, saldo_cativo, cartao_default, entidade)
-VALUES ('Inês Pereira', 'Rua K, nº 555', 'ines.pereira@email.com', '876543210', '555667788', '1000:244d4e1bc313fff0d490e95636af4ed2:56f93e4e89d4e884e85fded976a7853c076e861588137f05c38e18aaf211a97f0eee7113fe9e9f73927ea84006a67eb2312fb7361790721f3ccbfb1960b43d3f', 'PT50005637932098875504569', 0.00, 0.00, '4001733310706027', 456);
+VALUES ('Inês Pereira', 'Rua K, nº 555', 'ines.pereira@email.com', '876543210', '555667788', '1000:244d4e1bc313fff0d490e95636af4ed2:56f93e4e89d4e884e85fded976a7853c076e861588137f05c38e18aaf211a97f0eee7113fe9e9f73927ea84006a67eb2312fb7361790721f3ccbfb1960b43d3f', 'PT50005637932098875504569', 0.00, 0.00, '4001733310706027', 22456);
 
 UPDATE cartao SET cliente = 1 WHERE num_cartao = '4001330931275836';
 UPDATE cartao SET cliente = 2 WHERE num_cartao = '4001333354114391';
@@ -91,19 +91,19 @@ VALUES (150.00, 5, 1, 'Empréstimo para compras');
 
 -- Inserir dados de teste na tabela Pagamento_Servicos_Compras
 INSERT INTO pagamento_servicos_compras (entidade, referencia, valor, pago, cliente, cliente_cria, cancelada)
-VALUES (123, 789, 50.00, false, null, 2, false);
+VALUES (22123, 789789789, 50.00, false, null, 2, false);
 
 INSERT INTO pagamento_servicos_compras (entidade, referencia, valor, pago, cliente, cliente_cria, cancelada)
-VALUES (456, 234, 75.00, false, null, 3, false);
+VALUES (22456, 234234234, 75.00, false, null, 3, false);
 
 INSERT INTO pagamento_servicos_compras (entidade, referencia, valor, pago, cliente, cliente_cria, cancelada)
-VALUES (789, 567, 30.00, false, null, 4, false);
+VALUES (22789, 567567567, 30.00, false, null, 4, false);
 
 INSERT INTO pagamento_servicos_compras (entidade, referencia, valor, pago, cliente, cliente_cria, cancelada)
-VALUES (234, 901, 100.00, false, null, 5, false);
+VALUES (22234, 901901901, 100.00, false, null, 5, false);
 
 INSERT INTO pagamento_servicos_compras (entidade, referencia, valor, pago, cliente, cliente_cria, cancelada)
-VALUES (567, 123, 25.00, false, null, 1, false);
+VALUES (22567, 123123123, 25.00, false, null, 1, false);
 
 -- Inserir dados de teste na tabela Deposito
 
@@ -121,6 +121,12 @@ VALUES (250.00, false, null, 4, true);
 
 INSERT INTO deposito (valor, aprovado, num_fun, num_cli, pendente_aprovacao)
 VALUES (145.00, false, null, 4, true);
+
+INSERT INTO deposito (valor, aprovado, num_fun, num_cli, pendente_aprovacao)
+VALUES (145.00, false, null, 4, true);
+
+INSERT INTO deposito (valor, aprovado, num_fun, num_cli, pendente_aprovacao)
+VALUES (154.00, false, null, 3, true);
 
 call aprovar_deposito(1,1);
 call aprovar_deposito(2,1);

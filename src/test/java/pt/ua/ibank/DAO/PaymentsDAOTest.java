@@ -17,7 +17,7 @@ class PaymentsDAOTest {
 
     @Test
     void getServicosCompras() {
-        PagamentoServicosCompras psc = PaymentsDAO.getServicosCompras(789, 123);
+        PagamentoServicosCompras psc = PaymentsDAO.getServicosCompras(567567567, 22789);
         assertNotNull(psc);
     }
 

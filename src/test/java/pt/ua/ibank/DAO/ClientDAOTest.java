@@ -31,9 +31,9 @@ class ClientDAOTest {
 
     @Test
     public void testGetClientByEmailFound() {
-        String testEmail = "richard@ua.pt";
+        String testEmail = "marta.rodrigues@email.com";
         Cliente cliente = ClientDAO.getClientByEmail(testEmail);
-        assertNotNull(cliente); // verifica se o cliente realmente existe (se não é nulo)
+        assertNotNull(cliente);
         assertEquals(testEmail, cliente.email);
     }
 
@@ -46,7 +46,7 @@ class ClientDAOTest {
 
     @Test
     public void testGetClientIdByIBANFound() {
-        String testIban = "PT50003695550979486644526";
+        String testIban = "PT50007884763541403081684";
         Integer clientId = ClientDAO.getClientIdByIBAN(testIban);
         assertNotNull(clientId);
     }
@@ -60,7 +60,7 @@ class ClientDAOTest {
 
     @Test
     public void testGetClientIdByEmailFound() { // podemos juntar este teste com o testGetClientByEmailFound()
-        String testEmail = "richard@ua.pt";
+        String testEmail = "marta.rodrigues@email.com";
         Integer clientId = ClientDAO.getClientIdByEmail(testEmail);
         assertNotNull(clientId);
     }
@@ -85,7 +85,7 @@ class ClientDAOTest {
     public void testGetClientBalanceNotFound() {
         int testClientId = 9999;
         Cliente cliente = ClientDAO.getClientBalance(testClientId);
-        assertNull(cliente.saldo);
+        assertNull(cliente);
     }
 
     @Test
@@ -103,7 +103,7 @@ class ClientDAOTest {
     public void testUpdateClientErrorEmail() {
         int result = ClientDAO.UpdateClient("João Tomás Silva",
                                             "Avenida Lourenço Peixinho, 123, Aveiro, Portugal",
-                                            "richard@ua.pt", "923344551",
+                                            "marta.rodrigues@email.com", "923344551",
                                             "119876543", "joao2024silva",
                                             "joaotomassilva@gmail.com");
         assertEquals(CODIGO_ERRO_EMAIL, result);

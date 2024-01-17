@@ -41,7 +41,7 @@ class CardsDAOTest {
     @Test
     void getCardAmountByID() {
         int id = 1;
-        int num_cards = 9;
+        int num_cards = 4;
         int test_card = CardsDAO.getCardAmountByID(id);
         assertEquals(num_cards, test_card);
     }
