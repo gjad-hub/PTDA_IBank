@@ -10,8 +10,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class ClienteFuncionarioDAOTest {
 
     @Test
-    void getClientsInteractedListByID() {
+    void testGetClientsInteractedListByID() {
         ArrayList<Integer> list = ClienteFuncionarioDAO.getClientsInteractedListByID(1);
         assertNotNull(list);
+    }
+
+    @Test
+    void testGetClientsInteractedListByIDFalse() {
+        ArrayList<Integer> list = ClienteFuncionarioDAO.getClientsInteractedListByID(9999);
+        assertTrue(list.isEmpty());
     }
 }

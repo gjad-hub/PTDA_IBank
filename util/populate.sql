@@ -123,10 +123,13 @@ INSERT INTO deposito (valor, aprovado, num_fun, num_cli, pendente_aprovacao)
 VALUES (145.00, false, null, 4, true);
 
 INSERT INTO deposito (valor, aprovado, num_fun, num_cli, pendente_aprovacao)
-VALUES (145.00, false, null, 4, true);
+VALUES (134.00, false, null, 4, true);
 
 INSERT INTO deposito (valor, aprovado, num_fun, num_cli, pendente_aprovacao)
 VALUES (154.00, false, null, 3, true);
+
+INSERT INTO deposito (valor, aprovado, num_fun, num_cli, pendente_aprovacao)
+VALUES (567.00, false, null, 4, true);
 
 call aprovar_deposito(1,1);
 call aprovar_deposito(2,1);
