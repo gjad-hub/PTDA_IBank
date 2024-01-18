@@ -126,7 +126,7 @@ public class CardsDAO {
 
         try {
             stmt = conn.prepareStatement(
-            "UPDATE cartao SET estado = \"cancelado\" WHERE num_cartao LIKE ? ");
+            "UPDATE cartao SET estado = \"Cancelado\" WHERE num_cartao LIKE ? ");
             stmt.setString(1, card_number);
             stmt.execute();
 

@@ -8,8 +8,7 @@ import pt.ua.ibank.IBank;
 
 public class Configs {
 
-    private static final Preferences prefs = Preferences.userNodeForPackage(
-                                     IBank.class);
+    private static final Preferences prefs = Preferences.userNodeForPackage(IBank.class);
     public static boolean loginOK = false;
 
     public static Cliente LocalClient;
@@ -19,23 +18,34 @@ public class Configs {
     public static String Uname;
     public static boolean Usave;
 
+    public static String Fname;
+    public static boolean Fsave;
+
     public static final int CODIGO_SUCESSO = 1;
     public static final int CODIGO_ERRO = 2;
     public static final int CODIGO_ERRO_EMAIL = 3;
 
-    public static final String NOME_REGEX =
-                               "^[a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜãõÃÕñÑçÇ\\s'-]+$";
-    public static final String EMAIL_REGEX =
-                               "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+    public static final String NOME_REGEX = "^[a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜãõÃÕñÑçÇ\\s'-]+$";
+    public static final String EMAIL_REGEX = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
     public static final String NINE_DIGIT_REGEX = "^\\d{9}$";
 
-    public static void save() {
+    public static void saveU() {
         prefs.put("Uname", Uname);
         prefs.putBoolean("Usave", Usave);
     }
 
-    public static void load() {
+    public static void saveF() {
+        prefs.put("Fname", Fname);
+        prefs.putBoolean("Fsave", Fsave);
+    }
+
+    public static void loadU() {
         Uname = prefs.get("Uname", "");
         Usave = prefs.getBoolean("Usave", false);
+    }
+
+    public static void loadF() {
+        Fname = prefs.get("Fname", "");
+        Fsave = prefs.getBoolean("Fsave", false);
     }
 }

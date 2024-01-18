@@ -33,13 +33,13 @@ public class CardManager extends javax.swing.JInternalFrame {
     private void popular(ArrayList<Cartao> lcartao) {
         DefaultTableModel modelo = (DefaultTableModel) card_table.getModel();
         modelo.setNumRows(0);
-
+        
         if (lcartao != null) {
             for (Cartao cartao : lcartao) {
                 modelo.addRow(new Object[]{
                     cartao.numCartao,
                     dataFormat.format(cartao.dataValidade),
-                    cartao.isValid() ? "Ativo" : "Inativo"
+                    cartao.isValid() && cartao.estado.equals("Ativo") ? "Ativo" : "Inativo"
                 });
             }
         }

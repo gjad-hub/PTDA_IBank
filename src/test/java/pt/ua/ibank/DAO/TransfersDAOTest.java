@@ -64,7 +64,7 @@ class TransfersDAOTest {
     }
 
     @Test
-    public void testGetTransfersListByReceptor() {
+    void testGetTransfersListByReceptor() {
         ArrayList<Transferencias> transfersList =
                                   TransfersDAO.getTransfersListByReceptor(1);
         assertNotNull(transfersList);
@@ -72,7 +72,7 @@ class TransfersDAOTest {
     }
 
     @Test
-    public void testGetTransfersListByReceptorFalse() {
+    void testGetTransfersListByReceptorFalse() {
         ArrayList<Transferencias> transfersList =
                                   TransfersDAO.getTransfersListByReceptor(999999);
         assertNull(transfersList);

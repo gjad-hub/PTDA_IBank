@@ -12,11 +12,6 @@ public class StaffManagercreateAccount extends javax.swing.JInternalFrame {
         });
     }
 
-    private String maskString(String string, int char_visible) {
-        return string.substring(0, char_visible) + "*".repeat(
-                string.length() - char_visible);
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

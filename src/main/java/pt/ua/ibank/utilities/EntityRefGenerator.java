@@ -19,7 +19,9 @@ public class EntityRefGenerator {
         Random random = new Random();
         StringBuilder refBuilder = new StringBuilder();
 
-        for (int i = 0; i < 9; i++) {
+        refBuilder.append(1 + random.nextInt(9));
+
+        for (int i = 1; i < 9; i++) {
             refBuilder.append(random.nextInt(10));
         }
 

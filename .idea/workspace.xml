@@ -5,47 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e031737-4c12-4441-8033-4861b76b3657" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fc8fb3e5-69b1-43b7-87d5-c04b652d2aa9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fc8fb3e5-69b1-43b7-87d5-c04b652d2aa9.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/CardsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/CardsDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/ClientDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/ClientDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/ClienteFuncionarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/ClienteFuncionarioDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/CommentsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/CommentsDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/DepositsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/DepositsDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/FuncionarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/FuncionarioDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/PaymentsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/PaymentsDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/TransacoesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/TransacoesDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/TransfersDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DAO/TransfersDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DTO/Cartao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DTO/Cartao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DTO/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DTO/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DTO/Deposito.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DTO/Deposito.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DTO/PagamentoServicosCompras.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DTO/PagamentoServicosCompras.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DTO/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/DTO/Pessoa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/dialogLogin.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/dialogLogin.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/dialogLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/dialogLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/CardManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/CardManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/CreateRef.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/CreateRef.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/CreateRef.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/CreateRef.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/DepositMoney.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/DepositMoney.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/DepositMoney.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/DepositMoney.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/ManageReferences.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/ManageReferences.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/ManageReferences.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/ManageReferences.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/PayServices.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/PayServices.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/PayServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/PayServices.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/ProfilePage.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/ProfilePage.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/ProfilePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/ProfilePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/TransferPage.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/TransferPage.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/TransferPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/TransferPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/staff/manager/createaccount/formCreateAccountFuncionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/staff/manager/createaccount/formCreateAccountFuncionario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/staff/manager/profile/personal/PerfilEmployeePersonalTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/staff/manager/profile/personal/PerfilEmployeePersonalTableModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/staff/profile/personal/PerfilPersonalTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/staff/profile/personal/PerfilPersonalTableModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/staff/transferlist/TransfersMainInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/interfaces/internalFrames/staff/transferlist/TransfersMainInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/utilities/Configs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pt/ua/ibank/utilities/Configs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pt/ua/ibank/DAO/CardsDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pt/ua/ibank/DAO/CardsDAOTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pt/ua/ibank/DAO/ClientDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pt/ua/ibank/DAO/ClientDAOTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/pt/ua/ibank/DAO/FuncionarioDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pt/ua/ibank/DAO/FuncionarioDAOTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pt/ua/ibank/DAO/PaymentsDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pt/ua/ibank/DAO/PaymentsDAOTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/pt/ua/ibank/DAO/TransfersDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pt/ua/ibank/DAO/TransfersDAOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/createDB.sql" beforeDir="false" afterPath="$PROJECT_DIR$/util/createDB.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,31 +38,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.ClienteFuncionarioDAOTest.getClientsInteractedListByID.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/data/Dev/GIT/PTDA_IBank",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.ClienteFuncionarioDAOTest.getClientsInteractedListByID.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/data/Dev/GIT/PTDA_IBank&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -106,7 +71,15 @@
       <recent name="pt.ua.ibank.DAO" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ClienteFuncionarioDAOTest.getClientsInteractedListByID">
+  <component name="RunManager" selected="JUnit.All in IBank">
+    <configuration name="All in IBank" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="IBank" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ClienteFuncionarioDAOTest.getClientsInteractedListByID" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="IBank" />
       <extension name="coverage">
@@ -134,22 +107,6 @@
       <option name="PACKAGE_NAME" value="pt.ua.ibank.DAO" />
       <option name="MAIN_CLASS_NAME" value="pt.ua.ibank.DAO.PaymentsDAOTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PaymentsDAOTest.getServicosCompras" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="IBank" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="pt.ua.ibank.DAO.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="pt.ua.ibank.DAO" />
-      <option name="MAIN_CLASS_NAME" value="pt.ua.ibank.DAO.PaymentsDAOTest" />
-      <option name="METHOD_NAME" value="getServicosCompras" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -201,11 +158,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in IBank" />
         <item itemvalue="JUnit.ClienteFuncionarioDAOTest.getClientsInteractedListByID" />
         <item itemvalue="JUnit.PaymentsDAOTest.testCreatePaymentWithInvalidData" />
         <item itemvalue="JUnit.PaymentsDAOTest" />
         <item itemvalue="JUnit.PaymentsDAOTest.getServicosComprasFalse" />
-        <item itemvalue="JUnit.PaymentsDAOTest.getServicosCompras" />
       </list>
     </recent_temporary>
   </component>

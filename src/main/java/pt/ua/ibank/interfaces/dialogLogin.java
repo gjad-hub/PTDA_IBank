@@ -39,7 +39,7 @@ public class dialogLogin extends javax.swing.JDialog {
 
         panelCreateAccount.setVisible(false);
 
-        Configs.load();
+        Configs.loadU();
         email_input.setText(Configs.Uname);
         save_email.setSelected(Configs.Usave);
         KeyListeners();
@@ -462,11 +462,11 @@ public class dialogLogin extends javax.swing.JDialog {
         if (save_email.isSelected()) {
             Configs.Uname = email_input.getText();
             Configs.Usave = save_email.isSelected();
-            Configs.save();
+            Configs.saveU();
         } else {
             Configs.Uname = "";
             Configs.Usave = false;
-            Configs.save();
+            Configs.saveU();
         }
 
         LocalClient = new Cliente(email_input.getText(), new String(

@@ -129,7 +129,6 @@ class FuncionarioDAOTest {
         assertTrue(resultado);
     }
 
-    //AAAA
     @Test
     public void testGetFuncionarioIdByEmailSuccess() {
         String emailExistente = "admin@ibank.pt";
@@ -233,7 +232,7 @@ class FuncionarioDAOTest {
     }
 
     @Test
-    public void testGetFuncionarioDemitidoByIDActive() { // funcionário que não foi demitido
+    public void testGetFuncionarioDemitidoByIDActive() { 
         boolean resultado = FuncionarioDAO.getFuncionarioDemitidoByID(1);
         assertFalse(resultado);
     }

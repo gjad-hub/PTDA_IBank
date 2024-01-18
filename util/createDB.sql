@@ -124,10 +124,7 @@ CREATE TABLE comentario_perfil
 DELIMITER \\
 
 -- Trigger deposito
-CREATE TRIGGER deposito
-    AFTER INSERT
-    ON deposito
-    FOR EACH ROW
+CREATE TRIGGER deposito AFTER INSERT ON deposito FOR EACH ROW
 BEGIN
     DECLARE existe INT;
 
@@ -140,10 +137,7 @@ BEGIN
 END;
 
 -- Trigger pagar serviço
-CREATE TRIGGER pagar_servico
-    AFTER UPDATE
-    ON pagamento_servicos_compras
-    FOR EACH ROW
+CREATE TRIGGER pagar_servico AFTER UPDATE ON pagamento_servicos_compras FOR EACH ROW
 BEGIN
     DECLARE existe INT;
     DECLARE saldo DECIMAL(10, 2);
@@ -179,10 +173,7 @@ BEGIN
 END;
 
 -- Trigger para actualizar o saldo do cliente
-CREATE TRIGGER actualizar_saldo
-    AFTER INSERT
-    ON transacoes
-    FOR EACH ROW
+CREATE TRIGGER actualizar_saldo AFTER INSERT ON transacoes FOR EACH ROW
 BEGIN
     DECLARE existe INT;
 

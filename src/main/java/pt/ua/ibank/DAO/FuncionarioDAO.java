@@ -44,7 +44,7 @@ public class FuncionarioDAO {
 
             // Verifica se já existe alguma conta com aquele e-mail
             stmt = conn.prepareStatement(
-            "SELECT count('num_fun') AS valor FROM cliente where email like ?;");
+            "SELECT count('num_fun') AS valor FROM funcionario where email like ?;");
             stmt.setString(1, email);
             rs = stmt.executeQuery();
             rs.next();

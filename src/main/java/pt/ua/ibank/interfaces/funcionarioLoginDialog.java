@@ -19,9 +19,9 @@ public class funcionarioLoginDialog extends javax.swing.JDialog {
         email_input.setBackground(new java.awt.Color(0, 0, 0, 1));
         password_input.setBackground(new java.awt.Color(0, 0, 0, 1));
 
-        Configs.load();
-        email_input.setText(Configs.Uname);
-        save_email.setSelected(Configs.Usave);
+        Configs.loadF();
+        email_input.setText(Configs.Fname);
+        save_email.setSelected(Configs.Fsave);
         KeyListeners();
     }
 
@@ -232,13 +232,13 @@ public class funcionarioLoginDialog extends javax.swing.JDialog {
 
         error.setText("");
         if (save_email.isSelected()) {
-            Configs.Uname = email_input.getText();
-            Configs.Usave = save_email.isSelected();
-            Configs.save();
+            Configs.Fname = email_input.getText();
+            Configs.Fsave = save_email.isSelected();
+            Configs.saveF();
         } else {
-            Configs.Uname = "";
-            Configs.Usave = false;
-            Configs.save();
+            Configs.Fname = "";
+            Configs.Fsave = false;
+            Configs.saveF();
         }
 
         LocalFuncionario = new Funcionario(email, password);
