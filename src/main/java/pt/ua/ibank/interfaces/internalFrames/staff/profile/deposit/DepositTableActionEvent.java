@@ -4,10 +4,6 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.deposit;
 
-/**
- *
- * @author ricar
- */
 public interface DepositTableActionEvent {
 
     public void onAcceptTransaction(int row);

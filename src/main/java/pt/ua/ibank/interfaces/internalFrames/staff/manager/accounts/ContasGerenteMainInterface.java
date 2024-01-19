@@ -9,10 +9,6 @@ import pt.ua.ibank.interfaces.internalFrames.staff.accounts.ContasActionEvent;
 import pt.ua.ibank.interfaces.internalFrames.staff.accounts.ContasActionRenderer;
 import pt.ua.ibank.interfaces.internalFrames.staff.accounts.ContasCellEditor;
 
-/**
- *
- * @author ricar
- */
 public class ContasGerenteMainInterface extends javax.swing.JPanel {
 
     /**

@@ -9,10 +9,6 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
 
-/**
- *
- * @author ricar
- */
 public class ContasCellEditor extends DefaultCellEditor {
 
     ContasActionEvent event = null;
@@ -24,7 +20,8 @@ public class ContasCellEditor extends DefaultCellEditor {
 
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value,
-            boolean isSelected, int row, int column) {
+                                                 boolean isSelected, int row,
+                                                 int column) {
         ContasActionPanel action = new ContasActionPanel();
 
         action.InitEvent(event, row);

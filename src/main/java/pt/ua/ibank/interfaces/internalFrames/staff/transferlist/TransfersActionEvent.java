@@ -4,12 +4,6 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.transferlist;
 
-import pt.ua.ibank.interfaces.internalFrames.staff.accounts.*;
-
-/**
- *
- * @author ricar
- */
 public interface TransfersActionEvent {
 
     public void onExpand(int row);

@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * ricar
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.personal;
 
@@ -16,10 +15,6 @@ import static pt.ua.ibank.utilities.Configs.NINE_DIGIT_REGEX;
 import static pt.ua.ibank.utilities.Configs.NOME_REGEX;
 import pt.ua.ibank.utilities.TableElement;
 
-/**
- *
- * @author ricar
- */
 public final class PerfilPersonalTableModel extends AbstractTableModel {
 
     private final List<TableElement> data;

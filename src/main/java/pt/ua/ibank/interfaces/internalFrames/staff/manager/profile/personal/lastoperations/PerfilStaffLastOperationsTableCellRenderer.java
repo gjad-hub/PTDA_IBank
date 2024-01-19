@@ -9,10 +9,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import pt.ua.ibank.DAO.ClientDAO;
 
-/**
- *
- * @author ricar
- */
 public class PerfilStaffLastOperationsTableCellRenderer extends DefaultTableCellRenderer {
 
     @Override

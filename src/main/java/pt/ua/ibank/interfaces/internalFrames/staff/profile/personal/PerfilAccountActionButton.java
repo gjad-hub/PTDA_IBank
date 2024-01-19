@@ -11,10 +11,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 
-/**
- *
- * @author ricar
- */
 public class PerfilAccountActionButton extends javax.swing.JFrame {
 
     private JButton jButton;

@@ -7,10 +7,6 @@ package pt.ua.ibank.interfaces.internalFrames.staff.profile.card;
 import pt.ua.ibank.DAO.CardsDAO;
 import pt.ua.ibank.DTO.Cartao;
 
-/**
- *
- * @author ricar
- */
 public class PerfilCardTableModel extends javax.swing.table.AbstractTableModel {
 
     private final java.util.List<Cartao> data;

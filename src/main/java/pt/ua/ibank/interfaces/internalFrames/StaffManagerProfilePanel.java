@@ -7,10 +7,6 @@ package pt.ua.ibank.interfaces.internalFrames;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 
-/**
- *
- * @author ricar
- */
 public class StaffManagerProfilePanel extends javax.swing.JInternalFrame {
 
     /**

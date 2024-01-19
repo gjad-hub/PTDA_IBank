@@ -4,13 +4,8 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.deposit;
 
-import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.*;
 import java.awt.Color;
 
-/**
- *
- * @author ricar
- */
 public class DepositTableElementPanel extends javax.swing.JPanel {
 
     /**
@@ -22,7 +17,7 @@ public class DepositTableElementPanel extends javax.swing.JPanel {
      * @param isPending
      */
     public DepositTableElementPanel(String id,
-            String ammount, boolean wasApproved) {
+                                    String ammount, boolean wasApproved) {
         initComponents();
         this.lblIdValue.setText(id);
         this.lblValueInEurosValue.setText(ammount);
@@ -32,7 +27,7 @@ public class DepositTableElementPanel extends javax.swing.JPanel {
     }
 
     public DepositTableElementPanel(String id,
-            String ammount) {
+                                    String ammount) {
         initComponents();
         this.lblIdValue.setText(id);
         this.lblValueInEurosValue.setText(ammount);

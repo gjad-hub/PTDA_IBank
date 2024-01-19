@@ -15,10 +15,6 @@ import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
 /**
- *
- * @author miguel
- */
-/**
  * Menu component that handles the functionality expected of a standard
  * "Windows" menu for MDI applications.
  */

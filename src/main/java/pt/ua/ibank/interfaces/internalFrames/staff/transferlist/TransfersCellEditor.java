@@ -1,10 +1,11 @@
 package pt.ua.ibank.interfaces.internalFrames.staff.transferlist;
 
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt
+ * to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit
+ * this template
  */
-import pt.ua.ibank.interfaces.internalFrames.staff.accounts.*;
 import java.awt.Component;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
@@ -25,7 +26,8 @@ public class TransfersCellEditor extends DefaultCellEditor {
 
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value,
-            boolean isSelected, int row, int column) {
+                                                 boolean isSelected, int row,
+                                                 int column) {
 
         TransfersActionPanel action = new TransfersActionPanel();
         action.InitEvent(event, row);

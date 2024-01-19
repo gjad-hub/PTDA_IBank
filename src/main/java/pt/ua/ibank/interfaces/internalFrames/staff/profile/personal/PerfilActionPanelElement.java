@@ -4,13 +4,8 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.personal;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 
-/**
- *
- * @author ricar
- */
 public class PerfilActionPanelElement extends javax.swing.JPanel {
 
     /**

@@ -12,10 +12,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import pt.ua.ibank.DTO.Deposito;
 
-/**
- *
- * @author ricar
- */
 public class DepositCellEditor extends DefaultCellEditor {
 
     private DepositTableActionEvent event;

@@ -15,10 +15,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
 
-/**
- *
- * @author ricar
- */
 public class DeleteCommentActionButton extends JButton {
 
     private boolean mousePress;

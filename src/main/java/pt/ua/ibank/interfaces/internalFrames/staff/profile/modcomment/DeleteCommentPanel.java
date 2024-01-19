@@ -6,10 +6,6 @@ package pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment;
 
 import java.awt.event.ActionEvent;
 
-/**
- *
- * @author ricar
- */
 public class DeleteCommentPanel extends javax.swing.JPanel {
 
     /**

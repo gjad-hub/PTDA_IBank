@@ -6,10 +6,6 @@ package pt.ua.ibank.interfaces.internalFrames.staff.profile.personal;
 
 import java.awt.Color;
 
-/**
- *
- * @author ricar
- */
 public class PerfilTableElementPanel extends javax.swing.JPanel {
 
     /**
@@ -20,7 +16,7 @@ public class PerfilTableElementPanel extends javax.swing.JPanel {
      * @param value
      */
     public PerfilTableElementPanel(boolean isGray, String title,
-            String value) {
+                                   String value) {
         initComponents();
         this.lblTtitle.setText(title);
         this.lblValue.setText(value);

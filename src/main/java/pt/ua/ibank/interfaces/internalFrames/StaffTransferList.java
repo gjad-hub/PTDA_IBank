@@ -8,10 +8,6 @@ package pt.ua.ibank.interfaces.internalFrames;
 import java.awt.event.ActionEvent;
 import pt.ua.ibank.interfaces.staffInterface;
 
-/**
- *
- * @author ricar
- */
 public class StaffTransferList extends javax.swing.JInternalFrame {
 
     /**

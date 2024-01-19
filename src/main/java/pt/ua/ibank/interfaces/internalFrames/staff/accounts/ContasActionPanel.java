@@ -6,10 +6,6 @@ package pt.ua.ibank.interfaces.internalFrames.staff.accounts;
 
 import java.awt.event.ActionEvent;
 
-/**
- *
- * @author ricar
- */
 public class ContasActionPanel extends javax.swing.JPanel {
 
     /**

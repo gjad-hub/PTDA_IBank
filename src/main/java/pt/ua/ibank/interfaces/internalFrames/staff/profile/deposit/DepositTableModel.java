@@ -10,13 +10,8 @@ import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.DAO.DepositsDAO;
 import pt.ua.ibank.DTO.Cliente;
 import pt.ua.ibank.DTO.Deposito;
-import pt.ua.ibank.DTO.Funcionario;
 import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
 
-/**
- *
- * @author ricar
- */
 public class DepositTableModel extends AbstractTableModel {
 
     private final List<Deposito> data;

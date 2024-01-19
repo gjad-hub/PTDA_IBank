@@ -6,10 +6,6 @@ package pt.ua.ibank.interfaces.internalFrames.staff.accounts;
 
 import pt.ua.ibank.DTO.Cliente;
 
-/**
- *
- * @author ricar
- */
 public class ContasMainInterface extends javax.swing.JPanel {
 
     /**

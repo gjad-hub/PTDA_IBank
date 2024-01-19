@@ -10,10 +10,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
 
-/**
- *
- * @author ricar
- */
 public class PerfilCommentCellEditor extends DefaultCellEditor {
 
     DeleteCommentActionEvent event = null;

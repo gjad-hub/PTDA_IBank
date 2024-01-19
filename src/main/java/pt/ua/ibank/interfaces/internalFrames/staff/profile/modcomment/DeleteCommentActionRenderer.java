@@ -9,10 +9,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
 
-/**
- *
- * @author ricar
- */
 public class DeleteCommentActionRenderer extends DefaultTableCellRenderer {
 
     @Override

@@ -4,10 +4,6 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.manager.profile.personal.lastoperations;
 
-/**
- *
- * @author ricar
- */
 public class PerfilStaffLastOperationsTableElementPanel extends javax.swing.JPanel {
 
     /**

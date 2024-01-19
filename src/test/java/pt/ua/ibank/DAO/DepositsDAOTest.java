@@ -1,14 +1,9 @@
 package pt.ua.ibank.DAO;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import java.util.ArrayList;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import pt.ua.ibank.DTO.Deposito;
-import pt.ua.ibank.utilities.Configs;
-
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO;
 import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 

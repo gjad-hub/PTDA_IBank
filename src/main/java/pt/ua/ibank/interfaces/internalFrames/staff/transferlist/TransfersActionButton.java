@@ -4,7 +4,6 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.transferlist;
 
-import pt.ua.ibank.interfaces.internalFrames.staff.accounts.*;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -16,10 +15,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
 
-/**
- *
- * @author ricar
- */
 public class TransfersActionButton extends JButton {
 
     private boolean mousePress;
@@ -44,12 +39,12 @@ public class TransfersActionButton extends JButton {
     @Override
     protected void paintComponent(Graphics graphics) {
         ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource(
-                "/resources/images/icons_20/magnifying-glass.png"));
+                  "/resources/images/icons_20/magnifying-glass.png"));
         Image img = icon.getImage();
 
         Graphics2D g2 = (Graphics2D) graphics.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                RenderingHints.VALUE_ANTIALIAS_ON);
+                            RenderingHints.VALUE_ANTIALIAS_ON);
         int width = getWidth();
         int height = getHeight();
         int size = Math.min(width, height);

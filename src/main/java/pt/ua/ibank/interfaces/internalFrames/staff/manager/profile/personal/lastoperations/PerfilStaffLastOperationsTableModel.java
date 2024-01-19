@@ -6,10 +6,6 @@ package pt.ua.ibank.interfaces.internalFrames.staff.manager.profile.personal.las
 
 import pt.ua.ibank.DAO.ClienteFuncionarioDAO;
 
-/**
- *
- * @author ricar
- */
 public class PerfilStaffLastOperationsTableModel extends javax.swing.table.AbstractTableModel {
 
     private final java.util.List<Integer> data;

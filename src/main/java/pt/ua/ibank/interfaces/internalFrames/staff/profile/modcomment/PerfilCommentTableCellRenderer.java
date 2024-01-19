@@ -5,29 +5,27 @@
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment;
 
 import java.awt.Component;
-import java.time.format.DateTimeFormatter;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import pt.ua.ibank.DTO.ModeratorComment;
 
-/**
- *
- * @author ricar
- */
 public class PerfilCommentTableCellRenderer extends DefaultTableCellRenderer {
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value,
-            boolean isSelected, boolean hasFocus, int row, int column) {
+                                                   boolean isSelected,
+                                                   boolean hasFocus, int row,
+                                                   int column) {
         Component comm = super.getTableCellRendererComponent(table, value,
-                isSelected,
-                hasFocus, row, column);
+                                                             isSelected,
+                                                             hasFocus, row,
+                                                             column);
         var currCommentObject = (ModeratorComment) value;
 
         var profileChildElement = new PerfilCommentTableElementPanel(
-                currCommentObject.getNomeFuncionario(),
-                currCommentObject.getDescricao(),
-                currCommentObject.getDataFeita().toString());
+        currCommentObject.getNomeFuncionario(),
+        currCommentObject.getDescricao(),
+        currCommentObject.getDataFeita().toString());
         return profileChildElement;
     }
 

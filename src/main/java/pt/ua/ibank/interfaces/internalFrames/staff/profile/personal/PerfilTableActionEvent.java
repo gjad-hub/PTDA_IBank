@@ -4,10 +4,6 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.personal;
 
-/**
- *
- * @author ricar
- */
 public interface PerfilTableActionEvent {
 
     public void onEdit(int row);

@@ -4,10 +4,6 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.card;
 
-/**
- *
- * @author ricar
- */
 public class PerfilCardTableElementPanel extends javax.swing.JPanel {
 
     /**
@@ -19,7 +15,7 @@ public class PerfilCardTableElementPanel extends javax.swing.JPanel {
      * @param saldo
      */
     public PerfilCardTableElementPanel(String numCartao, String dataValidade,
-            String estado) {
+                                       String estado) {
         initComponents();
         this.lblNumeroCartao.setText(numCartao);
         this.lblEstadoValue.setText(estado);

@@ -6,13 +6,9 @@ package pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment;
 
 import java.sql.Timestamp;
 import pt.ua.ibank.DAO.CommentsDAO;
-import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
 import pt.ua.ibank.DTO.ModeratorComment;
+import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
 
-/**
- *
- * @author ricar
- */
 public class PerfilCommentTableModel extends javax.swing.table.AbstractTableModel {
 
     private final java.util.List<ModeratorComment> data;

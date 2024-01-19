@@ -10,21 +10,20 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import pt.ua.ibank.DTO.Deposito;
 
-/**
- *
- * @author ricar
- */
 public class DepositActionRenderer extends DefaultTableCellRenderer {
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value,
-            boolean isSelected, boolean hasFocus, int row, int column) {
+                                                   boolean isSelected,
+                                                   boolean hasFocus, int row,
+                                                   int column) {
         Component comm = super.getTableCellRendererComponent(table, value,
-                isSelected,
-                hasFocus, row, column);
+                                                             isSelected,
+                                                             hasFocus, row,
+                                                             column);
 
         Deposito deposito = (Deposito) table.getModel().getValueAt(
-                row, 0);
+                 row, 0);
         if (!deposito.pendenteAprovacao) {
             return new Component() {
             };

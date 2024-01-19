@@ -16,10 +16,6 @@ import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilTableA
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilTableCellRenderer;
 import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
 
-/**
- *
- * @author ricar
- */
 public class StaffPerfilMainInterface extends javax.swing.JPanel {
 
     /**

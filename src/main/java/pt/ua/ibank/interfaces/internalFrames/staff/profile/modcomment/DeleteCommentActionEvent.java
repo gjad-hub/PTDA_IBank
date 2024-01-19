@@ -4,10 +4,6 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment;
 
-/**
- *
- * @author ricar
- */
 public interface DeleteCommentActionEvent {
 
     public void onDelete(int row);

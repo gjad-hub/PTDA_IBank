@@ -8,10 +8,6 @@ import java.awt.event.ActionEvent;
 import pt.ua.ibank.interfaces.internalFrames.staff.manager.accounts.ContasGerenteMainInterface;
 import pt.ua.ibank.interfaces.staffInterface;
 
-/**
- *
- * @author ricar
- */
 public class StaffManagerAccountList extends javax.swing.JInternalFrame {
 
     /**

@@ -10,10 +10,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import pt.ua.ibank.DTO.Cartao;
 
-/**
- *
- * @author ricar
- */
 public class PerfilCardTableCellRenderer extends DefaultTableCellRenderer {
 
     @Override

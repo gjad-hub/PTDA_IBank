@@ -16,10 +16,6 @@ import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
 import pt.ua.ibank.utilities.Hash;
 
-/**
- *
- * @author Asus
- */
 public class formCreateAccountFuncionario extends javax.swing.JPanel {
 
     /**

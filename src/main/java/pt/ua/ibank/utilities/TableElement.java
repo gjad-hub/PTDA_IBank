@@ -4,12 +4,6 @@
  */
 package pt.ua.ibank.utilities;
 
-/**
- *
- * @author ricar
- * @param <K> Key
- * @param <V> Value
- */
 public class TableElement<K, V> {
 
     public String key;

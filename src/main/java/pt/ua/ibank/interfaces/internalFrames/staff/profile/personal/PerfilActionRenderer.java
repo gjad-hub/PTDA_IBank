@@ -10,10 +10,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import pt.ua.ibank.utilities.TableElement;
 
-/**
- *
- * @author ricar
- */
 public class PerfilActionRenderer extends DefaultTableCellRenderer {
 
     @Override

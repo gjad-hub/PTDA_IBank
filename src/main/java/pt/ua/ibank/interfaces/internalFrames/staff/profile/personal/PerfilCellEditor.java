@@ -12,10 +12,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import pt.ua.ibank.utilities.TableElement;
 
-/**
- *
- * @author ricar
- */
 public class PerfilCellEditor extends DefaultCellEditor {
 
     private PerfilTableActionEvent event;

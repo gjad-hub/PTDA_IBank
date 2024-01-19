@@ -16,10 +16,6 @@ import static pt.ua.ibank.utilities.Configs.NINE_DIGIT_REGEX;
 import static pt.ua.ibank.utilities.Configs.NOME_REGEX;
 import pt.ua.ibank.utilities.TableElement;
 
-/**
- *
- * @author ricar
- */
 public final class PerfilEmployeePersonalTableModel extends AbstractTableModel {
 
     private final List<TableElement> data;

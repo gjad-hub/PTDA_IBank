@@ -6,10 +6,6 @@ package pt.ua.ibank.interfaces.internalFrames.staff.profile.deposit;
 
 import java.awt.event.ActionEvent;
 
-/**
- *
- * @author ricar
- */
 public class DepositActionPanelElement extends javax.swing.JPanel {
 
     /**
