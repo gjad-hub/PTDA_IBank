@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 public class DBConnection {
 
@@ -18,8 +19,8 @@ public class DBConnection {
     static {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace(System.out);
+        } catch (ClassNotFoundException | NoClassDefFoundError ex) {
+            System.out.println("YO");
         }
     }
 
@@ -30,7 +31,9 @@ public class DBConnection {
 
             return DriverManager.getConnection(URL, USER, PASS);
 
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (ClassNotFoundException | RuntimeException | SQLException ex) {
+            JOptionPane.showMessageDialog(null,
+                                          "Conexão á base de dados não foi possivel!");
             throw new RuntimeException("Erro ao Connectar: ", ex);
         }
     }
@@ -62,7 +65,7 @@ public class DBConnection {
             if (rs != null) {
                 rs.close();
             }
-        } catch (SQLException ex) {
+        } catch (SQLException | NoClassDefFoundError ex) {
             throw new RuntimeException("Erro fechar conexão: ", ex);
         }
     }
