@@ -11,10 +11,7 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
 
-/**
- *
- * @author ricar
- */
+
 public class TransfersCellEditor extends DefaultCellEditor {
 
     private TransfersActionEvent event;

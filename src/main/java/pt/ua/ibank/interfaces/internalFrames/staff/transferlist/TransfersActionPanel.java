@@ -6,10 +6,6 @@ package pt.ua.ibank.interfaces.internalFrames.staff.transferlist;
 
 import java.awt.event.ActionEvent;
 
-/**
- *
- * @author ricar
- */
 public class TransfersActionPanel extends javax.swing.JPanel {
 
     /**

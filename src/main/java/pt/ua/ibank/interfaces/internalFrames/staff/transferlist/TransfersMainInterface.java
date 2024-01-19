@@ -12,10 +12,7 @@ import pt.ua.ibank.DTO.Cliente;
 import pt.ua.ibank.DTO.Transferencias;
 import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 
-/**
- *
- * @author ricar
- */
+
 public class TransfersMainInterface extends javax.swing.JPanel {
 
     /**

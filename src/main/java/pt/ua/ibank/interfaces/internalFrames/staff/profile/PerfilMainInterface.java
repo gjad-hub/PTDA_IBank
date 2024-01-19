@@ -35,10 +35,6 @@ import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilPerson
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilTableActionEvent;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilTableCellRenderer;
 
-/**
- *
- * @author ricar
- */
 public class PerfilMainInterface extends javax.swing.JPanel {
 
     int clientID;

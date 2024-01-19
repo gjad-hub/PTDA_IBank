@@ -8,10 +8,7 @@ import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-/**
- *
- * @author ricar
- */
+
 public class TransfersActionRenderer extends DefaultTableCellRenderer {
 
     @Override
