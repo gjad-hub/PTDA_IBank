@@ -315,6 +315,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
 
         // EDIT BUTTON STUFF
         PerfilTableActionEvent eventPersonal = new PerfilTableActionEvent() {
+            String oldLeft;
 
             @Override
             public void onEdit(int row) {
@@ -326,6 +327,15 @@ public class PerfilMainInterface extends javax.swing.JPanel {
 
             @Override
             public void onSave(int row, Object newValue) {
+                personalDataTable.getValueAt(row,0);
+
+                String resultado = "Operação feita com sucesso";
+
+                if(!personalDataTable.verificarDados((String)newValue,row)){
+                    resultado = "Dados invalidos, tenta denovo";
+                    JOptionPane.showMessageDialog(LayeredPaneEditarConta, resultado);
+                    return;
+                }
                 personalDataTable.setValue(newValue, row);
                 personalDataTable.setValueAt(newValue, row, 0);
                 jTablePersonalData.repaint();
@@ -334,6 +344,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
                     lblNomeCompleto.setText((String)newValue);
                 }
                 personalDataTable.updateClient();
+                JOptionPane.showMessageDialog(LayeredPaneEditarConta, resultado);
             }
         };
 
