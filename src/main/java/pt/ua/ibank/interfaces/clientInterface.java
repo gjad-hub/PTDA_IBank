@@ -164,7 +164,7 @@ public class clientInterface extends javax.swing.JFrame {
         });
 
         depo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_24/deposit.png"))); // NOI18N
-        depo.setText("Depostio");
+        depo.setText("Deposito");
         depo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         depo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
