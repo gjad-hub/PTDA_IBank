@@ -636,7 +636,7 @@ public class FuncionarioDAO {
 
         try {
             stmt = conn.prepareStatement(
-            "SELECT nome FROM funcionario ORDER BY num_fun DESC LIMIT 1;");
+            "SELECT nome FROM cliente ORDER BY num_cliente DESC LIMIT 1;");
             rs = stmt.executeQuery();
 
             if (rs.next()) {
