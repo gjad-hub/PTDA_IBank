@@ -198,7 +198,7 @@ class FuncionarioDAOTest {
     public void testGetNomeUltimaContaCriadaSuccess() {
         String nomeUltimaConta = FuncionarioDAO.getNomeUltimaContaCriada();
         assertNotNull(nomeUltimaConta);
-        assertEquals("Nuno Almeida", nomeUltimaConta);
+        assertEquals("João Tomás Silva", nomeUltimaConta);
     }
 
     @Test
