@@ -58,7 +58,7 @@ public class DepositTableModel extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return data.size();
+        return data == null ? 0 : data.size();
     }
 
     @Override
