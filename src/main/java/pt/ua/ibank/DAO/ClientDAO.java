@@ -88,7 +88,7 @@ public class ClientDAO {
             stmt = conn.prepareStatement(
             "INSERT INTO cartao (num_cartao, data_validade, estado) "
             + "VALUES (?, (SELECT DATE_ADD(CURDATE(), INTERVAL +5 YEAR )),"
-            + " \"activo\");");
+            + " \"Ativo\");");
             stmt.setString(1, num_cartao);
             stmt.execute();
 
