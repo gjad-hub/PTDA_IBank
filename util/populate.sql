@@ -106,19 +106,19 @@ VALUES (150.00, 5, 1, 'Empréstimo para compras');
 
 -- Inserir dados de teste na tabela Pagamento_Servicos_Compras
 INSERT INTO pagamento_servicos_compras (entidade, referencia, valor, pago, cliente, cliente_cria, cancelada)
-VALUES (22123, 789789789, 50.00, false, null, 2, false);
+VALUES (22389, 789789789, 50.00, false, null, 1, false);
 
 INSERT INTO pagamento_servicos_compras (entidade, referencia, valor, pago, cliente, cliente_cria, cancelada)
-VALUES (22456, 234234234, 75.00, false, null, 3, false);
+VALUES (22456, 234234234, 75.00, false, null, 2, false);
 
 INSERT INTO pagamento_servicos_compras (entidade, referencia, valor, pago, cliente, cliente_cria, cancelada)
-VALUES (22789, 567567567, 30.00, false, null, 4, false);
+VALUES (22123, 567567567, 30.00, false, null, 3, false);
 
 INSERT INTO pagamento_servicos_compras (entidade, referencia, valor, pago, cliente, cliente_cria, cancelada)
-VALUES (22234, 901901901, 100.00, false, null, 5, false);
+VALUES (22789, 901901901, 100.00, false, null, 4, false);
 
 INSERT INTO pagamento_servicos_compras (entidade, referencia, valor, pago, cliente, cliente_cria, cancelada)
-VALUES (22567, 123123123, 25.00, false, null, 1, false);
+VALUES (22456, 123123123, 25.00, false, null, 5, false);
 
 -- Inserir dados de teste na tabela Deposito
 
