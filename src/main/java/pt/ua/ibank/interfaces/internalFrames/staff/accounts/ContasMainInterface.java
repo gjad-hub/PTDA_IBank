@@ -37,7 +37,6 @@ public class ContasMainInterface extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         lblNoDepositos = new javax.swing.JLabel();
-        lblNoCartoes = new javax.swing.JLabel();
         lblMorada = new javax.swing.JLabel();
         lblNIF = new javax.swing.JLabel();
         lblTelemovel = new javax.swing.JLabel();
@@ -52,7 +51,6 @@ public class ContasMainInterface extends javax.swing.JPanel {
         lblTelemovelValue = new javax.swing.JLabel();
         lblNIFValue = new javax.swing.JLabel();
         lblMoradaValue = new javax.swing.JLabel();
-        lblNoCartoesValue = new javax.swing.JLabel();
         lblNoDepositosValue = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ctm = new ContasTableModel();
@@ -126,9 +124,6 @@ public class ContasMainInterface extends javax.swing.JPanel {
         lblNoDepositos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblNoDepositos.setText("Depositos Feitos: ");
 
-        lblNoCartoes.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblNoCartoes.setText("No Cartões: ");
-
         lblMorada.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblMorada.setText("Morada:");
 
@@ -171,9 +166,6 @@ public class ContasMainInterface extends javax.swing.JPanel {
         lblMoradaValue.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblMoradaValue.setText("Numero");
 
-        lblNoCartoesValue.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        lblNoCartoesValue.setText("Numero");
-
         lblNoDepositosValue.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblNoDepositosValue.setText("Numero");
 
@@ -182,38 +174,38 @@ public class ContasMainInterface extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblEmail)
-                        .addGap(92, 92, 92))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblNumeroCliente)
-                            .addComponent(lblNumConta, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(lblTelemovel)
-                            .addGap(56, 56, 56)))
-                    .addComponent(lblNome, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblMorada)
-                            .addComponent(lblNoCartoes))
-                        .addGap(51, 51, 51))
-                    .addComponent(lblNIF, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblNoDepositos)
-                        .addGap(10, 10, 10)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNumeroClienteValue, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblNumContaValue, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblNomeValue, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblEmailValue, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblTelemovelValue, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblNIFValue, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblMoradaValue, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblNoCartoesValue, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblNoDepositosValue, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblEmail)
+                                .addGap(92, 92, 92))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblNumeroCliente)
+                                    .addComponent(lblNumConta, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(lblTelemovel)
+                                    .addGap(56, 56, 56)))
+                            .addComponent(lblNome, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblMorada)
+                                .addGap(80, 80, 80))
+                            .addComponent(lblNIF, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNumeroClienteValue, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblNumContaValue, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblNomeValue, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblEmailValue, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblTelemovelValue, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblNIFValue, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblMoradaValue, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, 0)
+                        .addComponent(lblNoDepositos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblNoDepositosValue)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -247,11 +239,7 @@ public class ContasMainInterface extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMorada)
                     .addComponent(lblMoradaValue))
-                .addGap(11, 11, 11)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNoCartoes)
-                    .addComponent(lblNoCartoesValue))
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNoDepositos)
                     .addComponent(lblNoDepositosValue))
@@ -411,7 +399,7 @@ public class ContasMainInterface extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(textFieldProcurarConta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboBoxType, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                            .addComponent(comboBoxType))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnProcurarConta)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -464,7 +452,7 @@ public class ContasMainInterface extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(LayeredPaneContas, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(62, Short.MAX_VALUE))
+                        .addContainerGap(68, Short.MAX_VALUE))
                 );
             }// </editor-fold>//GEN-END:initComponents
 
@@ -520,8 +508,6 @@ public class ContasMainInterface extends javax.swing.JPanel {
     private javax.swing.JLabel lblMoradaValue;
     private javax.swing.JLabel lblNIF;
     private javax.swing.JLabel lblNIFValue;
-    private javax.swing.JLabel lblNoCartoes;
-    private javax.swing.JLabel lblNoCartoesValue;
     private javax.swing.JLabel lblNoDepositos;
     private javax.swing.JLabel lblNoDepositosValue;
     private javax.swing.JLabel lblNome;
