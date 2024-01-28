@@ -12,7 +12,6 @@ import pt.ua.ibank.DTO.Cliente;
 import pt.ua.ibank.DTO.Transferencias;
 import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 
-
 public class TransfersMainInterface extends javax.swing.JPanel {
 
     /**
@@ -133,7 +132,7 @@ public class TransfersMainInterface extends javax.swing.JPanel {
 
         jLabel21.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel21.setText("Detalhes de Transação");
+        jLabel21.setText("Detalhes de Transferencias");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -328,7 +327,7 @@ public class TransfersMainInterface extends javax.swing.JPanel {
 
     jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
     jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-    jLabel15.setText("Lista de Transações");
+    jLabel15.setText("Lista de Transferencias");
     jLabel15.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
     jLabel15.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
@@ -361,7 +360,7 @@ public class TransfersMainInterface extends javax.swing.JPanel {
 
     jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
     jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-    jLabel16.setText("Adicionar Transação");
+    jLabel16.setText("Adicionar Transferencia");
     jLabel16.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
     jLabel16.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
@@ -450,7 +449,7 @@ public class TransfersMainInterface extends javax.swing.JPanel {
 
     jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
     jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-    jLabel17.setText("Procurar Transação");
+    jLabel17.setText("Procurar Transferencia");
     jLabel17.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
     jLabel17.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
