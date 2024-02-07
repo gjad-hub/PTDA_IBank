@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import static pt.ua.ibank.utilities.Configs.LocalClientCard;
 import pt.ua.ibank.DAO.DepositsDAO;
-import pt.ua.ibank.DTO.Transacoes;
-import pt.ua.ibank.DAO.TransacoesDAO;
+import pt.ua.ibank.DTO.Transactions;
+import pt.ua.ibank.DAO.TransactionsDAO;
 import static pt.ua.ibank.utilities.Configs.LocalClient;
-import pt.ua.ibank.DTO.Deposito;
+import pt.ua.ibank.DTO.Deposit;
 import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
 import pt.ua.ibank.utilities.ClientInfo;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
@@ -52,27 +52,27 @@ public class DashBoard extends javax.swing.JInternalFrame {
                 string.length() - char_visible);
     }
 
-    private void popularTransacoes(ArrayList<Transacoes> ltransacoes) {
+    private void popularTransacoes(ArrayList<Transactions> ltransacoes) {
         DefaultTableModel modelo = (DefaultTableModel) t_table.getModel();
         modelo.setNumRows(0);
 
         if (ltransacoes != null) {
-            for (Transacoes tr : ltransacoes) {
+            for (Transactions tr : ltransacoes) {
                 modelo.addRow(new Object[]{
-                    tr.data,
-                    tr.descricao,
-                    (tr.valor > 0 ? "+" + tr.valor : tr.valor) + " EUR"
+                    tr.date,
+                    tr.description,
+                    (tr.value > 0 ? "+" + tr.value : tr.value) + " EUR"
                 });
             }
         }
     }
 
-    private void popularDepositos(ArrayList<Deposito> ldeposito) {
+    private void popularDepositos(ArrayList<Deposit> ldeposito) {
         DefaultTableModel modelo = (DefaultTableModel) table_depositos.getModel();
         modelo.setNumRows(0);
 
         if (ldeposito != null) {
-            for (Deposito dp : ldeposito) {
+            for (Deposit dp : ldeposito) {
                 modelo.addRow(new Object[]{
                     dp.valor + " EUR",
                     dp.aprovado
@@ -464,9 +464,9 @@ public class DashBoard extends javax.swing.JInternalFrame {
 
     private void see_ibanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_see_ibanActionPerformed
         if (see_iban.isSelected()) {
-            iban.setText(LocalClient.numConta);
+            iban.setText(LocalClient.accountNumber);
         } else {
-            iban.setText(maskString(LocalClient.numConta, 10));
+            iban.setText(maskString(LocalClient.accountNumber, 10));
         }
     }//GEN-LAST:event_see_ibanActionPerformed
 
@@ -494,17 +494,17 @@ public class DashBoard extends javax.swing.JInternalFrame {
         updateClientBalance(LocalClient);
         updateLocalCard(LocalClientCard, LocalClient);
         
-        saldo.setText(LocalClient.saldo.toString() + " EUR");
-        numeroCartao.setText(printDividedString(LocalClientCard.numCartao, 4));
-        dataValidade.setText(dataFormat.format(LocalClientCard.dataValidade));
+        saldo.setText(LocalClient.balance.toString() + " EUR");
+        numeroCartao.setText(printDividedString(LocalClientCard.cardNumber, 4));
+        dataValidade.setText(dataFormat.format(LocalClientCard.expireDate));
         
-        popularTransacoes(TransacoesDAO.getTransacoes(LocalClient.numCliente));
-        popularDepositos(DepositsDAO.getDeposits(LocalClient.numCliente));
+        popularTransacoes(TransactionsDAO.getTransacoes(LocalClient.clientNumber));
+        popularDepositos(DepositsDAO.getDeposits(LocalClient.clientNumber));
     }
 
     private void setDefaultInfo() {
-        iban.setText(maskString(LocalClient.numConta, 10));
-        nomeTitularCartao.setText(LocalClient.nome);
+        iban.setText(maskString(LocalClient.accountNumber, 10));
+        nomeTitularCartao.setText(LocalClient.name);
     }
 
     private String printDividedString(String string, int size) {

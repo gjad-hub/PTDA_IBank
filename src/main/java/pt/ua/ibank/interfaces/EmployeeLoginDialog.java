@@ -2,13 +2,13 @@ package pt.ua.ibank.interfaces;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import pt.ua.ibank.DTO.Funcionario;
+import pt.ua.ibank.DTO.Employee;
 import pt.ua.ibank.utilities.Configs;
-import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
+import static pt.ua.ibank.utilities.Configs.LocalEmployee;
 
-public class funcionarioLoginDialog extends javax.swing.JDialog {
+public class EmployeeLoginDialog extends javax.swing.JDialog {
 
-    public funcionarioLoginDialog(java.awt.Frame parent, boolean modal) {
+    public EmployeeLoginDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         startup();
@@ -241,9 +241,9 @@ public class funcionarioLoginDialog extends javax.swing.JDialog {
             Configs.saveF();
         }
 
-        LocalFuncionario = new Funcionario(email, password);
+        LocalEmployee = new Employee(email, password);
 
-        if (LocalFuncionario.autenticar() && !LocalFuncionario.foiDespedido) {
+        if (LocalEmployee.autenticar() && !LocalEmployee.foiDespedido) {
             Configs.loginOK = true;
             this.dispose();
         } else {
@@ -283,29 +283,33 @@ public class funcionarioLoginDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(
-                    funcionarioLoginDialog.class
+            java.util.logging.Logger.getLogger(EmployeeLoginDialog.class
                             .getName()).log(
                             java.util.logging.Level.SEVERE, null, ex);
 
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(
-                    funcionarioLoginDialog.class
+            java.util.logging.Logger.getLogger(EmployeeLoginDialog.class
                             .getName()).log(
                             java.util.logging.Level.SEVERE, null, ex);
 
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(
-                    funcionarioLoginDialog.class
+            java.util.logging.Logger.getLogger(EmployeeLoginDialog.class
                             .getName()).log(
                             java.util.logging.Level.SEVERE, null, ex);
 
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(
-                    funcionarioLoginDialog.class
+            java.util.logging.Logger.getLogger(EmployeeLoginDialog.class
                             .getName()).log(
                             java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -320,7 +324,7 @@ public class funcionarioLoginDialog extends javax.swing.JDialog {
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                funcionarioLoginDialog dialog = new funcionarioLoginDialog(
+                EmployeeLoginDialog dialog = new EmployeeLoginDialog(
                                        new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override

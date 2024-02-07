@@ -8,7 +8,7 @@ import java.awt.Component;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
-import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
+import static pt.ua.ibank.utilities.Configs.LocalEmployee;
 
 public class PerfilCommentCellEditor extends DefaultCellEditor {
 
@@ -24,7 +24,7 @@ public class PerfilCommentCellEditor extends DefaultCellEditor {
                                                  boolean isSelected, int row,
                                                  int column) {
 
-        if (LocalFuncionario.isManager()) {
+        if (LocalEmployee.isManager()) {
             DeleteCommentPanel action = new DeleteCommentPanel();
 
             action.InitEvent(event, row);

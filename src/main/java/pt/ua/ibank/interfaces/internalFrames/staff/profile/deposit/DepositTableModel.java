@@ -8,14 +8,14 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.DAO.DepositsDAO;
-import pt.ua.ibank.DTO.Cliente;
-import pt.ua.ibank.DTO.Deposito;
-import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
+import pt.ua.ibank.DTO.Client;
+import pt.ua.ibank.DTO.Deposit;
+import static pt.ua.ibank.utilities.Configs.LocalEmployee;
 
 public class DepositTableModel extends AbstractTableModel {
 
-    private final List<Deposito> data;
-    public Cliente client = null;
+    private final List<Deposit> data;
+    public Client client = null;
 
     public DepositTableModel(int clientID) {
         data = DepositsDAO.getDeposits(clientID);
@@ -23,36 +23,34 @@ public class DepositTableModel extends AbstractTableModel {
     }
 
     public void aprovarDeposito(int row) {
-        if (DepositsDAO.aproveDeposit(
-                data.get(row).idDeposito,
-                LocalFuncionario.numFun
+        if (DepositsDAO.aproveDeposit(data.get(row).idDeposito,
+                LocalEmployee.numFun
         )) {
             data.get(row).pendenteAprovacao = false;
             data.get(row).aprovado = true;
 
-            client.saldo_cativo =
-            (client.saldo_cativo - data.get(row).valor) == 0 ?
+            client.pendingBalance =
+            (client.pendingBalance - data.get(row).valor) == 0 ?
             0 :
-            (client.saldo_cativo - data.get(row).valor);
+            (client.pendingBalance - data.get(row).valor);
 
-            this.client.saldo += data.get(row).valor;
+            this.client.balance += data.get(row).valor;
             fireTableRowsInserted(data.size() - 1, data.size() - 1);
         }
 
     }
 
     public void reprovarDeposito(int row) {
-        DepositsDAO.denyDeposit(
-                data.get(row).idDeposito,
-                LocalFuncionario.numFun
+        DepositsDAO.denyDeposit(data.get(row).idDeposito,
+                LocalEmployee.numFun
         );
 
         data.get(row).pendenteAprovacao = false;
         data.get(row).aprovado = false;
-        client.saldo_cativo =
-        (client.saldo_cativo - data.get(row).valor) == 0 ?
+        client.pendingBalance =
+        (client.pendingBalance - data.get(row).valor) == 0 ?
         0 :
-        (client.saldo_cativo - data.get(row).valor);
+        (client.pendingBalance - data.get(row).valor);
         fireTableRowsInserted(data.size() - 1, data.size() - 1);
     }
 

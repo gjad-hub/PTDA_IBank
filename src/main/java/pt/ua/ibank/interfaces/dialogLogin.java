@@ -8,13 +8,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.SwingUtilities;
 import pt.ua.ibank.DAO.ClientDAO;
-import pt.ua.ibank.DTO.Cliente;
+import pt.ua.ibank.DTO.Client;
 import pt.ua.ibank.utilities.Configs;
-import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO;
-import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO_EMAIL;
-import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.utilities.Hash;
+import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
+import static pt.ua.ibank.utilities.Configs.ERROR_CODE;
+import static pt.ua.ibank.utilities.Configs.EMAIL_ERROR_CODE;
 
 public class dialogLogin extends javax.swing.JDialog {
 
@@ -469,7 +469,7 @@ public class dialogLogin extends javax.swing.JDialog {
             Configs.saveU();
         }
 
-        LocalClient = new Cliente(email_input.getText(), new String(
+        LocalClient = new Client(email_input.getText(), new String(
                                   password_input.getPassword()));
         if (LocalClient.autenticar()) {
             Configs.loginOK = true;
@@ -551,12 +551,12 @@ public class dialogLogin extends javax.swing.JDialog {
                                                     hashedPassword);
 
                 switch (verify) {
-                    case CODIGO_ERRO_EMAIL ->
+                    case EMAIL_ERROR_CODE ->
                         erro_create.setText("Endereço de email já existente !");
-                    case CODIGO_ERRO ->
+                    case ERROR_CODE ->
                         erro_create.setText(
                                 "Algo inesperado aconteceu tente novamente mais tarde !");
-                    case CODIGO_SUCESSO -> {
+                    case SUCCESS_CODE -> {
                         erro_create.setText("Sucesso ao criar cliente !");
                         SwingUtilities.invokeLater(() -> {
                             try {
@@ -570,6 +570,8 @@ public class dialogLogin extends javax.swing.JDialog {
                         });
 
                     }
+
+
                 }
 
             } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {

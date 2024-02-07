@@ -6,7 +6,7 @@ import java.util.Collections;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import pt.ua.ibank.interfaces.funcionarioLoginDialog;
+import pt.ua.ibank.interfaces.EmployeeLoginDialog;
 import pt.ua.ibank.interfaces.staffInterface;
 import static pt.ua.ibank.interfaces.staffInterface.localStaffInterface;
 import pt.ua.ibank.utilities.Configs;
@@ -28,7 +28,7 @@ public class IBankFun {
             System.exit(98);
         }
 
-        funcionarioLoginDialog login = new funcionarioLoginDialog(null, true);
+        EmployeeLoginDialog login = new EmployeeLoginDialog(null, true);
         login.setVisible(true);
 
         if (Configs.loginOK) {

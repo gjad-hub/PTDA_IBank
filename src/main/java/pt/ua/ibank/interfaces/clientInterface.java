@@ -52,7 +52,7 @@ public class clientInterface extends javax.swing.JFrame {
     }
 
     public void UpdateInfo() {
-        display_user.setText(LocalClient.nome);
+        display_user.setText(LocalClient.name);
         logout.setText("Fechar (" + LocalClient.email + ")");
     }
 

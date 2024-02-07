@@ -8,7 +8,7 @@ import java.awt.Component;
 import java.text.SimpleDateFormat;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
-import pt.ua.ibank.DTO.Cartao;
+import pt.ua.ibank.DTO.Card;
 
 public class PerfilCardTableCellRenderer extends DefaultTableCellRenderer {
 
@@ -21,12 +21,12 @@ public class PerfilCardTableCellRenderer extends DefaultTableCellRenderer {
                                                              isSelected,
                                                              hasFocus, row,
                                                              column);
-        var currCardObject = (Cartao) value;
+        var currCardObject = (Card) value;
 
         SimpleDateFormat dateDisplay = new SimpleDateFormat("MM/yy");
-        String expireDate = dateDisplay.format(currCardObject.dataValidade);
-        String cardNumber = currCardObject.numCartao
-               .substring(currCardObject.numCartao.length() - 4);
+        String expireDate = dateDisplay.format(currCardObject.expireDate);
+        String cardNumber = currCardObject.cardNumber
+               .substring(currCardObject.cardNumber.length() - 4);
 
         var profileCardElement = new PerfilCardTableElementPanel(
         cardNumber,

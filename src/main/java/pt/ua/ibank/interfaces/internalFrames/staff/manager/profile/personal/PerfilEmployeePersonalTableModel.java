@@ -9,20 +9,20 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.table.AbstractTableModel;
-import pt.ua.ibank.DAO.FuncionarioDAO;
-import pt.ua.ibank.DTO.Funcionario;
+import pt.ua.ibank.DAO.EmployeeDAO;
+import pt.ua.ibank.DTO.Employee;
 import static pt.ua.ibank.utilities.Configs.EMAIL_REGEX;
 import static pt.ua.ibank.utilities.Configs.NINE_DIGIT_REGEX;
-import static pt.ua.ibank.utilities.Configs.NOME_REGEX;
 import pt.ua.ibank.utilities.TableElement;
+import static pt.ua.ibank.utilities.Configs.NAME_REGEX;
 
 public final class PerfilEmployeePersonalTableModel extends AbstractTableModel {
 
     private final List<TableElement> data;
-    public final Funcionario funcionario;
+    public final Employee funcionario;
 
     public PerfilEmployeePersonalTableModel(int funcionarioID) {
-        funcionario = FuncionarioDAO.getFuncionarioByID(funcionarioID);
+        funcionario = EmployeeDAO.getFuncionarioByID(funcionarioID);
         data = new ArrayList<>();
 
         setupData();
@@ -31,11 +31,11 @@ public final class PerfilEmployeePersonalTableModel extends AbstractTableModel {
     public void setupData() {
         data.add(new TableElement("ID: ", Integer.toString(funcionario.numFun)));
         data.add(new TableElement("Responsavel: ", getNomeGerente()));
-        data.add(new TableElement("Nome:", funcionario.nome));
+        data.add(new TableElement("Nome:", funcionario.name));
         data.add(new TableElement("Email:", funcionario.email));
-        data.add(new TableElement("Telemovel:", funcionario.telemovel));
+        data.add(new TableElement("Telemovel:", funcionario.phoneNumber));
         data.add(new TableElement("NIF: ", funcionario.nif));
-        data.add(new TableElement("Morada:", funcionario.morada));
+        data.add(new TableElement("Morada:", funcionario.address));
         data.add(new TableElement("Demitido: ", funcionario.foiDespedido ?
                                                 "Sim" :
                                                 "Não"));
@@ -43,7 +43,7 @@ public final class PerfilEmployeePersonalTableModel extends AbstractTableModel {
 
     public String getNomeGerente() {
         if (funcionario.gerente != 0) {
-            return FuncionarioDAO.getFuncionarioNomeByID(
+            return EmployeeDAO.getFuncionarioNomeByID(
                     funcionario.gerente);
         }
         return "N/A";
@@ -80,7 +80,7 @@ public final class PerfilEmployeePersonalTableModel extends AbstractTableModel {
         final String key = data.get(row).key;
         switch (key) {
             case "Nome:" -> {
-                p = Pattern.compile(NOME_REGEX);
+                p = Pattern.compile(NAME_REGEX);
                 m = p.matcher(input);
                 return m.matches();
             }
@@ -113,19 +113,19 @@ public final class PerfilEmployeePersonalTableModel extends AbstractTableModel {
                 funcionario.gerente = (Integer) aValue;
             }
             case 2 -> {
-                funcionario.nome = (String) aValue;
+                funcionario.name = (String) aValue;
             }
             case 3 -> {
                 funcionario.email = (String) aValue;
             }
             case 4 -> {
-                funcionario.telemovel = (String) aValue;
+                funcionario.phoneNumber = (String) aValue;
             }
             case 5 -> {
                 funcionario.nif = (String) aValue;
             }
             case 6 -> {
-                funcionario.morada = (String) aValue;
+                funcionario.address = (String) aValue;
             }
 
         }
@@ -134,10 +134,10 @@ public final class PerfilEmployeePersonalTableModel extends AbstractTableModel {
     }
 
     public void updateClient() {
-        FuncionarioDAO.UpdateFuncionario(funcionario.numFun, funcionario.nome,
-                                         funcionario.morada,
+        EmployeeDAO.UpdateFuncionario(funcionario.numFun, funcionario.name,
+                                         funcionario.address,
                                          funcionario.email,
-                                         funcionario.telemovel,
+                                         funcionario.phoneNumber,
                                          funcionario.nif);
     }
 
@@ -147,11 +147,11 @@ public final class PerfilEmployeePersonalTableModel extends AbstractTableModel {
     }
 
     public boolean apagarFuncionario() {
-        return FuncionarioDAO.demitirFuncionario(funcionario.numFun);
+        return EmployeeDAO.demitirFuncionario(funcionario.numFun);
     }
 
     public boolean promoverFuncionario() {
-        return FuncionarioDAO.promoverFuncionario(funcionario.numFun);
+        return EmployeeDAO.promoverFuncionario(funcionario.numFun);
     }
 
     @Override

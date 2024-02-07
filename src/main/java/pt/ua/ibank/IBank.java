@@ -16,7 +16,8 @@ public class IBank {
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
-            FlatLightLaf.setGlobalExtraDefaults(Collections.singletonMap("@accentColor", "#79658C"));
+            FlatLightLaf.setGlobalExtraDefaults(Collections.singletonMap(
+                    "@accentColor", "#79658C"));
             FlatLightLaf.setup();
             UIDefaults defaults = UIManager.getLookAndFeelDefaults();
 
@@ -24,7 +25,7 @@ public class IBank {
                 defaults.put("Table.alternateRowColor", new Color(240, 240, 240));
             }
         } catch (UnsupportedLookAndFeelException e) {
-            System.out.println("Erro ao carregar UI");
+            System.out.println("Error Loading the UI");
             System.exit(98);
         }
 

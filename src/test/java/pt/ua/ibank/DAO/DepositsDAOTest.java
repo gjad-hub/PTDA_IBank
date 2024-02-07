@@ -3,9 +3,9 @@ package pt.ua.ibank.DAO;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import pt.ua.ibank.DTO.Deposito;
-import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO;
-import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
+import pt.ua.ibank.DTO.Deposit;
+import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
+import static pt.ua.ibank.utilities.Configs.ERROR_CODE;
 
 class DepositsDAOTest {
 
@@ -13,27 +13,27 @@ class DepositsDAOTest {
     void testRequestDeposit() {
         int id = 1;
         int result = DepositsDAO.requestDeposit(200, id);
-        assertEquals(CODIGO_SUCESSO, result);
+        assertEquals(SUCCESS_CODE, result);
     }
 
     @Test
     void testRequestDepositFalse() {
         int id = 99999;
         int result = DepositsDAO.requestDeposit(200, id);
-        assertEquals(CODIGO_ERRO, result);
+        assertEquals(ERROR_CODE, result);
     }
 
     @Test
     void getDeposits() {
         int id = 1;
-        ArrayList<Deposito> ldeposits = DepositsDAO.getDeposits(id);
+        ArrayList<Deposit> ldeposits = DepositsDAO.getDeposits(id);
         assertNotNull(ldeposits);
     }
 
     @Test
     void getDepositsFalse() {
         int id = 9999;
-        ArrayList<Deposito> ldeposits = DepositsDAO.getDeposits(id);
+        ArrayList<Deposit> ldeposits = DepositsDAO.getDeposits(id);
         assertNull(ldeposits);
     }
 

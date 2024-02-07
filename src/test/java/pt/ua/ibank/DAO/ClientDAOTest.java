@@ -1,13 +1,13 @@
 package pt.ua.ibank.DAO;
 
 import org.junit.jupiter.api.Test;
-import pt.ua.ibank.DTO.Cliente;
+import pt.ua.ibank.DTO.Client;
 
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO_EMAIL;
-import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
+import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
+import static pt.ua.ibank.utilities.Configs.EMAIL_ERROR_CODE;
 
 class ClientDAOTest {
 
@@ -17,7 +17,7 @@ class ClientDAOTest {
                                             "Avenida Lourenço Peixinho, 123, Aveiro, Portugal",
                                             "joaosilva@gmail.com", "923344551",
                                             "119876543", "joao2024silva");
-        assertEquals(CODIGO_SUCESSO, result);
+        assertEquals(SUCCESS_CODE, result);
     }
 
     @Test
@@ -26,13 +26,13 @@ class ClientDAOTest {
                                             "Avenida Lourenço Peixinho, 123, Aveiro, Portugal",
                                             "joaosilva@gmail.com", "923344551",
                                             "119876543", "joao2024silva");
-        assertEquals(CODIGO_ERRO_EMAIL, result);
+        assertEquals(EMAIL_ERROR_CODE, result);
     }
 
     @Test
     public void testGetClientByEmailFound() {
         String testEmail = "marta.rodrigues@email.com";
-        Cliente cliente = ClientDAO.getClientByEmail(testEmail);
+        Client cliente = ClientDAO.getClientByEmail(testEmail);
         assertNotNull(cliente);
         assertEquals(testEmail, cliente.email);
     }
@@ -40,7 +40,7 @@ class ClientDAOTest {
     @Test
     public void testGetClientByEmailNotFound() {
         String testEmail = "emailnaoexistente@gmail.com";
-        Cliente cliente = ClientDAO.getClientByEmail(testEmail);
+        Client cliente = ClientDAO.getClientByEmail(testEmail);
         assertNull(cliente);
     }
 
@@ -75,15 +75,15 @@ class ClientDAOTest {
     @Test
     public void testGetClientBalanceFound() {
         int testClientId = 3;
-        Cliente cliente = ClientDAO.getClientBalance(testClientId);
+        Client cliente = ClientDAO.getClientBalance(testClientId);
         assertNotNull(cliente);
-        assertTrue(cliente.saldo >= 0);
+        assertTrue(cliente.balance >= 0);
     }
 
     @Test
     public void testGetClientBalanceNotFound() {
         int testClientId = 9999;
-        Cliente cliente = ClientDAO.getClientBalance(testClientId);
+        Client cliente = ClientDAO.getClientBalance(testClientId);
         assertNull(cliente);
     }
 
@@ -95,7 +95,7 @@ class ClientDAOTest {
                                             "923344551", "119876543",
                                             "Hugo2024silva",
                                             "hugo.oliveira@email.com");
-        assertEquals(CODIGO_SUCESSO, result);
+        assertEquals(SUCCESS_CODE, result);
     }
 
     @Test
@@ -105,55 +105,55 @@ class ClientDAOTest {
                                             "marta.rodrigues@email.com", "923344551",
                                             "119876543", "joao2024silva",
                                             "joaotomassilva@gmail.com");
-        assertEquals(CODIGO_ERRO_EMAIL, result);
+        assertEquals(EMAIL_ERROR_CODE, result);
     }
 
     @Test
     void getClientByID() {
         int id = 1;
-        Cliente client = ClientDAO.getClientByID(id);
+        Client client = ClientDAO.getClientByID(id);
         assertNotNull(client);
     }
 
     @Test
     void getClientByIDFalse() {
         int id = 999999;
-        Cliente client = ClientDAO.getClientByID(id);
+        Client client = ClientDAO.getClientByID(id);
         assertNull(client);
     }
 
     @Test
     void getClientByNIF() {
         String nif = "111223344";
-        Cliente client = ClientDAO.getClientByNIF(nif);
+        Client client = ClientDAO.getClientByNIF(nif);
         assertNotNull(client);
     }
 
     @Test
     void getClientByNIFFalse() {
         String nif = "999999999";
-        Cliente client = ClientDAO.getClientByNIF(nif);
+        Client client = ClientDAO.getClientByNIF(nif);
         assertNull(client);
     }
 
     @Test
     void getClientListByAddress() {
         String address = "Avenida H, nº 222";
-        ArrayList<Cliente> lclient = ClientDAO.getClientListByAddress(address);
+        ArrayList<Client> lclient = ClientDAO.getClientListByAddress(address);
         assertNotNull(lclient);
     }
 
     @Test
     void getClientListByAddressFalse() {
         String address = "Morada que não existe";
-        ArrayList<Cliente> lclient = ClientDAO.getClientListByAddress(address);
+        ArrayList<Client> lclient = ClientDAO.getClientListByAddress(address);
         assertNotNull(lclient);
         assertTrue(lclient.isEmpty());
     }
 
     @Test
     void getClientList() {
-        ArrayList<Cliente> lclient = ClientDAO.getClientList();
+        ArrayList<Client> lclient = ClientDAO.getClientList();
         assertNotNull(lclient);
     }
 

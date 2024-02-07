@@ -4,34 +4,34 @@ import java.util.Objects;
 import static pt.ua.ibank.DAO.CardsDAO.getCardByNumber;
 
 import pt.ua.ibank.DAO.ClientDAO;
-import pt.ua.ibank.DTO.Cartao;
-import pt.ua.ibank.DTO.Cliente;
+import pt.ua.ibank.DTO.Card;
+import pt.ua.ibank.DTO.Client;
 
 public class ClientInfo {
 
-    public static void updateClientBalance(Cliente client) {
-        Cliente tmp = ClientDAO.getClientBalance(client.numCliente);
+    public static void updateClientBalance(Client client) {
+        Client tmp = ClientDAO.getClientBalance(client.clientNumber);
 
         if (!Objects.isNull(tmp)) {
-            client.saldo = tmp.saldo;
-            client.saldo_cativo = tmp.saldo_cativo;
+            client.balance = tmp.balance;
+            client.pendingBalance = tmp.pendingBalance;
         }
     }
 
-    public static void updateClientCardInfo(Cliente client) {
-        String tmp = ClientDAO.getClientDefaultCard(client.numCliente);
+    public static void updateClientCardInfo(Client client) {
+        String tmp = ClientDAO.getClientDefaultCard(client.clientNumber);
 
         if (!Objects.isNull(tmp)) {
-            client.cartaoDefault = tmp;
+            client.defaultCard = tmp;
         }
     }
 
-    public static void updateLocalCard(Cartao card, Cliente client) {
-        Cartao tmp = getCardByNumber(client.cartaoDefault);
+    public static void updateLocalCard(Card card, Client client) {
+        Card tmp = getCardByNumber(client.defaultCard);
 
         if (!Objects.isNull(tmp)) {
-            card.numCartao = tmp.numCartao;
-            card.dataValidade = tmp.dataValidade;
+            card.cardNumber = tmp.cardNumber;
+            card.expireDate = tmp.expireDate;
         }
     }
 }

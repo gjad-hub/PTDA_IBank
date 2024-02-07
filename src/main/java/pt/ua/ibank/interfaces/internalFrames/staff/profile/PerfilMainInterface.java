@@ -16,7 +16,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import pt.ua.ibank.DTO.Deposito;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.card.PerfilCardTableCellRenderer;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.card.PerfilCardTableModel;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.deposit.DepositActionRenderer;
@@ -579,14 +578,14 @@ public class PerfilMainInterface extends javax.swing.JPanel {
 
             @Override
             public void onAcceptTransaction(int row){
-                Deposito d = (Deposito)dtm.getValueAt(row,0);
+                Deposit d = (Deposit)dtm.getValueAt(row,0);
                 dtm.aprovarDeposito(row);
                 personalDataTable.updateDepositDecision(d.valor);
             }
 
             @Override
             public void onRejectTransaction(int row){
-                Deposito d = (Deposito)dtm.getValueAt(row,0);
+                Deposit d = (Deposit)dtm.getValueAt(row,0);
 
                 AdicionarComentarioPerfil(pctm,"[deposito n"+d.idDeposito+"] ");
                 dtm.reprovarDeposito(row);

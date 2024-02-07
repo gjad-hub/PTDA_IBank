@@ -21,7 +21,7 @@ public class StaffAccountList extends javax.swing.JInternalFrame {
                             contasInterfaceContainer.getOpenProfileButton();
 
         openProfileButton.addActionListener((ActionEvent e) -> {
-            int clientID = contasInterfaceContainer.getCurrCliente().numCliente;
+            int clientID = contasInterfaceContainer.getCurrCliente().clientNumber;
             parent.addWindow(new StaffProfilePanel(parent, clientID));
         });
 

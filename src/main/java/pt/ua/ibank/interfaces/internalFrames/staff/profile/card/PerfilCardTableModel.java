@@ -5,11 +5,11 @@
 package pt.ua.ibank.interfaces.internalFrames.staff.profile.card;
 
 import pt.ua.ibank.DAO.CardsDAO;
-import pt.ua.ibank.DTO.Cartao;
+import pt.ua.ibank.DTO.Card;
 
 public class PerfilCardTableModel extends javax.swing.table.AbstractTableModel {
 
-    private final java.util.List<Cartao> data;
+    private final java.util.List<Card> data;
 
     public PerfilCardTableModel(int clientID) {
         data = CardsDAO.getCardListFromUserID(clientID);

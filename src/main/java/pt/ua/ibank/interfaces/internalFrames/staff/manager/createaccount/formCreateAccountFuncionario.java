@@ -9,12 +9,12 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.SwingUtilities;
-import pt.ua.ibank.DAO.FuncionarioDAO;
-import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO;
-import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO_EMAIL;
-import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
-import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
+import pt.ua.ibank.DAO.EmployeeDAO;
 import pt.ua.ibank.utilities.Hash;
+import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
+import static pt.ua.ibank.utilities.Configs.ERROR_CODE;
+import static pt.ua.ibank.utilities.Configs.EMAIL_ERROR_CODE;
+import static pt.ua.ibank.utilities.Configs.LocalEmployee;
 
 public class formCreateAccountFuncionario extends javax.swing.JPanel {
 
@@ -269,21 +269,21 @@ public class formCreateAccountFuncionario extends javax.swing.JPanel {
             try {
                 String hashedPassword = Hash.generateStorngPasswordHash(
                        new String(FPass.getPassword()));
-                int verify = FuncionarioDAO.CreateFuncionario(Fnome.getText(),
+                int verify = EmployeeDAO.CreateFuncionario(Fnome.getText(),
                                                               FMorada.getText(),
                                                               Femail.getText(),
                                                               Ftelemovel.getText(),
                                                               FNif.getText(),
                                                               hashedPassword,
-                                                              LocalFuncionario.numFun);
+                                                              LocalEmployee.numFun);
 
                 switch (verify) {
-                    case CODIGO_ERRO_EMAIL ->
+                    case EMAIL_ERROR_CODE ->
                         erro_create.setText("Endereço de email já existente !");
-                    case CODIGO_ERRO ->
+                    case ERROR_CODE ->
                         erro_create.setText(
                                 "Algo inesperado aconteceu tente novamente mais tarde !");
-                    case CODIGO_SUCESSO -> {
+                    case SUCCESS_CODE -> {
                         erro_create.setText("Sucesso ao criar funcionário!");
                         SwingUtilities.invokeLater(() -> {
                             try {
@@ -295,6 +295,8 @@ public class formCreateAccountFuncionario extends javax.swing.JPanel {
                         });
 
                     }
+
+
                 }
 
             } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {

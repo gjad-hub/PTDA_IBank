@@ -8,7 +8,7 @@ import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
-import pt.ua.ibank.DTO.Deposito;
+import pt.ua.ibank.DTO.Deposit;
 
 public class DepositActionRenderer extends DefaultTableCellRenderer {
 
@@ -22,7 +22,7 @@ public class DepositActionRenderer extends DefaultTableCellRenderer {
                                                              hasFocus, row,
                                                              column);
 
-        Deposito deposito = (Deposito) table.getModel().getValueAt(
+        Deposit deposito = (Deposit) table.getModel().getValueAt(
                  row, 0);
         if (!deposito.pendenteAprovacao) {
             return new Component() {

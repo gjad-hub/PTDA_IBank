@@ -4,14 +4,14 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.accounts;
 
-import pt.ua.ibank.DTO.Cliente;
+import pt.ua.ibank.DTO.Client;
 
 public class ContasMainInterface extends javax.swing.JPanel {
 
     /**
      * Creates new form ContasMainInterface
      */
-    private pt.ua.ibank.DTO.Cliente currCliente;
+    private pt.ua.ibank.DTO.Client currCliente;
     private ContasTableModel ctm;
 
     public ContasMainInterface() {
@@ -460,7 +460,7 @@ public class ContasMainInterface extends javax.swing.JPanel {
         return jButton2;
     }
 
-    public Cliente getCurrCliente() {
+    public Client getCurrCliente() {
         return currCliente;
     }
 

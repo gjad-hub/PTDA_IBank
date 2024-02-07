@@ -7,11 +7,11 @@ import java.util.Objects;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pt.ua.ibank.DAO.CardsDAO;
-import pt.ua.ibank.DTO.Cartao;
+import pt.ua.ibank.DTO.Card;
 import static pt.ua.ibank.utilities.ClientInfo.updateClientCardInfo;
-import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
+import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
 
 public class CardManager extends javax.swing.JInternalFrame {
 
@@ -26,20 +26,20 @@ public class CardManager extends javax.swing.JInternalFrame {
 
     private void updateInfo() {
         updateClientCardInfo(LocalClient);
-        f_card.setText(printDividedString(LocalClient.cartaoDefault, 4));
-        popular(CardsDAO.getCardListFromUserID(LocalClient.numCliente));
+        f_card.setText(printDividedString(LocalClient.defaultCard, 4));
+        popular(CardsDAO.getCardListFromUserID(LocalClient.clientNumber));
     }
 
-    private void popular(ArrayList<Cartao> lcartao) {
+    private void popular(ArrayList<Card> lcartao) {
         DefaultTableModel modelo = (DefaultTableModel) card_table.getModel();
         modelo.setNumRows(0);
         
         if (lcartao != null) {
-            for (Cartao cartao : lcartao) {
+            for (Card cartao : lcartao) {
                 modelo.addRow(new Object[]{
-                    cartao.numCartao,
-                    dataFormat.format(cartao.dataValidade),
-                    cartao.isValid() && cartao.estado.equals("Ativo") ? "Ativo" : "Inativo"
+                    cartao.cardNumber,
+                    dataFormat.format(cartao.expireDate),
+                    cartao.isValid() && cartao.activatedState.equals("Ativo") ? "Ativo" : "Inativo"
                 });
             }
         }
@@ -233,7 +233,7 @@ public class CardManager extends javax.swing.JInternalFrame {
             status.setText("Cartão está cancelado não o pode tornar padrão!");
             return;
         }
-        if (LocalClient.cartaoDefault.equals(selected_card)) {
+        if (LocalClient.defaultCard.equals(selected_card)) {
             status.setText("O cartão já é o padrão, nada feito !");
             return;
         }
@@ -244,7 +244,7 @@ public class CardManager extends javax.swing.JInternalFrame {
                                                       title,
                                                       JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
-                if (CardsDAO.makeDefault(selected_card, LocalClient.numCliente) == CODIGO_SUCESSO) {
+                if (CardsDAO.makeDefault(selected_card, LocalClient.clientNumber) == SUCCESS_CODE) {
                     status.setForeground(green);
                     status.setText("Cartão principal alterado !");
                     updateInfo();
@@ -275,7 +275,7 @@ public class CardManager extends javax.swing.JInternalFrame {
             return;
         }
 
-        if (LocalClient.cartaoDefault.equals(selected_card)) {
+        if (LocalClient.defaultCard.equals(selected_card)) {
             status.setText("Não pode cancelar o cartão padrão !");
             return;
         }
@@ -286,7 +286,7 @@ public class CardManager extends javax.swing.JInternalFrame {
                                                       title,
                                                       JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
-                if (CardsDAO.cancelCard(selected_card) == CODIGO_SUCESSO) {
+                if (CardsDAO.cancelCard(selected_card) == SUCCESS_CODE) {
                     status.setForeground(green);
                     status.setText("Cartão cancelado !");
                     updateInfo();
@@ -303,7 +303,7 @@ public class CardManager extends javax.swing.JInternalFrame {
                                                   title,
                                                   JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION) {
-            if (CardsDAO.createCard(LocalClient.numCliente) == CODIGO_SUCESSO) {
+            if (CardsDAO.createCard(LocalClient.clientNumber) == SUCCESS_CODE) {
                 status.setForeground(green);
                 status.setText("Novo cartão criado!");
                 updateInfo();

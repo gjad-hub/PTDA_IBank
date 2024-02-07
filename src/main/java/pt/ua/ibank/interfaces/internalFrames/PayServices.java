@@ -7,10 +7,10 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import pt.ua.ibank.DAO.PaymentsDAO;
 import static pt.ua.ibank.DAO.PaymentsDAO.getServicosCompras;
-import pt.ua.ibank.DTO.PagamentoServicosCompras;
-import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
+import pt.ua.ibank.DTO.PaymentServices;
 import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
+import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
 
 public class PayServices extends javax.swing.JInternalFrame {
 
@@ -21,7 +21,7 @@ public class PayServices extends javax.swing.JInternalFrame {
 
     public PayServices() {
         initComponents();
-        saldo_actual.setText(LocalClient.saldo.toString() + " EUR");
+        saldo_actual.setText(LocalClient.balance.toString() + " EUR");
     }
 
     @SuppressWarnings("unchecked")
@@ -266,12 +266,12 @@ public class PayServices extends javax.swing.JInternalFrame {
             return;
         }
 
-        if (LocalClient.saldo < valor) {
+        if (LocalClient.balance < valor) {
             status.setText("Saldo Insuficiente!");
             return;
         }
 
-        PagamentoServicosCompras servicosCompras = getServicosCompras(
+        PaymentServices servicosCompras = getServicosCompras(
                                  Integer.parseInt(referenciaValida),
                                  Integer.parseInt(entidadeValida));
 
@@ -296,7 +296,7 @@ public class PayServices extends javax.swing.JInternalFrame {
             return;
         }
 
-        if (servicosCompras.cliente_cria == LocalClient.numCliente) {
+        if (servicosCompras.cliente_cria == LocalClient.clientNumber) {
             status.setText("Não pode pagar a propria referencia !");
             return;
         }
@@ -305,13 +305,13 @@ public class PayServices extends javax.swing.JInternalFrame {
             JOptionPane.showConfirmDialog(null, "Confirma a pagamento ?", title,
                                           JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION) {
-            int payReply = PaymentsDAO.payService(LocalClient.numCliente,
+            int payReply = PaymentsDAO.payService(LocalClient.clientNumber,
                                                   Integer.parseInt(
                                                           entidadeValida),
                                                   Integer.parseInt(
                                                           referenciaValida));
 
-            if (payReply == CODIGO_SUCESSO) {
+            if (payReply == SUCCESS_CODE) {
                 status.setForeground(green);
                 status.setText("PAGO!");
             } else {

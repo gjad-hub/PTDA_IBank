@@ -5,7 +5,7 @@ package pt.ua.ibank.DTO;
  * Author: PTDA_Staff.
  * Ultima data de modificação: 21 de Dezembro, 2024
  */
-public class PagamentoServicosCompras {
+public class PaymentServices {
 
     /**
      * Referencia do serviço
@@ -55,7 +55,7 @@ public class PagamentoServicosCompras {
      * @param cliente_cria cliente que cria referencia
      * @param cancelada    valor binario que significa se foi cancelado
      */
-    public PagamentoServicosCompras(int referencia, int entidade, double valor,
+    public PaymentServices(int referencia, int entidade, double valor,
                                     boolean pago, int cliente, int cliente_cria,
                                     boolean cancelada) {
         this.referencia = referencia;

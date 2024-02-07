@@ -4,15 +4,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import pt.ua.ibank.DTO.Cliente;
+import pt.ua.ibank.DTO.Client;
 import static pt.ua.ibank.utilities.CardGenerator.generateCardNumber;
-import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO;
-import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO_EMAIL;
-import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 import static pt.ua.ibank.utilities.EntityRefGenerator.generateEnt;
 import static pt.ua.ibank.utilities.IbanGenerator.generateRandomIban;
+import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
+import static pt.ua.ibank.utilities.Configs.ERROR_CODE;
+import static pt.ua.ibank.utilities.Configs.EMAIL_ERROR_CODE;
 
 /**
  * Classe com metodos estáticos associados a operações feitas com Clientes
@@ -51,7 +51,7 @@ public class ClientDAO {
             rs.next();
 
             if (rs.getInt("valor") > 0) {
-                return CODIGO_ERRO_EMAIL;
+                return EMAIL_ERROR_CODE;
             }
 
             // Gera um novo iban até não existir um cliente com o iban
@@ -115,11 +115,11 @@ public class ClientDAO {
             stmt.setString(2, num_cartao);
             stmt.execute();
 
-            return CODIGO_SUCESSO;
+            return SUCCESS_CODE;
 
         } catch (SQLException e) {
             e.printStackTrace(System.out);
-            return CODIGO_ERRO;
+            return ERROR_CODE;
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
@@ -131,7 +131,7 @@ public class ClientDAO {
      * @param id ID do Cliente usado como refencia para obter lista
      * @return Objeto de cliente obtido
      */
-    public static Cliente getClientByID(int id) {
+    public static Client getClientByID(int id) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
@@ -143,7 +143,7 @@ public class ClientDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                return new Cliente(
+                return new Client(
                         rs.getInt("num_cliente"),
                         rs.getString("nome"),
                         rs.getString("morada"),
@@ -173,10 +173,10 @@ public class ClientDAO {
      * @param id Email de Cliente usado como referência
      * @return Retorna cliente associado, ou null caso haja erro
      */
-    public static Cliente getClientByEmail(String id) {
+    public static Client getClientByEmail(String id) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Cliente cl = null;
+        Client cl = null;
 
         try {
 
@@ -186,7 +186,7 @@ public class ClientDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                cl = new Cliente(
+                cl = new Client(
                 rs.getInt("num_cliente"),
                 rs.getString("nome"),
                 rs.getString("morada"),
@@ -216,10 +216,10 @@ public class ClientDAO {
      * @param id NIF do Cliente usado como refencia para obter lista
      * @return Retorna cliente associado, ou null caso haja erro
      */
-    public static Cliente getClientByNIF(String id) {
+    public static Client getClientByNIF(String id) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Cliente cl = null;
+        Client cl = null;
 
         try {
 
@@ -229,7 +229,7 @@ public class ClientDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                cl = new Cliente(
+                cl = new Client(
                 rs.getInt("num_cliente"),
                 rs.getString("nome"),
                 rs.getString("morada"),
@@ -259,11 +259,11 @@ public class ClientDAO {
      * @param address Morada de Clientes Externos
      * @return Retorna de Clientes associados, ou null caso haja erro
      */
-    public static ArrayList<Cliente> getClientListByAddress(String address) {
+    public static ArrayList<Client> getClientListByAddress(String address) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        ArrayList<Cliente> list = new ArrayList<>();
+        ArrayList<Client> list = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(
             "SELECT num_cliente,nome,morada,email,telemovel,nif,num_conta,"
@@ -282,8 +282,7 @@ public class ClientDAO {
                 var dataCriacao = rs.getDate("data_criacao");
                 String cartaoDefault = rs.getString("cartao_default");
 
-                list.add(
-                        new Cliente(numero, nome, morada, email,
+                list.add(new Client(numero, nome, morada, email,
                                     telemovel, nif, numConta, 0.0, 0.0,
                                     dataCriacao,
                                     cartaoDefault, 0));
@@ -303,11 +302,11 @@ public class ClientDAO {
      *
      * @return Retorna de Clientes associados, ou null caso haja erro
      */
-    public static ArrayList<Cliente> getClientList() {
+    public static ArrayList<Client> getClientList() {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        ArrayList<Cliente> list = new ArrayList<>();
+        ArrayList<Client> list = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(
             "SELECT num_cliente,nome,morada,email,"
@@ -325,8 +324,7 @@ public class ClientDAO {
                 String numConta = rs.getString("num_conta");
                 var dataCriacao = rs.getDate("data_criacao");
                 String cartaoDefault = rs.getString("cartao_default");
-                list.add(
-                        new Cliente(numero, nome, morada, email,
+                list.add(new Client(numero, nome, morada, email,
                                     telemovel, nif, numConta, 0.0, 0.0,
                                     dataCriacao,
                                     cartaoDefault, 0));
@@ -498,7 +496,7 @@ public class ClientDAO {
             rs.next();
 
             if (rs.getInt("valor") > 0 && !email.equals(old_email)) {
-                return CODIGO_ERRO_EMAIL;
+                return EMAIL_ERROR_CODE;
             }
 
             stmt = conn.prepareStatement(
@@ -510,10 +508,10 @@ public class ClientDAO {
             stmt.setString(5, password);
             stmt.setString(6, old_email);
             stmt.execute();
-            return CODIGO_SUCESSO;
+            return SUCCESS_CODE;
 
         } catch (SQLException e) {
-            return CODIGO_ERRO;
+            return ERROR_CODE;
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
@@ -525,10 +523,10 @@ public class ClientDAO {
      * @param num_cliente Numero de cliente usado cmom Referencia
      * @return Retorna Objeto cliente com um Saldo
      */
-    public static Cliente getClientBalance(int num_cliente) {
+    public static Client getClientBalance(int num_cliente) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Cliente cl = null;
+        Client cl = null;
 
         try {
 
@@ -538,7 +536,7 @@ public class ClientDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                cl = new Cliente(rs.getDouble("saldo"), rs.getDouble(
+                cl = new Client(rs.getDouble("saldo"), rs.getDouble(
                                  "saldo_cativo"));
             }
 

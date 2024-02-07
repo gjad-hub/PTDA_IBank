@@ -6,7 +6,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import pt.ua.ibank.DAO.FuncionarioDAO;
 import pt.ua.ibank.interfaces.internalFrames.staff.manager.profile.personal.PerfilEmployeePersonalTableModel;
 import pt.ua.ibank.interfaces.internalFrames.staff.manager.profile.personal.lastoperations.PerfilStaffLastOperationsTableCellRenderer;
 import pt.ua.ibank.interfaces.internalFrames.staff.manager.profile.personal.lastoperations.PerfilStaffLastOperationsTableModel;
@@ -14,7 +13,6 @@ import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilAction
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilCellEditor;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilTableActionEvent;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilTableCellRenderer;
-import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
 
 public class StaffPerfilMainInterface extends javax.swing.JPanel {
 
@@ -501,7 +499,7 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
         );
 
         if (clientID == LocalFuncionario.numFun
-            || FuncionarioDAO.getFuncionarioDemitidoByID(clientID)) {
+            || EmployeeDAO.getFuncionarioDemitidoByID(clientID)) {
             jPanelOperacoesDisponiveis.setVisible(false);
         }
 

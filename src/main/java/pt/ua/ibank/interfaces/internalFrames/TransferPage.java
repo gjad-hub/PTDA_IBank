@@ -6,9 +6,9 @@ import javax.swing.JOptionPane;
 import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.DAO.TransfersDAO;
 import static pt.ua.ibank.utilities.ClientInfo.updateClientBalance;
-import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
+import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
 
 public class TransferPage extends javax.swing.JInternalFrame {
 
@@ -17,7 +17,7 @@ public class TransferPage extends javax.swing.JInternalFrame {
 
     public TransferPage() {
         initComponents();
-        saldo_actual.setText(LocalClient.saldo.toString() + " EUR");
+        saldo_actual.setText(LocalClient.balance.toString() + " EUR");
     }
 
     @SuppressWarnings("unchecked")
@@ -237,9 +237,9 @@ public class TransferPage extends javax.swing.JInternalFrame {
         if (!Objects.isNull(sender_num)) {
             String descriString = desc.getText();
 
-            if (LocalClient.saldo < valor) {
+            if (LocalClient.balance < valor) {
                 status.setText(
-                        "Saldo insuficiente, saldo atual: " + LocalClient.saldo);
+                        "Saldo insuficiente, saldo atual: " + LocalClient.balance);
                 return;
             }
 
@@ -248,8 +248,8 @@ public class TransferPage extends javax.swing.JInternalFrame {
                                                       title,
                                                       JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
-                if (TransfersDAO.doTransfer(valor, LocalClient.numCliente,
-                                            sender_num, descriString) == CODIGO_SUCESSO) {
+                if (TransfersDAO.doTransfer(valor, LocalClient.clientNumber,
+                                            sender_num, descriString) == SUCCESS_CODE) {
                     updateClientBalance(LocalClient);
                     status.setForeground(green);
                     status.setText("Transferencia realizada com sucesso !");

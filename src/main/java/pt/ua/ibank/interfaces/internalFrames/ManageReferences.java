@@ -6,11 +6,11 @@ import java.util.Objects;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pt.ua.ibank.DAO.PaymentsDAO;
-import pt.ua.ibank.DTO.PagamentoServicosCompras;
+import pt.ua.ibank.DTO.PaymentServices;
 import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
-import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
+import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
 
 public class ManageReferences extends javax.swing.JInternalFrame {
 
@@ -28,15 +28,15 @@ public class ManageReferences extends javax.swing.JInternalFrame {
 
     private void updateInfo() {
         f_ent.setText(LocalClient.entidade.toString());
-        popular(PaymentsDAO.getAllServicos(LocalClient.numCliente));
+        popular(PaymentsDAO.getAllServicos(LocalClient.clientNumber));
     }
 
-    private void popular(ArrayList<PagamentoServicosCompras> lservices) {
+    private void popular(ArrayList<PaymentServices> lservices) {
         DefaultTableModel modelo = (DefaultTableModel) ref_table.getModel();
         modelo.setNumRows(0);
 
         if (lservices != null) {
-            for (PagamentoServicosCompras servicosCompras : lservices) {
+            for (PaymentServices servicosCompras : lservices) {
                 modelo.addRow(new Object[]{
                     servicosCompras.entidade,
                     servicosCompras.referencia,
@@ -226,7 +226,7 @@ public class ManageReferences extends javax.swing.JInternalFrame {
                                                       title,
                                                       JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
-                if (PaymentsDAO.cancelPayment(selectedEnt, selectedRef) == CODIGO_SUCESSO) {
+                if (PaymentsDAO.cancelPayment(selectedEnt, selectedRef) == SUCCESS_CODE) {
                     status.setForeground(green);
                     status.setText("Referencia cancelada !");
                     updateInfo();

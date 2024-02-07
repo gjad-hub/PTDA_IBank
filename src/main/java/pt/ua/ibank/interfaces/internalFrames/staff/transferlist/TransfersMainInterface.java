@@ -8,9 +8,9 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.DAO.TransfersDAO;
-import pt.ua.ibank.DTO.Cliente;
-import pt.ua.ibank.DTO.Transferencias;
-import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
+import pt.ua.ibank.DTO.Client;
+import pt.ua.ibank.DTO.Transfers;
+import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
 
 public class TransfersMainInterface extends javax.swing.JPanel {
 
@@ -18,9 +18,9 @@ public class TransfersMainInterface extends javax.swing.JPanel {
      * Creates new form ContasMainInterface
      */
     private TransfersTableModel ttm;
-    private pt.ua.ibank.DTO.Cliente currAuthorClient;
-    private pt.ua.ibank.DTO.Cliente currRecieverClient;
-    private Transferencias selectedTransfer;
+    private pt.ua.ibank.DTO.Client currAuthorClient;
+    private pt.ua.ibank.DTO.Client currRecieverClient;
+    private Transfers selectedTransfer;
 
     public TransfersMainInterface(int id) {
         initComponents();
@@ -33,11 +33,11 @@ public class TransfersMainInterface extends javax.swing.JPanel {
         jPanelTransactionDetails.setVisible(false);
     }
 
-    public Cliente getCurrAuthorClient() {
+    public Client getCurrAuthorClient() {
         return currAuthorClient;
     }
 
-    public Cliente getCurrRecieverClient() {
+    public Client getCurrRecieverClient() {
         return currRecieverClient;
     }
 
@@ -596,7 +596,7 @@ public class TransfersMainInterface extends javax.swing.JPanel {
         }
         String resultado =
                TransfersDAO.doTransfer(value, author, reciever,
-                                       description) == CODIGO_SUCESSO ?
+                                       description) == SUCCESS_CODE ?
                "Transferencia de " + value + "€ Feita com sucesso" :
                "Operação feita sem sucesso, tente novamente";
         JOptionPane.showMessageDialog(this, resultado);

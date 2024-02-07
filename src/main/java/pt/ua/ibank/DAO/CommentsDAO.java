@@ -9,19 +9,19 @@ import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 
 /**
- * Classe com metodos estáticos associados a operações feitas com Comentarios
- * externos guardados em uma base de dados MySQL
+ * Class with static methods associated with operations performed with external
+ * Comments
+ * stored in a MySQL database
  * Author: PTDA_Staff.
- * Ultima Data de Modificação: 14 de Janeiro, 2024
+ * Last Modification Date: January 14, 2024
  */
 public class CommentsDAO {
 
     /**
-     * Função usada para Obter uma lista de comentários através de um ID de um
-     * cliente.
+     * Function used to obtain a list of comments through a client ID.
      *
-     * @param clientID ID de Cliente usado como referencia
-     * @return retorna lista de comentarios relacionado a esse Cliente
+     * @param clientID Client ID used as a reference
+     * @return Returns a list of comments related to this client
      */
     public static ArrayList<ModeratorComment> getCommentListByID(
             int clientID) {
@@ -32,18 +32,18 @@ public class CommentsDAO {
         try {
 
             stmt = conn.prepareStatement(
-            "select id,funcionario.nome as nome,descricao,data"
-            + " from comentario_perfil inner join funcionario on funcionario.num_fun = comentario_perfil.id_empregado"
-            + " where id_cliente = ?;");
+            "select id,employee.name as name,description,date"
+            + " from profile_comment inner join employee on employee.employee_id = profile_comment.employee_id"
+            + " where client_id = ?;");
             stmt.setInt(1, clientID);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
                 list.add(new ModeratorComment(
                         rs.getInt("id"),
-                        rs.getString("nome"),
-                        rs.getString("descricao"),
-                        rs.getTimestamp("data")));
+                        rs.getString("name"),
+                        rs.getString("description"),
+                        rs.getTimestamp("date")));
             }
 
             return list;
@@ -56,11 +56,10 @@ public class CommentsDAO {
     }
 
     /**
-     * Função usada para Obter a lista de comentários de um Cliente através de
-     * ID
+     * Function used to obtain the list of comments from a client through ID.
      *
-     * @param clientID ID de Cliente usado como referencia
-     * @return lista de Comentarios associado a esse perfil
+     * @param clientID Client ID used as a reference
+     * @return List of Comments associated with this profile
      */
     public static ArrayList<ModeratorComment> getModeratorCommentListByID(
             int clientID) {
@@ -70,18 +69,18 @@ public class CommentsDAO {
 
         try {
             stmt = conn.prepareStatement(
-            "select id,funcionario.nome as nome,descricao,data"
-            + " from comentario_perfil inner join funcionario on funcionario.num_fun = comentario_perfil.id_empregado"
-            + " where id_cliente = ?;");
+            "select id,employee.name as name,description,date"
+            + " from profile_comment inner join employee on employee.employee_id = profile_comment.employee_id"
+            + " where client_id = ?;");
             stmt.setInt(1, clientID);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
                 list.add(new ModeratorComment(
                         rs.getInt("id"),
-                        rs.getString("nome"),
-                        rs.getString("descricao"),
-                        rs.getTimestamp("data")));
+                        rs.getString("name"),
+                        rs.getString("description"),
+                        rs.getTimestamp("date")));
             }
 
             return list.isEmpty() ? null : list;
@@ -94,27 +93,26 @@ public class CommentsDAO {
     }
 
     /**
+     * Function used to add a comment to an external client.
      *
-     * Função usada para adicionar um comentário a um Cliente externo
-     *
-     * @param employee_id ID de Funcionario usado como referencia
-     * @param client_id   ID de Cliente usado como referencia
-     * @param comment     Conteudo de Comentario
-     * @return codigo de sucesso booleano
+     * @param employeeID Employee ID used as a reference
+     * @param clientID   Client ID used as a reference
+     * @param comment    Comment content
+     * @return Success code boolean
      */
-    public static boolean addNewComment(int employee_id, int client_id,
+    public static boolean addNewComment(int employeeID, int clientID,
                                         String comment) {
         PreparedStatement stmt = null;
         try {
 
             stmt = conn.prepareStatement(
-            "INSERT INTO comentario_perfil"
-            + "(id_empregado,id_cliente,descricao) VALUES"
+            "INSERT INTO profile_comment"
+            + "(employee_id,client_id,description) VALUES"
             + "(?,?,?);"
     );
 
-            stmt.setInt(1, employee_id);
-            stmt.setInt(2, client_id);
+            stmt.setInt(1, employeeID);
+            stmt.setInt(2, clientID);
             stmt.setString(3, comment);
             stmt.execute();
             return true;
@@ -127,17 +125,17 @@ public class CommentsDAO {
     }
 
     /**
-     * Função usada para apagar um comentário através de um ID
+     * Function used to delete a comment by ID.
      *
-     * @param id clientID ID de Cliente usado como referencia
-     * @return codigo de sucesso booleano
+     * @param id clientID Client ID used as a reference
+     * @return Success code boolean
      */
     public static boolean deleteComment(int id) {
         PreparedStatement stmt = null;
 
         try {
             stmt = conn.prepareStatement(
-            "DELETE FROM comentario_perfil WHERE id = ?");
+            "DELETE FROM profile_comment WHERE id = ?");
             stmt.setInt(1, id);
             stmt.execute();
 

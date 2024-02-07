@@ -7,7 +7,7 @@ package pt.ua.ibank.interfaces.internalFrames.staff.profile.modcomment;
 import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
-import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
+import static pt.ua.ibank.utilities.Configs.LocalEmployee;
 
 public class DeleteCommentActionRenderer extends DefaultTableCellRenderer {
 
@@ -20,7 +20,7 @@ public class DeleteCommentActionRenderer extends DefaultTableCellRenderer {
                                                              isSelected,
                                                              hasFocus, row,
                                                              column);
-        if (LocalFuncionario.isManager()) {
+        if (LocalEmployee.isManager()) {
             return new DeleteCommentPanel();
         }
         return comm;

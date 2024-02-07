@@ -5,22 +5,22 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.SwingUtilities;
-import pt.ua.ibank.DTO.Cliente;
-import pt.ua.ibank.DTO.Funcionario;
+import pt.ua.ibank.DTO.Client;
+import pt.ua.ibank.DTO.Employee;
 import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
 import static pt.ua.ibank.interfaces.staffInterface.localStaffInterface;
-import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO;
-import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO_EMAIL;
-import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 import pt.ua.ibank.utilities.Hash;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
+import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
+import static pt.ua.ibank.utilities.Configs.ERROR_CODE;
+import static pt.ua.ibank.utilities.Configs.EMAIL_ERROR_CODE;
 
 public class ProfilePage extends javax.swing.JInternalFrame {
 
-    private Cliente cli;
-    private Funcionario fun;
+    private Client cli;
+    private Employee fun;
 
-    public ProfilePage(Cliente cliente) {
+    public ProfilePage(Client cliente) {
         initComponents();
         this.cli = cliente;
         starUp();
@@ -30,7 +30,7 @@ public class ProfilePage extends javax.swing.JInternalFrame {
         });
     }
 
-    public ProfilePage(Funcionario funcionario) {
+    public ProfilePage(Employee funcionario) {
         initComponents();
         this.fun = funcionario;
         starUp();
@@ -47,17 +47,17 @@ public class ProfilePage extends javax.swing.JInternalFrame {
 
     private void populate() {
         if (this.cli != null && this.fun == null) {
-            name_input.setText(this.cli.nome);
+            name_input.setText(this.cli.name);
             email_input.setText(this.cli.email);
-            address_input.setText(this.cli.morada);
-            phone_input.setText(this.cli.telemovel);
+            address_input.setText(this.cli.address);
+            phone_input.setText(this.cli.phoneNumber);
             nif_input.setText(this.cli.nif);
-            AC_input.setText(maskString(this.cli.numConta, 10));
+            AC_input.setText(maskString(this.cli.accountNumber, 10));
         } else if (this.cli == null && this.fun != null) {
-            name_input.setText(this.fun.nome);
+            name_input.setText(this.fun.name);
             email_input.setText(this.fun.email);
-            address_input.setText(this.fun.morada);
-            phone_input.setText(this.fun.telemovel);
+            address_input.setText(this.fun.address);
+            phone_input.setText(this.fun.phoneNumber);
             nif_input.setText(this.fun.nif);
         }
     }
@@ -413,28 +413,28 @@ public class ProfilePage extends javax.swing.JInternalFrame {
             }
 
             if (this.cli != null && this.fun == null) {
-                this.cli.nome =
-                name.equals(this.cli.nome) ? this.cli.nome : name;
+                this.cli.name =
+                name.equals(this.cli.name) ? this.cli.name : name;
                 this.cli.email = email.equals(this.cli.email) ?
                                  this.cli.email : email;
-                this.cli.morada = address.equals(this.cli.morada) ?
-                                  this.cli.morada : address;
-                this.cli.telemovel = phone.equals(this.cli.telemovel) ?
-                                     this.cli.telemovel : phone;
+                this.cli.address = address.equals(this.cli.address) ?
+                                  this.cli.address : address;
+                this.cli.phoneNumber = phone.equals(this.cli.phoneNumber) ?
+                                     this.cli.phoneNumber : phone;
 
                 int status_int = this.cli.alterarInformacoes(old_email);
 
                 switch (status_int) {
-                    case CODIGO_ERRO_EMAIL -> {
+                    case EMAIL_ERROR_CODE -> {
                         status.setText("Endereço de email já existente !");
                         this.cli.email = old_email;
                     }
-                    case CODIGO_ERRO -> {
+                    case ERROR_CODE -> {
                         status.setText(
                                 "Algo inesperado aconteceu tente novamente mais tarde !");
                         this.cli.email = old_email;
                     }
-                    case CODIGO_SUCESSO -> {
+                    case SUCCESS_CODE -> {
                         status.setText("Sucesso ao atualizar infromações!");
                         SwingUtilities.invokeLater(() -> {
                             try {
@@ -446,30 +446,32 @@ public class ProfilePage extends javax.swing.JInternalFrame {
                             }
                         });
                     }
+
+
                 }
             } else if (this.cli == null && this.fun != null) {
-                this.fun.nome =
-                name.equals(this.fun.nome) ? this.fun.nome : name;
+                this.fun.name =
+                name.equals(this.fun.name) ? this.fun.name : name;
                 this.fun.email = email.equals(this.fun.email) ?
                                  this.fun.email : email;
-                this.fun.morada = address.equals(this.fun.morada) ?
-                                  this.fun.morada : address;
-                this.fun.telemovel = phone.equals(this.fun.telemovel) ?
-                                     this.fun.telemovel : phone;
+                this.fun.address = address.equals(this.fun.address) ?
+                                  this.fun.address : address;
+                this.fun.phoneNumber = phone.equals(this.fun.phoneNumber) ?
+                                     this.fun.phoneNumber : phone;
 
                 int status_int = this.fun.alterarInformacoes(old_email);
 
                 switch (status_int) {
-                    case CODIGO_ERRO_EMAIL -> {
+                    case EMAIL_ERROR_CODE -> {
                         status.setText("Endereço de email já existente !");
                         this.fun.email = old_email;
                     }
-                    case CODIGO_ERRO -> {
+                    case ERROR_CODE -> {
                         status.setText(
                                 "Algo inesperado aconteceu tente novamente mais tarde !");
                         this.fun.email = old_email;
                     }
-                    case CODIGO_SUCESSO -> {
+                    case SUCCESS_CODE -> {
                         status.setText("Sucesso ao atualizar infromações!");
                         SwingUtilities.invokeLater(() -> {
                             try {
@@ -481,6 +483,8 @@ public class ProfilePage extends javax.swing.JInternalFrame {
                             }
                         });
                     }
+
+
                 }
             }
         } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
@@ -491,9 +495,9 @@ public class ProfilePage extends javax.swing.JInternalFrame {
 
     private void seeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seeActionPerformed
         if (see.isSelected()) {
-            AC_input.setText(this.cli.numConta);
+            AC_input.setText(this.cli.accountNumber);
         } else {
-            AC_input.setText(maskString(this.cli.numConta, 10));
+            AC_input.setText(maskString(this.cli.accountNumber, 10));
         }
     }//GEN-LAST:event_seeActionPerformed
 

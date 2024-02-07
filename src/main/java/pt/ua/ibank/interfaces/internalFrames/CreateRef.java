@@ -6,9 +6,9 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import pt.ua.ibank.DAO.PaymentsDAO;
 import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
-import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 import static pt.ua.ibank.utilities.Configs.LocalClient;
 import static pt.ua.ibank.utilities.EntityRefGenerator.generateRef;
+import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
 
 public class CreateRef extends javax.swing.JInternalFrame {
 
@@ -199,10 +199,10 @@ public class CreateRef extends javax.swing.JInternalFrame {
             return;
         }
 
-        int reply = PaymentsDAO.createPayment(LocalClient.numCliente,
+        int reply = PaymentsDAO.createPayment(LocalClient.clientNumber,
                                               LocalClient.entidade, this.ref,
                                               valor);
-        if (reply == CODIGO_SUCESSO) {
+        if (reply == SUCCESS_CODE) {
             status.setForeground(green);
             status.setText("Referencia criada com sucesso !");
             updateInfo();

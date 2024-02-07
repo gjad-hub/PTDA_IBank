@@ -4,7 +4,7 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.manager.accounts;
 
-import pt.ua.ibank.DTO.Funcionario;
+import pt.ua.ibank.DTO.Employee;
 import pt.ua.ibank.interfaces.internalFrames.staff.accounts.ContasActionEvent;
 import pt.ua.ibank.interfaces.internalFrames.staff.accounts.ContasActionRenderer;
 import pt.ua.ibank.interfaces.internalFrames.staff.accounts.ContasCellEditor;
@@ -14,7 +14,7 @@ public class ContasGerenteMainInterface extends javax.swing.JPanel {
     /**
      * Creates new form ContasMainInterface
      */
-    private pt.ua.ibank.DTO.Funcionario currFuncionario;
+    private pt.ua.ibank.DTO.Employee currFuncionario;
     private StaffContasTableModel ctm;
 
     public ContasGerenteMainInterface() {
@@ -442,7 +442,7 @@ public class ContasGerenteMainInterface extends javax.swing.JPanel {
         return btnOpenProfile;
     }
 
-    public Funcionario getCurrFuncionario() {
+    public Employee getCurrFuncionario() {
         System.out.println(currFuncionario.foiDespedido);
         return currFuncionario;
     }

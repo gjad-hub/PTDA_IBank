@@ -4,47 +4,47 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import pt.ua.ibank.DTO.Cartao;
+import pt.ua.ibank.DTO.Card;
 import static pt.ua.ibank.utilities.CardGenerator.generateCardNumber;
-import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO;
-import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
+import static pt.ua.ibank.utilities.Configs.ERROR_CODE;
+import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 
 /**
- * Classe com metodos estáticos associados a operações feitas com Cartões
- * guardados em uma base de dados MySQL
+ * A class containing static methods associated with operations on cards stored
+ * in a MySQL database.
+ *
  * Author: PTDA_Staff.
- * Ultima Data de Modificação: 25 de Dezembro, 2023
+ * Last Modification Date: December 25, 2023
  */
 public class CardsDAO {
 
     /**
-     * Função usada para obter um cartão através de um Numero de cartão
+     * Retrieves a card based on its card number.
      *
-     * @param number numero do cartão a ser procurado
-     * @return Objeto do Cartão associado, null se não encontrado.
+     * @param number The card number to be searched.
+     * @return The associated Card object, or null if not found.
      */
-    public static Cartao getCardByNumber(String number) {
+    public static Card getCardByNumber(String number) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Cartao cartao = null;
+        Card card = null;
 
         try {
-
             stmt = conn.prepareStatement(
-            "SELECT * FROM cartao where num_cartao like ?;");
+            "SELECT * FROM card WHERE card_number LIKE ?;");
             stmt.setString(1, number);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                cartao = new Cartao(
-                rs.getString("num_cartao"),
-                rs.getTimestamp("data_validade"),
-                rs.getInt("cliente"));
+                card = new Card(
+                rs.getString("card_number"),
+                rs.getTimestamp("expiration_date"),
+                rs.getInt("customer"));
             }
 
-            return cartao;
+            return card;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
         } finally {
@@ -54,28 +54,29 @@ public class CardsDAO {
     }
 
     /**
-     * Função usada para obter uma lista de cartões através de um ID
+     * Retrieves a list of cards based on a user ID.
      *
-     * @param num_cliente ID do Cliente usado como refencia para obter cartões
-     * @return Rertorna lista de Cartões associada ao Cliente
+     * @param customer_id The client ID used as a reference to obtain cards.
+     * @return A list of cards associated with the client.
      */
-    public static ArrayList<Cartao> getCardListFromUserID(int num_cliente) {
+    public static ArrayList<Card> getCardListFromUserID(int customer_id) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        ArrayList<Cartao> lcartao = new ArrayList<>();
+        ArrayList<Card> cardList = new ArrayList<>();
 
         try {
             stmt = conn.prepareStatement(
-            "SELECT num_cartao, data_validade, estado FROM cartao WHERE cliente = ?;");
-            stmt.setInt(1, num_cliente);
+            "SELECT card_number, expiration_date, status FROM card WHERE customer = ?;");
+            stmt.setInt(1, customer_id);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Cartao tr = new Cartao(rs.getString("num_cartao"),
-                                       rs.getTimestamp("data_validade"),
-                                       rs.getString("estado"));
-                lcartao.add(tr);
+                Card card = new Card(
+                     rs.getString("card_number"),
+                     rs.getTimestamp("expiration_date"),
+                     rs.getString("status"));
+                cardList.add(card);
             }
         } catch (SQLException e) {
             e.printStackTrace(System.out);
@@ -83,28 +84,28 @@ public class CardsDAO {
             DBConnection.closeConnection(stmt, rs);
         }
 
-        return lcartao.isEmpty() ? null : lcartao;
+        return cardList.isEmpty() ? null : cardList;
     }
 
     /**
-     * Função usada para obter quantidade cartões de um cliente
+     * Retrieves the number of cards associated with a client.
      *
-     * @param num_cliente ID do Cliente usado como refencia para obter lista
-     *                    de cartões.
-     * @return Retorna quantidade de cartões associados a esse cleinte
+     * @param customer_id The client ID used as a reference to obtain the list
+     *                    of cards.
+     * @return The quantity of cards associated with the client.
      */
-    public static int getCardAmountByID(int num_cliente) {
+    public static int getCardAmountByID(int customer_id) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
         try {
             stmt = conn.prepareStatement(
-            "SELECT count(*) as qtd FROM cartao WHERE cliente = ?;");
-            stmt.setInt(1, num_cliente);
+            "SELECT COUNT(*) AS quantity FROM card WHERE customer = ?;");
+            stmt.setInt(1, customer_id);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                return rs.getInt("qtd");
+                return rs.getInt("quantity");
             }
         } catch (SQLException e) {
             e.printStackTrace(System.out);
@@ -116,90 +117,89 @@ public class CardsDAO {
     }
 
     /**
-     * Função usada para cancelar um cartão
+     * Cancels a card based on its card number.
      *
-     * @param card_number
-     * @return Codigo de sucesso, 1 se sucesso, 2 se erro
+     * @param card_number The card number to be canceled.
+     * @return Success code: 1 for success, 2 for error.
      */
     public static int cancelCard(String card_number) {
         PreparedStatement stmt = null;
 
         try {
             stmt = conn.prepareStatement(
-            "UPDATE cartao SET estado = \"Cancelado\" WHERE num_cartao LIKE ? ");
+            "UPDATE card SET status = 'Canceled' WHERE card_number LIKE ?");
             stmt.setString(1, card_number);
             stmt.execute();
 
-            return CODIGO_SUCESSO;
+            return SUCCESS_CODE;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
-            return CODIGO_ERRO;
+            return ERROR_CODE;
         } finally {
             DBConnection.closeConnection(stmt);
         }
     }
 
     /**
-     * Função usada para tornar um cartão de um cliente como predefinido
+     * Sets a card as the default card for a client.
      *
-     * @param card_number numero do cartão a ser procurado
-     * @param num_cliente ID do Cliente usado como refencia para obter lista
-     * @return
+     * @param card_number The card number to be set as default.
+     * @param customer_id The client ID used as a reference to obtain the list.
+     * @return Success code.
      */
-    public static int makeDefault(String card_number, int num_cliente) {
+    public static int makeDefault(String card_number, int customer_id) {
         PreparedStatement stmt = null;
 
         try {
             stmt = conn.prepareStatement(
-            "UPDATE cliente SET cartao_default = ? WHERE num_cliente = ?");
+            "UPDATE customer SET default_card = ? WHERE customer_id = ?");
             stmt.setString(1, card_number);
-            stmt.setInt(2, num_cliente);
+            stmt.setInt(2, customer_id);
             stmt.execute();
 
-            return CODIGO_SUCESSO;
+            return SUCCESS_CODE;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
-            return CODIGO_ERRO;
+            return ERROR_CODE;
         } finally {
             DBConnection.closeConnection(stmt);
         }
-
     }
 
     /**
-     * Função usada para criar um cartão
+     * Creates a new card for a client.
      *
-     * @param num_cliente ID do Cliente usado como refencia para obter lista
-     * @return retorna codigo de Sucesso
+     * @param customer_id The client ID used as a reference.
+     * @return Success code.
      */
-    public static int createCard(int num_cliente) {
+    public static int createCard(int customer_id) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        String num_cartao;
+        String card_number;
 
         try {
-            // Gera um novo cartao até não existir nenhum cartao com este numero
+            // Generates a new card until there is no card with this number
             do {
-                num_cartao = generateCardNumber();
+                card_number = generateCardNumber();
                 stmt = conn.prepareStatement(
-                "SELECT count(num_cartao) AS valor FROM cartao where num_cartao like ?;");
-                stmt.setString(1, num_cartao);
+                "SELECT COUNT(card_number) AS value FROM card WHERE card_number LIKE ?;");
+                stmt.setString(1, card_number);
                 rs = stmt.executeQuery();
                 rs.next();
-            } while (rs.getInt("valor") != 0);
+            } while (rs.getInt("value") != 0);
             stmt.close();
 
             stmt = conn.prepareStatement(
-            "INSERT INTO cartao (num_cartao, data_validade, estado, cliente) "
-            + "VALUES (?, (SELECT DATE_ADD(CURDATE(), INTERVAL +5 YEAR )), \"Ativo\", ?);");
-            stmt.setString(1, num_cartao);
-            stmt.setInt(2, num_cliente);
+            "INSERT INTO card (card_number, expiration_date, status, customer) "
+            + "VALUES (?, (SELECT DATE_ADD(CURDATE(), INTERVAL +5 YEAR)), 'Active', ?);");
+            stmt.setString(1, card_number);
+            stmt.setInt(2, customer_id);
             stmt.execute();
 
-            return CODIGO_SUCESSO;
+            return SUCCESS_CODE;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
-            return CODIGO_ERRO;
+            return ERROR_CODE;
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }

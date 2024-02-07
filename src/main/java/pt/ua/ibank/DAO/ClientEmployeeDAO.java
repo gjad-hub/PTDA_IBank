@@ -12,29 +12,30 @@ import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 
 /**
- * Classe com metodos estáticos associados a operações feitas com Clientes e
- * Funcionarios externos guardados em uma base de dados MySQL
+ * Class with static methods associated with operations performed with Clients
+ * and
+ * External Employees stored in a MySQL database
  * Author: PTDA_Staff.
- * Ultima Data de Modificação: 21 de Dezembro, 2023
+ * Last Modification Date: December 21, 2023
  */
-public class ClienteFuncionarioDAO {
+public class ClientEmployeeDAO {
 
     /**
-     * Função usada para obter informações externas sobre interações de um
-     * Funcionario
+     * Function used to obtain external information about interactions of an
+     * Employee
      *
-     * @param funcionarioID ID de Funcionario usado como referencia
-     * @return Lista de clientes que interagiram com esse Funcionario
+     * @param employeeID Employee ID used as a reference
+     * @return List of clients who interacted with this Employee
      */
     public static ArrayList<Integer> getClientsInteractedListByID(
-            int funcionarioID) {
+            int employeeID) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         ArrayList<Integer> list = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(
-            "select num_cli from funcionario_cliente where num_fun = ?;");
-            stmt.setInt(1, funcionarioID);
+            "select num_cli from employee_client where num_emp = ?;");
+            stmt.setInt(1, employeeID);
             rs = stmt.executeQuery();
 
             while (rs.next()) {

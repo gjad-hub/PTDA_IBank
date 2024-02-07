@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import pt.ua.ibank.DAO.TransfersDAO;
-import pt.ua.ibank.DTO.Transferencias;
+import pt.ua.ibank.DTO.Transfers;
 
 /**
  * Implementação tabela de Transferencias a ser usada na interface de staff.
@@ -14,7 +14,7 @@ import pt.ua.ibank.DTO.Transferencias;
 public class TransfersTableModel extends AbstractTableModel {
 
     private List<String> header = null;
-    private List<Transferencias> data = null;
+    private List<Transfers> data = null;
 
     public TransfersTableModel() {
         data = TransfersDAO.getTransfersList();
@@ -42,7 +42,7 @@ public class TransfersTableModel extends AbstractTableModel {
         return true;
     }
 
-    public Transferencias getTransfer(int row) {
+    public Transfers getTransfer(int row) {
         return data.get(row);
     }
 
@@ -79,7 +79,7 @@ public class TransfersTableModel extends AbstractTableModel {
         switch (searchType) {
             case "ID" -> {
                 data.clear();
-                Transferencias result;
+                Transfers result;
                 if ((result = TransfersDAO.getTransferByID(
                      Integer.parseInt(value))) != null) {
                     data.add(result);

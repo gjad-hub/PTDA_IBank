@@ -4,83 +4,84 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import pt.ua.ibank.DTO.Deposito;
-import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO;
-import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
+import pt.ua.ibank.DTO.Deposit;
+import static pt.ua.ibank.utilities.Configs.ERROR_CODE;
+import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 
 /**
- * Classe com metodos estáticos associados a operações feitas com Depositos
- * externos guardados em uma base de dados MySQL
+ * Class with static methods associated with operations on external deposits
+ * stored
+ * in a MySQL database.
  * Author: PTDA_Staff.
- * Ultima Data de Modificação: 27 de Dezembro, 2023
+ * Last Modification Date: December 27, 2023
  */
 public class DepositsDAO {
 
     /**
-     * Função usada para fazer um pedido de Deposito
+     * Function used to request a deposit.
      *
-     * @param valor          valor de deposito pedido
-     * @param clienteRealiza clientID ID de Cliente usado como referencia
-     * @return retorna codigo de sucesso, 1 Sucesso, 2 Erro email, 3 Erro SQL
+     * @param amount           requested deposit amount
+     * @param customerPerforms customerID used as reference
+     * @return returns success code, 1 Success, 2 Error email, 3 SQL Error
      */
-    public static int requestDeposit(double valor, int clienteRealiza) {
+    public static int requestDeposit(double amount, int customerPerforms) {
         PreparedStatement stmt = null;
         try {
 
             stmt = conn.prepareStatement(
-            "INSERT INTO deposito (valor, num_cli) "
+            "INSERT INTO deposit (amount, customer_id) "
             + "VALUES (?,?)"
     );
 
-            stmt.setDouble(1, valor);
-            stmt.setInt(2, clienteRealiza);
+            stmt.setDouble(1, amount);
+            stmt.setInt(2, customerPerforms);
             stmt.execute();
-            return CODIGO_SUCESSO;
+            return SUCCESS_CODE;
         } catch (SQLException e) {
-            return CODIGO_ERRO;
+            return ERROR_CODE;
         } finally {
             DBConnection.closeConnection(stmt);
         }
     }
 
     /**
-     * Função usada para obter uma lista de depositos através de um numero de
-     * clientes
+     * Function used to get a list of deposits through a customer number.
      *
-     * @param num_cliente clientID ID de Cliente usado como referencia
-     * @return retorna lista de depositos associado a esse cliente
+     * @param customerID customerID used as reference
+     * @return returns list of deposits associated with this customer
      */
-    public static ArrayList<Deposito> getDeposits(int num_cliente) {
+    public static ArrayList<Deposit> getDeposits(int customerID) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        ArrayList<Deposito> ldeposito = new ArrayList<>();
+        ArrayList<Deposit> depositList = new ArrayList<>();
 
         try {
             stmt = conn.prepareStatement(
-            "SELECT id_deposito,valor,aprovado,pendente_aprovacao,num_fun,num_cli FROM deposito WHERE num_cli = ? ORDER BY data desc;");
-            stmt.setInt(1, num_cliente);
+            "SELECT id_deposit, amount, approved, pending_approval, num_fun, "
+            + "num_cli FROM deposit WHERE num_cli = ? ORDER BY date desc;");
+            stmt.setInt(1, customerID);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Deposito tr;
+                Deposit deposit;
 
-                boolean isPending = rs.getBoolean("pendente_aprovacao");
+                boolean isPending = rs.getBoolean("pending_approval");
                 if (isPending) {
-                    tr = new Deposito(rs.getInt("id_deposito"),
-                                      rs.getDouble("valor"));
+                    deposit = new Deposit(rs.getInt("id_deposit"),
+                                          rs.getDouble("amount"));
                 } else {
-                    tr = new Deposito(rs.getInt("id_deposito"),
-                                      rs.getDouble("valor"),
-                                      rs.getBoolean("aprovado"),
-                                      rs.getInt("num_fun"),
-                                      rs.getInt("num_cli")
+                    deposit = new Deposit(rs.getInt("id_deposit"),
+                                          rs.getDouble("amount"),
+                                          rs.getBoolean("approved"),
+                                          rs.getInt("num_fun"),
+                                          rs.getInt("num_cli")
             );
                 }
 
-                ldeposito.add(tr);
+                depositList.add(deposit);
             }
         } catch (SQLException e) {
             e.printStackTrace(System.out);
@@ -88,24 +89,24 @@ public class DepositsDAO {
             DBConnection.closeConnection(stmt, rs);
         }
 
-        return ldeposito.isEmpty() ? null : ldeposito;
+        return depositList.isEmpty() ? null : depositList;
     }
 
     /**
-     * Função usada para aprovar um Deposito externo
+     * Function used to approve an external deposit.
      *
-     * @param num_deposito    ID de Deposito usado como referencia
-     * @param num_funcionario ID de Cliente usado como referencia
+     * @param depositID  deposit ID used as reference
+     * @param employeeID employee ID used as reference
      * @return
      */
-    public static boolean aproveDeposit(int num_deposito, int num_funcionario) {
+    public static boolean approveDeposit(int depositID, int employeeID) {
         PreparedStatement stmt = null;
 
         try {
             stmt = conn.prepareCall(
-            "{call aprovar_deposito(?,?)}");
-            stmt.setInt(1, num_deposito);
-            stmt.setInt(2, num_funcionario);
+            "{call approve_deposit(?,?)}");
+            stmt.setInt(1, depositID);
+            stmt.setInt(2, employeeID);
             stmt.execute();
             return true;
         } catch (SQLException e) {
@@ -117,21 +118,21 @@ public class DepositsDAO {
     }
 
     /**
-     * Função usada para rejeitar um pedido de Deposito externo
+     * Function used to deny a request for an external deposit.
      *
-     * @param num_deposito    ID de Deposito usado como referencia
-     * @param num_funcionario ID de Cliente usado como referencia
+     * @param depositID  deposit ID used as reference
+     * @param employeeID employee ID used as reference
      * @return
      */
-    public static boolean denyDeposit(int num_deposito, int num_funcionario) {
+    public static boolean denyDeposit(int depositID, int employeeID) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
         try {
             stmt = conn.prepareCall(
-            "{call reprovar_deposito(?,?)}");
-            stmt.setInt(1, num_deposito);
-            stmt.setInt(2, num_funcionario);
+            "{call deny_deposit(?,?)}");
+            stmt.setInt(1, depositID);
+            stmt.setInt(2, employeeID);
             stmt.execute();
             return true;
         } catch (SQLException e) {
@@ -143,23 +144,24 @@ public class DepositsDAO {
     }
 
     /**
-     * Função para obter o numero de depositos feitos pro um funcionário
+     * Function to get the number of deposits made for an employee.
      *
-     * @param num_cliente clientID ID de Cliente usado como referencia
-     * @return retorna numero de depositos associados a esse Cliente
+     * @param customerID customerID used as reference
+     * @return returns the number of deposits associated with this customer
      */
-    public static int getDepositCount(int num_cliente) {
+    public static int getDepositCount(int customerID) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
         try {
             stmt = conn.prepareStatement(
-            "SELECT count(*) AS qtd FROM deposito WHERE num_cli = ? and pendente_aprovacao = 1");
-            stmt.setInt(1, num_cliente);
+            "SELECT count(*) AS quantity FROM deposit WHERE num_cli = ? "
+            + "and pending_approval = 1");
+            stmt.setInt(1, customerID);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                return rs.getInt("qtd");
+                return rs.getInt("quantity");
             }
         } catch (SQLException e) {
             e.printStackTrace(System.out);

@@ -10,7 +10,7 @@ import java.awt.Component;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
-import pt.ua.ibank.DTO.Deposito;
+import pt.ua.ibank.DTO.Deposit;
 
 public class DepositCellEditor extends DefaultCellEditor {
 
@@ -26,7 +26,7 @@ public class DepositCellEditor extends DefaultCellEditor {
                                                  boolean isSelected, int row,
                                                  int column) {
 
-        Deposito componentValue = (Deposito) table.getModel()
+        Deposit componentValue = (Deposit) table.getModel()
                  .getValueAt(row, 0);
 
         if (!componentValue.pendenteAprovacao) {

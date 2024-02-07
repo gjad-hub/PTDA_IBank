@@ -4,75 +4,76 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import pt.ua.ibank.DTO.Transferencias;
-import static pt.ua.ibank.utilities.Configs.CODIGO_ERRO;
-import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
+import pt.ua.ibank.DTO.Transfers;
+import static pt.ua.ibank.utilities.Configs.ERROR_CODE;
+import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
 import pt.ua.ibank.utilities.DBConnection;
 import static pt.ua.ibank.utilities.DBConnection.conn;
 
 /**
- * Classe com metodos estáticos associados a operações feitas com Pagamentos
- * externos guardados em uma base de dados MySQL
+ * Class with static methods associated with operations performed with external
+ * Transfers
+ * stored in a MySQL database.
  * Author: PTDA_Staff.
- * Ultima Data de Modificação: 15 de Janeiro, 2024
+ * Last Modification Date: January 15, 2024
  */
 public class TransfersDAO {
 
     /**
-     * Função para
+     * Function for
      *
-     * @param valor          valor da transferencia
-     * @param clienteRealiza ID de Cliente que realiza a Transferencia
-     * @param clienteRecebe  ID de Clience que recebe a Transferencia
-     * @param motivo         conteudo / Descrição de transferencia feita
-     * @return retorna codigo de sucesso, 1 se bem sucedido, 2 caso não
+     * @param value            transfer value
+     * @param performingClient ID of the Client performing the Transfer
+     * @param receivingClient  ID of the Client receiving the Transfer
+     * @param reason           content / description of the transfer made
+     * @return returns success code, 1 if successful, 2 otherwise
      */
-    public static int doTransfer(double valor, int clienteRealiza,
-                                 int clienteRecebe, String motivo) {
+    public static int doTransfer(double value, int performingClient,
+                                 int receivingClient, String reason) {
         PreparedStatement stmt = null;
 
         try {
 
-            stmt = conn.prepareCall("{call fazer_transferencia(?,?,?,?)}");
-            stmt.setInt(1, clienteRealiza);
-            stmt.setInt(2, clienteRecebe);
-            stmt.setDouble(3, valor);
-            stmt.setString(4, motivo);
+            stmt = conn.prepareCall("{call perform_transfer(?,?,?,?)}");
+            stmt.setInt(1, performingClient);
+            stmt.setInt(2, receivingClient);
+            stmt.setDouble(3, value);
+            stmt.setString(4, reason);
             stmt.execute();
 
-            return CODIGO_SUCESSO;
+            return SUCCESS_CODE;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
-            return CODIGO_ERRO;
+            return ERROR_CODE;
         } finally {
             DBConnection.closeConnection(stmt);
         }
     }
 
     /**
-     * Função usada para obter lista de transferencias externa
+     * Function used to get a list of external transfers
      *
-     * @return Lista de tranferencias
+     * @return List of transfers
      */
-    public static ArrayList<Transferencias> getTransfersList() {
+    public static ArrayList<Transfers> getTransfersList() {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        ArrayList<Transferencias> list = new ArrayList<>();
+        ArrayList<Transfers> list = new ArrayList<>();
 
         try {
             stmt = conn.prepareStatement(
             "select "
-            + "id_transferencia as id,valor,cliente_realiza,cliente_recebe,motivo"
-            + " from transferencia;");
+            + "transfer_id as id,value,performing_client,receiving_client,reason"
+            + " from transfer;");
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                list.add(new Transferencias(
+                list.add(new Transfers(
                         rs.getInt("id"),
-                        rs.getDouble("valor"),
-                        rs.getInt("cliente_realiza"),
-                        rs.getInt("cliente_recebe"),
-                        rs.getString("motivo")
+                        rs.getDouble("value"),
+                        rs.getInt("performing_client"),
+                        rs.getInt("receiving_client"),
+                        rs.getString("reason")
                 ));
             }
 
@@ -86,30 +87,30 @@ public class TransfersDAO {
     }
 
     /**
-     * Função que retorna lista de tranferencias através de ID
+     * Function that returns a list of transfers by ID
      *
-     * @param id ID de Cliente para ser usado como referencia
+     * @param id Client ID to be used as reference
      * @return
      */
-    public static Transferencias getTransferByID(int id) {
+    public static Transfers getTransferByID(int id) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
         try {
             stmt = conn.prepareStatement(
             "select "
-            + "id_transferencia as id,valor,cliente_realiza,cliente_recebe,motivo"
-            + " from transferencia where id_transferencia like ?;");
+            + "transfer_id as id,value,performing_client,receiving_client,reason"
+            + " from transfer where transfer_id like ?;");
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                return new Transferencias(
+                return new Transfers(
                         rs.getInt("id"),
-                        rs.getDouble("valor"),
-                        rs.getInt("cliente_realiza"),
-                        rs.getInt("cliente_recebe"),
-                        rs.getString("motivo")
+                        rs.getDouble("value"),
+                        rs.getInt("performing_client"),
+                        rs.getInt("receiving_client"),
+                        rs.getString("reason")
                 );
             }
 
@@ -122,33 +123,33 @@ public class TransfersDAO {
     }
 
     /**
-     * Função que retorna lista de Transferencias através de um ID
+     * Function that returns a list of Transfers by an ID
      *
-     * @param id ID de Cliente para ser usado como referencia
-     * @return retorna lista de transações feitas por um gerentes
+     * @param id Client ID to be used as reference
+     * @return returns a list of transactions made by a manager
      */
-    public static ArrayList<Transferencias> getClientTransfersList(
+    public static ArrayList<Transfers> getClientTransfersList(
             int id) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        ArrayList<Transferencias> list = new ArrayList<>();
+        ArrayList<Transfers> list = new ArrayList<>();
 
         try {
             stmt = conn.prepareStatement(
             "select "
-            + "id_transferencia as id,valor,cliente_realiza,cliente_recebe,motivo"
-            + " from transferencia where cliente_realiza like ? or cliente_recebe like ?;");
+            + "transfer_id as id,value,performing_client,receiving_client,reason"
+            + " from transfer where performing_client like ? or receiving_client like ?;");
             stmt.setInt(1, id);
             stmt.setInt(2, id);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                list.add(new Transferencias(
+                list.add(new Transfers(
                         rs.getInt("id"),
-                        rs.getDouble("valor"),
-                        rs.getInt("cliente_realiza"),
-                        rs.getInt("cliente_recebe"),
-                        rs.getString("motivo")
+                        rs.getDouble("value"),
+                        rs.getInt("performing_client"),
+                        rs.getInt("receiving_client"),
+                        rs.getString("reason")
                 ));
             }
 
@@ -162,33 +163,33 @@ public class TransfersDAO {
     }
 
     /**
-     * Função que retorna a lista de transferencias feitas por um Cliente través
-     * de ID
+     * Function that returns the list of transfers made by a Client through
+     * ID
      *
-     * @param id ID de Cliente para ser usado como referencia
-     * @return retorna lista de transferencias feitas por um Cliente
+     * @param id Client ID to be used as reference
+     * @return returns a list of transfers made by a Client
      */
-    public static ArrayList<Transferencias> getTransfersListByAutor(
+    public static ArrayList<Transfers> getTransfersListByAuthor(
             int id) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        ArrayList<Transferencias> list = new ArrayList<>();
+        ArrayList<Transfers> list = new ArrayList<>();
 
         try {
             stmt = conn.prepareStatement(
             "select "
-            + "id_transferencia as id,valor,cliente_realiza,cliente_recebe,motivo"
-            + " from transferencia where cliente_realiza like ?;");
+            + "transfer_id as id,value,performing_client,receiving_client,reason"
+            + " from transfer where performing_client like ?;");
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                list.add(new Transferencias(
+                list.add(new Transfers(
                         rs.getInt("id"),
-                        rs.getDouble("valor"),
-                        rs.getInt("cliente_realiza"),
-                        rs.getInt("cliente_recebe"),
-                        rs.getString("motivo")
+                        rs.getDouble("value"),
+                        rs.getInt("performing_client"),
+                        rs.getInt("receiving_client"),
+                        rs.getString("reason")
                 ));
             }
 
@@ -202,33 +203,33 @@ public class TransfersDAO {
     }
 
     /**
-     * Função que retorna a lista de transferencias recebidas por um Cliente
-     * através de ID
+     * Function that returns the list of transfers received by a Client
+     * through ID
      *
-     * @param id ID de Cliente para ser usado como referencia
-     * @return retorna lista de transferencias que um Cliente recebeu
+     * @param id Client ID to be used as reference
+     * @return returns a list of transfers that a Client received
      */
-    public static ArrayList<Transferencias> getTransfersListByReceptor(
+    public static ArrayList<Transfers> getTransfersListByRecipient(
             int id) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        ArrayList<Transferencias> list = new ArrayList<>();
+        ArrayList<Transfers> list = new ArrayList<>();
 
         try {
             stmt = conn.prepareStatement(
             "select "
-            + "id_transferencia as id,valor,cliente_realiza,cliente_recebe,motivo"
-            + " from transferencia where cliente_recebe like ?;");
+            + "transfer_id as id,value,performing_client,receiving_client,reason"
+            + " from transfer where receiving_client like ?;");
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                list.add(new Transferencias(
+                list.add(new Transfers(
                         rs.getInt("id"),
-                        rs.getDouble("valor"),
-                        rs.getInt("cliente_realiza"),
-                        rs.getInt("cliente_recebe"),
-                        rs.getString("motivo")
+                        rs.getDouble("value"),
+                        rs.getInt("performing_client"),
+                        rs.getInt("receiving_client"),
+                        rs.getString("reason")
                 ));
             }
 

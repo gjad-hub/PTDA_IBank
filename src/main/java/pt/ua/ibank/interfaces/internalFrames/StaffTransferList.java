@@ -26,13 +26,13 @@ public class StaffTransferList extends javax.swing.JInternalFrame {
 
         openAuthorProfileButton.addActionListener((ActionEvent e) -> {
             int clientID =
-                transfersMainInterfaceContainer.getCurrAuthorClient().numCliente;
+                transfersMainInterfaceContainer.getCurrAuthorClient().clientNumber;
             parent.addWindow(new StaffProfilePanel(parent, clientID));
         });
 
         openRecieverProfileButton.addActionListener((ActionEvent e) -> {
             int clientID =
-                transfersMainInterfaceContainer.getCurrRecieverClient().numCliente;
+                transfersMainInterfaceContainer.getCurrRecieverClient().clientNumber;
             parent.addWindow(new StaffProfilePanel(parent, clientID));
         });
 
@@ -48,13 +48,13 @@ public class StaffTransferList extends javax.swing.JInternalFrame {
 
         openAuthorProfileButton.addActionListener((ActionEvent e) -> {
             int clientID =
-                transfersMainInterfaceContainer.getCurrAuthorClient().numCliente;
+                transfersMainInterfaceContainer.getCurrAuthorClient().clientNumber;
             parent.addWindow(new StaffProfilePanel(parent, clientID));
         });
 
         openRecieverProfileButton.addActionListener((ActionEvent e) -> {
             int clientID =
-                transfersMainInterfaceContainer.getCurrRecieverClient().numCliente;
+                transfersMainInterfaceContainer.getCurrRecieverClient().clientNumber;
             parent.addWindow(new StaffProfilePanel(parent, clientID));
         });
 

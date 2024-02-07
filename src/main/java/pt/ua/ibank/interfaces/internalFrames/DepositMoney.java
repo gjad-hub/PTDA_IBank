@@ -4,9 +4,9 @@ import java.awt.Color;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import pt.ua.ibank.DAO.DepositsDAO;
-import static pt.ua.ibank.utilities.Configs.CODIGO_SUCESSO;
 import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
+import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
 
 public class DepositMoney extends javax.swing.JInternalFrame {
 
@@ -15,8 +15,8 @@ public class DepositMoney extends javax.swing.JInternalFrame {
 
     public DepositMoney() {
         initComponents();
-        saldo_actual.setText(LocalClient.saldo + " EUR");
-        saldo_futuro.setText(LocalClient.saldo + " EUR");
+        saldo_actual.setText(LocalClient.balance + " EUR");
+        saldo_futuro.setText(LocalClient.balance + " EUR");
 
         DocumentListener documentListener = new DocumentListener() {
                      public void changedUpdate(DocumentEvent e) {
@@ -49,9 +49,9 @@ public class DepositMoney extends javax.swing.JInternalFrame {
             }
 
             Double quantia = quantiaInteira + quantiaDecimal;
-            saldo_futuro.setText("" + (LocalClient.saldo + quantia) + " EUR");
+            saldo_futuro.setText("" + (LocalClient.balance + quantia) + " EUR");
         } catch (NumberFormatException ex) {
-            Double saldoAtual = LocalClient.saldo;
+            Double saldoAtual = LocalClient.balance;
             saldo_futuro.setText(saldoAtual.toString() + " EUR");
         }
     }
@@ -250,7 +250,7 @@ public class DepositMoney extends javax.swing.JInternalFrame {
             return;
         }
 
-        if (DepositsDAO.requestDeposit(valor, LocalClient.numCliente) == CODIGO_SUCESSO) {
+        if (DepositsDAO.requestDeposit(valor, LocalClient.clientNumber) == SUCCESS_CODE) {
             status.setForeground(green);
             status.setText("Pedido de depósito enviado, aguarde aprovação !");
         } else {

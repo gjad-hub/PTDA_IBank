@@ -6,8 +6,8 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import pt.ua.ibank.DAO.CardsDAO;
 import pt.ua.ibank.DAO.DepositsDAO;
-import pt.ua.ibank.DAO.FuncionarioDAO;
-import pt.ua.ibank.DTO.Funcionario;
+import pt.ua.ibank.DAO.EmployeeDAO;
+import pt.ua.ibank.DTO.Employee;
 
 /**
  * Implementação tabela de Transferencias a ser usada na interface de staff.
@@ -16,10 +16,10 @@ import pt.ua.ibank.DTO.Funcionario;
 public class StaffContasTableModel extends AbstractTableModel {
 
     private List<String> header = null;
-    private List<Funcionario> data = null;
+    private List<Employee> data = null;
 
     public StaffContasTableModel() {
-        data = FuncionarioDAO.getFuncionarioList();
+        data = EmployeeDAO.getFuncionarioList();
         header = new ArrayList<>(Arrays.asList(
         "N.Funcionario", "N.Gerente", "Nome",
         "Email", "NIF", "Operacoes Feitas", "demitido", ""));
@@ -45,31 +45,31 @@ public class StaffContasTableModel extends AbstractTableModel {
         return true;
     }
 
-    public Funcionario getAccount(int rowIndex) {
+    public Employee getAccount(int rowIndex) {
         return data.get(rowIndex);
     }
 
     public void resetSearchFilters() {
         data.clear();
-        if ((data = FuncionarioDAO.getFuncionarioList()) != null) {
+        if ((data = EmployeeDAO.getFuncionarioList()) != null) {
             fireTableRowsDeleted(0, data.size() - 1);
         }
     }
 
     public String obterNomeGerente(int id) {
-        return FuncionarioDAO.getFuncionarioNomeByID(id);
+        return EmployeeDAO.getFuncionarioNomeByID(id);
     }
 
     public String obterDepositosAprovados(int id) {
-        return FuncionarioDAO.getFuncionarioNumDepositosAprovados(id);
+        return EmployeeDAO.getFuncionarioNumDepositosAprovados(id);
     }
 
     public void searchForClient(String value, String searchType) {
         switch (searchType) {
             case "ID" -> {
                 data.clear();
-                Funcionario result;
-                if ((result = FuncionarioDAO.getFuncionarioByID(
+                Employee result;
+                if ((result = EmployeeDAO.getFuncionarioByID(
                      Integer.parseInt(value))) != null) {
                     data.add(result);
                     fireTableRowsDeleted(0, data.size() - 1);
@@ -77,23 +77,23 @@ public class StaffContasTableModel extends AbstractTableModel {
             }
             case "Email" -> {
                 data.clear();
-                Funcionario result;
-                if ((result = FuncionarioDAO.getFuncionarioByEmail(value)) != null) {
+                Employee result;
+                if ((result = EmployeeDAO.getFuncionarioByEmail(value)) != null) {
                     data.add(result);
                     fireTableRowsDeleted(0, data.size() - 1);
                 }
             }
             case "NIF" -> {
                 data.clear();
-                Funcionario result;
-                if ((result = FuncionarioDAO.getFuncionarioByNIF(value)) != null) {
+                Employee result;
+                if ((result = EmployeeDAO.getFuncionarioByNIF(value)) != null) {
                     data.add(result);
                     fireTableRowsDeleted(0, data.size() - 1);
                 }
             }
             case "Morada" -> {
                 data.clear();
-                if ((data = FuncionarioDAO.getFuncionarioListByAddress(value)) != null) {
+                if ((data = EmployeeDAO.getFuncionarioListByAddress(value)) != null) {
                     fireTableRowsDeleted(0, data.size() - 1);
                 }
             }
@@ -124,7 +124,7 @@ public class StaffContasTableModel extends AbstractTableModel {
                        "Funcionario";
             }
             case 2 -> {
-                return data.get(rowIndex).nome;
+                return data.get(rowIndex).name;
             }
             case 3 -> {
                 return data.get(rowIndex).email;
@@ -134,7 +134,7 @@ public class StaffContasTableModel extends AbstractTableModel {
             }
             case 5 -> {
                 var id = data.get(rowIndex).numFun;
-                return FuncionarioDAO.getFuncionarioNumDepositosAprovados(id);
+                return EmployeeDAO.getFuncionarioNumDepositosAprovados(id);
             }
             case 6 -> {
                 return data.get(rowIndex).foiDespedido ? "Sim" : "";

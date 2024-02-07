@@ -3,47 +3,66 @@ package pt.ua.ibank.DTO;
 import java.sql.Timestamp;
 
 /**
- * Objeto de uma class que representa uma transação feita
+ * Object of a class representing a moderator comment.
  * Author: PTDA_Staff.
- * Ultima Data de Modificação: 9 de Dezembro, 2023
+ * Last Modification Date: December 9, 2023
  */
 public class ModeratorComment {
 
     private final int id;
-    private final String nomeFuncionario;
-    private final String conteudo;
-    private final Timestamp dataFeita;
+    private final String employeeName;
+    private final String content;
+    private final Timestamp dateMade;
 
     /**
-     * Constructor: uma instancia com id, nomeFuncionario,conteudo,dataFeita
+     * Constructor: an instance with ID, employeeName, content, and dateMade.
      *
-     * @param id              ID de instancia de comentario
-     * @param nomeFuncionario Nome de Autor da mensagem
-     * @param conteudo        Conteudo da mensagem
-     * @param dataFeita       Data em que foi postado
+     * @param id           Unique ID of the comment.
+     * @param employeeName Name of the message author.
+     * @param content      Content of the message.
+     * @param dateMade     Date when it was posted.
      */
-    public ModeratorComment(int id, String nomeFuncionario, String conteudo,
-                            Timestamp dataFeita) {
+    public ModeratorComment(int id, String employeeName, String content,
+                            Timestamp dateMade) {
         this.id = id;
-        this.nomeFuncionario = nomeFuncionario;
-        this.conteudo = conteudo;
-        this.dataFeita = dataFeita;
+        this.employeeName = employeeName;
+        this.content = content;
+        this.dateMade = dateMade;
     }
 
-    public String getNomeFuncionario() {
-        return nomeFuncionario;
+    /**
+     * Gets the name of the employee who made the comment.
+     *
+     * @return Name of the employee.
+     */
+    public String getEmployeeName() {
+        return employeeName;
     }
 
-    public String getDescricao() {
-        return conteudo;
+    /**
+     * Gets the content of the comment.
+     *
+     * @return Content of the comment.
+     */
+    public String getContent() {
+        return content;
     }
 
-    public Timestamp getDataFeita() {
-        return dataFeita;
+    /**
+     * Gets the date when the comment was made.
+     *
+     * @return Date when the comment was made.
+     */
+    public Timestamp getDateMade() {
+        return dateMade;
     }
 
+    /**
+     * Gets the unique ID of the comment.
+     *
+     * @return Unique ID of the comment.
+     */
     public int getId() {
         return id;
     }
-
 }

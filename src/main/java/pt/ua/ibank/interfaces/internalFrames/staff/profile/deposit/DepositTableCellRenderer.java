@@ -8,7 +8,7 @@ import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
-import pt.ua.ibank.DTO.Deposito;
+import pt.ua.ibank.DTO.Deposit;
 
 public class DepositTableCellRenderer extends DefaultTableCellRenderer {
 
@@ -21,7 +21,7 @@ public class DepositTableCellRenderer extends DefaultTableCellRenderer {
                                                              isSelected,
                                                              hasFocus, row,
                                                              column);
-        var currClientObject = (Deposito) value;
+        var currClientObject = (Deposit) value;
 
         DepositTableElementPanel depositChildElement;
 

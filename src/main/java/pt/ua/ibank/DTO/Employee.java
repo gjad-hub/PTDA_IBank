@@ -3,8 +3,8 @@ package pt.ua.ibank.DTO;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.sql.Date;
-import pt.ua.ibank.DAO.FuncionarioDAO;
-import static pt.ua.ibank.utilities.Configs.LocalFuncionario;
+import pt.ua.ibank.DAO.EmployeeDAO;
+import static pt.ua.ibank.utilities.Configs.LocalEmployee;
 import pt.ua.ibank.utilities.Hash;
 
 /**
@@ -12,7 +12,7 @@ import pt.ua.ibank.utilities.Hash;
  * Author: PTDA_Staff.
  * Ultima data de modificação: 16 de Janeiro, 2024
  */
-public class Funcionario extends Pessoa {
+public class Employee extends Person {
 
     /**
      * Numero de Funcionario Externo
@@ -43,9 +43,9 @@ public class Funcionario extends Pessoa {
      * @param foiDespedido Variavel Binaria que significa se ainda está presente
      * @param password     Password usada pelo cliente codificada
      */
-    public Funcionario(Integer numFun, String nome, String morada, String email,
-                       String telemovel, String nif, String password,
-                       Integer numGerente, boolean foiDespedido) {
+    public Employee(Integer numFun, String nome, String morada, String email,
+                    String telemovel, String nif, String password,
+                    Integer numGerente, boolean foiDespedido) {
         super(nome, morada, email, telemovel, nif, password);
         this.numFun = numFun;
         this.gerente = numGerente;
@@ -66,10 +66,10 @@ public class Funcionario extends Pessoa {
      * @param foiDespedido Variavel Binaria que significa se ainda está presente
      * @param dataCriada   Data em que foi criada a conta de funcionario
      */
-    public Funcionario(Integer numFun, Integer numGerente, String nome,
-                       String morada, String email,
-                       String telemovel, String nif,
-                       boolean foiDespedido, Date dataCriada) {
+    public Employee(Integer numFun, Integer numGerente, String nome,
+                    String morada, String email,
+                    String telemovel, String nif,
+                    boolean foiDespedido, Date dataCriada) {
         super(nome, morada, email, telemovel, nif, dataCriada);
         this.numFun = numFun;
         this.gerente = numGerente;
@@ -83,7 +83,7 @@ public class Funcionario extends Pessoa {
      * @param email    Email de usuario
      * @param password Passsword de usuario
      */
-    public Funcionario(String email, String password) {
+    public Employee(String email, String password) {
         super(email, password);
     }
 
@@ -101,21 +101,21 @@ public class Funcionario extends Pessoa {
      * @return
      */
     @Override
-    public int alterarInformacoes(String old_email) {
-        int status = FuncionarioDAO.UpdateFuncionario(nome, morada, email,
-                                                      telemovel, nif, password,
-                                                      old_email);
+    public int alterInformation(String old_email) {
+        int status = EmployeeDAO.updateEmployee(name, address, email,
+                                                phoneNumber, nif, password,
+                                                old_email);
         return status;
     }
 
     @Override
-    public boolean autenticar() {
-        Funcionario tmp = FuncionarioDAO.getFuncionarioByEmail(email);
+    public boolean authenticate() {
+        Employee tmp = EmployeeDAO.getEmployeeByEmail(email);
 
         if (tmp != null) {
             try {
                 if (Hash.validatePassword(password, tmp.password)) {
-                    LocalFuncionario = tmp;
+                    LocalEmployee = tmp;
                     return true;
                 }
             } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {

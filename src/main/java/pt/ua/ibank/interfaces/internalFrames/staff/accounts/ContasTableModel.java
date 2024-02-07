@@ -7,7 +7,7 @@ import javax.swing.table.AbstractTableModel;
 import pt.ua.ibank.DAO.CardsDAO;
 import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.DAO.DepositsDAO;
-import pt.ua.ibank.DTO.Cliente;
+import pt.ua.ibank.DTO.Client;
 
 /**
  * Implementação tabela de Transferencias a ser usada na interface de staff.
@@ -16,7 +16,7 @@ import pt.ua.ibank.DTO.Cliente;
 public class ContasTableModel extends AbstractTableModel {
 
     private List<String> header = null;
-    private List<Cliente> data = null;
+    private List<Client> data = null;
 
     public ContasTableModel() {
         data = ClientDAO.getClientList();
@@ -45,7 +45,7 @@ public class ContasTableModel extends AbstractTableModel {
         return true;
     }
 
-    public Cliente getAccount(int rowIndex) {
+    public Client getAccount(int rowIndex) {
         return data.get(rowIndex);
 
     }
@@ -61,7 +61,7 @@ public class ContasTableModel extends AbstractTableModel {
         switch (searchType) {
             case "ID" -> {
                 data.clear();
-                Cliente result;
+                Client result;
                 if ((result = ClientDAO.getClientByID(
                      Integer.parseInt(value))) != null) {
                     data.add(result);
@@ -70,7 +70,7 @@ public class ContasTableModel extends AbstractTableModel {
             }
             case "Email" -> {
                 data.clear();
-                Cliente result;
+                Client result;
                 if ((result = ClientDAO.getClientByEmail(value)) != null) {
                     data.add(result);
                     fireTableRowsDeleted(0, data.size() - 1);
@@ -78,7 +78,7 @@ public class ContasTableModel extends AbstractTableModel {
             }
             case "NIF" -> {
                 data.clear();
-                Cliente result;
+                Client result;
                 if ((result = ClientDAO.getClientByNIF(value)) != null) {
                     data.add(result);
                     fireTableRowsDeleted(0, data.size() - 1);
@@ -109,13 +109,13 @@ public class ContasTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0 -> {
-                return data.get(rowIndex).numConta;
+                return data.get(rowIndex).accountNumber;
             }
             case 1 -> {
-                return data.get(rowIndex).numCliente;
+                return data.get(rowIndex).clientNumber;
             }
             case 2 -> {
-                return data.get(rowIndex).nome;
+                return data.get(rowIndex).name;
             }
             case 3 -> {
                 return data.get(rowIndex).email;
@@ -124,7 +124,7 @@ public class ContasTableModel extends AbstractTableModel {
                 return data.get(rowIndex).nif;
             }
             case 5 -> {
-                var id = data.get(rowIndex).numCliente;
+                var id = data.get(rowIndex).clientNumber;
                 return getDepositAmountNumberFromID(id);
             }
             default -> {
