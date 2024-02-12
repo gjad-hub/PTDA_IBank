@@ -10,32 +10,32 @@ import javax.swing.SwingUtilities;
 import pt.ua.ibank.DAO.ClientDAO;
 import pt.ua.ibank.DTO.Client;
 import pt.ua.ibank.utilities.Configs;
-import static pt.ua.ibank.utilities.Configs.LocalClient;
-import pt.ua.ibank.utilities.Hash;
-import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
-import static pt.ua.ibank.utilities.Configs.ERROR_CODE;
 import static pt.ua.ibank.utilities.Configs.EMAIL_ERROR_CODE;
+import static pt.ua.ibank.utilities.Configs.ERROR_CODE;
+import static pt.ua.ibank.utilities.Configs.LocalClient;
+import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
+import pt.ua.ibank.utilities.Hash;
 
 public class dialogLogin extends javax.swing.JDialog {
 
     public dialogLogin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        startup();
+        start();
     }
 
-    private void startup() {
+    private void start() {
         email_input.requestFocus();
         email_input.setBackground(new java.awt.Color(0, 0, 0, 1));
         password_input.setBackground(new java.awt.Color(0, 0, 0, 1));
 
-        Fnome.setBackground(new java.awt.Color(0, 0, 0, 1));
+        Fname.setBackground(new java.awt.Color(0, 0, 0, 1));
         Femail.setBackground(new java.awt.Color(0, 0, 0, 1));
-        Ftelemovel.setBackground(new java.awt.Color(0, 0, 0, 1));
+        Fphone.setBackground(new java.awt.Color(0, 0, 0, 1));
         FNif.setBackground(new java.awt.Color(0, 0, 0, 1));
         FPass.setBackground(new java.awt.Color(0, 0, 0, 1));
         FRPass.setBackground(new java.awt.Color(0, 0, 0, 1));
-        FMorada.setBackground(new java.awt.Color(0, 0, 0, 1));
+        FAddress.setBackground(new java.awt.Color(0, 0, 0, 1));
 
         panelCreateAccount.setVisible(false);
 
@@ -92,14 +92,14 @@ public class dialogLogin extends javax.swing.JDialog {
         panel = new javax.swing.JTabbedPane();
         panelLogin = new javax.swing.JPanel();
         error = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        lblLoginTitle = new javax.swing.JLabel();
+        lblLoginEmail = new javax.swing.JLabel();
         email_input = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        lblEmailDot = new javax.swing.JLabel();
+        lblSubtitle = new javax.swing.JLabel();
+        lblPassword = new javax.swing.JLabel();
         password_input = new javax.swing.JPasswordField();
-        jLabel14 = new javax.swing.JLabel();
+        lblPasswordDot = new javax.swing.JLabel();
         save_email = new javax.swing.JCheckBox();
         login = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
@@ -107,32 +107,32 @@ public class dialogLogin extends javax.swing.JDialog {
         see = new javax.swing.JCheckBox();
         panelCreateAccount = new javax.swing.JPanel();
         erro_create = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        Ftelemovel = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
+        lblFphone = new javax.swing.JLabel();
+        Fphone = new javax.swing.JTextField();
+        lblDotPhone = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         FPass = new javax.swing.JPasswordField();
-        jLabel8 = new javax.swing.JLabel();
+        lblDotPassword = new javax.swing.JLabel();
         btnCreateAccount = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
+        lblRegister = new javax.swing.JLabel();
         lblLogin = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        lblRepeatPass = new javax.swing.JLabel();
         FRPass = new javax.swing.JPasswordField();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
+        lblRepeatPassDot = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
         Femail = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
+        lblDotEmail = new javax.swing.JLabel();
+        lblNIF = new javax.swing.JLabel();
         FNif = new javax.swing.JTextField();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        Fnome = new javax.swing.JTextField();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        FMorada = new javax.swing.JTextField();
-        jLabel25 = new javax.swing.JLabel();
+        lblNifDot = new javax.swing.JLabel();
+        lblFullName = new javax.swing.JLabel();
+        Fname = new javax.swing.JTextField();
+        lblFnameDot = new javax.swing.JLabel();
+        lblWelcomeMessage = new javax.swing.JLabel();
+        lblAddress = new javax.swing.JLabel();
+        FAddress = new javax.swing.JTextField();
+        lblAddressDot = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -152,36 +152,36 @@ public class dialogLogin extends javax.swing.JDialog {
         error.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         panelLogin.add(error, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 420, 30));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 32)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Login");
-        panelLogin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 420, 41));
+        lblLoginTitle.setFont(new java.awt.Font("Segoe UI", 0, 32)); // NOI18N
+        lblLoginTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblLoginTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLoginTitle.setText("Login");
+        panelLogin.add(lblLoginTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 420, 41));
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(199, 226, 255));
-        jLabel9.setText("Email");
-        panelLogin.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 360, -1));
+        lblLoginEmail.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        lblLoginEmail.setForeground(new java.awt.Color(199, 226, 255));
+        lblLoginEmail.setText("Email");
+        panelLogin.add(lblLoginEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 360, -1));
 
         email_input.setFont(email_input.getFont().deriveFont(email_input.getFont().getSize()+2f));
         email_input.setForeground(new java.awt.Color(255, 255, 255));
         email_input.setBorder(null);
         panelLogin.add(email_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 310, 30));
 
-        jLabel10.setForeground(new java.awt.Color(199, 226, 255));
-        jLabel10.setText("_________________________________________________________________");
-        panelLogin.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 319, 40));
+        lblEmailDot.setForeground(new java.awt.Color(199, 226, 255));
+        lblEmailDot.setText("_________________________________________________________________");
+        panelLogin.add(lblEmailDot, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 319, 40));
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Olá! Bem-vindo ao IBank!");
-        panelLogin.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 420, -1));
+        lblSubtitle.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        lblSubtitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblSubtitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSubtitle.setText("Olá! Bem-vindo ao IBank!");
+        panelLogin.add(lblSubtitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 420, -1));
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(199, 226, 255));
-        jLabel13.setText("Password");
-        panelLogin.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 360, -1));
+        lblPassword.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        lblPassword.setForeground(new java.awt.Color(199, 226, 255));
+        lblPassword.setText("Password");
+        panelLogin.add(lblPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 360, -1));
 
         password_input.setFont(password_input.getFont().deriveFont(password_input.getFont().getSize()+2f));
         password_input.setForeground(new java.awt.Color(255, 255, 255));
@@ -189,9 +189,9 @@ public class dialogLogin extends javax.swing.JDialog {
         password_input.setCaretColor(new java.awt.Color(255, 255, 255));
         panelLogin.add(password_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 310, 30));
 
-        jLabel14.setForeground(new java.awt.Color(199, 226, 255));
-        jLabel14.setText("_________________________________________________________________");
-        panelLogin.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 319, 40));
+        lblPasswordDot.setForeground(new java.awt.Color(199, 226, 255));
+        lblPasswordDot.setText("_________________________________________________________________");
+        panelLogin.add(lblPasswordDot, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 319, 40));
 
         save_email.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         save_email.setForeground(new java.awt.Color(199, 226, 255));
@@ -254,25 +254,25 @@ public class dialogLogin extends javax.swing.JDialog {
         erro_create.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         panelCreateAccount.add(erro_create, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 420, 20));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 32)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Criar Conta");
-        panelCreateAccount.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 420, 41));
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 0, 32)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("Create Account");
+        panelCreateAccount.add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 420, 41));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(199, 226, 255));
-        jLabel4.setText("Nº de Telemóvel");
-        panelCreateAccount.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 360, -1));
+        lblFphone.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        lblFphone.setForeground(new java.awt.Color(199, 226, 255));
+        lblFphone.setText("Phone Number");
+        panelCreateAccount.add(lblFphone, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 360, -1));
 
-        Ftelemovel.setFont(Ftelemovel.getFont().deriveFont(Ftelemovel.getFont().getSize()+2f));
-        Ftelemovel.setForeground(new java.awt.Color(255, 255, 255));
-        Ftelemovel.setBorder(null);
-        panelCreateAccount.add(Ftelemovel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 310, 30));
+        Fphone.setFont(Fphone.getFont().deriveFont(Fphone.getFont().getSize()+2f));
+        Fphone.setForeground(new java.awt.Color(255, 255, 255));
+        Fphone.setBorder(null);
+        panelCreateAccount.add(Fphone, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 310, 30));
 
-        jLabel5.setForeground(new java.awt.Color(199, 226, 255));
-        jLabel5.setText("_________________________________________________________________");
-        panelCreateAccount.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 319, 40));
+        lblDotPhone.setForeground(new java.awt.Color(199, 226, 255));
+        lblDotPhone.setText("_________________________________________________________________");
+        panelCreateAccount.add(lblDotPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 319, 40));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(199, 226, 255));
@@ -285,13 +285,13 @@ public class dialogLogin extends javax.swing.JDialog {
         FPass.setCaretColor(new java.awt.Color(255, 255, 255));
         panelCreateAccount.add(FPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 310, 30));
 
-        jLabel8.setForeground(new java.awt.Color(199, 226, 255));
-        jLabel8.setText("_________________________________________________________________");
-        panelCreateAccount.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 319, 40));
+        lblDotPassword.setForeground(new java.awt.Color(199, 226, 255));
+        lblDotPassword.setText("_________________________________________________________________");
+        panelCreateAccount.add(lblDotPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 319, 40));
 
         btnCreateAccount.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCreateAccount.setForeground(new java.awt.Color(62, 171, 191));
-        btnCreateAccount.setText("CRIAR CONTA");
+        btnCreateAccount.setText("Create Account");
         btnCreateAccount.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCreateAccount.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -305,10 +305,10 @@ public class dialogLogin extends javax.swing.JDialog {
         });
         panelCreateAccount.add(btnCreateAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, 360, 40));
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(199, 226, 255));
-        jLabel11.setText("Já tem uma conta?");
-        panelCreateAccount.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 590, -1, -1));
+        lblRegister.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        lblRegister.setForeground(new java.awt.Color(199, 226, 255));
+        lblRegister.setText("Already have an account?");
+        panelCreateAccount.add(lblRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 590, -1, -1));
 
         lblLogin.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         lblLogin.setForeground(new java.awt.Color(255, 255, 255));
@@ -321,10 +321,10 @@ public class dialogLogin extends javax.swing.JDialog {
         });
         panelCreateAccount.add(lblLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 590, -1, -1));
 
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(199, 226, 255));
-        jLabel16.setText("Repetir Password");
-        panelCreateAccount.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 360, -1));
+        lblRepeatPass.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        lblRepeatPass.setForeground(new java.awt.Color(199, 226, 255));
+        lblRepeatPass.setText("Repeat Password");
+        panelCreateAccount.add(lblRepeatPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 360, -1));
 
         FRPass.setFont(FRPass.getFont().deriveFont(FRPass.getFont().getSize()+2f));
         FRPass.setForeground(new java.awt.Color(255, 255, 255));
@@ -332,71 +332,71 @@ public class dialogLogin extends javax.swing.JDialog {
         FRPass.setCaretColor(new java.awt.Color(255, 255, 255));
         panelCreateAccount.add(FRPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 310, 30));
 
-        jLabel17.setForeground(new java.awt.Color(199, 226, 255));
-        jLabel17.setText("_________________________________________________________________");
-        panelCreateAccount.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 319, 40));
+        lblRepeatPassDot.setForeground(new java.awt.Color(199, 226, 255));
+        lblRepeatPassDot.setText("_________________________________________________________________");
+        panelCreateAccount.add(lblRepeatPassDot, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 319, 40));
 
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(199, 226, 255));
-        jLabel18.setText("Email");
-        panelCreateAccount.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 360, -1));
+        lblEmail.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        lblEmail.setForeground(new java.awt.Color(199, 226, 255));
+        lblEmail.setText("Email");
+        panelCreateAccount.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 360, -1));
 
         Femail.setFont(Femail.getFont().deriveFont(Femail.getFont().getSize()+2f));
         Femail.setForeground(new java.awt.Color(255, 255, 255));
         Femail.setBorder(null);
         panelCreateAccount.add(Femail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 310, 30));
 
-        jLabel19.setForeground(new java.awt.Color(199, 226, 255));
-        jLabel19.setText("_________________________________________________________________");
-        panelCreateAccount.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 319, 40));
+        lblDotEmail.setForeground(new java.awt.Color(199, 226, 255));
+        lblDotEmail.setText("_________________________________________________________________");
+        panelCreateAccount.add(lblDotEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 319, 40));
 
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(199, 226, 255));
-        jLabel20.setText("NIF");
-        panelCreateAccount.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 360, -1));
+        lblNIF.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        lblNIF.setForeground(new java.awt.Color(199, 226, 255));
+        lblNIF.setText("NIF");
+        panelCreateAccount.add(lblNIF, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 360, -1));
 
         FNif.setFont(FNif.getFont().deriveFont(FNif.getFont().getSize()+2f));
         FNif.setForeground(new java.awt.Color(255, 255, 255));
         FNif.setBorder(null);
         panelCreateAccount.add(FNif, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 310, 30));
 
-        jLabel21.setForeground(new java.awt.Color(199, 226, 255));
-        jLabel21.setText("_________________________________________________________________");
-        panelCreateAccount.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 319, 40));
+        lblNifDot.setForeground(new java.awt.Color(199, 226, 255));
+        lblNifDot.setText("_________________________________________________________________");
+        panelCreateAccount.add(lblNifDot, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 319, 40));
 
-        jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(199, 226, 255));
-        jLabel22.setText("Nome Completo");
-        panelCreateAccount.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 360, -1));
+        lblFullName.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        lblFullName.setForeground(new java.awt.Color(199, 226, 255));
+        lblFullName.setText("Full Name");
+        panelCreateAccount.add(lblFullName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 360, -1));
 
-        Fnome.setFont(Fnome.getFont().deriveFont(Fnome.getFont().getSize()+2f));
-        Fnome.setForeground(new java.awt.Color(255, 255, 255));
-        Fnome.setBorder(null);
-        panelCreateAccount.add(Fnome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 310, 30));
+        Fname.setFont(Fname.getFont().deriveFont(Fname.getFont().getSize()+2f));
+        Fname.setForeground(new java.awt.Color(255, 255, 255));
+        Fname.setBorder(null);
+        panelCreateAccount.add(Fname, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 310, 30));
 
-        jLabel23.setForeground(new java.awt.Color(199, 226, 255));
-        jLabel23.setText("_________________________________________________________________");
-        panelCreateAccount.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 319, 40));
+        lblFnameDot.setForeground(new java.awt.Color(199, 226, 255));
+        lblFnameDot.setText("_________________________________________________________________");
+        panelCreateAccount.add(lblFnameDot, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 319, 40));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Bem-vindo! Por favor, preencha as informações abaixo para criar sua nova conta.");
-        panelCreateAccount.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 420, -1));
+        lblWelcomeMessage.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lblWelcomeMessage.setForeground(new java.awt.Color(255, 255, 255));
+        lblWelcomeMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblWelcomeMessage.setText("Welcome! Please, please fill the boxes below to create a new account.");
+        panelCreateAccount.add(lblWelcomeMessage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 420, -1));
 
-        jLabel24.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(199, 226, 255));
-        jLabel24.setText("Morada");
-        panelCreateAccount.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 360, -1));
+        lblAddress.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        lblAddress.setForeground(new java.awt.Color(199, 226, 255));
+        lblAddress.setText("Address");
+        panelCreateAccount.add(lblAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 360, -1));
 
-        FMorada.setFont(FMorada.getFont().deriveFont(FMorada.getFont().getSize()+2f));
-        FMorada.setForeground(new java.awt.Color(255, 255, 255));
-        FMorada.setBorder(null);
-        panelCreateAccount.add(FMorada, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 310, 30));
+        FAddress.setFont(FAddress.getFont().deriveFont(FAddress.getFont().getSize()+2f));
+        FAddress.setForeground(new java.awt.Color(255, 255, 255));
+        FAddress.setBorder(null);
+        panelCreateAccount.add(FAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 310, 30));
 
-        jLabel25.setForeground(new java.awt.Color(199, 226, 255));
-        jLabel25.setText("_________________________________________________________________");
-        panelCreateAccount.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 319, 40));
+        lblAddressDot.setForeground(new java.awt.Color(199, 226, 255));
+        lblAddressDot.setText("_________________________________________________________________");
+        panelCreateAccount.add(lblAddressDot, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 319, 40));
 
         panel.addTab("Criar conta", panelCreateAccount);
 
@@ -446,15 +446,15 @@ public class dialogLogin extends javax.swing.JDialog {
         String password = new String(password_input.getPassword());
 
         if (password.isEmpty() && email.isEmpty()) {
-            error.setText("Campos vazios!");
+            error.setText("Empty fields!");
             return;
         } else if (email.isEmpty()) {
             email_input.requestFocus();
-            error.setText("Campo de email vazio!");
+            error.setText("Email Field is Empty!");
             return;
         } else if (password.isEmpty()) {
             password_input.requestFocus();
-            error.setText("Campo de password vazio!");
+            error.setText("Password field is empty!");
             return;
         }
 
@@ -470,12 +470,12 @@ public class dialogLogin extends javax.swing.JDialog {
         }
 
         LocalClient = new Client(email_input.getText(), new String(
-                                  password_input.getPassword()));
-        if (LocalClient.autenticar()) {
+                                 password_input.getPassword()));
+        if (LocalClient.authenticate()) {
             Configs.loginOK = true;
             this.dispose();
         } else {
-            error.setText("Erro ao autenticar! Credenciais incorretas!");
+            error.setText("Error Authenticating! Wrong Credentials!");
         }
     }//GEN-LAST:event_loginActionPerformed
 
@@ -501,41 +501,41 @@ public class dialogLogin extends javax.swing.JDialog {
         String regexPassword = "^.{8,}$";
 
         Pattern patternNome = Pattern.compile(regexNome);
-        Matcher matcherNome = patternNome.matcher(Fnome.getText());
+        Matcher matcherNome = patternNome.matcher(Fname.getText());
 
         Pattern patternEmail = Pattern.compile(regexEmail);
         Matcher matcherEmail = patternEmail.matcher(Femail.getText());
 
         Pattern patternPhoneNumberNif = Pattern.compile(regexTelefoneNif);
         Matcher matcherPhoneNumber = patternPhoneNumberNif.matcher(
-                Ftelemovel.getText());
+                Fphone.getText());
         Matcher matcherNIF = patternPhoneNumberNif.matcher(FNif.getText());
 
         Pattern patternPassword = Pattern.compile(regexPassword);
         Matcher matcherPassword = patternPassword.matcher(password);
 
-        if (Fnome.getText().isEmpty() || Femail.getText().isEmpty() || Ftelemovel.getText().isEmpty() || FNif.getText().isEmpty() || password.isEmpty() || repeatPassword.isEmpty()) {
+        if (Fname.getText().isEmpty() || Femail.getText().isEmpty() || Fphone.getText().isEmpty() || FNif.getText().isEmpty() || password.isEmpty() || repeatPassword.isEmpty()) {
             erro_create.setText(
-                    "Um ou mais campos vazios! Por favor preencha-os!");
+                    "One or more empty fields! Por favor preencha-os!");
         } else if (!matcherNome.find()) {
-            erro_create.setText("Nome inválido!");
-            Fnome.setText("");
+            erro_create.setText("Invalid Name!");
+            Fname.setText("");
         } else if (!matcherEmail.find()) {
-            erro_create.setText("Email inválido!");
+            erro_create.setText("Invalid Email!");
             Femail.setText("");
         } else if (!matcherPhoneNumber.find()) {
-            erro_create.setText("Nº de Telemóvel Inválido!");
-            Ftelemovel.setText("");
+            erro_create.setText("Invalid Phone Number!");
+            Fphone.setText("");
         } else if (!matcherNIF.find()) {
-            erro_create.setText("NIF inválido!");
+            erro_create.setText("Invalid NIF!");
             FNif.setText("");
         } else if (!matcherPassword.find()) {
             erro_create.setText(
-                    "Password inválida! Tem de conter pelo menos 8 caracteres!");
+                    "Invalid Password! Please input at least 8 characters!");
             FPass.setText("");
             FRPass.setText("");
         } else if (!password.equals(repeatPassword)) {
-            erro_create.setText("Passwords inseridas não são iguais!");
+            erro_create.setText("Passwords dont match!");
             FPass.setText("");
             FRPass.setText("");
         } else {
@@ -543,21 +543,22 @@ public class dialogLogin extends javax.swing.JDialog {
             try {
                 String hashedPassword = Hash.generateStorngPasswordHash(
                        new String(FPass.getPassword()));
-                int verify = ClientDAO.CreateClient(Fnome.getText(),
-                                                    FMorada.getText(),
+                int verify = ClientDAO.CreateClient(Fname.getText(),
+                                                    FAddress.getText(),
                                                     Femail.getText(),
-                                                    Ftelemovel.getText(),
+                                                    Fphone.getText(),
                                                     FNif.getText(),
                                                     hashedPassword);
 
                 switch (verify) {
                     case EMAIL_ERROR_CODE ->
-                        erro_create.setText("Endereço de email já existente !");
+                        erro_create.setText(
+                                "There's a user registered with that email already!");
                     case ERROR_CODE ->
                         erro_create.setText(
-                                "Algo inesperado aconteceu tente novamente mais tarde !");
+                                "Something unexpected happened, please try again later!");
                     case SUCCESS_CODE -> {
-                        erro_create.setText("Sucesso ao criar cliente !");
+                        erro_create.setText("Success Creating the Client!");
                         SwingUtilities.invokeLater(() -> {
                             try {
                                 Thread.sleep(1500);
@@ -570,7 +571,6 @@ public class dialogLogin extends javax.swing.JDialog {
                         });
 
                     }
-
 
                 }
 
@@ -649,45 +649,45 @@ public class dialogLogin extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField FMorada;
+    private javax.swing.JTextField FAddress;
     private javax.swing.JTextField FNif;
     private javax.swing.JPasswordField FPass;
     private javax.swing.JPasswordField FRPass;
     private javax.swing.JTextField Femail;
-    private javax.swing.JTextField Fnome;
-    private javax.swing.JTextField Ftelemovel;
+    private javax.swing.JTextField Fname;
+    private javax.swing.JTextField Fphone;
     private javax.swing.JButton btnCreateAccount;
     private javax.swing.JTextField email_input;
     private javax.swing.JLabel erro_create;
     private javax.swing.JLabel error;
     private javax.swing.JLabel image_1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblAddress;
+    private javax.swing.JLabel lblAddressDot;
     private javax.swing.JLabel lblCreateAccount1;
+    private javax.swing.JLabel lblDotEmail;
+    private javax.swing.JLabel lblDotPassword;
+    private javax.swing.JLabel lblDotPhone;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblEmailDot;
+    private javax.swing.JLabel lblFnameDot;
+    private javax.swing.JLabel lblFphone;
+    private javax.swing.JLabel lblFullName;
     private javax.swing.JLabel lblLogin;
+    private javax.swing.JLabel lblLoginEmail;
+    private javax.swing.JLabel lblLoginTitle;
+    private javax.swing.JLabel lblNIF;
+    private javax.swing.JLabel lblNifDot;
+    private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblPasswordDot;
+    private javax.swing.JLabel lblRegister;
+    private javax.swing.JLabel lblRepeatPass;
+    private javax.swing.JLabel lblRepeatPassDot;
+    private javax.swing.JLabel lblSubtitle;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblWelcomeMessage;
     private javax.swing.JButton login;
     private javax.swing.JTabbedPane panel;
     private javax.swing.JPanel panelCreateAccount;

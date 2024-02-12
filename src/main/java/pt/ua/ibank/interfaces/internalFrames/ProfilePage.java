@@ -9,11 +9,11 @@ import pt.ua.ibank.DTO.Client;
 import pt.ua.ibank.DTO.Employee;
 import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
 import static pt.ua.ibank.interfaces.staffInterface.localStaffInterface;
+import static pt.ua.ibank.utilities.Configs.EMAIL_ERROR_CODE;
+import static pt.ua.ibank.utilities.Configs.ERROR_CODE;
+import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
 import pt.ua.ibank.utilities.Hash;
 import pt.ua.ibank.utilities.RoundedShadowPanel;
-import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
-import static pt.ua.ibank.utilities.Configs.ERROR_CODE;
-import static pt.ua.ibank.utilities.Configs.EMAIL_ERROR_CODE;
 
 public class ProfilePage extends javax.swing.JInternalFrame {
 
@@ -418,11 +418,11 @@ public class ProfilePage extends javax.swing.JInternalFrame {
                 this.cli.email = email.equals(this.cli.email) ?
                                  this.cli.email : email;
                 this.cli.address = address.equals(this.cli.address) ?
-                                  this.cli.address : address;
+                                   this.cli.address : address;
                 this.cli.phoneNumber = phone.equals(this.cli.phoneNumber) ?
-                                     this.cli.phoneNumber : phone;
+                                       this.cli.phoneNumber : phone;
 
-                int status_int = this.cli.alterarInformacoes(old_email);
+                int status_int = this.cli.alterInformation(old_email);
 
                 switch (status_int) {
                     case EMAIL_ERROR_CODE -> {
@@ -447,7 +447,6 @@ public class ProfilePage extends javax.swing.JInternalFrame {
                         });
                     }
 
-
                 }
             } else if (this.cli == null && this.fun != null) {
                 this.fun.name =
@@ -455,11 +454,11 @@ public class ProfilePage extends javax.swing.JInternalFrame {
                 this.fun.email = email.equals(this.fun.email) ?
                                  this.fun.email : email;
                 this.fun.address = address.equals(this.fun.address) ?
-                                  this.fun.address : address;
+                                   this.fun.address : address;
                 this.fun.phoneNumber = phone.equals(this.fun.phoneNumber) ?
-                                     this.fun.phoneNumber : phone;
+                                       this.fun.phoneNumber : phone;
 
-                int status_int = this.fun.alterarInformacoes(old_email);
+                int status_int = this.fun.alterInformation(old_email);
 
                 switch (status_int) {
                     case EMAIL_ERROR_CODE -> {
@@ -483,7 +482,6 @@ public class ProfilePage extends javax.swing.JInternalFrame {
                             }
                         });
                     }
-
 
                 }
             }

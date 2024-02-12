@@ -23,34 +23,34 @@ public class DepositTableModel extends AbstractTableModel {
     }
 
     public void aprovarDeposito(int row) {
-        if (DepositsDAO.aproveDeposit(data.get(row).idDeposito,
-                LocalEmployee.numFun
+        if (DepositsDAO.approveDeposit(data.get(row).depositID,
+                                       LocalEmployee.empNum
         )) {
-            data.get(row).pendenteAprovacao = false;
-            data.get(row).aprovado = true;
+            data.get(row).pendingApproval = false;
+            data.get(row).approved = true;
 
             client.pendingBalance =
-            (client.pendingBalance - data.get(row).valor) == 0 ?
+            (client.pendingBalance - data.get(row).value) == 0 ?
             0 :
-            (client.pendingBalance - data.get(row).valor);
+            (client.pendingBalance - data.get(row).value);
 
-            this.client.balance += data.get(row).valor;
+            this.client.balance += data.get(row).value;
             fireTableRowsInserted(data.size() - 1, data.size() - 1);
         }
 
     }
 
     public void reprovarDeposito(int row) {
-        DepositsDAO.denyDeposit(data.get(row).idDeposito,
-                LocalEmployee.numFun
+        DepositsDAO.denyDeposit(data.get(row).depositID,
+                                LocalEmployee.empNum
         );
 
-        data.get(row).pendenteAprovacao = false;
-        data.get(row).aprovado = false;
+        data.get(row).pendingApproval = false;
+        data.get(row).approved = false;
         client.pendingBalance =
-        (client.pendingBalance - data.get(row).valor) == 0 ?
+        (client.pendingBalance - data.get(row).value) == 0 ?
         0 :
-        (client.pendingBalance - data.get(row).valor);
+        (client.pendingBalance - data.get(row).value);
         fireTableRowsInserted(data.size() - 1, data.size() - 1);
     }
 

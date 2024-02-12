@@ -7,8 +7,8 @@ import java.awt.datatransfer.StringSelection;
 import pt.ua.ibank.DAO.PaymentsDAO;
 import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
 import static pt.ua.ibank.utilities.Configs.LocalClient;
-import static pt.ua.ibank.utilities.EntityRefGenerator.generateRef;
 import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
+import static pt.ua.ibank.utilities.EntityRefGenerator.generateRef;
 
 public class CreateRef extends javax.swing.JInternalFrame {
 
@@ -25,7 +25,7 @@ public class CreateRef extends javax.swing.JInternalFrame {
 
     public CreateRef() {
         initComponents();
-        entidade.setText(LocalClient.entidade.toString());
+        entidade.setText(LocalClient.entity.toString());
         copy.setVisible(false);
     }
 
@@ -200,7 +200,7 @@ public class CreateRef extends javax.swing.JInternalFrame {
         }
 
         int reply = PaymentsDAO.createPayment(LocalClient.clientNumber,
-                                              LocalClient.entidade, this.ref,
+                                              LocalClient.entity, this.ref,
                                               valor);
         if (reply == SUCCESS_CODE) {
             status.setForeground(green);

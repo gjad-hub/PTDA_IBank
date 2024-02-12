@@ -10,11 +10,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.SwingUtilities;
 import pt.ua.ibank.DAO.EmployeeDAO;
-import pt.ua.ibank.utilities.Hash;
-import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
-import static pt.ua.ibank.utilities.Configs.ERROR_CODE;
 import static pt.ua.ibank.utilities.Configs.EMAIL_ERROR_CODE;
+import static pt.ua.ibank.utilities.Configs.ERROR_CODE;
 import static pt.ua.ibank.utilities.Configs.LocalEmployee;
+import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
+import pt.ua.ibank.utilities.Hash;
 
 public class formCreateAccountFuncionario extends javax.swing.JPanel {
 
@@ -269,13 +269,13 @@ public class formCreateAccountFuncionario extends javax.swing.JPanel {
             try {
                 String hashedPassword = Hash.generateStorngPasswordHash(
                        new String(FPass.getPassword()));
-                int verify = EmployeeDAO.CreateFuncionario(Fnome.getText(),
-                                                              FMorada.getText(),
-                                                              Femail.getText(),
-                                                              Ftelemovel.getText(),
-                                                              FNif.getText(),
-                                                              hashedPassword,
-                                                              LocalEmployee.numFun);
+                int verify = EmployeeDAO.createEmployee(Fnome.getText(),
+                                                        FMorada.getText(),
+                                                        Femail.getText(),
+                                                        Ftelemovel.getText(),
+                                                        FNif.getText(),
+                                                        hashedPassword,
+                                                        LocalEmployee.empNum);
 
                 switch (verify) {
                     case EMAIL_ERROR_CODE ->
@@ -295,7 +295,6 @@ public class formCreateAccountFuncionario extends javax.swing.JPanel {
                         });
 
                     }
-
 
                 }
 

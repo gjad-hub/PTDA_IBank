@@ -23,9 +23,9 @@ public class PerfilCommentTableCellRenderer extends DefaultTableCellRenderer {
         var currCommentObject = (ModeratorComment) value;
 
         var profileChildElement = new PerfilCommentTableElementPanel(
-        currCommentObject.getNomeFuncionario(),
-        currCommentObject.getDescricao(),
-        currCommentObject.getDataFeita().toString());
+        currCommentObject.getEmployeeName(),
+        currCommentObject.getContent(),
+        currCommentObject.getDateMade().toString());
         return profileChildElement;
     }
 

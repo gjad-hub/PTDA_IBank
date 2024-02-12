@@ -23,8 +23,8 @@ public class DepositActionRenderer extends DefaultTableCellRenderer {
                                                              column);
 
         Deposit deposito = (Deposit) table.getModel().getValueAt(
-                 row, 0);
-        if (!deposito.pendenteAprovacao) {
+                row, 0);
+        if (!deposito.pendingApproval) {
             return new Component() {
             };
         }

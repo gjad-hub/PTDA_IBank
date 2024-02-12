@@ -265,18 +265,18 @@ public class ContasGerenteMainInterface extends javax.swing.JPanel {
 
             currClienteDisplayPanel.setVisible(true);
 
-            lblNumeroFuncionarioValue.setText(Integer.toString(currFuncionario.numFun));
-            lblGerenteResponsavelValue.setText(ctm.obterNomeGerente(currFuncionario.gerente));
-            lblNomeValue.setText(currFuncionario.nome);
+            lblNumeroFuncionarioValue.setText(Integer.toString(currFuncionario.empNum));
+            lblGerenteResponsavelValue.setText(ctm.obterNomeGerente(currFuncionario.managerNum));
+            lblNomeValue.setText(currFuncionario.name);
             lblEmailValue.setText(currFuncionario.email);
-            lblTelemovelValue.setText(currFuncionario.telemovel);
+            lblTelemovelValue.setText(currFuncionario.phoneNumber);
             lblNIFValue.setText(currFuncionario.nif);
-            lblMoradaValue.setText(currFuncionario.morada);
+            lblMoradaValue.setText(currFuncionario.address);
 
             lblDepositosAprovadosValue.setText(
                 Integer.toString(
                     ctm.getDepositAmountNumberFromID(
-                        currFuncionario.numFun
+                        currFuncionario.empNum
                     )));
 
                 };
@@ -443,7 +443,7 @@ public class ContasGerenteMainInterface extends javax.swing.JPanel {
     }
 
     public Employee getCurrFuncionario() {
-        System.out.println(currFuncionario.foiDespedido);
+        System.out.println(currFuncionario.dismissed);
         return currFuncionario;
     }
 

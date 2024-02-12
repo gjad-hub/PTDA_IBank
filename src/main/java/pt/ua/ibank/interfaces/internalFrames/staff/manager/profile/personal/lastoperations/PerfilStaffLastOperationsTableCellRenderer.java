@@ -21,7 +21,7 @@ public class PerfilStaffLastOperationsTableCellRenderer extends DefaultTableCell
                                                              hasFocus, row,
                                                              column);
         Integer currClientID = (Integer) value;
-        String currClientName = ClientDAO.getClienteNomeByID(currClientID);
+        String currClientName = ClientDAO.getClientNameByID(currClientID);
         var profileChildElement = new PerfilStaffLastOperationsTableElementPanel(
         Integer.toString(currClientID),
         currClientName);

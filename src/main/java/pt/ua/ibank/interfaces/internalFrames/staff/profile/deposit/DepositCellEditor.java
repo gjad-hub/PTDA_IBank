@@ -27,9 +27,9 @@ public class DepositCellEditor extends DefaultCellEditor {
                                                  int column) {
 
         Deposit componentValue = (Deposit) table.getModel()
-                 .getValueAt(row, 0);
+                .getValueAt(row, 0);
 
-        if (!componentValue.pendenteAprovacao) {
+        if (!componentValue.pendingApproval) {
             return new Component() {
             };
         }

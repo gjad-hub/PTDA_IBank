@@ -19,7 +19,7 @@ public class StaffContasTableModel extends AbstractTableModel {
     private List<Employee> data = null;
 
     public StaffContasTableModel() {
-        data = EmployeeDAO.getFuncionarioList();
+        data = EmployeeDAO.getEmployeeList();
         header = new ArrayList<>(Arrays.asList(
         "N.Funcionario", "N.Gerente", "Nome",
         "Email", "NIF", "Operacoes Feitas", "demitido", ""));
@@ -51,13 +51,13 @@ public class StaffContasTableModel extends AbstractTableModel {
 
     public void resetSearchFilters() {
         data.clear();
-        if ((data = EmployeeDAO.getFuncionarioList()) != null) {
+        if ((data = EmployeeDAO.getEmployeeList()) != null) {
             fireTableRowsDeleted(0, data.size() - 1);
         }
     }
 
     public String obterNomeGerente(int id) {
-        return EmployeeDAO.getFuncionarioNomeByID(id);
+        return EmployeeDAO.getEmployeeNameByID(id);
     }
 
     public String obterDepositosAprovados(int id) {
@@ -69,7 +69,7 @@ public class StaffContasTableModel extends AbstractTableModel {
             case "ID" -> {
                 data.clear();
                 Employee result;
-                if ((result = EmployeeDAO.getFuncionarioByID(
+                if ((result = EmployeeDAO.getEmployeeByID(
                      Integer.parseInt(value))) != null) {
                     data.add(result);
                     fireTableRowsDeleted(0, data.size() - 1);
@@ -78,7 +78,7 @@ public class StaffContasTableModel extends AbstractTableModel {
             case "Email" -> {
                 data.clear();
                 Employee result;
-                if ((result = EmployeeDAO.getFuncionarioByEmail(value)) != null) {
+                if ((result = EmployeeDAO.getEmployeeByEmail(value)) != null) {
                     data.add(result);
                     fireTableRowsDeleted(0, data.size() - 1);
                 }
@@ -93,7 +93,7 @@ public class StaffContasTableModel extends AbstractTableModel {
             }
             case "Morada" -> {
                 data.clear();
-                if ((data = EmployeeDAO.getFuncionarioListByAddress(value)) != null) {
+                if ((data = EmployeeDAO.getEmployeeListByAddress(value)) != null) {
                     fireTableRowsDeleted(0, data.size() - 1);
                 }
             }
@@ -116,10 +116,10 @@ public class StaffContasTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0 -> {
-                return data.get(rowIndex).numFun;
+                return data.get(rowIndex).empNum;
             }
             case 1 -> {
-                return data.get(rowIndex).gerente == 0 ?
+                return data.get(rowIndex).isManager() ?
                        "Gerente" :
                        "Funcionario";
             }
@@ -133,11 +133,11 @@ public class StaffContasTableModel extends AbstractTableModel {
                 return data.get(rowIndex).nif;
             }
             case 5 -> {
-                var id = data.get(rowIndex).numFun;
+                var id = data.get(rowIndex).empNum;
                 return EmployeeDAO.getFuncionarioNumDepositosAprovados(id);
             }
             case 6 -> {
-                return data.get(rowIndex).foiDespedido ? "Sim" : "";
+                return data.get(rowIndex).dismissed ? "Yes" : "";
             }
             default -> {
                 return -1;

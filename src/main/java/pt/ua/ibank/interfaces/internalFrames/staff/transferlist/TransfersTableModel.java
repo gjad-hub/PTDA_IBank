@@ -50,19 +50,19 @@ public class TransfersTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0 -> {
-                return data.get(rowIndex).getTransferenciaID();
+                return data.get(rowIndex).getTransferID();
             }
             case 1 -> {
-                return data.get(rowIndex).getvalorEmEuros();
+                return data.get(rowIndex).getValueInEuros();
             }
             case 2 -> {
-                return data.get(rowIndex).getclienteRealizaID();
+                return data.get(rowIndex).getClientAuthorID();
             }
             case 3 -> {
-                return data.get(rowIndex).getclienteRecebeID();
+                return data.get(rowIndex).getClientRecipientID();
             }
             case 4 -> {
-                return data.get(rowIndex).getDescricao();
+                return data.get(rowIndex).getDescription();
             }
         }
         return null;
@@ -88,14 +88,14 @@ public class TransfersTableModel extends AbstractTableModel {
             }
             case "Autor" -> {
                 data.clear();
-                if ((data = TransfersDAO.getTransfersListByAutor(
+                if ((data = TransfersDAO.getTransfersListByAuthor(
                      Integer.parseInt(value))) != null) {
                     fireTableRowsDeleted(0, data.size() - 1);
                 }
             }
             case "Receptor" -> {
                 data.clear();
-                if ((data = TransfersDAO.getTransfersListByReceptor(
+                if ((data = TransfersDAO.getTransfersListByRecipient(
                      Integer.parseInt(value))) != null) {
                     fireTableRowsDeleted(0, data.size() - 1);
                 }

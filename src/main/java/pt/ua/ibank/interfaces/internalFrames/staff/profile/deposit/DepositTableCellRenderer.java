@@ -25,16 +25,16 @@ public class DepositTableCellRenderer extends DefaultTableCellRenderer {
 
         DepositTableElementPanel depositChildElement;
 
-        if (currClientObject.pendenteAprovacao) {
+        if (currClientObject.pendingApproval) {
             depositChildElement = new DepositTableElementPanel(
-            Integer.toString(currClientObject.idDeposito),
-            Double.toString(currClientObject.valor)
+            Integer.toString(currClientObject.depositID),
+            Double.toString(currClientObject.value)
     );
         } else {
             depositChildElement = new DepositTableElementPanel(
-            Integer.toString(currClientObject.idDeposito),
-            Double.toString(currClientObject.valor),
-            currClientObject.aprovado
+            Integer.toString(currClientObject.depositID),
+            Double.toString(currClientObject.value),
+            currClientObject.approved
     );
         }
 

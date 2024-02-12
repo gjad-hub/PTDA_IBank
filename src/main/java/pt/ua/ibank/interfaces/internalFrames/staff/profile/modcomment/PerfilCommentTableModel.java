@@ -32,14 +32,14 @@ public class PerfilCommentTableModel extends javax.swing.table.AbstractTableMode
 
     public boolean adicionarComentario(String comment) {
 
-        if (CommentsDAO.addNewComment(LocalEmployee.numFun,
-                clientID,
-                comment)) {
+        if (CommentsDAO.addNewComment(LocalEmployee.empNum,
+                                      clientID,
+                                      comment)) {
             data.add(new ModeratorComment(data.size(),
-                                         LocalEmployee.name,
-                                         comment,
-                                         new Timestamp(
-                                                 System.currentTimeMillis())));
+                                          LocalEmployee.name,
+                                          comment,
+                                          new Timestamp(
+                                                  System.currentTimeMillis())));
 
             fireTableRowsInserted(data.size() - 1, data.size() - 1);
             return true;

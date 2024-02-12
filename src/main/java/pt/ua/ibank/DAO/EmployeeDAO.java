@@ -497,7 +497,7 @@ public class EmployeeDAO {
      * @param employeeId Employee ID used as a reference
      * @return Success code, 1 for Success, 3 for SQL Error
      */
-    public static int dismissEmployee(Integer employeeId) {
+    public static boolean dismissEmployee(Integer employeeId) {
         PreparedStatement stmt = null;
 
         try {
@@ -507,10 +507,10 @@ public class EmployeeDAO {
             + "WHERE num_fun = ?");
             stmt.setInt(1, employeeId);
             stmt.executeUpdate();
-            return SUCCESS_CODE;
+            return true;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
-            return ERROR_CODE;
+            return false;
         } finally {
             DBConnection.closeConnection(stmt);
         }

@@ -202,7 +202,6 @@ public class ContasMainInterface extends javax.swing.JPanel {
                             .addComponent(lblNIFValue, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblMoradaValue, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
                         .addComponent(lblNoDepositos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblNoDepositosValue)))
@@ -276,13 +275,13 @@ public class ContasMainInterface extends javax.swing.JPanel {
 
             currClienteDisplayPanel.setVisible(true);
 
-            lblNumeroClienteValue.setText(Integer.toString(currCliente.numCliente));
-            lblNumContaValue.setText(currCliente.numConta);
-            lblNomeValue.setText(currCliente.nome);
+            lblNumeroClienteValue.setText(Integer.toString(currCliente.clientNumber));
+            lblNumContaValue.setText(currCliente.accountNumber);
+            lblNomeValue.setText(currCliente.name);
             lblEmailValue.setText(currCliente.email);
-            lblTelemovelValue.setText(currCliente.telemovel);
+            lblTelemovelValue.setText(currCliente.password);
             lblNIFValue.setText(currCliente.nif);
-            lblMoradaValue.setText(currCliente.morada);
+            lblMoradaValue.setText(currCliente.address);
 
             //lblNoCartoesValue.setText(
                 //Integer.toString(
@@ -293,7 +292,7 @@ public class ContasMainInterface extends javax.swing.JPanel {
             lblNoDepositosValue.setText(
                 Integer.toString(
                     ctm.getDepositAmountNumberFromID(
-                        currCliente.numCliente
+                        currCliente.clientNumber
                     )));
 
                 };

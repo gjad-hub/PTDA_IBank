@@ -8,98 +8,93 @@ import static pt.ua.ibank.utilities.Configs.LocalEmployee;
 import pt.ua.ibank.utilities.Hash;
 
 /**
- * Objeto de uma class que representa um Funcionario na base de dados
+ * Object of a class representing an Employee in the database
  * Author: PTDA_Staff.
- * Ultima data de modificação: 16 de Janeiro, 2024
+ * Last Modification Date: January 16, 2024
  */
 public class Employee extends Person {
 
     /**
-     * Numero de Funcionario Externo
+     * External Employee Number
      */
-    public int numFun;
+    public int empNum;
 
     /**
-     * Numero de Gerente Responsavel pelo Funcionario Externo
+     * Manager Number Responsible for the External Employee
      */
-    public int gerente;
+    public int managerNum;
 
     /**
-     * Verifica se o cliente tem uma conta valida
+     * Checks if the employee has a valid account
      */
-    public Boolean foiDespedido;
+    public Boolean dismissed;
 
     /**
-     * Constructor: uma instancia com id,valor e atores presentes na transação
-     * juntamente com uma mensagem
+     * Constructor: an instance with id, value, and actors present in the
+     * transaction
+     * along with a message
      *
-     * @param numFun       Numero de Funcionario Abstrato
-     * @param numGerente   Reponsavel por Funcionario Abstrato
-     * @param nome         Nome de Funcionario Abstrato
-     * @param morada       Morada de Funcionario Abstrato
-     * @param telemovel    Telemovel de Funcionario Abstrato
-     * @param email        Email de Funcionario Abstrato
-     * @param nif          NIF de Funcionario Abstrato
-     * @param foiDespedido Variavel Binaria que significa se ainda está presente
-     * @param password     Password usada pelo cliente codificada
+     * @param empNum      External Employee Number
+     * @param managerNum  Responsible for External Employee
+     * @param name        Employee Name
+     * @param address     Employee Address
+     * @param phoneNumber Employee Phone Number
+     * @param email       Employee Email
+     * @param nif         Employee NIF
+     * @param dismissed   Boolean variable indicating if still present
+     * @param password    Encoded password used by the employee
      */
-    public Employee(Integer numFun, String nome, String morada, String email,
-                    String telemovel, String nif, String password,
-                    Integer numGerente, boolean foiDespedido) {
-        super(nome, morada, email, telemovel, nif, password);
-        this.numFun = numFun;
-        this.gerente = numGerente;
-        this.foiDespedido = foiDespedido;
+    public Employee(Integer empNum, String name, String address, String email,
+                    String phoneNumber, String nif, String password,
+                    Integer managerNum, boolean dismissed) {
+        super(name, address, email, phoneNumber, nif, password);
+        this.empNum = empNum;
+        this.managerNum = managerNum;
+        this.dismissed = dismissed;
     }
 
     /**
-     * Constructor: Uma instancia de Class construtor a ser usada para alterar
-     * informações relacionadas com uma conta na base de dados
+     * Constructor: An instance of the constructor class to be used to change
+     * information related to an account in the database
      *
-     * @param numFun       Numero de Funcionario Abstrato
-     * @param numGerente   Reponsavel por Funcionario Abstrato
-     * @param nome         Nome de Funcionario Abstrato
-     * @param morada       Morada de Funcionario Abstrato
-     * @param telemovel    Telemovel de Funcionario Abstrato
-     * @param email        Email de Funcionario Abstrato
-     * @param nif          NIF de Funcionario Abstrato
-     * @param foiDespedido Variavel Binaria que significa se ainda está presente
-     * @param dataCriada   Data em que foi criada a conta de funcionario
+     * @param empNum      External Employee Number
+     * @param managerNum  Responsible for External Employee
+     * @param name        Employee Name
+     * @param address     Employee Address
+     * @param phoneNumber Employee Phone Number
+     * @param email       Employee Email
+     * @param nif         Employee NIF
+     * @param dismissed   Boolean variable indicating if still present
+     * @param createdDate Date when the employee account was created
      */
-    public Employee(Integer numFun, Integer numGerente, String nome,
-                    String morada, String email,
-                    String telemovel, String nif,
-                    boolean foiDespedido, Date dataCriada) {
-        super(nome, morada, email, telemovel, nif, dataCriada);
-        this.numFun = numFun;
-        this.gerente = numGerente;
-        this.foiDespedido = foiDespedido;
+    public Employee(Integer empNum, Integer managerNum, String name,
+                    String address, String email,
+                    String phoneNumber, String nif,
+                    boolean dismissed, Date createdDate) {
+        super(name, address, email, phoneNumber, nif, createdDate);
+        this.empNum = empNum;
+        this.managerNum = managerNum;
+        this.dismissed = dismissed;
     }
 
     /**
-     * Constructor: Construtor a ser usado no painel de Login, reduzido a fim de
-     * poupar memoria
+     * Constructor: Constructor to be used in the Login panel, reduced to
+     * save memory
      *
-     * @param email    Email de usuario
-     * @param password Passsword de usuario
+     * @param email    User email
+     * @param password User password
      */
     public Employee(String email, String password) {
         super(email, password);
     }
 
     /**
-     *
-     * @return retorna se o usuario local é gerente
+     * @return whether the local user is a manager
      */
     public boolean isManager() {
-        return gerente == 0;
+        return managerNum == 0;
     }
 
-    /**
-     *
-     * @param old_email
-     * @return
-     */
     @Override
     public int alterInformation(String old_email) {
         int status = EmployeeDAO.updateEmployee(name, address, email,
@@ -125,12 +120,8 @@ public class Employee extends Person {
         return false;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public String toString() {
-        return "Funcionario{" + "numFun=" + numFun + ", gerente=" + gerente + '}';
+        return "Employee{" + "empNum=" + empNum + ", managerNum=" + managerNum + '}';
     }
 }

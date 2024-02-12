@@ -4,14 +4,14 @@
  */
 package pt.ua.ibank.interfaces.internalFrames.staff.manager.profile.personal.lastoperations;
 
-import pt.ua.ibank.DAO.ClienteFuncionarioDAO;
+import pt.ua.ibank.DAO.ClientEmployeeDAO;
 
 public class PerfilStaffLastOperationsTableModel extends javax.swing.table.AbstractTableModel {
 
     private final java.util.List<Integer> data;
 
     public PerfilStaffLastOperationsTableModel(int clientID) {
-        data = ClienteFuncionarioDAO.getClientsInteractedListByID(clientID);
+        data = ClientEmployeeDAO.getClientsInteractedListByID(clientID);
     }
 
     @Override

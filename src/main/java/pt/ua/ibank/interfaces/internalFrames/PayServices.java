@@ -6,11 +6,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import pt.ua.ibank.DAO.PaymentsDAO;
-import static pt.ua.ibank.DAO.PaymentsDAO.getServicosCompras;
+import static pt.ua.ibank.DAO.PaymentsDAO.getServicesPurchases;
 import pt.ua.ibank.DTO.PaymentServices;
 import static pt.ua.ibank.utilities.Configs.LocalClient;
-import pt.ua.ibank.utilities.RoundedShadowPanel;
 import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
+import pt.ua.ibank.utilities.RoundedShadowPanel;
 
 public class PayServices extends javax.swing.JInternalFrame {
 
@@ -271,9 +271,9 @@ public class PayServices extends javax.swing.JInternalFrame {
             return;
         }
 
-        PaymentServices servicosCompras = getServicosCompras(
-                                 Integer.parseInt(referenciaValida),
-                                 Integer.parseInt(entidadeValida));
+        PaymentServices servicosCompras = getServicesPurchases(
+                        Integer.parseInt(referenciaValida),
+                        Integer.parseInt(entidadeValida));
 
         if (Objects.isNull(servicosCompras)) {
             status.setText("O par entidade referencia não existe !");

@@ -9,8 +9,8 @@ import pt.ua.ibank.DAO.PaymentsDAO;
 import pt.ua.ibank.DTO.PaymentServices;
 import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
 import static pt.ua.ibank.utilities.Configs.LocalClient;
-import pt.ua.ibank.utilities.RoundedShadowPanel;
 import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
+import pt.ua.ibank.utilities.RoundedShadowPanel;
 
 public class ManageReferences extends javax.swing.JInternalFrame {
 
@@ -27,8 +27,8 @@ public class ManageReferences extends javax.swing.JInternalFrame {
     }
 
     private void updateInfo() {
-        f_ent.setText(LocalClient.entidade.toString());
-        popular(PaymentsDAO.getAllServicos(LocalClient.clientNumber));
+        f_ent.setText(LocalClient.entity.toString());
+        popular(PaymentsDAO.getAllServices(LocalClient.clientNumber));
     }
 
     private void popular(ArrayList<PaymentServices> lservices) {

@@ -299,24 +299,24 @@ public class TransfersMainInterface extends javax.swing.JPanel {
         TransfersActionEvent event = (int row) -> {
             selectedTransfer = ((TransfersTableModel)jTableTransactionsContent.getModel()).getTransfer(row);
             currAuthorClient = ClientDAO.getClientByID(
-                selectedTransfer.getclienteRealizaID());
+                selectedTransfer.getClientAuthorID());
             currRecieverClient = ClientDAO.getClientByID(
-                selectedTransfer.getclienteRecebeID());
+                selectedTransfer.getClientRecipientID());
             lblIDValue.setText(Integer.toString(
-                selectedTransfer.getTransferenciaID()));
-        lblReceptorIDNameValue.setText(currRecieverClient.nome);
+                selectedTransfer.getTransferID()));
+        lblReceptorIDNameValue.setText(currRecieverClient.name);
         lblReceptorIDValue.setText(
             Integer.toString(
-                currRecieverClient.numCliente));
-        lblAuthorIDNameValue.setText(currAuthorClient.nome);
+                currRecieverClient.clientNumber));
+        lblAuthorIDNameValue.setText(currAuthorClient.name);
         lblAuthorIDValue.setText(
             Integer.toString(
-                currAuthorClient.numCliente));
+                currAuthorClient.clientNumber));
         lblTransactionValueValue.setText(
             Double.toString(
-                selectedTransfer.getvalorEmEuros()));
+                selectedTransfer.getValueInEuros()));
         lblTransactionDescriptionValue.setText(
-            selectedTransfer.getDescricao());
+            selectedTransfer.getDescription());
         jPanelTransactionDetails.setVisible(true);
     };
 

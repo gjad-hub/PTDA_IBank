@@ -3,18 +3,16 @@ package pt.ua.ibank.interfaces.internalFrames;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import static pt.ua.ibank.utilities.Configs.LocalClientCard;
 import pt.ua.ibank.DAO.DepositsDAO;
-import pt.ua.ibank.DTO.Transactions;
 import pt.ua.ibank.DAO.TransactionsDAO;
-import static pt.ua.ibank.utilities.Configs.LocalClient;
 import pt.ua.ibank.DTO.Deposit;
+import pt.ua.ibank.DTO.Transactions;
 import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
-import pt.ua.ibank.utilities.ClientInfo;
-import pt.ua.ibank.utilities.RoundedShadowPanel;
 import static pt.ua.ibank.utilities.ClientInfo.updateClientBalance;
-import static pt.ua.ibank.utilities.ClientInfo.updateClientCardInfo;
 import static pt.ua.ibank.utilities.ClientInfo.updateLocalCard;
+import static pt.ua.ibank.utilities.Configs.LocalClient;
+import static pt.ua.ibank.utilities.Configs.LocalClientCard;
+import pt.ua.ibank.utilities.RoundedShadowPanel;
 
 public class DashBoard extends javax.swing.JInternalFrame {
 
@@ -35,15 +33,15 @@ public class DashBoard extends javax.swing.JInternalFrame {
 
     private void updateInfoInterval() {
         updateThread = new Thread(() -> {
-            try {
-                while (!stopThread) {
-                    updateInfo();
-                    Thread.sleep(5000);
-                }
-            } catch (InterruptedException ex) {
-                System.out.println(ex);
-            }
-        });
+    try {
+        while (!stopThread) {
+            updateInfo();
+            Thread.sleep(5000);
+        }
+    } catch (InterruptedException ex) {
+        System.out.println(ex);
+    }
+});
         updateThread.start();
     }
 
@@ -68,14 +66,15 @@ public class DashBoard extends javax.swing.JInternalFrame {
     }
 
     private void popularDepositos(ArrayList<Deposit> ldeposito) {
-        DefaultTableModel modelo = (DefaultTableModel) table_depositos.getModel();
+        DefaultTableModel modelo =
+                          (DefaultTableModel) table_depositos.getModel();
         modelo.setNumRows(0);
 
         if (ldeposito != null) {
             for (Deposit dp : ldeposito) {
                 modelo.addRow(new Object[]{
-                    dp.valor + " EUR",
-                    dp.aprovado
+                    dp.value + " EUR",
+                    dp.approved
                 });
             }
         }
@@ -493,12 +492,13 @@ public class DashBoard extends javax.swing.JInternalFrame {
     public final void updateInfo() {
         updateClientBalance(LocalClient);
         updateLocalCard(LocalClientCard, LocalClient);
-        
+
         saldo.setText(LocalClient.balance.toString() + " EUR");
         numeroCartao.setText(printDividedString(LocalClientCard.cardNumber, 4));
         dataValidade.setText(dataFormat.format(LocalClientCard.expireDate));
-        
-        popularTransacoes(TransactionsDAO.getTransacoes(LocalClient.clientNumber));
+
+        popularTransacoes(
+                TransactionsDAO.getTransactions(LocalClient.clientNumber));
         popularDepositos(DepositsDAO.getDeposits(LocalClient.clientNumber));
     }
 
