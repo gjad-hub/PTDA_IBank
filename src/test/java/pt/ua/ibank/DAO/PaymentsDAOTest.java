@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import pt.ua.ibank.DTO.PaymentServices;
-import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
 import static pt.ua.ibank.utilities.Configs.ERROR_CODE;
+import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
 
 class PaymentsDAOTest {
 
@@ -17,21 +17,21 @@ class PaymentsDAOTest {
 
     @Test
     void getServicosCompras() {
-        PaymentServices psc = PaymentsDAO.getServicosCompras(567567567, 22789);
+        PaymentServices psc = PaymentsDAO.getServicesPurchases(567567567, 22789);
         assertNotNull(psc);
     }
 
     @Test
     void getServicosComprasFalse() {
-        PaymentServices psc = PaymentsDAO.getServicosCompras(9999999,
-                                                                      999999);
+        PaymentServices psc = PaymentsDAO.getServicesPurchases(9999999,
+                                                               999999);
         assertNull(psc);
     }
 
     @Test
     public void testGetAllServicosSuccess() {
         ArrayList<PaymentServices> pagamentos =
-                                            PaymentsDAO.getAllServicos(5);
+                                   PaymentsDAO.getAllServices(5);
         assertNotNull(pagamentos);
         assertFalse(pagamentos.isEmpty());
     }
@@ -61,7 +61,7 @@ class PaymentsDAOTest {
     @Test
     public void testGetAllServicosIDClientNonExistent() {
         ArrayList<PaymentServices> pagamentos =
-                                            PaymentsDAO.getAllServicos(99999);
+                                   PaymentsDAO.getAllServices(99999);
         assertNull(pagamentos);
     }
 

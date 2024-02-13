@@ -130,7 +130,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
 
         jButton3.setBackground(new java.awt.Color(58, 58, 58));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Adicionar comentario");
+        jButton3.setText("Add Comment");
         jButton3.setToolTipText("");
         jButton3.setBorder(null);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -141,7 +141,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
 
         jBtnTransactions.setBackground(new java.awt.Color(58, 58, 58));
         jBtnTransactions.setForeground(new java.awt.Color(255, 255, 255));
-        jBtnTransactions.setText("Ver Transações");
+        jBtnTransactions.setText("Transactions");
         jBtnTransactions.setToolTipText("");
         jBtnTransactions.setBorder(null);
 
@@ -149,12 +149,12 @@ public class PerfilMainInterface extends javax.swing.JPanel {
         jPanel3.setPreferredSize(new java.awt.Dimension(319, 36));
 
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Data de criação:");
+        jLabel14.setText("Creation Date:");
 
         lblDataValue.setBackground(new java.awt.Color(255, 255, 255));
         lblDataValue.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         lblDataValue.setForeground(new java.awt.Color(255, 255, 255));
-        lblDataValue.setText(personalDataTable.client.dataCriada.toString());
+        lblDataValue.setText(personalDataTable.client.creationDate.toString());
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -179,7 +179,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
 
         lblNomeCompleto.setBackground(new java.awt.Color(255, 255, 255));
         lblNomeCompleto.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblNomeCompleto.setText(personalDataTable.client.nome);
+        lblNomeCompleto.setText(personalDataTable.client.name);
 
         jPanelFotoPerfil.setBackground(new java.awt.Color(255, 255, 255));
         jPanelFotoPerfil.setMaximumSize(new java.awt.Dimension(262, 262));
@@ -250,7 +250,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Dados Pessoais");
+        jLabel10.setText("Personal Data");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -328,22 +328,22 @@ public class PerfilMainInterface extends javax.swing.JPanel {
             public void onSave(int row, Object newValue) {
                 personalDataTable.getValueAt(row,0);
 
-                String resultado = "Operação feita com sucesso";
+                String result = "Operation done Successfully";
 
                 if(!personalDataTable.verificarDados((String)newValue,row)){
-                    resultado = "Dados invalidos, tenta denovo";
-                    JOptionPane.showMessageDialog(LayeredPaneEditarConta, resultado);
+                    result = "Invalid data, please try again";
+                    JOptionPane.showMessageDialog(LayeredPaneEditarConta, result);
                     return;
                 }
                 personalDataTable.setValue(newValue, row);
                 personalDataTable.setValueAt(newValue, row, 0);
                 jTablePersonalData.repaint();
 
-                if(personalDataTable.getLabel(row).equals("Nome:")){
+                if(personalDataTable.getLabel(row).equals("Name:")){
                     lblNomeCompleto.setText((String)newValue);
                 }
                 personalDataTable.updateClient();
-                JOptionPane.showMessageDialog(LayeredPaneEditarConta, resultado);
+                JOptionPane.showMessageDialog(LayeredPaneEditarConta, result);
             }
         };
 
@@ -376,7 +376,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
 
         jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel26.setText("Cartões");
+        jLabel26.setText("Cards");
 
         jLabel27.setBackground(new java.awt.Color(51, 51, 51));
         jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
@@ -440,7 +440,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Comentarios");
+        jLabel12.setText("Comments");
 
         jLabel13.setBackground(new java.awt.Color(51, 51, 51));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -456,7 +456,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel12)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -511,7 +511,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText("Depositos");
+        jLabel18.setText("Deposits");
 
         jLabel19.setBackground(new java.awt.Color(51, 51, 51));
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -527,7 +527,7 @@ public class PerfilMainInterface extends javax.swing.JPanel {
                 .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel18)
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addContainerGap(209, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -578,18 +578,18 @@ public class PerfilMainInterface extends javax.swing.JPanel {
 
             @Override
             public void onAcceptTransaction(int row){
-                Deposit d = (Deposit)dtm.getValueAt(row,0);
+                pt.ua.ibank.DTO.Deposit d = (pt.ua.ibank.DTO.Deposit)dtm.getValueAt(row,0);
                 dtm.aprovarDeposito(row);
-                personalDataTable.updateDepositDecision(d.valor);
+                personalDataTable.updateDepositDecision(d.value);
             }
 
             @Override
             public void onRejectTransaction(int row){
-                Deposit d = (Deposit)dtm.getValueAt(row,0);
+                pt.ua.ibank.DTO.Deposit d = (pt.ua.ibank.DTO.Deposit)dtm.getValueAt(row,0);
 
-                AdicionarComentarioPerfil(pctm,"[deposito n"+d.idDeposito+"] ");
-                dtm.reprovarDeposito(row);
-                personalDataTable.updateDepositDecision(d.valor);
+                AdicionarComentarioPerfil(pctm,"[deposit n"+d.depositID+"] ");
+                dtm.aprovarDeposito(row);
+                personalDataTable.updateDepositDecision(d.value);
             }
         };
 

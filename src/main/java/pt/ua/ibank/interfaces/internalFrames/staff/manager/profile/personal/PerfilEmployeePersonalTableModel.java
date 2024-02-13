@@ -133,7 +133,7 @@ public final class PerfilEmployeePersonalTableModel extends AbstractTableModel {
     }
 
     public void updateClient() {
-        EmployeeDAO.updateEmployee(employee.empNum, employee.name,
+        EmployeeDAO.updateEmployee(employee.name,
                                    employee.address,
                                    employee.email,
                                    employee.phoneNumber,

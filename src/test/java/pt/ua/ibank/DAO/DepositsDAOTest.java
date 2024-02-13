@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import pt.ua.ibank.DTO.Deposit;
-import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
 import static pt.ua.ibank.utilities.Configs.ERROR_CODE;
+import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
 
 class DepositsDAOTest {
 
@@ -41,7 +41,7 @@ class DepositsDAOTest {
     void aproveDeposit() {
         int id_deposit = 6;
         int id = 1;
-        boolean result = DepositsDAO.aproveDeposit(id_deposit, id);
+        boolean result = DepositsDAO.approveDeposit(id_deposit, id);
         assertTrue(result);
     }
 
@@ -49,7 +49,7 @@ class DepositsDAOTest {
     void aproveDepositFalse() {
         int id_deposit = 999999;
         int id = 1;
-        boolean result = DepositsDAO.aproveDeposit(id_deposit, id);
+        boolean result = DepositsDAO.approveDeposit(id_deposit, id);
         assertFalse(result);
     }
 

@@ -61,7 +61,7 @@ public class StaffContasTableModel extends AbstractTableModel {
     }
 
     public String obterDepositosAprovados(int id) {
-        return EmployeeDAO.getFuncionarioNumDepositosAprovados(id);
+        return EmployeeDAO.getEmployeeApprovedDepositsNumber(id);
     }
 
     public void searchForClient(String value, String searchType) {
@@ -86,7 +86,7 @@ public class StaffContasTableModel extends AbstractTableModel {
             case "NIF" -> {
                 data.clear();
                 Employee result;
-                if ((result = EmployeeDAO.getFuncionarioByNIF(value)) != null) {
+                if ((result = EmployeeDAO.getEmployeeByNIF(value)) != null) {
                     data.add(result);
                     fireTableRowsDeleted(0, data.size() - 1);
                 }
@@ -134,7 +134,7 @@ public class StaffContasTableModel extends AbstractTableModel {
             }
             case 5 -> {
                 var id = data.get(rowIndex).empNum;
-                return EmployeeDAO.getFuncionarioNumDepositosAprovados(id);
+                return EmployeeDAO.getEmployeeApprovedDepositsNumber(id);
             }
             case 6 -> {
                 return data.get(rowIndex).dismissed ? "Yes" : "";

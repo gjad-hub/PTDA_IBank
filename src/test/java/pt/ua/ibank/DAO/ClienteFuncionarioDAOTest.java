@@ -9,14 +9,14 @@ class ClienteFuncionarioDAOTest {
     @Test
     void testGetClientsInteractedListByID() {
         ArrayList<Integer> list =
-                           ClienteFuncionarioDAO.getClientsInteractedListByID(1);
+                           ClientEmployeeDAO.getClientsInteractedListByID(1);
         assertNotNull(list);
     }
 
     @Test
     void testGetClientsInteractedListByIDFalse() {
         ArrayList<Integer> list =
-                           ClienteFuncionarioDAO.getClientsInteractedListByID(
+                           ClientEmployeeDAO.getClientsInteractedListByID(
                                    9999);
         assertTrue(list.isEmpty());
     }

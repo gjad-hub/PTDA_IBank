@@ -13,6 +13,7 @@ import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilAction
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilCellEditor;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilTableActionEvent;
 import pt.ua.ibank.interfaces.internalFrames.staff.profile.personal.PerfilTableCellRenderer;
+import static pt.ua.ibank.utilities.Configs.LocalEmployee;
 
 public class StaffPerfilMainInterface extends javax.swing.JPanel {
 
@@ -108,7 +109,7 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
         lblDataValue.setBackground(new java.awt.Color(255, 255, 255));
         lblDataValue.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         lblDataValue.setForeground(new java.awt.Color(255, 255, 255));
-        lblDataValue.setText(personalDataTable.funcionario.dataCriada.toString());
+        lblDataValue.setText(personalDataTable.employee.creationDate.toString());
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -133,7 +134,7 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
 
         lblNomeCompleto.setBackground(new java.awt.Color(255, 255, 255));
         lblNomeCompleto.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblNomeCompleto.setText(personalDataTable.funcionario.nome);
+        lblNomeCompleto.setText(personalDataTable.employee.name);
 
         jPanelFotoPerfil.setBackground(new java.awt.Color(255, 255, 255));
         jPanelFotoPerfil.setMaximumSize(new java.awt.Dimension(262, 262));
@@ -273,22 +274,22 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
             public void onSave(int row, Object newValue) {
                 personalDataTable.getValueAt(row,0);
 
-                String resultado = "Operação feita com sucesso";
+                String result = "Operation done successfully";
 
                 if(!personalDataTable.verificarDados((String)newValue,row)){
-                    resultado = "Dados invalidos, tenta denovo";
-                    JOptionPane.showMessageDialog(LayeredPaneEditarConta, resultado);
+                    result = "Couldn't complete the operation, please try again";
+                    JOptionPane.showMessageDialog(LayeredPaneEditarConta, result);
                     return;
                 }
                 personalDataTable.setValue(newValue, row);
                 personalDataTable.setValueAt(newValue, row, 0);
                 jTablePersonalData.repaint();
 
-                if(personalDataTable.getLabel(row).equals("Nome:")){
+                if(personalDataTable.getLabel(row).equals("Name:")){
                     lblNomeCompleto.setText((String)newValue);
                 }
                 personalDataTable.updateClient();
-                JOptionPane.showMessageDialog(LayeredPaneEditarConta, resultado);
+                JOptionPane.showMessageDialog(LayeredPaneEditarConta, result);
             }
         };
 
@@ -498,8 +499,8 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        if (clientID == LocalFuncionario.numFun
-            || EmployeeDAO.getFuncionarioDemitidoByID(clientID)) {
+        if (clientID == LocalEmployee.empNum
+            || pt.ua.ibank.DAO.EmployeeDAO.getFuncionarioDemitidoByID(clientID)) {
             jPanelOperacoesDisponiveis.setVisible(false);
         }
 
@@ -531,8 +532,8 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
     private void BtnPromoverContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPromoverContaActionPerformed
         String resultado =
                personalDataTable.promoverFuncionario() ?
-               "Operação feita com sucesso" :
-               "Operação feita sem sucesso, tente novamente";
+               "Operation done Successfully" :
+               "Couldn't complete the operation, please try again";
         JOptionPane.showMessageDialog(this, resultado);
     }//GEN-LAST:event_BtnPromoverContaActionPerformed
 
@@ -540,8 +541,8 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
 
         String resultado =
                personalDataTable.apagarFuncionario() ?
-               "Operação feita com sucesso" :
-               "Operação feita sem sucesso, tente novamente";
+               "Operation done Successfully" :
+               "Couldn't complete the operation, please try again";
         JOptionPane.showMessageDialog(this, resultado);
     }//GEN-LAST:event_btnApagarContaActionPerformed
 

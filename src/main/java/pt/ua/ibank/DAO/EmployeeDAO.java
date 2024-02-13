@@ -307,17 +307,36 @@ public class EmployeeDAO {
         }
     }
 
+    public static String getEmployeeApprovedDepositsNumber(int id) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            stmt = conn.prepareStatement(
+            "SELECT count(*) as number from deposit where num_fun = ?;");
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getString("number");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+        return null;
+    }
+
     /**
      * Function to return Employees by NIF
      *
      * @param nif NIF used as a reference
      * @return Employees related to that NIF
      */
-    public static ArrayList<Employee> getEmployeeListByNIF(String nif) {
+    public static Employee getEmployeeByNIF(String nif) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        ArrayList<Employee> list = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(
             "SELECT num_fun, name, address, email, phone, nif, manager, dismissed, creation_date "
@@ -336,19 +355,18 @@ public class EmployeeDAO {
                 Boolean dismissed = rs.getBoolean("dismissed");
                 Date creationDate = rs.getDate("creation_date");
 
-                list.add(new Employee(number, managerId, name, address, email,
-                                      phone,
-                                      employeeNIF, dismissed,
-                                      creationDate
-                ));
+                return new Employee(number, managerId, name, address, email,
+                                    phone,
+                                    employeeNIF, dismissed,
+                                    creationDate
+                );
             }
-            return list;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
-            return null;
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
+        return null;
     }
 
     /**

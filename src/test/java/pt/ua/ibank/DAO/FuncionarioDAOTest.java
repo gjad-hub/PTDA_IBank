@@ -10,64 +10,64 @@ class FuncionarioDAOTest {
 
     @Test
     public void testCreateFuncionarioSuccess() {
-        int result = EmployeeDAO.CreateFuncionario("Erling Haaland",
-                                                      "Leeds, Inglaterra",
-                                                      "haalandmc@gmail.com",
-                                                      "983453618", "333444555",
-                                                      "manchestercity9", 1);
+        int result = EmployeeDAO.createEmployee("Erling Haaland",
+                                                "Leeds, Inglaterra",
+                                                "haalandmc@gmail.com",
+                                                "983453618", "333444555",
+                                                "manchestercity9", 1);
         assertEquals(SUCCESS_CODE, result);
     }
 
     @Test
     public void testUpdateFuncionarioBasicInfoSuccess() {
-        int result = EmployeeDAO.UpdateFuncionario("Erling Haaland",
-                                                      "Manchester, Inglaterra",
-                                                      "haalandmc9@gmail.com",
-                                                      "983453618", "333444555",
-                                                      "haalandmc@gmail.com");
+        int result = EmployeeDAO.updateEmployee("Erling Haaland",
+                                                "Manchester, Inglaterra",
+                                                "haalandmc9@gmail.com",
+                                                "983453618", "333444555",
+                                                "haalandmc@gmail.com");
         assertEquals(SUCCESS_CODE, result);
     }
 
     @Test
     public void testUpdateFuncionarioWithPasswordSuccess() {
         int result = EmployeeDAO.UpdateFuncionario("Erling Haaland",
-                                                      "Manchester, Inglaterra",
-                                                      "haalandmc9@gmail.com",
-                                                      "983453618", "333444555",
-                                                      "noruega9mc",
-                                                      "haalandmc9@gmail.com");
+                                                   "Manchester, Inglaterra",
+                                                   "haalandmc9@gmail.com",
+                                                   "983453618", "333444555",
+                                                   "noruega9mc",
+                                                   "haalandmc9@gmail.com");
         assertEquals(SUCCESS_CODE, result);
     }
 
     @Test
     public void testGetFuncionarioByEmail() {
-        assertNotNull(EmployeeDAO.getFuncionarioByEmail("admin@ibank.pt"));
+        assertNotNull(EmployeeDAO.getEmployeeByEmail("admin@ibank.pt"));
     }
 
     @Test
     public void testGetFuncionarioList() {
-        assertNotNull(EmployeeDAO.getFuncionarioList());
+        assertNotNull(EmployeeDAO.getEmployeeList());
     }
 
     @Test
     public void testGetFuncionarioByEmailNonExistent() {
-        assertNull(EmployeeDAO.getFuncionarioByEmail("messi10@gmail.com"));
+        assertNull(EmployeeDAO.getEmployeeByEmail("messi10@gmail.com"));
     }
 
     @Test
     public void testGetFuncionarioByIDSuccess() {
         int validFuncionarioId = 1;
-        Employee resultado = EmployeeDAO.getFuncionarioByID(
-                    validFuncionarioId);
+        Employee resultado = EmployeeDAO.getEmployeeByID(
+                 validFuncionarioId);
         assertNotNull(resultado);
-        assertEquals(1, resultado.numFun);
+        assertEquals(1, resultado.empNum);
     }
 
     @Test
     public void testGetFuncionarioByIDNotFound() {
         int invalidFuncionarioId = 9999;
-        Employee resultado = EmployeeDAO.getFuncionarioByID(
-                    invalidFuncionarioId);
+        Employee resultado = EmployeeDAO.getEmployeeByID(
+                 invalidFuncionarioId);
         assertNull(resultado);
     }
 
@@ -75,7 +75,7 @@ class FuncionarioDAOTest {
     public void testGetFuncionarioNomeByIDSuccess() {
         int validFuncionarioId = 1;
         String expectedName = "admin";
-        String resultado = EmployeeDAO.getFuncionarioNomeByID(
+        String resultado = EmployeeDAO.getEmployeeNameByID(
                validFuncionarioId);
         assertNotNull(resultado);
         assertEquals(expectedName, resultado);
@@ -84,14 +84,14 @@ class FuncionarioDAOTest {
     @Test
     public void testGetFuncionarioNomeByIDNotFound() {
         int invalidFuncionarioId = 9999;
-        String resultado = EmployeeDAO.getFuncionarioNomeByID(
+        String resultado = EmployeeDAO.getEmployeeNameByID(
                invalidFuncionarioId);
         assertNull(resultado);
     }
 
     @Test
     public void testGetFuncionarioListSuccess() {
-        ArrayList<Employee> resultado = EmployeeDAO.getFuncionarioList();
+        ArrayList<Employee> resultado = EmployeeDAO.getEmployeeList();
         assertNotNull(resultado);
         assertFalse(resultado.isEmpty());
     }
@@ -100,8 +100,8 @@ class FuncionarioDAOTest {
     public void testGetFuncionarioListByAddressSuccess() {
         String validAddress = "Avenida L, nº 111";
         ArrayList<Employee> resultado =
-                               EmployeeDAO.getFuncionarioListByAddress(
-                                       validAddress);
+                            EmployeeDAO.getEmployeeListByAddress(
+                                    validAddress);
         assertNotNull(resultado);
         assertFalse(resultado.isEmpty());
     }
@@ -110,8 +110,8 @@ class FuncionarioDAOTest {
     public void testGetFuncionarioListByAddressNotFound() {
         String invalidAddress = "Morada Incerta";
         ArrayList<Employee> resultado =
-                               EmployeeDAO.getFuncionarioListByAddress(
-                                       invalidAddress);
+                            EmployeeDAO.getEmployeeListByAddress(
+                                    invalidAddress);
         assertNull(resultado);
     }
 
@@ -132,7 +132,7 @@ class FuncionarioDAOTest {
     @Test
     public void testGetFuncionarioIdByEmailSuccess() {
         String emailExistente = "admin@ibank.pt";
-        Integer resultado = EmployeeDAO.getFuncionarioIdByEmail(
+        Integer resultado = EmployeeDAO.getEmployeeIdByEmail(
                 emailExistente);
         assertNotNull(resultado);
         assertEquals(1, resultado);
@@ -141,7 +141,7 @@ class FuncionarioDAOTest {
     @Test
     public void testGetFuncionarioIdByEmailNotFound() {
         String emailInexistente = "messi10@gmail.com";
-        Integer resultado = EmployeeDAO.getFuncionarioIdByEmail(
+        Integer resultado = EmployeeDAO.getEmployeeIdByEmail(
                 emailInexistente);
         assertNull(resultado);
     }
@@ -149,17 +149,17 @@ class FuncionarioDAOTest {
     @Test
     public void testGetFuncionarioByNIFSuccess() {
         String nifExistente = "123456789";
-        Employee funcionario = EmployeeDAO.getFuncionarioByNIF(
-                    nifExistente);
+        Employee funcionario = EmployeeDAO.getEmployeeByNIF(
+                 nifExistente);
         assertNotNull(funcionario);
-        assertEquals(1, funcionario.numFun);
+        assertEquals(1, funcionario.empNum);
     }
 
     @Test
     public void testGetFuncionarioByNIFNotFound() {
         String nifInexistente = "899899899";
-        Employee funcionario = EmployeeDAO.getFuncionarioByNIF(
-                    nifInexistente);
+        Employee funcionario = EmployeeDAO.getEmployeeByNIF(
+                 nifInexistente);
         assertNull(funcionario);
     }
 
@@ -232,7 +232,7 @@ class FuncionarioDAOTest {
     }
 
     @Test
-    public void testGetFuncionarioDemitidoByIDActive() { 
+    public void testGetFuncionarioDemitidoByIDActive() {
         boolean resultado = EmployeeDAO.getFuncionarioDemitidoByID(1);
         assertFalse(resultado);
     }

@@ -36,7 +36,7 @@ class TransfersDAOTest {
     @Test
     void getClientTransfersList() {
         ArrayList<Transfers> ltransfers =
-                                  TransfersDAO.getClientTransfersList(1);
+                             TransfersDAO.getClientTransfersList(1);
         assertNotNull(ltransfers);
         assertFalse(ltransfers.isEmpty());
     }
@@ -44,14 +44,14 @@ class TransfersDAOTest {
     @Test
     void getClientTransfersListFalse() {
         ArrayList<Transfers> ltransfers =
-                                  TransfersDAO.getClientTransfersList(99999);
+                             TransfersDAO.getClientTransfersList(99999);
         assertNull(ltransfers);
     }
 
     @Test
     void getTransfersListByAutor() {
         ArrayList<Transfers> ltransfers =
-                                  TransfersDAO.getTransfersListByAutor(1);
+                             TransfersDAO.getTransfersListByAuthor(1);
         assertNotNull(ltransfers);
         assertFalse(ltransfers.isEmpty());
     }
@@ -59,14 +59,14 @@ class TransfersDAOTest {
     @Test
     void getTransfersListByAutorFalse() {
         ArrayList<Transfers> ltransfers =
-                                  TransfersDAO.getTransfersListByAutor(99999);
+                             TransfersDAO.getTransfersListByAuthor(99999);
         assertNull(ltransfers);
     }
 
     @Test
     void testGetTransfersListByReceptor() {
         ArrayList<Transfers> transfersList =
-                                  TransfersDAO.getTransfersListByReceptor(1);
+                             TransfersDAO.getTransfersListByRecipient(1);
         assertNotNull(transfersList);
         assertFalse(transfersList.isEmpty());
     }
@@ -74,7 +74,7 @@ class TransfersDAOTest {
     @Test
     void testGetTransfersListByReceptorFalse() {
         ArrayList<Transfers> transfersList =
-                                  TransfersDAO.getTransfersListByReceptor(999999);
+                             TransfersDAO.getTransfersListByRecipient(999999);
         assertNull(transfersList);
     }
 }

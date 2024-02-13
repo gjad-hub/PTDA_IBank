@@ -208,11 +208,11 @@ public class staffInterface extends javax.swing.JFrame {
         });
 
         lblPositionInCompany.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        lblPositionInCompany.setText(LocalFuncionario.isManager() ? MANAGER_NAME : EMPLOYEE_NAME);
+        lblPositionInCompany.setText(LocalEmployee.isManager() ? MANAGER_NAME : EMPLOYEE_NAME);
 
         lblsaccount.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblsaccount.setForeground(new java.awt.Color(62, 171, 191));
-        lblsaccount.setText(LocalFuncionario.nome);
+        lblsaccount.setText(LocalEmployee.name);
         lblsaccount.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblsaccountMouseClicked(evt);
@@ -553,7 +553,7 @@ public class staffInterface extends javax.swing.JFrame {
         lblWelcome.setText("Welcome Back,");
 
         lblEmployeeNameValue.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblEmployeeNameValue.setText(LocalFuncionario.nome);
+        lblEmployeeNameValue.setText(LocalEmployee.name);
 
         desktop.setLayer(jPanelAccounts, javax.swing.JLayeredPane.DEFAULT_LAYER);
         desktop.setLayer(JPanelWidget3, javax.swing.JLayeredPane.DEFAULT_LAYER);

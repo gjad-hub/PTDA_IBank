@@ -1,13 +1,11 @@
 package pt.ua.ibank.DAO;
 
+import java.util.ArrayList;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import pt.ua.ibank.DTO.Client;
-
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
 import static pt.ua.ibank.utilities.Configs.EMAIL_ERROR_CODE;
+import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
 
 class ClientDAOTest {
 
@@ -102,7 +100,8 @@ class ClientDAOTest {
     public void testUpdateClientErrorEmail() {
         int result = ClientDAO.UpdateClient("João Tomás Silva",
                                             "Avenida Lourenço Peixinho, 123, Aveiro, Portugal",
-                                            "marta.rodrigues@email.com", "923344551",
+                                            "marta.rodrigues@email.com",
+                                            "923344551",
                                             "119876543", "joao2024silva",
                                             "joaotomassilva@gmail.com");
         assertEquals(EMAIL_ERROR_CODE, result);
@@ -161,13 +160,13 @@ class ClientDAOTest {
     void getClienteNomeByID() {
         String name = "Sara Silva";
         int id = 3;
-        String result = ClientDAO.getClienteNomeByID(id);
+        String result = ClientDAO.getClientNameByID(id);
         assertEquals(name, result);
     }
 
     @Test
     void getClienteNomeByIDFalse() {
-        String result = ClientDAO.getClienteNomeByID(9999);
+        String result = ClientDAO.getClientNameByID(9999);
         assertNull(result);
     }
 
