@@ -150,7 +150,7 @@ public final class PerfilEmployeePersonalTableModel extends AbstractTableModel {
     }
 
     public boolean promoverFuncionario() {
-        return EmployeeDAO.promoverFuncionario(employee.empNum);
+        return EmployeeDAO.promoteEmployee(employee.empNum);
     }
 
     @Override

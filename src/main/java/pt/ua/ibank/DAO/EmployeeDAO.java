@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import pt.ua.ibank.DTO.Employee;
 import static pt.ua.ibank.utilities.Configs.EMAIL_ERROR_CODE;
@@ -108,6 +109,30 @@ public class EmployeeDAO {
             DBConnection.closeConnection(stmt, rs);
         }
         return null;
+    }
+
+    /**
+     * Function used to promote an employee
+     *
+     * @param id Employee ID used as a reference
+     * @return returns a boolean success code
+     */
+    public static boolean promoteEmployee(int id) {
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = conn.prepareStatement(
+            "UPDATE employee SET manager_id = NULL WHERE employee_number LIKE ?");
+            stmt.setInt(1, id);
+            stmt.execute();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            return false;
+        } finally {
+            DBConnection.closeConnection(stmt);
+        }
     }
 
     /**
@@ -455,6 +480,154 @@ public class EmployeeDAO {
         } finally {
             DBConnection.closeConnection(stmt, rs);
         }
+    }
+
+    /**
+     * Returns the external employee with the best performance in deposit
+     * approvals
+     *
+     * @return returns the name of the employee with the best performance
+     */
+    public static String getEmployeeWithMostApprovedDeposits() {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String employeeWithMostDeposits = null;
+
+        try {
+            stmt = conn.prepareStatement(
+            "SELECT emp_id, COUNT(*) AS total_approved FROM deposit WHERE approved = 1 GROUP BY employee_number ORDER BY total_approved DESC LIMIT 1;");
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int employeeNumber = rs.getInt("employee_number");
+                employeeWithMostDeposits = getEmployeeNameByID(
+                employeeNumber);
+            }
+
+            return employeeWithMostDeposits;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+
+        return null;
+    }
+
+    /**
+     * Function that returns the number of pending external deposits for
+     * approval
+     *
+     * @return number of deposits pending approval
+     */
+    public static Integer getPendingDepositsCount() {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Integer pendingDepositsCount = null;
+
+        try {
+            stmt = conn.prepareStatement(
+            "SELECT COUNT(*) AS pending_deposits FROM deposit WHERE pending_approval = 1;");
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                pendingDepositsCount = rs.getInt("pending_deposits");
+            }
+
+            return pendingDepositsCount;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+
+        return null;
+    }
+
+    /**
+     * Function that returns the date of the last deposit request
+     *
+     * @return returns the date of the last deposit request formatted as String
+     */
+    public static String getLastDepositRequestDate() {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Timestamp lastDepositRequestDate = null;
+
+        try {
+            stmt = conn.prepareStatement(
+            "SELECT data FROM deposit ORDER BY data DESC LIMIT 1;");
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                lastDepositRequestDate = rs.getTimestamp("data");
+            }
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm");
+
+            return dateFormat.format(lastDepositRequestDate);
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+
+        return null;
+    }
+
+    /**
+     * Function that returns the total number of created accounts
+     *
+     * @return total number of created accounts
+     */
+    public static Integer getTotalNumberOfCreatedAccounts() {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Integer totalAccountsCreated = null;
+
+        try {
+            stmt = conn.prepareStatement(
+            "SELECT COUNT(*) AS total_accounts FROM clients;");
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                totalAccountsCreated = rs.getInt("total_accounts");
+            }
+            return totalAccountsCreated;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+        return null;
+    }
+
+    /**
+     * Function that returns the name of the last registered customer
+     *
+     * @return returns the name of the last registered customer
+     */
+    public static String getLastNameOfLastCreatedAccount() {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String lastNameOfLastAccount = null;
+
+        try {
+            stmt = conn.prepareStatement(
+            "SELECT name FROM account ORDER BY account_number DESC LIMIT 1;");
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                lastNameOfLastAccount = rs.getString("name");
+            }
+
+            return lastNameOfLastAccount;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+
+        return null;
     }
 
     /**

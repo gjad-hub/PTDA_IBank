@@ -497,7 +497,7 @@
                       <Color blue="bf" green="ab" red="3e" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="pt.ua.ibank.DAO.EmployeeDAO.getNumContasCriadasMes().toString()" type="code"/>
+                      <Connection code="pt.ua.ibank.DAO.EmployeeDAO.getTotalNumberOfCreatedAccounts().toString()" type="code"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -528,7 +528,7 @@
                       <Font name="Segoe UI" size="12" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="pt.ua.ibank.DAO.EmployeeDAO.getNomeUltimaContaCriada()" type="code"/>
+                      <Connection code="pt.ua.ibank.DAO.EmployeeDAO.getLastNameOfLastCreatedAccount()" type="code"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -661,7 +661,7 @@
                       <Font name="Segoe UI" size="12" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="pt.ua.ibank.DAO.EmployeeDAO.getDataUltimoPedidoDeposito()" type="code"/>
+                      <Connection code="pt.ua.ibank.DAO.EmployeeDAO.getLastDepositRequestDate()" type="code"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -688,7 +688,7 @@
                       <Color blue="bf" green="ab" red="3e" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="pt.ua.ibank.DAO.EmployeeDAO.getNumDepositosPorAprovar().toString()" type="code"/>
+                      <Connection code="pt.ua.ibank.DAO.EmployeeDAO.getPendingDepositsCount().toString()" type="code"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -830,7 +830,7 @@
                       <Font name="Segoe UI" size="12" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="pt.ua.ibank.DAO.EmployeeDAO.getNumAprovacoesFuncionarioTop().toString()" type="code"/>
+                      <Connection code="pt.ua.ibank.DAO.EmployeeDAO.getEmployeeWithMostApprovedDeposits().toString()" type="code"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -857,7 +857,7 @@
                       <Color blue="bf" green="ab" red="3e" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="pt.ua.ibank.DAO.EmployeeDAO.getFuncionarioComMaisDepositosAprovados()" type="code"/>
+                      <Connection code="pt.ua.ibank.DAO.EmployeeDAO.getEmployeeWithMostApprovedDeposits()" type="code"/>
                     </Property>
                   </Properties>
                 </Component>
