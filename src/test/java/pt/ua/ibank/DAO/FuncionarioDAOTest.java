@@ -17,6 +17,12 @@ class FuncionarioDAOTest {
                                                 "manchestercity9", 1);
         assertEquals(SUCCESS_CODE, result);
     }
+//
+//     updateEmployee(String name,
+//                                     String address, String email,
+//                                     String phone, String nif,
+//                                     String password, String old_email)
+//
 
     @Test
     public void testUpdateFuncionarioBasicInfoSuccess() {

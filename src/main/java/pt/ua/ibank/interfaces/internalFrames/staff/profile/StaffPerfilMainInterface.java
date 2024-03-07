@@ -500,7 +500,7 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
         );
 
         if (clientID == LocalEmployee.empNum
-            || pt.ua.ibank.DAO.EmployeeDAO.getFuncionarioDemitidoByID(clientID)) {
+            || pt.ua.ibank.DAO.EmployeeDAO.isEmployeeDismissedByID(clientID)) {
             jPanelOperacoesDisponiveis.setVisible(false);
         }
 

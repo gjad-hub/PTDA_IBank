@@ -639,6 +639,55 @@ public class EmployeeDAO {
      * @param email      New email of the Employee
      * @param phone      New phone number of the Employee
      * @param nif        New NIF of the Employee
+     * @param old_email
+     * @return Success code, 1 for Success, 2 for Email Error, 3 for SQL Error
+     */
+    public static int updateEmployee(String name,
+                                     String address, String email,
+                                     String phone, String nif
+    ) {
+        PreparedStatement stmt = null;
+
+        try {
+            // Check if there is already an account with that email
+            stmt = conn.prepareStatement(
+            "SELECT count('num_emp') AS value FROM employee where email like ?;");
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+
+            if (rs.getInt("value") > 0) {
+                return EMAIL_ERROR_CODE;
+            }
+
+            stmt = conn.prepareStatement(
+            "UPDATE employee "
+            + "SET name = ?, address = ?, email = ?, phone = ?, nif = ? "
+            + " WHERE email = ?");
+            stmt.setString(1, name);
+            stmt.setString(2, address);
+            stmt.setString(3, email);
+            stmt.setString(4, phone);
+            stmt.setString(5, nif);
+            stmt.executeUpdate();
+            return SUCCESS_CODE;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            return ERROR_CODE;
+        } finally {
+            DBConnection.closeConnection(stmt);
+        }
+    }
+
+    /**
+     * Function to update Employee information
+     *
+     * @param employeeId Employee ID used as a reference
+     * @param name       New name of the Employee
+     * @param address    New address of the Employee
+     * @param email      New email of the Employee
+     * @param phone      New phone number of the Employee
+     * @param nif        New NIF of the Employee
      * @param password   New encrypted password of the Employee
      * @param old_email
      * @return Success code, 1 for Success, 2 for Email Error, 3 for SQL Error
@@ -762,6 +811,31 @@ public class EmployeeDAO {
         }
 
         return null;
+    }
+
+    /**
+     * Function that checks if an external Employee with ID has been dismissed
+     *
+     * @param id Employee ID used as a reference
+     * @return returns a boolean success state
+     */
+    public static boolean isEmployeeDismissedByID(int id) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = conn.prepareStatement(
+            "SELECT dismissed FROM employee WHERE employee_number LIKE ?");
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                return rs.getBoolean("dismissed");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+        return false;
     }
 
     /**
