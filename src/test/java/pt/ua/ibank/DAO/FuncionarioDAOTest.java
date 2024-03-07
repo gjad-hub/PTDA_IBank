@@ -6,252 +6,205 @@ import org.junit.jupiter.api.Test;
 import pt.ua.ibank.DTO.Employee;
 import static pt.ua.ibank.utilities.Configs.SUCCESS_CODE;
 
-class FuncionarioDAOTest {
+class EmployeeDAOTest {
 
     @Test
-    public void testCreateFuncionarioSuccess() {
+    public void testCreateEmployeeSuccess() {
         int result = EmployeeDAO.createEmployee("Erling Haaland",
-                                                "Leeds, Inglaterra",
+                                                "Leeds, England",
                                                 "haalandmc@gmail.com",
                                                 "983453618", "333444555",
                                                 "manchestercity9", 1);
         assertEquals(SUCCESS_CODE, result);
     }
-//
-//     updateEmployee(String name,
-//                                     String address, String email,
-//                                     String phone, String nif,
-//                                     String password, String old_email)
-//
 
     @Test
-    public void testUpdateFuncionarioBasicInfoSuccess() {
+    public void testUpdateEmployeeWithPasswordSuccess() {
         int result = EmployeeDAO.updateEmployee("Erling Haaland",
-                                                "Manchester, Inglaterra",
+                                                "Manchester, England",
                                                 "haalandmc9@gmail.com",
                                                 "983453618", "333444555",
-                                                "haalandmc@gmail.com");
+                                                "norway9mc",
+                                                "haalandmc9@gmail.com");
         assertEquals(SUCCESS_CODE, result);
     }
 
     @Test
-    public void testUpdateFuncionarioWithPasswordSuccess() {
-        int result = EmployeeDAO.UpdateFuncionario("Erling Haaland",
-                                                   "Manchester, Inglaterra",
-                                                   "haalandmc9@gmail.com",
-                                                   "983453618", "333444555",
-                                                   "noruega9mc",
-                                                   "haalandmc9@gmail.com");
-        assertEquals(SUCCESS_CODE, result);
-    }
-
-    @Test
-    public void testGetFuncionarioByEmail() {
+    public void testGetEmployeeByEmail() {
         assertNotNull(EmployeeDAO.getEmployeeByEmail("admin@ibank.pt"));
     }
 
     @Test
-    public void testGetFuncionarioList() {
+    public void testGetEmployeeList() {
         assertNotNull(EmployeeDAO.getEmployeeList());
     }
 
     @Test
-    public void testGetFuncionarioByEmailNonExistent() {
+    public void testGetEmployeeByEmailNonExistent() {
         assertNull(EmployeeDAO.getEmployeeByEmail("messi10@gmail.com"));
     }
 
     @Test
-    public void testGetFuncionarioByIDSuccess() {
-        int validFuncionarioId = 1;
-        Employee resultado = EmployeeDAO.getEmployeeByID(
-                 validFuncionarioId);
-        assertNotNull(resultado);
-        assertEquals(1, resultado.empNum);
+    public void testGetEmployeeByIDSuccess() {
+        int validEmployeeId = 1;
+        Employee result = EmployeeDAO.getEmployeeByID(validEmployeeId);
+        assertNotNull(result);
+        assertEquals(1, result.empNum);
     }
 
     @Test
-    public void testGetFuncionarioByIDNotFound() {
-        int invalidFuncionarioId = 9999;
-        Employee resultado = EmployeeDAO.getEmployeeByID(
-                 invalidFuncionarioId);
-        assertNull(resultado);
+    public void testGetEmployeeByIDNotFound() {
+        int invalidEmployeeId = 9999;
+        Employee result = EmployeeDAO.getEmployeeByID(invalidEmployeeId);
+        assertNull(result);
     }
 
     @Test
-    public void testGetFuncionarioNomeByIDSuccess() {
-        int validFuncionarioId = 1;
+    public void testGetEmployeeNameByIDSuccess() {
+        int validEmployeeId = 1;
         String expectedName = "admin";
-        String resultado = EmployeeDAO.getEmployeeNameByID(
-               validFuncionarioId);
-        assertNotNull(resultado);
-        assertEquals(expectedName, resultado);
+        String result = EmployeeDAO.getEmployeeNameByID(validEmployeeId);
+        assertNotNull(result);
+        assertEquals(expectedName, result);
     }
 
     @Test
-    public void testGetFuncionarioNomeByIDNotFound() {
-        int invalidFuncionarioId = 9999;
-        String resultado = EmployeeDAO.getEmployeeNameByID(
-               invalidFuncionarioId);
-        assertNull(resultado);
+    public void testGetEmployeeNameByIDNotFound() {
+        int invalidEmployeeId = 9999;
+        String result = EmployeeDAO.getEmployeeNameByID(invalidEmployeeId);
+        assertNull(result);
     }
 
     @Test
-    public void testGetFuncionarioListSuccess() {
-        ArrayList<Employee> resultado = EmployeeDAO.getEmployeeList();
-        assertNotNull(resultado);
-        assertFalse(resultado.isEmpty());
+    public void testGetEmployeeListSuccess() {
+        ArrayList<Employee> result = EmployeeDAO.getEmployeeList();
+        assertNotNull(result);
+        assertFalse(result.isEmpty());
     }
 
     @Test
-    public void testGetFuncionarioListByAddressSuccess() {
+    public void testGetEmployeeListByAddressSuccess() {
         String validAddress = "Avenida L, nº 111";
-        ArrayList<Employee> resultado =
-                            EmployeeDAO.getEmployeeListByAddress(
-                                    validAddress);
-        assertNotNull(resultado);
-        assertFalse(resultado.isEmpty());
+        ArrayList<Employee> result =
+                            EmployeeDAO.getEmployeeListByAddress(validAddress);
+        assertNotNull(result);
+        assertFalse(result.isEmpty());
     }
 
     @Test
-    public void testGetFuncionarioListByAddressNotFound() {
-        String invalidAddress = "Morada Incerta";
-        ArrayList<Employee> resultado =
-                            EmployeeDAO.getEmployeeListByAddress(
-                                    invalidAddress);
-        assertNull(resultado);
+    public void testPromoteEmployeeSuccess() {
+        int validId = 4; // Employee who is not a manager yet
+        boolean result = EmployeeDAO.promoteEmployee(validId);
+        assertTrue(result);
     }
 
     @Test
-    public void testPromoverFuncionarioSuccess() {
-        int idValido = 4; //funcionario que não é gerente ainda
-        boolean resultado = EmployeeDAO.promoverFuncionario(idValido);
-        assertTrue(resultado);
+    public void testPromoteEmployeeManager() {
+        int validId = 2; // Employee who is already a manager
+        boolean result = EmployeeDAO.promoteEmployee(validId);
+        assertTrue(result);
     }
 
     @Test
-    public void testPromoverFuncionarioGerente() {
-        int idValido = 2; //funcionario que já é gerente
-        boolean resultado = EmployeeDAO.promoverFuncionario(idValido);
-        assertTrue(resultado);
+    public void testGetEmployeeByNIFSuccess() {
+        String existingNIF = "123456789";
+        Employee employee = EmployeeDAO.getEmployeeByNIF(existingNIF);
+        assertNotNull(employee);
+        assertEquals(1, employee.empNum);
     }
 
     @Test
-    public void testGetFuncionarioIdByEmailSuccess() {
-        String emailExistente = "admin@ibank.pt";
-        Integer resultado = EmployeeDAO.getEmployeeIdByEmail(
-                emailExistente);
-        assertNotNull(resultado);
-        assertEquals(1, resultado);
-    }
-
-    @Test
-    public void testGetFuncionarioIdByEmailNotFound() {
-        String emailInexistente = "messi10@gmail.com";
-        Integer resultado = EmployeeDAO.getEmployeeIdByEmail(
-                emailInexistente);
-        assertNull(resultado);
-    }
-
-    @Test
-    public void testGetFuncionarioByNIFSuccess() {
-        String nifExistente = "123456789";
-        Employee funcionario = EmployeeDAO.getEmployeeByNIF(
-                 nifExistente);
-        assertNotNull(funcionario);
-        assertEquals(1, funcionario.empNum);
-    }
-
-    @Test
-    public void testGetFuncionarioByNIFNotFound() {
-        String nifInexistente = "899899899";
-        Employee funcionario = EmployeeDAO.getEmployeeByNIF(
-                 nifInexistente);
-        assertNull(funcionario);
+    public void testGetEmployeeByNIFNotFound() {
+        String nonExistingNIF = "899899899";
+        Employee employee = EmployeeDAO.getEmployeeByNIF(nonExistingNIF);
+        assertNull(employee);
     }
 
     @Test
     public void testGetNumContasCriadasMesSuccess() {
-        Integer numContasCriadas = EmployeeDAO.getNumContasCriadasMes();
-        assertNotNull(numContasCriadas);
-        assertTrue(numContasCriadas >= 0);
+        Integer numAccountsCreated =
+                EmployeeDAO.getTotalNumberOfCreatedAccounts();
+        assertNotNull(numAccountsCreated);
+        assertTrue(numAccountsCreated >= 0);
     }
 
     @Test
     public void testGetNumDepositosPorAprovarSuccess() {
-        Integer numDepositosPorAprovar =
-                EmployeeDAO.getNumDepositosPorAprovar();
-        assertNotNull(numDepositosPorAprovar);
-        assertTrue(numDepositosPorAprovar >= 0);
+        Integer numDepositsToApprove = EmployeeDAO.getPendingDepositsCount();
+        assertNotNull(numDepositsToApprove);
+        assertTrue(numDepositsToApprove >= 0);
     }
 
     @Test
-    public void testGetNomeFuncionarioComMaisDepositosAprovadosSuccess() {
-        String nomeFuncionario =
-               EmployeeDAO.getFuncionarioComMaisDepositosAprovados();
-        assertNotNull(nomeFuncionario);
-        assertEquals("admin", nomeFuncionario);
+    public void testGetFuncionarioComMaisDepositosAprovadosSuccess() {
+        String employeeName =
+               EmployeeDAO.getEmployeeWithMostApprovedDeposits();
+        assertNotNull(employeeName);
+        assertEquals("admin", employeeName);
     }
 
     @Test
     public void testGetFuncionarioNumDepositosAprovadosSuccess() {
-        String numDepositos =
-               EmployeeDAO.getFuncionarioNumDepositosAprovados(2);
-        assertNotNull(numDepositos);
-        assertEquals(0, Integer.parseInt(numDepositos));
+        String numDeposits =
+               EmployeeDAO.getEmployeeNameByID(2);
+        assertNotNull(numDeposits);
+        assertEquals(0, Integer.parseInt(numDeposits));
     }
 
     @Test
     public void testGetNomeUltimaContaCriadaSuccess() {
-        String nomeUltimaConta = EmployeeDAO.getNomeUltimaContaCriada();
-        assertNotNull(nomeUltimaConta);
-        assertEquals("João Tomás Silva", nomeUltimaConta);
+        String lastAccountName = EmployeeDAO.getLastNameOfLastCreatedAccount();
+        assertNotNull(lastAccountName);
+        assertEquals("João Tomás Silva", lastAccountName);
     }
 
     @Test
     public void testGetDataUltimoPedidoDepositoSuccess() {
-        String dataUltimoPedido = EmployeeDAO.getDataUltimoPedidoDeposito();
-        assertNotNull(dataUltimoPedido);
+        String lastDepositRequestDate =
+               EmployeeDAO.getLastDepositRequestDate();
+        assertNotNull(lastDepositRequestDate);
     }
 
     @Test
     public void testGetDataUltimoPedidoDepositoNoDeposits() {
-        String dataUltimoPedido = EmployeeDAO.getDataUltimoPedidoDeposito();
-        assertNotNull(dataUltimoPedido);
+        String lastDepositRequestDate =
+               EmployeeDAO.getLastDepositRequestDate();
+        assertNotNull(lastDepositRequestDate);
     }
 
     @Test
     public void testGetNumAprovacoesFuncionarioTopSuccess() {
-        int totalAprovacoes = EmployeeDAO.getNumAprovacoesFuncionarioTop();
-        assertTrue(totalAprovacoes > 0);
+        int totalApprovals = EmployeeDAO.getPendingDepositsCount();
+        assertTrue(totalApprovals > 0);
     }
 
     @Test
     public void testDemitirFuncionarioSuccess() {
-        boolean resultado = EmployeeDAO.demitirFuncionario(2);
-        assertTrue(resultado);
+        boolean result = EmployeeDAO.dismissEmployee(2);
+        assertTrue(result);
     }
 
     @Test
     public void testDemitirFuncionarioNonExistent() {
-        boolean resultado = EmployeeDAO.demitirFuncionario(9999);
-        assertFalse(resultado);
+        boolean result = EmployeeDAO.dismissEmployee(9999);
+        assertFalse(result);
     }
 
     @Test
-    public void testGetFuncionarioDemitidoByIDActive() {
-        boolean resultado = EmployeeDAO.getFuncionarioDemitidoByID(1);
-        assertFalse(resultado);
+    public void testIsEmployeeDismissedByIDActive() {
+        boolean result = EmployeeDAO.isEmployeeDismissedByID(1);
+        assertFalse(result);
     }
 
     @Test
-    public void testGetFuncionarioDemitidoByIDDemitido() {
-        boolean resultado = EmployeeDAO.getFuncionarioDemitidoByID(2);
-        assertTrue(resultado);
+    public void testIsEmployeeDismissedByIDDismissed() {
+        boolean result = EmployeeDAO.isEmployeeDismissedByID(2);
+        assertTrue(result);
     }
 
     @Test
-    public void testGetFuncionarioDemitidoByIDNonExistent() {
-        boolean result = EmployeeDAO.getFuncionarioDemitidoByID(9999);
+    public void testIsEmployeeDismissedByIDNonExistent() {
+        boolean result = EmployeeDAO.isEmployeeDismissedByID(9999);
         assertFalse(result);
     }
 }
