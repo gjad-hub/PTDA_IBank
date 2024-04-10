@@ -23,7 +23,7 @@ public class TransactionsDAO {
      * @param customerID External customer ID associated with a transaction
      * @return returns a list of transactions associated with this customer
      */
-    public static ArrayList<Transactions> getTransactions(int customerID) {
+    public static ArrayList<Transactions> getTransactionsByClientID(int customerID) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
@@ -31,17 +31,17 @@ public class TransactionsDAO {
 
         try {
             stmt = conn.prepareStatement(
-            "SELECT * FROM transactions WHERE num_cli = ?;");
+            "SELECT * FROM transactions WHERE customer_iban = ?;");
             stmt.setInt(1, customerID);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
                 Transactions transaction = new Transactions(
                              rs.getInt("id"),
-                             rs.getInt("num_cli"),
+                             rs.getInt("customer_iban"),
                              rs.getString("description"),
                              rs.getDouble("amount"),
-                             rs.getTimestamp("date"));
+                             rs.getTimestamp("creation_date"));
                 transactionList.add(transaction);
             }
         } catch (SQLException e) {

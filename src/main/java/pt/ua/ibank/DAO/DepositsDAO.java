@@ -60,8 +60,8 @@ public class DepositsDAO {
 
         try {
             stmt = conn.prepareStatement(
-            "SELECT id_deposit, amount, approved, pending_approval, num_fun, "
-            + "num_cli FROM deposit WHERE num_cli = ? ORDER BY date desc;");
+            "SELECT id_deposit, amount, approved, pending_approval, employee, "
+            + "customer FROM deposits WHERE num_cli = ? ORDER BY date desc;");
             stmt.setInt(1, customerID);
             rs = stmt.executeQuery();
 
@@ -155,7 +155,7 @@ public class DepositsDAO {
 
         try {
             stmt = conn.prepareStatement(
-            "SELECT count(*) AS quantity FROM deposit WHERE num_cli = ? "
+            "SELECT count(*) AS quantity FROM deposits WHERE employee = ? "
             + "and pending_approval = 1");
             stmt.setInt(1, customerID);
             rs = stmt.executeQuery();

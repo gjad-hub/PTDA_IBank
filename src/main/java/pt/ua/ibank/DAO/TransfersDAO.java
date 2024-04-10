@@ -22,22 +22,22 @@ public class TransfersDAO {
     /**
      * Function for
      *
-     * @param value            transfer value
+     * @param amount            transfer amount
      * @param performingClient ID of the Client performing the Transfer
      * @param receivingClient  ID of the Client receiving the Transfer
      * @param reason           content / description of the transfer made
      * @return returns success code, 1 if successful, 2 otherwise
      */
-    public static int doTransfer(double value, int performingClient,
+    public static int doTransfer(double amount, int performingClient,
                                  int receivingClient, String reason) {
         PreparedStatement stmt = null;
 
         try {
 
-            stmt = conn.prepareCall("{call perform_transfer(?,?,?,?)}");
+            stmt = conn.prepareCall("{call make_transfer(?,?,?,?)}");
             stmt.setInt(1, performingClient);
             stmt.setInt(2, receivingClient);
-            stmt.setDouble(3, value);
+            stmt.setDouble(3, amount);
             stmt.setString(4, reason);
             stmt.execute();
 
@@ -63,16 +63,16 @@ public class TransfersDAO {
         try {
             stmt = conn.prepareStatement(
             "select "
-            + "transfer_id as id,value,performing_client,receiving_client,reason"
+            + "transfer_id as id,amount,performing_customer,receiving_customer,reason"
             + " from transfer;");
             rs = stmt.executeQuery();
 
             while (rs.next()) {
                 list.add(new Transfers(
                         rs.getInt("id"),
-                        rs.getDouble("value"),
-                        rs.getInt("performing_client"),
-                        rs.getInt("receiving_client"),
+                        rs.getDouble("amount"),
+                        rs.getInt("performing_customer"),
+                        rs.getInt("receiving_customer"),
                         rs.getString("reason")
                 ));
             }
@@ -99,7 +99,7 @@ public class TransfersDAO {
         try {
             stmt = conn.prepareStatement(
             "select "
-            + "transfer_id as id,value,performing_client,receiving_client,reason"
+            + "transfer_id as id,amount,performing_customer,receiving_customer,reason"
             + " from transfer where transfer_id like ?;");
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
@@ -107,9 +107,9 @@ public class TransfersDAO {
             while (rs.next()) {
                 return new Transfers(
                         rs.getInt("id"),
-                        rs.getDouble("value"),
-                        rs.getInt("performing_client"),
-                        rs.getInt("receiving_client"),
+                        rs.getDouble("amount"),
+                        rs.getInt("performing_customer"),
+                        rs.getInt("receiving_customer"),
                         rs.getString("reason")
                 );
             }
@@ -137,8 +137,8 @@ public class TransfersDAO {
         try {
             stmt = conn.prepareStatement(
             "select "
-            + "transfer_id as id,value,performing_client,receiving_client,reason"
-            + " from transfer where performing_client like ? or receiving_client like ?;");
+            + "transfer_id as id,amount,performing_customer,receiving_customer,reason"
+            + " from transfer where performing_customer like ? or receiving_customer like ?;");
             stmt.setInt(1, id);
             stmt.setInt(2, id);
             rs = stmt.executeQuery();
@@ -146,9 +146,9 @@ public class TransfersDAO {
             while (rs.next()) {
                 list.add(new Transfers(
                         rs.getInt("id"),
-                        rs.getDouble("value"),
-                        rs.getInt("performing_client"),
-                        rs.getInt("receiving_client"),
+                        rs.getDouble("amount"),
+                        rs.getInt("performing_customer"),
+                        rs.getInt("receiving_customer"),
                         rs.getString("reason")
                 ));
             }
@@ -178,17 +178,17 @@ public class TransfersDAO {
         try {
             stmt = conn.prepareStatement(
             "select "
-            + "transfer_id as id,value,performing_client,receiving_client,reason"
-            + " from transfer where performing_client like ?;");
+            + "transfer_id as id,amount,performing_customer,receiving_customer,reason"
+            + " from transfer where performing_customer like ?;");
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
                 list.add(new Transfers(
                         rs.getInt("id"),
-                        rs.getDouble("value"),
-                        rs.getInt("performing_client"),
-                        rs.getInt("receiving_client"),
+                        rs.getDouble("amount"),
+                        rs.getInt("performing_customer"),
+                        rs.getInt("receiving_customer"),
                         rs.getString("reason")
                 ));
             }
@@ -218,17 +218,17 @@ public class TransfersDAO {
         try {
             stmt = conn.prepareStatement(
             "select "
-            + "transfer_id as id,value,performing_client,receiving_client,reason"
-            + " from transfer where receiving_client like ?;");
+            + "transfer_id as id,amount,performing_customer,receiving_customer,reason"
+            + " from transfer where receiving_customer like ?;");
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
                 list.add(new Transfers(
                         rs.getInt("id"),
-                        rs.getDouble("value"),
-                        rs.getInt("performing_client"),
-                        rs.getInt("receiving_client"),
+                        rs.getDouble("amount"),
+                        rs.getInt("performing_customer"),
+                        rs.getInt("receiving_customer"),
                         rs.getString("reason")
                 ));
             }

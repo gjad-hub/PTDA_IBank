@@ -498,7 +498,7 @@ public class DashBoard extends javax.swing.JInternalFrame {
         dataValidade.setText(dataFormat.format(LocalClientCard.expireDate));
 
         popularTransacoes(
-                TransactionsDAO.getTransactions(LocalClient.clientNumber));
+                TransactionsDAO.getTransactionsByClientID(LocalClient.clientNumber));
         popularDepositos(DepositsDAO.getDeposits(LocalClient.clientNumber));
     }
 

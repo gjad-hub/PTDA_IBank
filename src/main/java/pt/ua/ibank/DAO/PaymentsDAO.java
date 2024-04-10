@@ -32,7 +32,7 @@ public class PaymentsDAO {
         try {
 
             stmt = conn.prepareStatement(
-            "UPDATE payment_services_purchases SET paid = ?, client = ? WHERE entity = ? and reference = ?");
+            "UPDATE payment_services_purchases SET paid = ?, customer = ? WHERE entity = ? and reference = ?");
             stmt.setBoolean(1, true);
             stmt.setInt(2, performingClient);
             stmt.setInt(3, entity);
@@ -73,10 +73,10 @@ public class PaymentsDAO {
             while (rs.next()) {
                 service = new PaymentServices(rs.getInt("reference"),
                                               rs.getInt("entity"),
-                                              rs.getDouble("value"),
+                                              rs.getDouble("amount"),
                                               rs.getBoolean("paid"),
-                                              rs.getInt("client"),
-                                              rs.getInt("created_client"),
+                                              rs.getInt("customer"),
+                                              rs.getInt("created_by"),
                                               rs.getBoolean("canceled"));
             }
         } catch (SQLException e) {
@@ -90,24 +90,24 @@ public class PaymentsDAO {
 
     /**
      * Function used to create a payment linked to a client, entity, and
-     * reference with a value to be paid.
+     * reference with a amount to be paid.
      *
      * @param client Client who made the payment reference.
      * @param ent    Entity generated for payment.
      * @param ref    Reference used for payment.
-     * @param value  Value to be charged to the client.
+     * @param amount  Value to be charged to the client.
      * @return Returns the success state, 1 if positive, 2 if error.
      */
-    public static int createPayment(int client, int ent, int ref, double value) {
+    public static int createPayment(int client, int ent, int ref, double amount) {
         PreparedStatement stmt = null;
         try {
 
             stmt = conn.prepareStatement(
-            "INSERT INTO payment_services_purchases (entity, reference, value, paid, created_client, canceled)"
+            "INSERT INTO payment_services_purchases (entity, reference, amount, paid, created_by, canceled)"
             + "VALUES (?, ?, ?, ?, ?, ?)");
             stmt.setInt(1, ent);
             stmt.setInt(2, ref);
-            stmt.setDouble(3, value);
+            stmt.setDouble(3, amount);
             stmt.setBoolean(4, false);
             stmt.setInt(5, client);
             stmt.setBoolean(6, false);
@@ -136,7 +136,7 @@ public class PaymentsDAO {
 
         try {
             stmt = conn.prepareStatement(
-            "SELECT * FROM payment_services_purchases WHERE created_client = ? ORDER BY creation_date DESC;");
+            "SELECT * FROM payment_services_purchases WHERE created_by = ? ORDER BY creation_date DESC;");
             stmt.setInt(1, clientID);
             rs = stmt.executeQuery();
 
@@ -144,10 +144,10 @@ public class PaymentsDAO {
                 PaymentServices service = new PaymentServices(
                                 rs.getInt("reference"),
                                 rs.getInt("entity"),
-                                rs.getDouble("value"),
+                                rs.getDouble("amount"),
                                 rs.getBoolean("paid"),
-                                rs.getInt("client"),
-                                rs.getInt("created_client"),
+                                rs.getInt("customer"),
+                                rs.getInt("created_by"),
                                 rs.getBoolean("canceled")
                         );
                 servicesList.add(service);

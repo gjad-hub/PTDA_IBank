@@ -11,7 +11,7 @@ class TransacoesDAOTest {
     void getTransacoes() {
         int id = 1;
         ArrayList<Transactions> ltransacoes =
-                                TransactionsDAO.getTransactions(id);
+                                TransactionsDAO.getTransactionsByClientID(id);
         assertFalse(ltransacoes.isEmpty());
     }
 
@@ -19,7 +19,7 @@ class TransacoesDAOTest {
     void getTransacoesFalse() {
         int id = 9999;
         ArrayList<Transactions> ltransacoes =
-                                TransactionsDAO.getTransactions(id);
+                                TransactionsDAO.getTransactionsByClientID(id);
         assertNull(ltransacoes);
     }
 }

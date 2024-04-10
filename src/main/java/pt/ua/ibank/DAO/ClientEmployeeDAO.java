@@ -34,12 +34,12 @@ public class ClientEmployeeDAO {
         ArrayList<Integer> list = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(
-            "select num_cli from employee_client where num_emp = ?;");
+            "select customer_iban from employee_customer where num_emp = ?;");
             stmt.setInt(1, employeeID);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                list.add(rs.getInt("num_cli"));
+                list.add(rs.getInt("customer_iban"));
             }
             return list;
         } catch (SQLException e) {

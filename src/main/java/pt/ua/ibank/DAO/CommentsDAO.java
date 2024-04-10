@@ -32,9 +32,9 @@ public class CommentsDAO {
         try {
 
             stmt = conn.prepareStatement(
-            "select id,employee.name as name,description,date"
-            + " from profile_comment inner join employee on employee.employee_id = profile_comment.employee_id"
-            + " where client_id = ?;");
+            "select id,employees.name as name,description,date"
+            + " from profile_comments inner join employees on employees.employee_id = profile_comment.employee_id"
+            + " where customer_iban = ?;");
             stmt.setInt(1, clientID);
             rs = stmt.executeQuery();
 
@@ -43,7 +43,7 @@ public class CommentsDAO {
                         rs.getInt("id"),
                         rs.getString("name"),
                         rs.getString("description"),
-                        rs.getTimestamp("date")));
+                        rs.getTimestamp("creation_date")));
             }
 
             return list;
@@ -69,8 +69,8 @@ public class CommentsDAO {
 
         try {
             stmt = conn.prepareStatement(
-            "select id,employee.name as name,description,date"
-            + " from profile_comment inner join employee on employee.employee_id = profile_comment.employee_id"
+            "select id,employees.name as name,description,date"
+            + " from profile_comments inner join employees on employees.employee_id = profile_comments.employee_id"
             + " where client_id = ?;");
             stmt.setInt(1, clientID);
             rs = stmt.executeQuery();
@@ -106,7 +106,7 @@ public class CommentsDAO {
         try {
 
             stmt = conn.prepareStatement(
-            "INSERT INTO profile_comment"
+            "INSERT INTO profile_comments"
             + "(employee_id,client_id,description) VALUES"
             + "(?,?,?);"
     );
@@ -135,7 +135,7 @@ public class CommentsDAO {
 
         try {
             stmt = conn.prepareStatement(
-            "DELETE FROM profile_comment WHERE id = ?");
+            "DELETE FROM profile_comments WHERE id = ?");
             stmt.setInt(1, id);
             stmt.execute();
 

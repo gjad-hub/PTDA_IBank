@@ -1,5 +1,6 @@
 package pt.ua.ibank.DAO;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,104 +16,104 @@ import static pt.ua.ibank.utilities.Configs.ERROR_CODE;
 import static pt.ua.ibank.utilities.Configs.EMAIL_ERROR_CODE;
 
 /**
- * Classe com metodos estáticos associados a operações feitas com Clientes
- * guardados em uma base de dados MySQL
+ * Class with static methods associated with operations performed on Clients
+ * stored in a MySQL database
  * Author: PTDA_Staff.
- * Ultima Data de Modificação: 29 de Dezembro, 2023
+ * Last Modification Date: December 29, 2023
  */
 public class ClientDAO {
 
     /**
-     * Função usada para Criar um cliente
+     * Function used to create a client
      *
-     * @param nome     Nome do Cliente
-     * @param morada   Morada de Cliente
-     * @param email    Email de Cliente
-     * @param telefone Telefone de Cliente
-     * @param nif      NIF ( Numero de Identificação fiscal ) do cliente
-     * @param password Password encriptada
-     * @return codigo de Sucesso -> 1 Sucesso, 2 Erro Email, 3 Erro SQL
+     * @param name        Client name
+     * @param address     Client address
+     * @param email       Client email
+     * @param phone       Client phone number
+     * @param nif         Client's tax identification number (nif)
+     * @param password    Encrypted password
+     * @return success code -> 1 Success, 2 Email Error, 3 SQL Error
      */
-    public static int CreateClient(String nome, String morada, String email,
-                                   String telefone, String nif, String password) {
+    public static int CreateClient(String name, String address, String email,
+                                   String phone, String nif, String password) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        String num_conta;
-        String num_cartao;
-        int ent;
+        String customer_number;
+        String card_number;
+        int entity;
 
         try {
 
             // Verifica se já existe alguma conta com aquele e-mail
             stmt = conn.prepareStatement(
-            "SELECT count(num_cliente) AS valor FROM cliente where email like ?;");
+            "SELECT count(account_number) AS value FROM customers where email like ?;");
             stmt.setString(1, email);
             rs = stmt.executeQuery();
             rs.next();
 
-            if (rs.getInt("valor") > 0) {
+            if (rs.getInt("value") > 0) {
                 return EMAIL_ERROR_CODE;
             }
 
-            // Gera um novo iban até não existir um cliente com o iban
+            // generate a new valid IBAN for the account
             do {
-                num_conta = generateRandomIban();
+                customer_number = generateRandomIban();
                 stmt = conn.prepareStatement(
-                "SELECT count(num_cliente) AS valor FROM cliente where num_conta like ?;");
-                stmt.setString(1, num_conta);
+                "SELECT count(account_number) AS value FROM customers where account_number like ?;");
+                stmt.setString(1, customer_number);
                 rs = stmt.executeQuery();
                 rs.next();
-            } while (rs.getInt("valor") != 0);
+            } while (rs.getInt("value") != 0);
 
-            // Gera um novo cartao até não existir nenhum cartao com este numero
+            // generate a new valid card number
             do {
-                num_cartao = generateCardNumber();
+                card_number = generateCardNumber();
                 stmt = conn.prepareStatement(
-                "SELECT count(num_cartao) AS valor FROM cartao where num_cartao like ?;");
-                stmt.setString(1, num_cartao);
+                "SELECT count(num_cartao) AS value FROM cartao where num_cartao like ?;");
+                stmt.setString(1, card_number);
                 rs = stmt.executeQuery();
                 rs.next();
-            } while (rs.getInt("valor") != 0);
+            } while (rs.getInt("value") != 0);
 
-            // Gera uma nova referencia até não existir nenhuma com este numero
+            // generate a new valid account entity number
             do {
-                ent = generateEnt();
+                entity = generateEnt();
                 stmt = conn.prepareStatement(
-                "SELECT count(num_cliente) AS valor FROM cliente where entidade = ?;");
-                stmt.setInt(1, ent);
+                "SELECT count(costumer_number) AS value FROM clients where entity = ?;");
+                stmt.setInt(1, entity);
                 rs = stmt.executeQuery();
                 rs.next();
-            } while (rs.getInt("valor") != 0);
+            } while (rs.getInt("value") != 0);
             stmt.close();
 
             stmt = conn.prepareStatement(
-            "INSERT INTO cartao (num_cartao, data_validade, estado) "
+            "INSERT INTO cards (card_number, expiration_date, status) "
             + "VALUES (?, (SELECT DATE_ADD(CURDATE(), INTERVAL +5 YEAR )),"
-            + " \"Ativo\");");
-            stmt.setString(1, num_cartao);
+            + " \"Active\");");
+            stmt.setString(1, card_number);
             stmt.execute();
 
             stmt = conn.prepareStatement(
-            "INSERT INTO cliente (nome, morada, email, telemovel, nif,"
-            + " num_conta, password, cartao_default, entidade) "
+            "INSERT INTO customers (name, address, email, phone, nif,"
+            + "account_number, password, default_card, entity) "
             + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            stmt.setString(1, nome);
-            stmt.setString(2, morada);
+            stmt.setString(1, name);
+            stmt.setString(2, address);
             stmt.setString(3, email);
-            stmt.setString(4, telefone);
+            stmt.setString(4, phone);
             stmt.setString(5, nif);
-            stmt.setString(6, num_conta);
+            stmt.setString(6, customer_number);
             stmt.setString(7, password);
-            stmt.setString(8, num_cartao);
-            stmt.setInt(9, ent);
+            stmt.setString(8, card_number);
+            stmt.setInt(9, entity);
             stmt.execute();
 
             int num_cli = getClientIdByEmail(email);
 
             stmt = conn.prepareStatement(
-            "UPDATE cartao SET cliente = ? WHERE num_cartao like ?;");
+            "UPDATE cards SET account_number = ? WHERE card_number like ?;");
             stmt.setInt(1, num_cli);
-            stmt.setString(2, num_cartao);
+            stmt.setString(2, card_number);
             stmt.execute();
 
             return SUCCESS_CODE;
@@ -126,10 +127,10 @@ public class ClientDAO {
     }
 
     /**
-     * Função usada para obter um cliente através de um ID
+     * Function used to get a client object by id.
      *
-     * @param id ID do Cliente usado como refencia para obter lista
-     * @return Objeto de cliente obtido
+     * @param id ID of the client used as a reference
+     * @return Client Object
      */
     public static Client getClientByID(int id) {
         PreparedStatement stmt = null;
@@ -138,24 +139,24 @@ public class ClientDAO {
         try {
 
             stmt = conn.prepareStatement(
-            "SELECT * FROM cliente where num_cliente= ?;");
+            "SELECT * FROM customers where account_number = ?;");
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
                 return new Client(
-                        rs.getInt("num_cliente"),
-                        rs.getString("nome"),
-                        rs.getString("morada"),
+                        rs.getInt("account_number"),
+                        rs.getString("name"),
+                        rs.getString("address"),
                         rs.getString("email"),
-                        rs.getString("telemovel"),
+                        rs.getString("phone"),
                         rs.getString("nif"),
-                        rs.getString("num_conta"),
-                        rs.getDouble("saldo"),
-                        rs.getDouble("saldo_cativo"),
-                        rs.getDate("data_criacao"),
-                        rs.getString("cartao_default"),
-                        rs.getInt("entidade")
+                        rs.getString("account_number"),
+                        rs.getDouble("balance"),
+                        rs.getDouble("pending_balance"),
+                        rs.getDate("creation_date"),
+                        rs.getString("default_card"),
+                        rs.getInt("entity")
                 );
             }
 
@@ -168,10 +169,10 @@ public class ClientDAO {
     }
 
     /**
-     * Função usada para obter um objeto cliente através de um email
+     * Function used to get the client object by email
      *
-     * @param id Email de Cliente usado como referência
-     * @return Retorna cliente associado, ou null caso haja erro
+     * @param id Client email used as reference
+     * @return Returns client associated with the object, null otherwise
      */
     public static Client getClientByEmail(String id) {
         PreparedStatement stmt = null;
@@ -181,26 +182,25 @@ public class ClientDAO {
         try {
 
             stmt = conn.prepareStatement(
-            "SELECT * FROM cliente where email like ?;");
+            "SELECT * FROM clients where email like ?;");
             stmt.setString(1, id);
             rs = stmt.executeQuery();
 
-            while (rs.next()) {
+            while (rs.first()) {
                 cl = new Client(
-                rs.getInt("num_cliente"),
-                rs.getString("nome"),
-                rs.getString("morada"),
-                rs.getString("email"),
-                rs.getString("telemovel"),
-                rs.getString("nif"),
-                rs.getString("password"),
-                rs.getString("num_conta"),
-                rs.getDouble("saldo"),
-                rs.getDouble("saldo_cativo"),
-                rs.getString("cartao_default"),
-                rs.getInt("entidade"));
+                        rs.getInt("account_number"),
+                        rs.getString("name"),
+                        rs.getString("address"),
+                        rs.getString("email"),
+                        rs.getString("phone"),
+                        rs.getString("nif"),
+                        rs.getString("account_number"),
+                        rs.getDouble("balance"),
+                        rs.getDouble("pending_balance"),
+                        rs.getDate("creation_date"),
+                        rs.getString("default_card"),
+                        rs.getInt("entity"));
             }
-
             return cl;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
@@ -211,10 +211,10 @@ public class ClientDAO {
     }
 
     /**
-     * Função usada para obter um Cliente externo associado a um ID
+     * Function used to get an external client based of nif
      *
-     * @param id NIF do Cliente usado como refencia para obter lista
-     * @return Retorna cliente associado, ou null caso haja erro
+     * @param id nif of the associated client
+     * @return Returns the associated client object, null otherwise
      */
     public static Client getClientByNIF(String id) {
         PreparedStatement stmt = null;
@@ -224,24 +224,24 @@ public class ClientDAO {
         try {
 
             stmt = conn.prepareStatement(
-            "SELECT * FROM cliente where nif like ?;");
+            "SELECT * FROM cl where nif like ?;");
             stmt.setString(1, id);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
                 cl = new Client(
-                rs.getInt("num_cliente"),
-                rs.getString("nome"),
-                rs.getString("morada"),
+                rs.getInt("costumer_number"),
+                rs.getString("name"),
+                rs.getString("address"),
                 rs.getString("email"),
-                rs.getString("telemovel"),
+                rs.getString("phone"),
                 rs.getString("nif"),
                 rs.getString("password"),
-                rs.getString("num_conta"),
-                rs.getDouble("saldo"),
-                rs.getDouble("saldo_cativo"),
-                rs.getString("cartao_default"),
-                rs.getInt("entidade"));
+                rs.getString("account_number"),
+                rs.getDouble("balance"),
+                rs.getDouble("pending_balance"),
+                rs.getString("default_card"),
+                rs.getInt("entity"));
             }
 
             return cl;
@@ -254,37 +254,37 @@ public class ClientDAO {
     }
 
     /**
-     * Usado para procurar um frupo de Clientes por Morada
+     * Used to get a list of clients with the same address
      *
-     * @param address Morada de Clientes Externos
-     * @return Retorna de Clientes associados, ou null caso haja erro
+     * @param address address to search.
+     * @return Returns a list of clients
      */
-    public static ArrayList<Client> getClientListByAddress(String address) {
+    public static ArrayList<Client> getClientListByAddress(String selected_address) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
         ArrayList<Client> list = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(
-            "SELECT num_cliente,nome,morada,email,telemovel,nif,num_conta,"
-            + "data_criacao,cartao_default FROM cliente where morada like ?");
-            stmt.setString(1, address);
+            "SELECT costumer_number,name,address,email,phone,nif,account_number,"
+            + "creation_date,default_card FROM clients where address like ?");
+            stmt.setString(1, selected_address);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Integer numero = rs.getInt("num_cliente");
-                String nome = rs.getString("nome");
-                String morada = rs.getString("morada");
+                Integer number = rs.getInt("costumer_number");
+                String name = rs.getString("name");
+                String address = rs.getString("address");
                 String email = rs.getString("email");
-                String telemovel = rs.getString("telemovel");
+                String phone = rs.getString("phone");
                 String nif = rs.getString("nif");
-                String numConta = rs.getString("num_conta");
-                var dataCriacao = rs.getDate("data_criacao");
-                String cartaoDefault = rs.getString("cartao_default");
+                String account_number = rs.getString("account_number");
+                Date creation_date = rs.getDate("creation_date");
+                String cartaoDefault = rs.getString("default_card");
 
-                list.add(new Client(numero, nome, morada, email,
-                                    telemovel, nif, numConta, 0.0, 0.0,
-                                    dataCriacao,
+                list.add(new Client(number, name, address, email,
+                                    phone, nif, account_number, 0.0, 0.0,
+                                    creation_date,
                                     cartaoDefault, 0));
             }
 
@@ -297,10 +297,42 @@ public class ClientDAO {
         }
     }
 
-    /**
-     * Retorna uma lista de todos os clientes
+   /**
+     * Function used to get the client name by ID
      *
-     * @return Retorna de Clientes associados, ou null caso haja erro
+     * @param iban IBAN do Cliente usado como referencia
+     * @return retorna o ID do clients associado ao IBAN
+     */
+    public static String getClientNameByID(Integer ID) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String costumer_number = null;
+
+        try {
+
+            stmt = conn.prepareStatement(
+            "SELECT name FROM clients where customer_number like ?;");
+            stmt.setInt(1, ID);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                costumer_number = rs.getString("name");
+            }
+
+            return costumer_number;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            DBConnection.closeConnection(stmt, rs);
+        }
+        return null;
+    }
+
+    
+    /**
+     * Returns a list of all clients
+     *
+     * @return Returns a list of clients, null if empty
      */
     public static ArrayList<Client> getClientList() {
         PreparedStatement stmt = null;
@@ -309,24 +341,24 @@ public class ClientDAO {
         ArrayList<Client> list = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(
-            "SELECT num_cliente,nome,morada,email,"
-            + "telemovel,nif,num_conta,cartao_default,data_criacao "
-            + "FROM cliente");
+            "SELECT costumer_number,name,address,email,"
+            + "phone,nif,account_number,default_card,creation_date "
+            + "FROM clients");
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Integer numero = rs.getInt("num_cliente");
-                String nome = rs.getString("nome");
-                String morada = rs.getString("morada");
+                Integer numero = rs.getInt("costumer_number");
+                String name = rs.getString("name");
+                String address = rs.getString("address");
                 String email = rs.getString("email");
-                String telemovel = rs.getString("telemovel");
+                String phone = rs.getString("phone");
                 String nif = rs.getString("nif");
-                String numConta = rs.getString("num_conta");
-                var dataCriacao = rs.getDate("data_criacao");
-                String cartaoDefault = rs.getString("cartao_default");
-                list.add(new Client(numero, nome, morada, email,
-                                    telemovel, nif, numConta, 0.0, 0.0,
-                                    dataCriacao,
+                String account_number = rs.getString("account_number");
+                Date creation_date = rs.getDate("creation_date");
+                String cartaoDefault = rs.getString("default_card");
+                list.add(new Client(numero, name, address, email,
+                                    phone, nif, account_number, 0.0, 0.0,
+                                    creation_date,
                                     cartaoDefault, 0));
             }
 
@@ -340,28 +372,28 @@ public class ClientDAO {
     }
 
     /**
-     * Função usada para retornar numero de cliente através de um IBAN
+     * Function sued to get the client id from an account_number
      *
-     * @param iban IBAN do Cliente usado como referencia
-     * @return retorna o ID do cliente associado ao IBAN
+     * @param account_number used as reference
+     * @return returns the associated client ID
      */
     public static Integer getClientIdByIBAN(String iban) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Integer num_cliente = null;
+        Integer costumer_number = null;
 
         try {
 
             stmt = conn.prepareStatement(
-            "SELECT num_cliente FROM cliente where num_conta like ?;");
+            "SELECT costumer_number FROM clients where account_number like ?;");
             stmt.setString(1, iban);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                num_cliente = rs.getInt("num_cliente");
+                costumer_number = rs.getInt("costumer_number");
             }
 
-            return num_cliente;
+            return costumer_number;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
         } finally {
@@ -371,10 +403,10 @@ public class ClientDAO {
     }
 
     /**
-     * Função usada para obter o nome de um Cliente através de um ID
+     * Function used to get the client name by its id
      *
-     * @param clientID ID de Cliente a ser usado como referencia
-     * @return Retorna o nome do Cliente associado ao ID
+     * @param clientID client id used as reference
+     * @return returns the name associated to the client
      */
     public static String getClienteNomeByID(int clientID) {
         PreparedStatement stmt = null;
@@ -382,12 +414,12 @@ public class ClientDAO {
 
         try {
             stmt = conn.prepareStatement(
-            "SELECT nome FROM cliente WHERE num_cliente = ?");
+            "SELECT name FROM clients WHERE costumer_number = ?");
             stmt.setInt(1, clientID);
             rs = stmt.executeQuery();
 
             if (rs.next()) {
-                return rs.getString("nome");
+                return rs.getString("name");
             }
         } catch (SQLException e) {
             e.printStackTrace(System.out);
@@ -399,28 +431,28 @@ public class ClientDAO {
     }
 
     /**
-     * Função usada para obter o ID de um cliente através do seu email
+     * function used to get the client id by its email
      *
-     * @param email Email usado como referencia
-     * @return Retorna o ID do cliente associado ao Email
+     * @param email Email used as reference
+     * @return returns the id associated with the email
      */
     public static Integer getClientIdByEmail(String email) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Integer num_cliente = null;
+        Integer costumer_number = null;
 
         try {
 
             stmt = conn.prepareStatement(
-            "SELECT num_cliente FROM cliente where email like ?;");
+            "SELECT costumer_number FROM clients where email like ?;");
             stmt.setString(1, email);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                num_cliente = rs.getInt("num_cliente");
+                costumer_number = rs.getInt("costumer_number");
             }
 
-            return num_cliente;
+            return costumer_number;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
         } finally {
@@ -430,33 +462,27 @@ public class ClientDAO {
     }
 
     /**
-     * Função usada para actualizar as informações externas de um Cliente
+     * Function used to uplate the external client
      *
-     * @param num_cliente
-     * @param nome        Nome de cliente Externo
-     * @param morada      Morada de Cliente Externo
-     * @param email       Email de Cliente externo
-     * @param telefone    Telefone de Cliente externo
-     * @param nif         NIF ( Numero de Identificação fiscal ) Externo
-     * @return
+     * @return returns if successful
      */
     public static boolean UpdateClient(
-            int num_cliente, String nome,
-            String morada, String email,
-            String telefone, String nif) {
+            int costumer_number, String name,
+            String address, String email,
+            String phone, String nif) {
         PreparedStatement stmt = null;
 
         try {
             stmt = conn.prepareStatement(
-            "UPDATE cliente "
-            + "SET nome = ? , morada = ?, email = ?, telemovel = ?, nif = ? "
-            + "WHERE num_cliente = ?");
-            stmt.setString(1, nome);
-            stmt.setString(2, morada);
+            "UPDATE clients "
+            + "SET name = ? , address = ?, email = ?, phone = ?, nif = ? "
+            + "WHERE costumer_number = ?");
+            stmt.setString(1, name);
+            stmt.setString(2, address);
             stmt.setString(3, email);
-            stmt.setString(4, telefone);
+            stmt.setString(4, phone);
             stmt.setString(5, nif);
-            stmt.setInt(6, num_cliente);
+            stmt.setInt(6, costumer_number);
             stmt.executeUpdate();
             return true;
 
@@ -471,40 +497,40 @@ public class ClientDAO {
     /**
      * Função usada para actualizar as Informações externas de um Funcionario"
      *
-     * @param nome      Nome de cliente Externo
-     * @param morada    Morada de Cliente Externo
+     * @param name      Nome de clients Externo
+     * @param address    Morada de Cliente Externo
      * @param email     Email de Cliente externo
-     * @param telefone  Telefone de Cliente externo
-     * @param nif       NIF ( Numero de Identificação fiscal ) Externo
-     * @param password  Password encriptada do cliente
+     * @param phone  Telefone de Cliente externo
+     * @param nif       nif ( Numero de Identificação fiscal ) Externo
+     * @param password  Password encriptada do clients
      * @param old_email Email antigo caso pretenda mudar
-     * @return Codigo de Estado, 1 se Sucedido, 2 Erro de Emai, 3 Erro SQL
+     * @return 1 if success, 2 if email error, 3 if SQL Error
      */
-    public static int UpdateClient(String nome, String morada, String email,
-                                   String telefone, String nif,
+    public static int UpdateClient(String name, String address, String email,
+                                   String phone, String nif,
                                    String password, String old_email) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
         try {
 
-            // Verifica se já existe alguma conta com aquele e-mail
+            // check if theres a costumer with that email
             stmt = conn.prepareStatement(
-            "SELECT count(num_cliente) AS valor FROM cliente where email like ?;");
+            "SELECT count(costumer_number) AS value FROM clients where email like ?;");
             stmt.setString(1, email);
             rs = stmt.executeQuery();
             rs.next();
 
-            if (rs.getInt("valor") > 0 && !email.equals(old_email)) {
+            if (rs.getInt("value") > 0 && !email.equals(old_email)) {
                 return EMAIL_ERROR_CODE;
             }
 
             stmt = conn.prepareStatement(
-            "UPDATE cliente SET nome = ? , morada = ?, email = ?, telemovel = ?, password = ? WHERE email = ?");
-            stmt.setString(1, nome);
-            stmt.setString(2, morada);
+            "UPDATE clients SET name = ? , address = ?, email = ?, phone = ?, password = ? WHERE email = ?");
+            stmt.setString(1, name);
+            stmt.setString(2, address);
             stmt.setString(3, email);
-            stmt.setString(4, telefone);
+            stmt.setString(4, phone);
             stmt.setString(5, password);
             stmt.setString(6, old_email);
             stmt.execute();
@@ -518,12 +544,12 @@ public class ClientDAO {
     }
 
     /**
-     * Função usada para obter o saldo de um Cliente
+     * Function used to obtain the balance of an account by costumer ID
      *
-     * @param num_cliente Numero de cliente usado cmom Referencia
-     * @return Retorna Objeto cliente com um Saldo
+     * @param costumer_number Customer number used as ID
+     * @return Returns client object
      */
-    public static Client getClientBalance(int num_cliente) {
+    public static Client getClientBalance(int costumer_number) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         Client cl = null;
@@ -531,13 +557,13 @@ public class ClientDAO {
         try {
 
             stmt = conn.prepareStatement(
-            "SELECT saldo, saldo_cativo FROM cliente where num_cliente = ?;");
-            stmt.setInt(1, num_cliente);
+            "SELECT balance, pending_balance FROM clients where costumer_number = ?;");
+            stmt.setInt(1, costumer_number);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                cl = new Client(rs.getDouble("saldo"), rs.getDouble(
-                                 "saldo_cativo"));
+                cl = new Client(rs.getDouble("balance"), rs.getDouble(
+                                 "pending_balance"));
             }
 
             return cl;
@@ -550,12 +576,12 @@ public class ClientDAO {
     }
 
     /**
-     * Função usada para obter o cartão predefinido de um Cliente
+     * Function used to get the default card of a client
      *
-     * @param num_cliente ID de cliente usado como referencia
-     * @return retorna Cartão predefenido do cliente
+     * @param costumer_number costumer id used as Reference
+     * @return returns the card number
      */
-    public static String getClientDefaultCard(int num_cliente) {
+    public static String getClientDefaultCard(int costumer_number) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         String card = null;
@@ -563,12 +589,12 @@ public class ClientDAO {
         try {
 
             stmt = conn.prepareStatement(
-            "SELECT cartao_default FROM cliente where num_cliente = ?;");
-            stmt.setInt(1, num_cliente);
+            "SELECT default_card FROM clients where costumer_number = ?;");
+            stmt.setInt(1, costumer_number);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                card = rs.getString("cartao_default");
+                card = rs.getString("default_card");
             }
 
             return card;
