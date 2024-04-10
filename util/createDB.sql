@@ -123,7 +123,7 @@ CREATE TABLE profile_comments
 DELIMITER //
 
 -- Trigger deposit
-CREATE TRIGGER deposit AFTER INSERT ON deposit FOR EACH ROW
+CREATE TRIGGER deposit AFTER INSERT ON deposits FOR EACH ROW
 BEGIN
     DECLARE costumer_exists INT;
 
