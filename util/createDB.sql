@@ -14,45 +14,46 @@ CREATE TABLE customers
     default_card   VARCHAR(255),
     deleted        BOOLEAN DEFAULT 0,
     creation_date  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    entity         INT,
-    FOREIGN KEY (default_card) REFERENCES card (card_number)
+    entity         INT
 );
 
+-- Cards Table
 CREATE TABLE cards
 (
-    card_number    VARCHAR(255) PRIMARY KEY,
+    card_number     VARCHAR(255) PRIMARY KEY,
     expiration_date DATE,
-    status        VARCHAR(50),
-    customer_iban       INT,
-    FOREIGN KEY (client) REFERENCES client(customer_iban)
+    status          VARCHAR(50),
+    customer_number INT,
+    FOREIGN KEY (customer_number) REFERENCES customers (customer_number)
 );
+
 
 -- Payment_Services_Purchases Table
 CREATE TABLE payment_services_purchases
 (
     entity      INT,
     reference   INT,
-    amount       DECIMAL(10, 2),
+    amount      DECIMAL(10, 2),
     paid        BOOLEAN,
     customer    INT,
     created_by  INT,
     canceled    BOOLEAN,
     creation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (entity, reference),
-    FOREIGN KEY (customer) REFERENCES customer (customer_iban),
-    FOREIGN KEY (created_by) REFERENCES customer (customer_iban)
+    FOREIGN KEY (customer) REFERENCES customers (customer_number),
+    FOREIGN KEY (created_by) REFERENCES customers (customer_number)
 );
 
 -- Transfer Table
 CREATE TABLE transfer
 (
-    transfer_id    INT PRIMARY KEY AUTO_INCREMENT,
-    amount          DECIMAL(10, 2),
+    transfer_id    		INT PRIMARY KEY AUTO_INCREMENT,
+    amount          	DECIMAL(10, 2),
     performing_customer INT,
     receiving_customer  INT,
-    reason         VARCHAR(200),
-    FOREIGN KEY (performing_customer) REFERENCES customer (customer_iban),
-    FOREIGN KEY (receiving_customer) REFERENCES customer (customer_iban)
+    reason         		VARCHAR(200),
+    FOREIGN KEY (performing_customer) REFERENCES customers (customer_number),
+    FOREIGN KEY (receiving_customer) REFERENCES customers (customer_number)
 );
 
 -- employees Table
@@ -63,7 +64,7 @@ CREATE TABLE employees
     address     VARCHAR(255),
     email       VARCHAR(255),
     phone       VARCHAR(15),
-    nif      VARCHAR(9),
+    nif      	VARCHAR(9),
     password    VARCHAR(255),
     manager     INT,
     dismissed   BOOLEAN DEFAULT 0,
@@ -71,28 +72,28 @@ CREATE TABLE employees
     FOREIGN KEY (manager) REFERENCES employees (employee_id)
 );
 
--- employees_Customer Table
-CREATE TABLE employees_customer
+-- employees_customers Table
+CREATE TABLE employees_customers
 (
-    id      INTEGER PRIMARY KEY AUTO_INCREMENT,
-    employee_id INT,
-    customer_iban INT,
+    id      	    INTEGER PRIMARY KEY AUTO_INCREMENT,
+    employee_id     INT,
+    customer_number INT,
     FOREIGN KEY (employee_id) REFERENCES employees (employee_id),
-    FOREIGN KEY (customer_iban) REFERENCES customer (customer_iban)
+    FOREIGN KEY (customer_number) REFERENCES customers (customer_number)
 );
 
 -- Deposit Table
 CREATE TABLE deposits
 (
     deposit_id INT PRIMARY KEY AUTO_INCREMENT,
-    amount      DECIMAL(10, 2),
+    amount     DECIMAL(10, 2),
     approved   BOOLEAN,
     pending_approval BOOLEAN NOT NULL DEFAULT 1,
     employee   INT,
     customer   INT,
     creation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (employees) REFERENCES employees (employee_id),
-    FOREIGN KEY (customer) REFERENCES customer (customer_iban)
+    FOREIGN KEY (employee) REFERENCES employees (employee_id),
+    FOREIGN KEY (customer) REFERENCES customers (customer_number)
 );
 ALTER TABLE deposit ADD CONSTRAINT check_approved CHECK 
     ((approved = 1 AND employees IS NOT NULL) OR approved = 0);
@@ -100,54 +101,57 @@ ALTER TABLE deposit ADD CONSTRAINT check_approved CHECK
 -- Transactions Table
 CREATE TABLE transactions
 (
-    id        INT PRIMARY KEY AUTO_INCREMENT,
-    customer_iban   INT NOT NULL,
-    description VARCHAR(50),
-    amount     DECIMAL(10, 2),
-    creation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (customer_iban) REFERENCES customer (customer_iban)
+    id        	     INT PRIMARY KEY AUTO_INCREMENT,
+    customer_number  INT NOT NULL,
+    description      VARCHAR(50),
+    amount           DECIMAL(10, 2),
+    creation_date    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (customer_number) REFERENCES customers (customer_number)
 );
+
 
 -- Profile Comments Table
 CREATE TABLE profile_comments
 (
-    id           INTEGER AUTO_INCREMENT PRIMARY KEY,
-    employee_id INTEGER references employees (employee_id),
-    customer_iban   INTEGER references customer (customer_iban),
-    description    VARCHAR(255),
-    creation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    id                INTEGER AUTO_INCREMENT PRIMARY KEY,
+    employee_id       INTEGER references employees (employee_id),
+    customer_number   INTEGER references customers (customer_number),
+    description       VARCHAR(255),
+    creation_date     TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+DELIMITER //
 
 -- Trigger deposit
 CREATE TRIGGER deposit AFTER INSERT ON deposit FOR EACH ROW
 BEGIN
-    DECLARE exists_customer INT;
+    DECLARE costumer_exists INT;
 
     -- Adds extra security to the trigger
-    SELECT COUNT(*) INTO exists_customer FROM customer WHERE customer_iban = NEW.customer;
+    SELECT COUNT(*) INTO costumer_exists FROM customers WHERE customer_number = NEW.customers;
 
-    IF exists_customer > 0 THEN
-        UPDATE customer SET active_balance = active_balance + NEW.amount WHERE customer_iban = NEW.customer;
+    IF costumer_exists > 0 THEN
+        UPDATE customers SET pending_balance = pending_balance + NEW.amount WHERE customer_number = NEW.customers;
     END IF;
 END;
 
 -- Trigger pay service
 CREATE TRIGGER pay_service AFTER UPDATE ON payment_services_purchases FOR EACH ROW
 BEGIN
-    DECLARE exists_customer INT;
+    DECLARE costumer_exists INT;
     DECLARE balance DECIMAL(10, 2);
 
     -- Adds extra security to the trigger
-    SELECT COUNT(*) INTO exists_customer FROM customer WHERE customer_iban = NEW.customer;
-    SELECT customer.balance INTO balance FROM customer WHERE customer_iban = NEW.customer;
+    SELECT COUNT(*) INTO costumer_exists FROM customers WHERE customer_number = NEW.customers;
+    SELECT customer.balance INTO balance FROM customers WHERE customer_number = NEW.customers;
 
-    IF exists_customer > 0 THEN
+    IF costumer_exists > 0 THEN
         IF balance >= NEW.amount THEN
-            INSERT INTO transactions (customer_iban, description, amount)
-            amountS (NEW.customer, "Payment for services", 0 - NEW.amount);
+            INSERT INTO transactions (customer_number, description, amount)
+            values (NEW.customer, "Payment for services", 0 - NEW.amount);
 
-            INSERT INTO transactions (customer_iban, description, amount)
-            amountS (NEW.created_by, "Payment for services", NEW.amount);
+            INSERT INTO transactions (customer_number, description, amount)
+            values (NEW.created_by, "Payment for services", NEW.amount);
         END IF;
     END IF;
 END;
@@ -161,28 +165,28 @@ BEGIN
                 RESIGNAL;
             END;
         START TRANSACTION;
-            INSERT INTO transfer (amount, performing_customer, receiving_customer, reason) amountS (transfer_amount, performing_customer, receiving_customer, description);
+            INSERT INTO transfers (amount, performing_customer, receiving_customer, reason) values (transfer_amount, performing_customer, receiving_customer, description);
 
-            INSERT INTO transactions (customer_iban, description, amount) amountS (performing_customer, "Transfer", 0 - transfer_amount);
-            INSERT INTO transactions (customer_iban, description, amount) amountS (receiving_customer, "Transfer", transfer_amount);
+            INSERT INTO transactions (customer_iban, description, amount) values (performing_customer, "Transfer", 0 - transfer_amount);
+            INSERT INTO transactions (customer_iban, description, amount) values (receiving_customer, "Transfer", transfer_amount);
         COMMIT;
 END;
 
 -- Trigger update customer balance
 CREATE TRIGGER update_balance AFTER INSERT ON transactions FOR EACH ROW
 BEGIN
-    DECLARE exists_customer INT;
+    DECLARE consumer_exists INT;
 
     -- Adds extra security to the trigger
-    SELECT COUNT(*) INTO exists_customer FROM customer WHERE customer_iban = NEW.customer_iban;
+    SELECT COUNT(*) INTO consumer_exists FROM customers WHERE costumer_number = NEW.costumer_number;
 
     IF exists_customer > 0 THEN
-        UPDATE customer SET balance = balance + NEW.amount WHERE customer_iban = NEW.customer_iban;
+        UPDATE customers SET balance = balance + NEW.amount WHERE costumer_number = NEW.costumer_number;
     END IF;
 END;
 
 -- Procedure approve deposit
-CREATE PROCEDURE approve_deposit(IN deposit_id INTEGER, IN employee_id INTEGER)
+CREATE PROCEDURE approve_deposit(IN deposit INTEGER, IN employee_id INTEGER)
 BEGIN
         DECLARE EXIT HANDLER FOR SQLEXCEPTION
             BEGIN
@@ -190,26 +194,26 @@ BEGIN
                 RESIGNAL;
             END;
         START TRANSACTION;
-            UPDATE customer SET active_balance = active_balance - (SELECT amount FROM deposit WHERE deposit_id = deposit_id)
-                           WHERE customer_iban = (SELECT customer FROM deposit WHERE deposit_id = deposit_id);
+            UPDATE customers SET active_balance = active_balance - (SELECT amount FROM deposit WHERE deposit_id = deposit)
+                           WHERE customer_iban = (SELECT customer FROM deposit WHERE deposit_id = deposit);
 
-            UPDATE deposit SET approved = true, employees = employee_id, pending_approval = false WHERE deposit_id = deposit_id;
+            UPDATE deposits SET approved = true, employee = employee_id, pending_approval = false WHERE deposit_id = deposit;
 
-            INSERT INTO employees_customer (employees, customer)
-            amountS (employee_id, (SELECT customer FROM deposit WHERE deposit_id = deposit_id));
+            INSERT INTO employees_customers (employees, customer)
+            values (employee_id, (SELECT customer FROM deposits WHERE deposit_id = deposit));
 
-            INSERT INTO transactions (customer_iban, description, amount)
-            amountS ((SELECT customer FROM deposit WHERE deposit_id = deposit_id), "Deposit", (SELECT amount FROM deposit WHERE deposit_id = deposit_id));
+            INSERT INTO transactions (costumer_number, description, amount)
+            values ((SELECT customer FROM deposits WHERE deposit_id = deposit), "Deposit", (SELECT amount FROM deposits WHERE deposit_id = deposit));
         COMMIT;
 END;
 
-CREATE PROCEDURE reject_deposit(IN deposit_id INTEGER, IN employee_id INTEGER)
+CREATE PROCEDURE reject_deposit(IN deposit INTEGER, IN employee_id INTEGER)
 BEGIN
-    UPDATE customer SET active_balance = active_balance - (SELECT amount FROM deposit WHERE deposit_id = deposit_id) WHERE customer_iban = (SELECT customer FROM deposit WHERE deposit_id = deposit_id);
+    UPDATE customers SET active_balance = active_balance - (SELECT amount FROM deposit WHERE deposit_id = deposit) WHERE customer_iban = (SELECT customer FROM deposit WHERE deposit_id = deposit);
 
-    UPDATE deposit SET approved = false, employees = employee_id, pending_approval = false WHERE deposit_id = deposit_id;
+    UPDATE deposits SET approved = false, employee = employee_id, pending_approval = false WHERE deposit_id = deposit;
 
-    INSERT INTO employees_customer (employees, customer) amountS (employee_id, (SELECT customer FROM deposit WHERE deposit_id = deposit_id));
+    INSERT INTO employees_customers (employee_id , customer_number) values (employee_id, (SELECT customer FROM deposits WHERE deposit_id = deposit));
 END;
 
 \\
