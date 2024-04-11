@@ -225,7 +225,7 @@ public class ClientDAO {
         try {
 
             stmt = conn.prepareStatement(
-            "SELECT * FROM cl where nif like ?;");
+            "SELECT * FROM customers where nif like ?;");
             stmt.setString(1, id);
             rs = stmt.executeQuery();
 

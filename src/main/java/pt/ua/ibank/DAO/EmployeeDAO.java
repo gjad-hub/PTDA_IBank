@@ -587,7 +587,7 @@ public class EmployeeDAO {
 
         try {
             stmt = conn.prepareStatement(
-            "SELECT COUNT(*) AS total_accounts FROM costumers;");
+            "SELECT COUNT(*) AS total_accounts FROM customers;");
             rs = stmt.executeQuery();
             if (rs.next()) {
                 totalAccountsCreated = rs.getInt("total_accounts");

@@ -64,7 +64,7 @@ public class TransfersDAO {
             stmt = conn.prepareStatement(
             "select "
             + "transfer_id as id,amount,performing_customer,receiving_customer,reason"
-            + " from transfer;");
+            + " from transfers;");
             rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -100,7 +100,7 @@ public class TransfersDAO {
             stmt = conn.prepareStatement(
             "select "
             + "transfer_id as id,amount,performing_customer,receiving_customer,reason"
-            + " from transfer where transfer_id like ?;");
+            + " from transfers where transfer_id like ?;");
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
 
@@ -138,7 +138,7 @@ public class TransfersDAO {
             stmt = conn.prepareStatement(
             "select "
             + "transfer_id as id,amount,performing_customer,receiving_customer,reason"
-            + " from transfer where performing_customer like ? or receiving_customer like ?;");
+            + " from transfers where performing_customer like ? or receiving_customer like ?;");
             stmt.setInt(1, id);
             stmt.setInt(2, id);
             rs = stmt.executeQuery();
@@ -179,7 +179,7 @@ public class TransfersDAO {
             stmt = conn.prepareStatement(
             "select "
             + "transfer_id as id,amount,performing_customer,receiving_customer,reason"
-            + " from transfer where performing_customer like ?;");
+            + " from transfers where performing_customer like ?;");
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
 
@@ -219,7 +219,7 @@ public class TransfersDAO {
             stmt = conn.prepareStatement(
             "select "
             + "transfer_id as id,amount,performing_customer,receiving_customer,reason"
-            + " from transfer where receiving_customer like ?;");
+            + " from transfers where receiving_customer like ?;");
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
 
