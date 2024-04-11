@@ -45,7 +45,7 @@ CREATE TABLE payment_services_purchases
 );
 
 -- Transfer Table
-CREATE TABLE transfer
+CREATE TABLE transfers
 (
     transfer_id    		INT PRIMARY KEY AUTO_INCREMENT,
     amount          	DECIMAL(10, 2),
@@ -133,7 +133,7 @@ BEGIN
     IF costumer_exists > 0 THEN
         UPDATE customers SET pending_balance = pending_balance + NEW.amount WHERE customer_number = NEW.customers;
     END IF;
-END;
+END//
 
 -- Trigger pay service
 CREATE TRIGGER pay_service AFTER UPDATE ON payment_services_purchases FOR EACH ROW
@@ -154,7 +154,7 @@ BEGIN
             values (NEW.created_by, "Payment for services", NEW.amount);
         END IF;
     END IF;
-END;
+END//
 
 -- Procedure make transfer
 CREATE PROCEDURE make_transfer(IN performing_customer INTEGER, IN receiving_customer INTEGER, IN transfer_amount DECIMAL(10,2), IN description VARCHAR(255))
@@ -167,10 +167,10 @@ BEGIN
         START TRANSACTION;
             INSERT INTO transfers (amount, performing_customer, receiving_customer, reason) values (transfer_amount, performing_customer, receiving_customer, description);
 
-            INSERT INTO transactions (customer_iban, description, amount) values (performing_customer, "Transfer", 0 - transfer_amount);
-            INSERT INTO transactions (customer_iban, description, amount) values (receiving_customer, "Transfer", transfer_amount);
+            INSERT INTO transactions (customer_number, description, amount) values (performing_customer, "Transfer", 0 - transfer_amount);
+            INSERT INTO transactions (customer_number, description, amount) values (receiving_customer, "Transfer", transfer_amount);
         COMMIT;
-END;
+END//
 
 -- Trigger update customer balance
 CREATE TRIGGER update_balance AFTER INSERT ON transactions FOR EACH ROW

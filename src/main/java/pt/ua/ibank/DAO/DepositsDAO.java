@@ -31,7 +31,7 @@ public class DepositsDAO {
         try {
 
             stmt = conn.prepareStatement(
-            "INSERT INTO deposit (amount, customer_id) "
+            "INSERT INTO deposits (amount, customer) "
             + "VALUES (?,?)"
     );
 
@@ -40,6 +40,7 @@ public class DepositsDAO {
             stmt.execute();
             return SUCCESS_CODE;
         } catch (SQLException e) {
+            e.printStackTrace(System.out);
             return ERROR_CODE;
         } finally {
             DBConnection.closeConnection(stmt);
@@ -60,8 +61,8 @@ public class DepositsDAO {
 
         try {
             stmt = conn.prepareStatement(
-            "SELECT id_deposit, amount, approved, pending_approval, employee, "
-            + "customer FROM deposits WHERE num_cli = ? ORDER BY date desc;");
+            "SELECT deposit_id, amount, approved, pending_approval, employee, "
+            + "customer FROM deposits WHERE customer = ? ORDER BY creation_date desc;");
             stmt.setInt(1, customerID);
             rs = stmt.executeQuery();
 
@@ -70,14 +71,14 @@ public class DepositsDAO {
 
                 boolean isPending = rs.getBoolean("pending_approval");
                 if (isPending) {
-                    deposit = new Deposit(rs.getInt("id_deposit"),
+                    deposit = new Deposit(rs.getInt("deposit_id"),
                                           rs.getDouble("amount"));
                 } else {
-                    deposit = new Deposit(rs.getInt("id_deposit"),
+                    deposit = new Deposit(rs.getInt("deposit_id"),
                                           rs.getDouble("amount"),
                                           rs.getBoolean("approved"),
-                                          rs.getInt("num_fun"),
-                                          rs.getInt("num_cli")
+                                          rs.getInt("employee"),
+                                          rs.getInt("customer")
             );
                 }
 

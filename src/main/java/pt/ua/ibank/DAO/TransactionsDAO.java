@@ -31,14 +31,14 @@ public class TransactionsDAO {
 
         try {
             stmt = conn.prepareStatement(
-            "SELECT * FROM transactions WHERE customer_iban = ?;");
+            "SELECT * FROM transactions WHERE customer_number = ?;");
             stmt.setInt(1, customerID);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
                 Transactions transaction = new Transactions(
                              rs.getInt("id"),
-                             rs.getInt("customer_iban"),
+                             rs.getInt("customer_number"),
                              rs.getString("description"),
                              rs.getDouble("amount"),
                              rs.getTimestamp("creation_date"));

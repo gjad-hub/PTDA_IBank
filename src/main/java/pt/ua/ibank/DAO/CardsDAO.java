@@ -33,7 +33,7 @@ public class CardsDAO {
 
         try {
             stmt = conn.prepareStatement(
-            "SELECT * FROM card WHERE card_number LIKE ?;");
+            "SELECT * FROM cards WHERE card_number LIKE ?;");
             stmt.setString(1, number);
             rs = stmt.executeQuery();
 
@@ -41,7 +41,7 @@ public class CardsDAO {
                 card = new Card(
                 rs.getString("card_number"),
                 rs.getTimestamp("expiration_date"),
-                rs.getInt("customer"));
+                rs.getInt("customer_number"));
             }
 
             return card;
@@ -67,7 +67,7 @@ public class CardsDAO {
 
         try {
             stmt = conn.prepareStatement(
-            "SELECT card_number, expiration_date, status FROM cards WHERE customer = ?;");
+            "SELECT card_number, expiration_date, status FROM cards WHERE customer_number = ?;");
             stmt.setInt(1, customer_id);
             rs = stmt.executeQuery();
 
@@ -100,7 +100,7 @@ public class CardsDAO {
 
         try {
             stmt = conn.prepareStatement(
-            "SELECT COUNT(*) AS quantity FROM cards WHERE customer = ?;");
+            "SELECT COUNT(*) AS quantity FROM cards WHERE customer_number = ?;");
             stmt.setInt(1, customer_id);
             rs = stmt.executeQuery();
 
@@ -127,7 +127,7 @@ public class CardsDAO {
 
         try {
             stmt = conn.prepareStatement(
-            "UPDATE card SET status = 'Canceled' WHERE card_number LIKE ?");
+            "UPDATE cards SET status = 'Canceled' WHERE card_number LIKE ?");
             stmt.setString(1, card_number);
             stmt.execute();
 
@@ -152,7 +152,7 @@ public class CardsDAO {
 
         try {
             stmt = conn.prepareStatement(
-            "UPDATE customer SET default_card = ? WHERE customer_id = ?");
+            "UPDATE customers SET default_card = ? WHERE customer_number = ?");
             stmt.setString(1, card_number);
             stmt.setInt(2, customer_id);
             stmt.execute();
@@ -182,7 +182,7 @@ public class CardsDAO {
             do {
                 card_number = generateCardNumber();
                 stmt = conn.prepareStatement(
-                "SELECT COUNT(card_number) AS value FROM card WHERE card_number LIKE ?;");
+                "SELECT COUNT(card_number) AS value FROM cards WHERE card_number LIKE ?;");
                 stmt.setString(1, card_number);
                 rs = stmt.executeQuery();
                 rs.next();
@@ -190,7 +190,7 @@ public class CardsDAO {
             stmt.close();
 
             stmt = conn.prepareStatement(
-            "INSERT INTO card (card_number, expiration_date, status, customer_id) "
+            "INSERT INTO cards (card_number, expiration_date, status, customer_number) "
             + "VALUES (?, (SELECT DATE_ADD(CURDATE(), INTERVAL +5 YEAR)), 'Active', ?);");
             stmt.setString(1, card_number);
             stmt.setInt(2, customer_id);

@@ -10,9 +10,9 @@ import javax.swing.JOptionPane;
 public class DBConnection {
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://estga-dev.ua.pt/PTDA_BD_001";
-    private static final String USER = "PTDA_001";
-    private static final String PASS = "Kiyt684h";
+    private static final String URL = "jdbc:mysql://localhost/IBANK";
+    private static final String USER = "root";
+    private static final String PASS = "test";
 
     public static final Connection conn = getConnection();
 

@@ -69,7 +69,7 @@ public class ClientDAO {
             do {
                 card_number = generateCardNumber();
                 stmt = conn.prepareStatement(
-                "SELECT count(num_cartao) AS value FROM cartao where num_cartao like ?;");
+                "SELECT count(*) AS value FROM cards where card_number like ?;");
                 stmt.setString(1, card_number);
                 rs = stmt.executeQuery();
                 rs.next();
@@ -79,7 +79,7 @@ public class ClientDAO {
             do {
                 entity = generateEnt();
                 stmt = conn.prepareStatement(
-                "SELECT count(costumer_number) AS value FROM clients where entity = ?;");
+                "SELECT count(customer_number) AS value FROM customers where entity = ?;");
                 stmt.setInt(1, entity);
                 rs = stmt.executeQuery();
                 rs.next();
@@ -111,7 +111,7 @@ public class ClientDAO {
             int num_cli = getClientIdByEmail(email);
 
             stmt = conn.prepareStatement(
-            "UPDATE cards SET account_number = ? WHERE card_number like ?;");
+            "UPDATE cards SET customer_number = ? WHERE card_number like ?;");
             stmt.setInt(1, num_cli);
             stmt.setString(2, card_number);
             stmt.execute();
@@ -182,22 +182,23 @@ public class ClientDAO {
         try {
 
             stmt = conn.prepareStatement(
-            "SELECT * FROM clients where email like ?;");
+            "SELECT * FROM customers where email like ?;");
             stmt.setString(1, id);
             rs = stmt.executeQuery();
 
-            while (rs.first()) {
+            while (rs.next()) {
+
                 cl = new Client(
-                        rs.getInt("account_number"),
+                        rs.getInt("customer_number"),
                         rs.getString("name"),
                         rs.getString("address"),
                         rs.getString("email"),
                         rs.getString("phone"),
                         rs.getString("nif"),
+                        rs.getString("password"),
                         rs.getString("account_number"),
                         rs.getDouble("balance"),
                         rs.getDouble("pending_balance"),
-                        rs.getDate("creation_date"),
                         rs.getString("default_card"),
                         rs.getInt("entity"));
             }
@@ -230,7 +231,7 @@ public class ClientDAO {
 
             while (rs.next()) {
                 cl = new Client(
-                rs.getInt("costumer_number"),
+                rs.getInt("customer_number"),
                 rs.getString("name"),
                 rs.getString("address"),
                 rs.getString("email"),
@@ -254,10 +255,10 @@ public class ClientDAO {
     }
 
     /**
-     * Used to get a list of clients with the same address
+     * Used to get a list of customers with the same address
      *
      * @param address address to search.
-     * @return Returns a list of clients
+     * @return Returns a list of customers
      */
     public static ArrayList<Client> getClientListByAddress(String selected_address) {
         PreparedStatement stmt = null;
@@ -266,13 +267,13 @@ public class ClientDAO {
         ArrayList<Client> list = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(
-            "SELECT costumer_number,name,address,email,phone,nif,account_number,"
-            + "creation_date,default_card FROM clients where address like ?");
+            "SELECT customer_number,name,address,email,phone,nif,account_number,"
+            + "creation_date,default_card FROM customers where address like ?");
             stmt.setString(1, selected_address);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Integer number = rs.getInt("costumer_number");
+                Integer number = rs.getInt("customer_number");
                 String name = rs.getString("name");
                 String address = rs.getString("address");
                 String email = rs.getString("email");
@@ -301,25 +302,25 @@ public class ClientDAO {
      * Function used to get the client name by ID
      *
      * @param iban IBAN do Cliente usado como referencia
-     * @return retorna o ID do clients associado ao IBAN
+     * @return retorna o ID do customers associado ao IBAN
      */
     public static String getClientNameByID(Integer ID) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        String costumer_number = null;
+        String customer_number = null;
 
         try {
 
             stmt = conn.prepareStatement(
-            "SELECT name FROM clients where customer_number like ?;");
+            "SELECT name FROM customers where customer_number like ?;");
             stmt.setInt(1, ID);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                costumer_number = rs.getString("name");
+                customer_number = rs.getString("name");
             }
 
-            return costumer_number;
+            return customer_number;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
         } finally {
@@ -330,9 +331,9 @@ public class ClientDAO {
 
     
     /**
-     * Returns a list of all clients
+     * Returns a list of all customers
      *
-     * @return Returns a list of clients, null if empty
+     * @return Returns a list of customers, null if empty
      */
     public static ArrayList<Client> getClientList() {
         PreparedStatement stmt = null;
@@ -341,13 +342,13 @@ public class ClientDAO {
         ArrayList<Client> list = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(
-            "SELECT costumer_number,name,address,email,"
+            "SELECT customer_number,name,address,email,"
             + "phone,nif,account_number,default_card,creation_date "
-            + "FROM clients");
+            + "FROM customers");
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Integer numero = rs.getInt("costumer_number");
+                Integer numero = rs.getInt("customer_number");
                 String name = rs.getString("name");
                 String address = rs.getString("address");
                 String email = rs.getString("email");
@@ -380,20 +381,20 @@ public class ClientDAO {
     public static Integer getClientIdByIBAN(String iban) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Integer costumer_number = null;
+        Integer customer_number = null;
 
         try {
 
             stmt = conn.prepareStatement(
-            "SELECT costumer_number FROM clients where account_number like ?;");
+            "SELECT customer_number FROM customers where account_number like ?;");
             stmt.setString(1, iban);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                costumer_number = rs.getInt("costumer_number");
+                customer_number = rs.getInt("customer_number");
             }
 
-            return costumer_number;
+            return customer_number;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
         } finally {
@@ -414,7 +415,7 @@ public class ClientDAO {
 
         try {
             stmt = conn.prepareStatement(
-            "SELECT name FROM clients WHERE costumer_number = ?");
+            "SELECT name FROM customers WHERE customer_number = ?");
             stmt.setInt(1, clientID);
             rs = stmt.executeQuery();
 
@@ -439,20 +440,20 @@ public class ClientDAO {
     public static Integer getClientIdByEmail(String email) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Integer costumer_number = null;
+        Integer customer_number = null;
 
         try {
 
             stmt = conn.prepareStatement(
-            "SELECT costumer_number FROM clients where email like ?;");
+            "SELECT customer_number FROM customers where email like ?;");
             stmt.setString(1, email);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                costumer_number = rs.getInt("costumer_number");
+                customer_number = rs.getInt("customer_number");
             }
 
-            return costumer_number;
+            return customer_number;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
         } finally {
@@ -467,22 +468,22 @@ public class ClientDAO {
      * @return returns if successful
      */
     public static boolean UpdateClient(
-            int costumer_number, String name,
+            int customer_number, String name,
             String address, String email,
             String phone, String nif) {
         PreparedStatement stmt = null;
 
         try {
             stmt = conn.prepareStatement(
-            "UPDATE clients "
+            "UPDATE customers "
             + "SET name = ? , address = ?, email = ?, phone = ?, nif = ? "
-            + "WHERE costumer_number = ?");
+            + "WHERE customer_number = ?");
             stmt.setString(1, name);
             stmt.setString(2, address);
             stmt.setString(3, email);
             stmt.setString(4, phone);
             stmt.setString(5, nif);
-            stmt.setInt(6, costumer_number);
+            stmt.setInt(6, customer_number);
             stmt.executeUpdate();
             return true;
 
@@ -497,12 +498,12 @@ public class ClientDAO {
     /**
      * Função usada para actualizar as Informações externas de um Funcionario"
      *
-     * @param name      Nome de clients Externo
+     * @param name      Nome de customers Externo
      * @param address    Morada de Cliente Externo
      * @param email     Email de Cliente externo
      * @param phone  Telefone de Cliente externo
      * @param nif       nif ( Numero de Identificação fiscal ) Externo
-     * @param password  Password encriptada do clients
+     * @param password  Password encriptada do customers
      * @param old_email Email antigo caso pretenda mudar
      * @return 1 if success, 2 if email error, 3 if SQL Error
      */
@@ -516,7 +517,7 @@ public class ClientDAO {
 
             // check if theres a costumer with that email
             stmt = conn.prepareStatement(
-            "SELECT count(costumer_number) AS value FROM clients where email like ?;");
+            "SELECT count(customer_number) AS value FROM customers where email like ?;");
             stmt.setString(1, email);
             rs = stmt.executeQuery();
             rs.next();
@@ -526,7 +527,7 @@ public class ClientDAO {
             }
 
             stmt = conn.prepareStatement(
-            "UPDATE clients SET name = ? , address = ?, email = ?, phone = ?, password = ? WHERE email = ?");
+            "UPDATE customers SET name = ? , address = ?, email = ?, phone = ?, password = ? WHERE email = ?");
             stmt.setString(1, name);
             stmt.setString(2, address);
             stmt.setString(3, email);
@@ -546,10 +547,10 @@ public class ClientDAO {
     /**
      * Function used to obtain the balance of an account by costumer ID
      *
-     * @param costumer_number Customer number used as ID
+     * @param customer_number Customer number used as ID
      * @return Returns client object
      */
-    public static Client getClientBalance(int costumer_number) {
+    public static Client getClientBalance(int customer_number) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         Client cl = null;
@@ -557,8 +558,8 @@ public class ClientDAO {
         try {
 
             stmt = conn.prepareStatement(
-            "SELECT balance, pending_balance FROM clients where costumer_number = ?;");
-            stmt.setInt(1, costumer_number);
+            "SELECT balance, pending_balance FROM customers where customer_number = ?;");
+            stmt.setInt(1, customer_number);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -578,10 +579,10 @@ public class ClientDAO {
     /**
      * Function used to get the default card of a client
      *
-     * @param costumer_number costumer id used as Reference
+     * @param customer_number costumer id used as Reference
      * @return returns the card number
      */
-    public static String getClientDefaultCard(int costumer_number) {
+    public static String getClientDefaultCard(int customer_number) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         String card = null;
@@ -589,8 +590,8 @@ public class ClientDAO {
         try {
 
             stmt = conn.prepareStatement(
-            "SELECT default_card FROM clients where costumer_number = ?;");
-            stmt.setInt(1, costumer_number);
+            "SELECT default_card FROM customers where customer_number = ?;");
+            stmt.setInt(1, customer_number);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
