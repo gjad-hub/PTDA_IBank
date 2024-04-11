@@ -178,12 +178,12 @@ BEGIN
     DECLARE consumer_exists INT;
 
     -- Adds extra security to the trigger
-    SELECT COUNT(*) INTO consumer_exists FROM customers WHERE costumer_number = NEW.costumer_number;
+    SELECT COUNT(*) INTO consumer_exists FROM customers WHERE custumers.customer_number = NEW.customer_number;
 
     IF exists_customer > 0 THEN
-        UPDATE customers SET balance = balance + NEW.amount WHERE costumer_number = NEW.costumer_number;
+        UPDATE customers SET balance = balance + NEW.amount WHERE customers.customer_number = NEW.customer_number;
     END IF;
-END;
+END//
 
 -- Procedure approve deposit
 CREATE PROCEDURE approve_deposit(IN deposit INTEGER, IN employee_id INTEGER)
@@ -205,7 +205,7 @@ BEGIN
             INSERT INTO transactions (costumer_number, description, amount)
             values ((SELECT customer FROM deposits WHERE deposit_id = deposit), "Deposit", (SELECT amount FROM deposits WHERE deposit_id = deposit));
         COMMIT;
-END;
+END//
 
 CREATE PROCEDURE reject_deposit(IN deposit INTEGER, IN employee_id INTEGER)
 BEGIN
@@ -214,7 +214,6 @@ BEGIN
     UPDATE deposits SET approved = false, employee = employee_id, pending_approval = false WHERE deposit_id = deposit;
 
     INSERT INTO employees_customers (employee_id , customer_number) values (employee_id, (SELECT customer FROM deposits WHERE deposit_id = deposit));
-END;
+END//
 
-\\
 DELIMITER ;
