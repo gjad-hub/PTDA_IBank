@@ -1,4 +1,4 @@
-# Pattern Park
+# IBANK Banking App
 
 The IBank is an application that simulates all the basic functionalities of a bank application.<br>
 This project is mainly in portuguese but you can also find the english version in a separate branch.<br>
