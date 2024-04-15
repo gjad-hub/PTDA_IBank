@@ -1,4 +1,4 @@
-# IBANK Banking App
+# IBank Banking Application
 
 The IBank is an application that simulates all the basic functionalities of a bank application.<br>
 This project is mainly in portuguese but you can also find the english version in a separate branch.<br>
@@ -11,22 +11,17 @@ It is fully designed and written by students and mainly written in Java.
 - Windows or Linux
 - Java (requires Version 8)
 
-
-### Download
-
-Releases can be found on the Release page
-
 ### Running the Application
 
 #### Windows
 
-1. Download a [Release from GitLab](https://gitlab.hochschule-stralsund.de/pattern-park/pattern-park-app/-/releases)
+1. Download a the Archive
 2. Unzip Archive
 3. Run the Executable (*ibank_employee.jar or client_ibank.jar*)
 
 If the Executable does not start properly you can try to run the `.jar` file directly:
 
-1. Make sure that you are in the ``IBANK`` folder
+1. Make sure that you are in the ``pattern-park`` folder
 2. Run the following command: `java -jar IBank.jar`
 
 <br>
@@ -56,6 +51,7 @@ After being compiled the Application can be run by starting the `Start.java` cla
 ## Libraries
 
 - [Java Swing](https://mvnrepository.com/artifact/org.openjfx/javafx-swing)
+- [JDBC](https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/)
 
 
 <br>
