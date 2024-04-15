@@ -14,7 +14,7 @@ It is fully designed and written by students and mainly written in Java.
 
 ### Download
 
-Releases can be found at [GitLab.](https://gitlab.hochschule-stralsund.de/pattern-park/pattern-park-app/-/releases)
+Releases can be found on the Release page
 
 ### Running the Application
 
