@@ -26,7 +26,7 @@ Releases can be found at [GitLab.](https://gitlab.hochschule-stralsund.de/patter
 
 If the Executable does not start properly you can try to run the `.jar` file directly:
 
-1. Make sure that you are in the ``pattern-park`` folder
+1. Make sure that you are in the ``IBANK`` folder
 2. Run the following command: `java -jar IBank.jar`
 
 <br>
