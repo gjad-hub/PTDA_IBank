@@ -8,7 +8,6 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import pt.ua.ibank.interfaces.clientInterface;
 import static pt.ua.ibank.interfaces.clientInterface.localClientInterface;
-import pt.ua.ibank.interfaces.dialogLogin;
 import pt.ua.ibank.utilities.Configs;
 
 public class IBank {
@@ -28,8 +27,8 @@ public class IBank {
             System.exit(98);
         }
 
-        dialogLogin login = new dialogLogin(null, true);
-        login.setVisible(true);
+        MainInterface main = new MainInterface();
+        main.setVisible(true);
 
         if (Configs.loginOK) {
             localClientInterface = new clientInterface();

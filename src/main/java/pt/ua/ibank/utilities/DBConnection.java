@@ -24,7 +24,7 @@ public class DBConnection {
         }
     }
 
-    private static Connection getConnection() {
+    public static Connection getConnection() {
 
         try {
             Class.forName(DRIVER);
