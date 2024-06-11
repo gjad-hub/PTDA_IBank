@@ -14,6 +14,7 @@ public class IBank {
 
     public static void main(String[] args) {
         try {
+
             UIManager.setLookAndFeel(new FlatLightLaf());
             FlatLightLaf.setGlobalExtraDefaults(Collections.singletonMap("@accentColor", "#79658C"));
             FlatLightLaf.setup();
