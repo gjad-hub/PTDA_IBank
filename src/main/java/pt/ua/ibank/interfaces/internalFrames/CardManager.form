@@ -176,7 +176,7 @@
             </Container>
             <Component class="javax.swing.JButton" name="cancel_card">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cancelar cart&#xe3;o"/>
+                <Property name="text" type="java.lang.String" value="Cancel Card"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancel_cardActionPerformed"/>
@@ -184,7 +184,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="default_card">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Tornar padr&#xe3;o"/>
+                <Property name="text" type="java.lang.String" value="Make default"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="default_cardActionPerformed"/>
@@ -194,7 +194,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cart&#xe3;o padr&#xe3;o: "/>
+                <Property name="text" type="java.lang.String" value="Default Card:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="f_card">
@@ -207,7 +207,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="create_card">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Criar novo cart&#xe3;o"/>
+                <Property name="text" type="java.lang.String" value="Create new card"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="create_cardActionPerformed"/>

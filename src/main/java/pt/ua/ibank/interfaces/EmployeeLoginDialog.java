@@ -122,7 +122,7 @@ public class EmployeeLoginDialog extends javax.swing.JDialog {
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Olá, funcionário! Bem-vindo ao IBank!");
+        jLabel12.setText("Hello Employee! Welcome to IBank!");
         panelLogin.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 420, -1));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N

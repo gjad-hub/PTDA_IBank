@@ -35,7 +35,7 @@
                       <Component id="lblNumeroCartao" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="29" max="32767" attributes="0"/>
+              <EmptySpace pref="35" max="32767" attributes="0"/>
               <Component id="lblEstadoValue" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -89,7 +89,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="10" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value=" Validade:"/>
+        <Property name="text" type="java.lang.String" value="Expires:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblValidadeValue">
@@ -105,7 +105,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="10" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Ativo"/>
+        <Property name="text" type="java.lang.String" value="Active"/>
       </Properties>
     </Component>
   </SubComponents>

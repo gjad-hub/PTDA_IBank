@@ -93,10 +93,10 @@ public class ContasGerenteMainInterface extends javax.swing.JPanel {
 
         jLabel21.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel21.setText("Detalhes");
+        jLabel21.setText("Details");
 
         btnOpenProfile.setBackground(new java.awt.Color(204, 204, 204));
-        btnOpenProfile.setText("Ver perfil Completo");
+        btnOpenProfile.setText("See full Profile");
         btnOpenProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOpenProfileActionPerformed(evt);
@@ -108,7 +108,7 @@ public class ContasGerenteMainInterface extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(75, Short.MAX_VALUE)
+                .addContainerGap(115, Short.MAX_VALUE)
                 .addComponent(jLabel21)
                 .addGap(74, 74, 74)
                 .addComponent(btnOpenProfile)
@@ -125,25 +125,25 @@ public class ContasGerenteMainInterface extends javax.swing.JPanel {
         );
 
         lblDepositosAprovados.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblDepositosAprovados.setText("Depositos Aprovados:");
+        lblDepositosAprovados.setText("Deposits Approved");
 
         lblMorada.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblMorada.setText("Morada:");
+        lblMorada.setText("Address");
 
         lblNIF.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblNIF.setText("NIF: ");
+        lblNIF.setText("SSN");
 
         lblEmail.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblEmail.setText("Email: ");
+        lblEmail.setText("Email");
 
         lblNome.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblNome.setText("Nome: ");
+        lblNome.setText("Name");
 
         lblGerenteResponsavel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblGerenteResponsavel.setText("Gerente Responsavel: ");
+        lblGerenteResponsavel.setText("Manager Responsible");
 
         lblNumeroFuncionario.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblNumeroFuncionario.setText("Numero de Funcionario:");
+        lblNumeroFuncionario.setText("Employee Number");
 
         lblNumeroFuncionarioValue.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblNumeroFuncionarioValue.setText("Numero");
@@ -170,7 +170,7 @@ public class ContasGerenteMainInterface extends javax.swing.JPanel {
         lblDepositosAprovadosValue.setText("Numero");
 
         lblTelemovel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblTelemovel.setText("Telemovel: ");
+        lblTelemovel.setText("Phone Number");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -289,7 +289,7 @@ public class ContasGerenteMainInterface extends javax.swing.JPanel {
 
                 jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
                 jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-                jLabel15.setText("Lista de Contas");
+                jLabel15.setText("Account List");
                 jLabel15.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
                 jLabel15.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
@@ -298,9 +298,9 @@ public class ContasGerenteMainInterface extends javax.swing.JPanel {
                 jPanel4Layout.setHorizontalGroup(
                     jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap(187, Short.MAX_VALUE)
+                        .addContainerGap(193, Short.MAX_VALUE)
                         .addComponent(jLabel15)
-                        .addContainerGap(186, Short.MAX_VALUE))
+                        .addContainerGap(193, Short.MAX_VALUE))
                 );
                 jPanel4Layout.setVerticalGroup(
                     jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,12 +316,12 @@ public class ContasGerenteMainInterface extends javax.swing.JPanel {
 
                 jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
                 jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-                jLabel17.setText("Procurar Conta");
+                jLabel17.setText("SearchAccount");
                 jLabel17.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
                 jLabel17.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
                 jButton3.setBackground(new java.awt.Color(204, 204, 204));
-                jButton3.setText("Tirar filtros");
+                jButton3.setText("Remove Filters");
                 jButton3.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
                         jButton3ActionPerformed(evt);
@@ -351,7 +351,7 @@ public class ContasGerenteMainInterface extends javax.swing.JPanel {
 
                 btnProcurarConta.setBackground(new java.awt.Color(0, 0, 0));
                 btnProcurarConta.setForeground(new java.awt.Color(255, 255, 255));
-                btnProcurarConta.setText("Procurar");
+                btnProcurarConta.setText("Seach");
                 btnProcurarConta.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
                         btnProcurarContaActionPerformed(evt);

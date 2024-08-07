@@ -93,7 +93,7 @@ public class ContasMainInterface extends javax.swing.JPanel {
         jLabel21.setText("Detalhes");
 
         jButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jButton2.setText("Ver perfil Completo");
+        jButton2.setText("See Full Profile");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -105,7 +105,7 @@ public class ContasMainInterface extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
+                .addContainerGap(73, Short.MAX_VALUE)
                 .addComponent(jLabel21)
                 .addGap(74, 74, 74)
                 .addComponent(jButton2)
@@ -122,13 +122,13 @@ public class ContasMainInterface extends javax.swing.JPanel {
         );
 
         lblNoDepositos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblNoDepositos.setText("Depositos Feitos: ");
+        lblNoDepositos.setText("Deposits Made:");
 
         lblMorada.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblMorada.setText("Morada:");
+        lblMorada.setText("Address:");
 
         lblNIF.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblNIF.setText("NIF: ");
+        lblNIF.setText("SSN: ");
 
         lblTelemovel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblTelemovel.setText("Telemovel: ");
@@ -137,13 +137,13 @@ public class ContasMainInterface extends javax.swing.JPanel {
         lblEmail.setText("Email: ");
 
         lblNome.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblNome.setText("Nome: ");
+        lblNome.setText("Name:");
 
         lblNumConta.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblNumConta.setText("numConta: ");
+        lblNumConta.setText("Account Number");
 
         lblNumeroCliente.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblNumeroCliente.setText("Numero de Cliente:");
+        lblNumeroCliente.setText("Client Number");
 
         lblNumeroClienteValue.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblNumeroClienteValue.setText("Numero");
@@ -174,25 +174,18 @@ public class ContasMainInterface extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblEmail)
-                                .addGap(92, 92, 92))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblNumeroCliente)
-                                    .addComponent(lblNumConta, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(lblTelemovel)
-                                    .addGap(56, 56, 56)))
-                            .addComponent(lblNome, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblMorada)
-                                .addGap(80, 80, 80))
-                            .addComponent(lblNIF, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNumConta)
+                            .addComponent(lblNumeroCliente)
+                            .addComponent(lblNome)
+                            .addComponent(lblEmail)
+                            .addComponent(lblTelemovel)
+                            .addComponent(lblNIF)
+                            .addComponent(lblMorada))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNumeroClienteValue, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblNumContaValue, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -253,7 +246,7 @@ public class ContasMainInterface extends javax.swing.JPanel {
             .addGroup(currClienteDisplayPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         currClienteDisplayPanelLayout.setVerticalGroup(
             currClienteDisplayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,7 +298,7 @@ public class ContasMainInterface extends javax.swing.JPanel {
 
                 jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
                 jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-                jLabel15.setText("Lista de Contas");
+                jLabel15.setText("Account List");
                 jLabel15.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
                 jLabel15.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
@@ -314,9 +307,9 @@ public class ContasMainInterface extends javax.swing.JPanel {
                 jPanel4Layout.setHorizontalGroup(
                     jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap(203, Short.MAX_VALUE)
+                        .addContainerGap(208, Short.MAX_VALUE)
                         .addComponent(jLabel15)
-                        .addContainerGap(202, Short.MAX_VALUE))
+                        .addContainerGap(207, Short.MAX_VALUE))
                 );
                 jPanel4Layout.setVerticalGroup(
                     jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,12 +325,12 @@ public class ContasMainInterface extends javax.swing.JPanel {
 
                 jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
                 jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-                jLabel17.setText("Procurar Conta");
+                jLabel17.setText("Accpunt Search");
                 jLabel17.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
                 jLabel17.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
                 jButton3.setBackground(new java.awt.Color(204, 204, 204));
-                jButton3.setText("Tirar filtros");
+                jButton3.setText("Remove Filters");
                 jButton3.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
                         jButton3ActionPerformed(evt);
@@ -367,7 +360,7 @@ public class ContasMainInterface extends javax.swing.JPanel {
 
                 btnProcurarConta.setBackground(new java.awt.Color(0, 0, 0));
                 btnProcurarConta.setForeground(new java.awt.Color(255, 255, 255));
-                btnProcurarConta.setText("Procurar");
+                btnProcurarConta.setText("Search");
                 btnProcurarConta.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
                         btnProcurarContaActionPerformed(evt);

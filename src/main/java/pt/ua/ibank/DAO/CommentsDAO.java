@@ -11,7 +11,7 @@ import static pt.ua.ibank.utilities.DBConnection.conn;
 /**
  * Class with static methods associated with operations performed with external
  * Comments
- * stored in a MySQL database
+ * stored in a Persistent data layer
  * Author: PTDA_Staff.
  * Last Modification Date: January 14, 2024
  */
@@ -32,9 +32,9 @@ public class CommentsDAO {
         try {
 
             stmt = conn.prepareStatement(
-            "select id,employees.name as name,description,date"
-            + " from profile_comments inner join employees on employees.employee_id = profile_comment.employee_id"
-            + " where customer_iban = ?;");
+            "select id,employees.name as name,description,profile_comments.creation_date"
+            + " from profile_comments inner join employees on employees.employee_id = profile_comments.employee_id"
+            + " where customer_number = ?;");
             stmt.setInt(1, clientID);
             rs = stmt.executeQuery();
 
@@ -69,7 +69,7 @@ public class CommentsDAO {
 
         try {
             stmt = conn.prepareStatement(
-            "select id,employees.name as name,description,date"
+            "select id,employees.name as name,description,creation_date"
             + " from profile_comments inner join employees on employees.employee_id = profile_comments.employee_id"
             + " where client_id = ?;");
             stmt.setInt(1, clientID);
@@ -80,7 +80,7 @@ public class CommentsDAO {
                         rs.getInt("id"),
                         rs.getString("name"),
                         rs.getString("description"),
-                        rs.getTimestamp("date")));
+                        rs.getTimestamp("creation_date")));
             }
 
             return list.isEmpty() ? null : list;

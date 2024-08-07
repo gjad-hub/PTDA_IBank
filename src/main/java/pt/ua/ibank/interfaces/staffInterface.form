@@ -826,11 +826,11 @@
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor" postCode="var mostValuable = pt.ua.ibank.DAO.EmployeeDAO.getEmployeeWithMostApprovedDeposits();">
                       <Font name="Segoe UI" size="12" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="pt.ua.ibank.DAO.EmployeeDAO.getEmployeeWithMostApprovedDeposits().toString()" type="code"/>
+                      <Connection code="mostValuable == null ? &quot;&quot; : mostValuable.toString()" type="code"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -853,11 +853,11 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="14" style="1"/>
                     </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor" postCode="var mostValuableEmployee = pt.ua.ibank.DAO.EmployeeDAO.getEmployeeWithMostApprovedDeposits();">
                       <Color blue="bf" green="ab" red="3e" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="pt.ua.ibank.DAO.EmployeeDAO.getEmployeeWithMostApprovedDeposits()" type="code"/>
+                      <Connection code="mostValuableEmployee != null ? mostValuableEmployee :  &quot;No one&quot;" type="code"/>
                     </Property>
                   </Properties>
                 </Component>

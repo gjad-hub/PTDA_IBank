@@ -139,13 +139,13 @@ public class ClientDAO {
         try {
 
             stmt = conn.prepareStatement(
-            "SELECT * FROM customers where account_number = ?;");
+            "SELECT * FROM customers where customer_number = ?;");
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
                 return new Client(
-                        rs.getInt("account_number"),
+                        rs.getInt("customer_number"),
                         rs.getString("name"),
                         rs.getString("address"),
                         rs.getString("email"),

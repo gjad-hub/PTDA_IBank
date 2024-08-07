@@ -67,7 +67,7 @@ public class DepositTableElementPanel extends javax.swing.JPanel {
         lblID.setText("ID:");
 
         lblValueInEuros.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
-        lblValueInEuros.setText("Valor(€): ");
+        lblValueInEuros.setText("Value(€): ");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons_20/deposit-pending.png"))); // NOI18N
 
@@ -77,7 +77,7 @@ public class DepositTableElementPanel extends javax.swing.JPanel {
         lblValueInEurosValue.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         lblValueInEurosValue.setText("10");
 
-        lblPendingState.setText("Estado");
+        lblPendingState.setText("State");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

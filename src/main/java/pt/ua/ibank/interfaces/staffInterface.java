@@ -26,13 +26,8 @@ public class staffInterface extends javax.swing.JFrame {
     private final String EMPLOYEE_NAME = "Employee";
 
     public staffInterface() {
-        try {
             initComponents();
             start_up();
-
-        } catch (java.lang.NullPointerException e) {
-            System.exit(1);
-        }
     }
 
     private void start_up() {
@@ -481,7 +476,8 @@ public class staffInterface extends javax.swing.JFrame {
 
         numAprovacoesFeitas.setBackground(new java.awt.Color(255, 255, 255));
         numAprovacoesFeitas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        numAprovacoesFeitas.setText(pt.ua.ibank.DAO.EmployeeDAO.getEmployeeWithMostApprovedDeposits().toString());
+        var mostValuable = pt.ua.ibank.DAO.EmployeeDAO.getEmployeeWithMostApprovedDeposits();
+        numAprovacoesFeitas.setText(mostValuable == null ? "" : mostValuable.toString());
 
         jLabel20.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
         jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -490,7 +486,8 @@ public class staffInterface extends javax.swing.JFrame {
         nomeFuncionarioMes.setBackground(new java.awt.Color(255, 255, 255));
         nomeFuncionarioMes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         nomeFuncionarioMes.setForeground(new java.awt.Color(62, 171, 191));
-        nomeFuncionarioMes.setText(pt.ua.ibank.DAO.EmployeeDAO.getEmployeeWithMostApprovedDeposits());
+        var mostValuableEmployee = pt.ua.ibank.DAO.EmployeeDAO.getEmployeeWithMostApprovedDeposits();
+        nomeFuncionarioMes.setText(mostValuableEmployee != null ? mostValuableEmployee :  "No one");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);

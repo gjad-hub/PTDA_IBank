@@ -37,9 +37,9 @@ public class PerfilStaffLastOperationsTableElementPanel extends javax.swing.JPan
 
         setBackground(new java.awt.Color(254, 254, 254));
 
-        jLabel1.setText("Cliente: ");
+        jLabel1.setText("Client:");
 
-        lblNomeCliente.setText("Nome");
+        lblNomeCliente.setText("Name");
 
         lblID.setText("ID");
 
@@ -54,7 +54,7 @@ public class PerfilStaffLastOperationsTableElementPanel extends javax.swing.JPan
                 .addComponent(lblNomeCliente)
                 .addGap(18, 18, 18)
                 .addComponent(lblID)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

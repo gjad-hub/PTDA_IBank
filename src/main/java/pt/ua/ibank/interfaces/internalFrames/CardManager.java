@@ -113,26 +113,26 @@ public class CardManager extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(card_table);
         card_table.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        cancel_card.setText("Cancelar cartão");
+        cancel_card.setText("Cancel Card");
         cancel_card.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancel_cardActionPerformed(evt);
             }
         });
 
-        default_card.setText("Tornar padrão");
+        default_card.setText("Make default");
         default_card.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 default_cardActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Cartão padrão: ");
+        jLabel1.setText("Default Card:");
 
         f_card.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         f_card.setEnabled(false);
 
-        create_card.setText("Criar novo cartão");
+        create_card.setText("Create new card");
         create_card.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 create_cardActionPerformed(evt);

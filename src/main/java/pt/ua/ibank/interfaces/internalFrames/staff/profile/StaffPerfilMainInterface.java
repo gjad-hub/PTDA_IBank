@@ -104,7 +104,7 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
         jPanel3.setPreferredSize(new java.awt.Dimension(319, 36));
 
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Data de criação:");
+        jLabel14.setText("Creation Date:");
 
         lblDataValue.setBackground(new java.awt.Color(255, 255, 255));
         lblDataValue.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
@@ -196,7 +196,7 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Dados Pessoais");
+        jLabel10.setText("Personal Data");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -351,7 +351,7 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
 
         jLabel28.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel28.setText("Operações disponiveis");
+        jLabel28.setText("Available Options");
 
         jLabel29.setBackground(new java.awt.Color(51, 51, 51));
         jLabel29.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
@@ -414,7 +414,7 @@ public class StaffPerfilMainInterface extends javax.swing.JPanel {
 
         jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel26.setText("Ultimas operacoes");
+        jLabel26.setText("Last Operations");
 
         jLabel27.setBackground(new java.awt.Color(51, 51, 51));
         jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N

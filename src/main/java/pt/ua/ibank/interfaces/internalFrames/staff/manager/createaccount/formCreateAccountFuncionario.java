@@ -78,12 +78,12 @@ public class formCreateAccountFuncionario extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 32)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Criar Conta");
+        jLabel1.setText("Create Account");
         panelCreateAccount.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 420, 41));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(199, 226, 255));
-        jLabel4.setText("Nº de Telemóvel");
+        jLabel4.setText("Phone Number");
         panelCreateAccount.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 360, -1));
 
         Ftelemovel.setFont(Ftelemovel.getFont().deriveFont(Ftelemovel.getFont().getSize()+2f));
@@ -112,7 +112,7 @@ public class formCreateAccountFuncionario extends javax.swing.JPanel {
 
         btnCreateAccount.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCreateAccount.setForeground(new java.awt.Color(0, 51, 51));
-        btnCreateAccount.setText("CRIAR CONTA");
+        btnCreateAccount.setText("Create Account");
         btnCreateAccount.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCreateAccount.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -128,7 +128,7 @@ public class formCreateAccountFuncionario extends javax.swing.JPanel {
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(199, 226, 255));
-        jLabel16.setText("Repetir Password");
+        jLabel16.setText("Repeat Password");
         panelCreateAccount.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 360, -1));
 
         FRPass.setFont(FRPass.getFont().deriveFont(FRPass.getFont().getSize()+2f));
@@ -157,7 +157,7 @@ public class formCreateAccountFuncionario extends javax.swing.JPanel {
 
         jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(199, 226, 255));
-        jLabel20.setText("NIF");
+        jLabel20.setText("SSN");
         panelCreateAccount.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 360, -1));
 
         FNif.setFont(FNif.getFont().deriveFont(FNif.getFont().getSize()+2f));
@@ -171,7 +171,7 @@ public class formCreateAccountFuncionario extends javax.swing.JPanel {
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(199, 226, 255));
-        jLabel22.setText("Nome Completo");
+        jLabel22.setText("Full Name");
         panelCreateAccount.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 360, -1));
 
         Fnome.setFont(Fnome.getFont().deriveFont(Fnome.getFont().getSize()+2f));
@@ -185,7 +185,7 @@ public class formCreateAccountFuncionario extends javax.swing.JPanel {
 
         jLabel24.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(199, 226, 255));
-        jLabel24.setText("Morada");
+        jLabel24.setText("Address");
         panelCreateAccount.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 360, -1));
 
         FMorada.setFont(FMorada.getFont().deriveFont(FMorada.getFont().getSize()+2f));

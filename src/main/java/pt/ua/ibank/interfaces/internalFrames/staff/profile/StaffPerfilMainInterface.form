@@ -212,7 +212,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Data de cria&#xe7;&#xe3;o:"/>
+                        <Property name="text" type="java.lang.String" value="Creation Date:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="lblDataValue">
@@ -386,7 +386,7 @@
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Dados Pessoais"/>
+                            <Property name="text" type="java.lang.String" value="Personal Data"/>
                           </Properties>
                         </Component>
                       </SubComponents>
@@ -563,7 +563,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Opera&#xe7;&#xf5;es disponiveis"/>
+                        <Property name="text" type="java.lang.String" value="Available Options"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel29">
@@ -649,7 +649,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Ultimas operacoes"/>
+                        <Property name="text" type="java.lang.String" value="Last Operations"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel27">

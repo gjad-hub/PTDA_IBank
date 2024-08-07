@@ -46,13 +46,13 @@ public class PerfilCardTableElementPanel extends javax.swing.JPanel {
         lblNumeroCartao.setText("**34");
 
         lblValidade.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        lblValidade.setText(" Validade:");
+        lblValidade.setText("Expires:");
 
         lblValidadeValue.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         lblValidadeValue.setText("01/24");
 
         lblEstadoValue.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        lblEstadoValue.setText("Ativo");
+        lblEstadoValue.setText("Active");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -69,7 +69,7 @@ public class PerfilCardTableElementPanel extends javax.swing.JPanel {
                         .addComponent(lblTtitle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblNumeroCartao)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(lblEstadoValue)
                 .addContainerGap())
         );
